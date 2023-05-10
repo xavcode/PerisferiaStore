@@ -28,7 +28,7 @@ module.exports = (sequelize) => {
         rating: {
             type: DataTypes.INTEGER,
             allowNull: false,
-            defaultValue: 3
+            defaultValue: 1
             },
         genre: {
             type: DataTypes.STRING,
