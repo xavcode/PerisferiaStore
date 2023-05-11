@@ -19,6 +19,7 @@ module.exports = (sequelize) => {
       },
       mail: {
         type: DataTypes.STRING,
+        allowNull: false,
       },
       img: {
         type: DataTypes.STRING,

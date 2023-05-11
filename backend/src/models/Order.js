@@ -1,4 +1,4 @@
-const {DataTypes, Sequelize} = require ('sequelize');
+const {DataTypes} = require ('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define("order", {
@@ -8,6 +8,14 @@ module.exports = (sequelize) => {
             allowNull: false,
             unique: true,
             primaryKey: true,
+        },
+        quantity: {
+            type: DataTypes.INTEGER,
+            allowNull: false,
+        },
+        totalPrice: {
+            type: DataTypes.DECIMAL(10, 2),
+            allowNull: false,
         },
     })
 }
