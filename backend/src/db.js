@@ -33,11 +33,11 @@ sequelize.models = Object.fromEntries(capsEntries);
 const { User, Order, Product } = sequelize.models;
 
 // Aca vendrian las relaciones
-  User.hasMany(Order, {through: "order_user"});
-  Order.belongsTo(User, {through: "order_user"});
+User.belongsToMany(Order, { through: "order_user" });
+Order.belongsTo(User, { through: "order_user" });
 
- Order.belongsToMany(Product, { through: 'order_product' });
- Product.belongsToMany(Order, { through: 'order_product' });
+Order.belongsToMany(Product, { through: 'order_product' });
+Product.belongsToMany(Order, { through: 'order_product' });
 
 
 module.exports = {

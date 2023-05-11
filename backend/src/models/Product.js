@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
         },
         status: {
             type: DataTypes.ENUM('available', 'out of stock'),
-            defaultValue: 'Available',
+            defaultValue: 'available',
         },
         description: {
             type: DataTypes.STRING,
