@@ -1,4 +1,4 @@
-const {DataTypes, Sequelize} = require ('sequelize');
+const {DataTypes} = require ('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('product', {
@@ -14,23 +14,29 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         price: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.FLOAT,
             allowNull: false,
         },
         img: {
             type: DataTypes.STRING,
             allowNull: false
         },
-        stock: {
-            type: DataTypes.INTEGER,
+        status: {
+            type: DataTypes.ENUM('available', 'out of stock'),
+            defaultValue: 'available',
+        },
+        description: {
+            type: DataTypes.STRING,
             allowNull: false,
         },
         rating: {
             type: DataTypes.INTEGER,
-            allowNull: false,
-            defaultValue: 1
             },
-        genre: {
+        category: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        brand: {
             type: DataTypes.STRING,
             allowNull: false,
         }
