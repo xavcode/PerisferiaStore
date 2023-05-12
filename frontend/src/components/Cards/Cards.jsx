@@ -29,7 +29,7 @@ const Cards = () => {
 
   return (
     <div className='grid mx-8 mt-44 md:mt-24 grid-cols-1  sm:grid-cols-2 gap-8 lg:grid-cols-3 xl:grid-cols-4'>
-      {products.map(product => (
+      {productsFiltered.map(product => (
         <Link className='flex' to={`/store/${product.id}`}>
         <Card
 
