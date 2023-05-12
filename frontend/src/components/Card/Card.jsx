@@ -2,7 +2,7 @@ import React from 'react'
 
 const Card = (props) => {
   return (
-    <div className='grid '>
+    <div className='grid min-w-[300px]'>
       <div className="flex flex-col rounded-lg bg-white justify-between pt-8 align-center">
         <a href="#" className='flex justify-center align-center'>
           <img className=" flex h-[220px] w-[200px] align-center justify-center" src={props.image} alt={props.title} />
