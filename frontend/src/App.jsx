@@ -9,7 +9,6 @@ import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import Error from './pages/Error/Error';
 
-
 function App() {
   
   return (
