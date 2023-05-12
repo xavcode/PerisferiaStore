@@ -7,9 +7,11 @@ const routeUser = require("../routes/othersRoutes/routeUser");
 
 const router = Router();
 
-router.use("/favorite", routeFavorite);
-router.use("/order", routeOrder);
-router.use("/product", routeProduct);
-router.use("/user", routeUser);
+// router.use("/favorite", routeFavorite);
+// router.use("/order", routeOrder);
+// router.use("/product", routeProduct);
+router.use("/user", (req, res) => {
+    res.status(200).send('<h1>Ahi encontre el error</h1>')
+});
 
 module.exports = router;
