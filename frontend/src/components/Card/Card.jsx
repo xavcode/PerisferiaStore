@@ -3,7 +3,7 @@ import React from 'react'
 const Card = (props) => {
   return (
     <div className='grid '>
-      <div className="flex flex-col rounded-lg bg-white justify-between pt-8 align-center max-w-[320px]">
+      <div className="flex flex-col rounded-lg bg-white justify-between pt-8 align-center">
         <a href="#" className='flex justify-center align-center'>
           <img className=" flex max-h-[180px] max-w-[150px] align-center justify-center" src={props.image} alt={props.title} />
         </a>
@@ -21,4 +21,5 @@ const Card = (props) => {
     </div>
   )
 }
+// test
 export default Card
