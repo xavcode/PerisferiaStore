@@ -29,7 +29,6 @@ const Cards = () => {
   
   // const {searchFunction} = useContext(FiltersContext)  
   // searchFunction(search)
-  
 
   //function for filter  with the range selector or input   
   const productsFiltered = products.filter((product) => product.price >= minPrice && product.price <= maxPrice)
