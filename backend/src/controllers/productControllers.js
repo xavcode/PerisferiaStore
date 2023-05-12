@@ -9,7 +9,6 @@ const getAllProducts = async (req, res) => {
     } 
 };
 
-module.exports = { getAllProducts };
 
 //----------------------------------------------------------------//
 
@@ -27,7 +26,6 @@ const getProductById = async (req, res) => {
     }
     };
 
-module.exports = { getProductById };
 
 //----------------------------------------------------------------//
 
@@ -44,6 +42,25 @@ module.exports = { getProductById };
         }
     };
 
-    module.exports = { getProductsByName };
     
 //----------------------------------------------------------------//
+
+const createProduct = async (req, res) => {
+    try {
+        const { name, price, img, status, description, rating, category, brand } = req.body;
+        const newProduct = await Product.create({ name, price, img, status, description, rating, category, brand });
+        res.status(201).json(newProduct);
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+//----------------------------------------------------------------//
+
+module.exports = {
+    getAllProducts,
+    getProductById,
+    getProductsByName,
+    createProduct
+  };
