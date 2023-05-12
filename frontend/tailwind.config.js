@@ -13,7 +13,6 @@ export default {
     //   '2xl': {'min': '1536px'},    
     // },
 
-
     extend: {
       colors: {
         background: '#262629',
@@ -22,9 +21,7 @@ export default {
         b_hover:'#F3AA3A',
         boxshadow: '',
       }
-    },
-
-    
+    },    
   },
   plugins: [],
 }
