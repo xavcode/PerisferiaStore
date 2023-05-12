@@ -63,4 +63,4 @@ module.exports = {
     getProductById,
     getProductsByName,
     createProduct
-  };
+};
