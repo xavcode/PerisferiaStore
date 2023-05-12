@@ -9,7 +9,6 @@ const getAllProducts = async (req, res) => {
     } 
 };
 
-module.exports = { getAllProducts };
 
 //----------------------------------------------------------------//
 
@@ -27,7 +26,6 @@ const getProductById = async (req, res) => {
     }
     };
 
-module.exports = { getProductById };
 
 //----------------------------------------------------------------//
 
@@ -44,7 +42,6 @@ module.exports = { getProductById };
         }
     };
 
-    module.exports = { getProductsByName };
     
 //----------------------------------------------------------------//
 
@@ -58,7 +55,12 @@ const createProduct = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
     }
 };
-module.exports = {
-    createProduct,
-};
+
 //----------------------------------------------------------------//
+
+module.exports = {
+    getAllProducts,
+    getProductById,
+    getProductsByName,
+    createProduct
+  };
