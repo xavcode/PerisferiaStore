@@ -2,11 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-<<<<<<< HEAD
 const router = require('./routes/index');
-=======
-const routes = require('./routes')
->>>>>>> 91c753fb8196ee7ba37dffc0a8327e539808c018
 
 require('./db');
 
@@ -27,7 +23,6 @@ next();
 });
 
 // acá van los server.use blablabla <3
-server.use('/', routes);
 
 server.use('/', router )
 
