@@ -9,15 +9,17 @@ const Search = () => {
   const [search, setSearch] = useState('')
 
   const {filters, setFilters} = useContext(FiltersContext)
-  const {searchFunction} = useContext(FiltersContext)
+  // const {searchFunction} = useContext(FiltersContext)
   
   const handleSearch = (evt) => {
-    searchFunction(search)
+    // searchFunction(search)
+    console.log(search)
   }
 
   const handleInputSearch = (evt) => {
     const productSearched = evt.target.value
     setSearch(productSearched)
+    setFilters({...filters, searched:productSearched})
   }
 
   return (
@@ -27,5 +29,4 @@ const Search = () => {
     </div>
   )
 }
-
 export default Search
