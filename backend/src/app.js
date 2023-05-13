@@ -3,11 +3,8 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes')
-
 require('./db');
-
 const server = express();
-
 server.name = 'BACKEND';
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
@@ -24,6 +21,7 @@ next();
 
 // acá van los server.use blablabla <3
 server.use('/', routes);
+
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
