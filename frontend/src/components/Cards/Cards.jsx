@@ -5,9 +5,13 @@ import { Link } from "react-router-dom";
 import './Cards.css'
 
 import { FiltersContext } from '../../context/FiltersContext';
+import { ProductsContext } from '../../context/ProductsContext';
+
 
 const Cards = () => {
   const [products, setProducts] = useState([]);
+  // const {products, setProducts} = useContext(ProductsContext)
+
   const { filters } = useContext(FiltersContext)
   const minPrice = filters.minPrice
   const maxPrice = filters.maxPrice
@@ -16,23 +20,25 @@ const Cards = () => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get('https://fakestoreapi.com/products');
-      setProducts(response.data);
+      setProducts(response.data );
+      // console.log(response.data);
     }
     fetchData()
   }, []);
 
   //function for search an item
-  const productSearched = products.includes(product => product.title === searched)
+  // const productSearched = products.includes(product => product.title === searched)
+  
+  // const {searchFunction} = useContext(FiltersContext)  
+  // searchFunction(search)
 
   //function for filter  with the range selector or input   
   const productsFiltered = products.filter((product) => product.price >= minPrice && product.price <= maxPrice)
 
   return (
     <div className='grid mx-8 mt-44 md:mt-24 grid-cols-1  sm:grid-cols-2 gap-8 lg:grid-cols-3 xl:grid-cols-4'>
-      {products.map(product => (
-        <Link className='flex' to={`/store/${product.id}`}>
+      {productsFiltered.map(product => (
         <Card
-
           key={product.id}
           id={product.id}
           title={product.title}
@@ -42,7 +48,6 @@ const Cards = () => {
           category={product.category}
           rating={product.rating}
         />
-          </Link>
       ))
       }
     </div>

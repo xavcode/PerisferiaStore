@@ -5,8 +5,8 @@ import { createContext } from "react";
 export const FiltersContext = createContext()
 
 export const FilterProvider = ({ children }) => {
-  const searchFunction = (searched)=>{
-    setFilters({...filters, searched:searched})
+  const searchFunction = (searched) => {
+    setFilters({ ...filters, searched: searched })
   }
   const [filters, setFilters] = useState({
     searched: '',
@@ -18,7 +18,13 @@ export const FilterProvider = ({ children }) => {
     <FiltersContext.Provider value={{
       filters,
       setFilters,
-      searchFunction: (searched)=> searchFunction(searched)
+      // searchFunction: (searched) => {
+      //   return
+      //   {
+      //     console.log(searched)
+      //     searchFunction(searched)
+      //   }
+      // }
     }}>
       {children}
     </FiltersContext.Provider>
