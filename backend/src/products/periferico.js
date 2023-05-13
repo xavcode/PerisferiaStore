@@ -22,24 +22,24 @@ const products = [
       brand: 'Marca 2'
     },
     {
-       name: 'earbuds negro y rojo',
-       price: 15.000,
-       img: "https://ibb.co/PC3QS67",
-       status: 'available',
-       description: 'Descripción del producto 2',
-       rating: 5,
-       category: 'Earbuds',
-       brand: 'Marca 2'
+      name: 'earbuds negro y rojo',
+      price: 15.000,
+      img: "https://ibb.co/PC3QS67",
+      status: 'available',
+      description: 'Descripción del producto 2',
+      rating: 5,
+      category: 'Earbuds',
+      brand: 'Marca 2'
     },
     {
-       name: 'earbuds negro y amarillo',
-       price: 15.000,
-       img: "https://ibb.co/fvgBC79",
-       status: 'available',
-       description: 'Descripción del producto 2',
-       rating: 5,
-       category: 'Earbuds',
-       brand: 'Marca 2'
+      name: 'earbuds negro y amarillo',
+      price: 15.000,
+      img: "https://ibb.co/fvgBC79",
+      status: 'available',
+      description: 'Descripción del producto 2',
+      rating: 5,
+      category: 'Earbuds',
+      brand: 'Marca 2'
     },
     {
         name: 'earbuds blanco y rosado',
