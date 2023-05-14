@@ -1,4 +1,5 @@
-const { Product } = require("../models/Product");
+const { Products } = require('../models/Product');
+
 
 const products = [
     {
@@ -54,8 +55,9 @@ const products = [
   ];
   
   const seedProducts = async () => {
-    await Product.sync({ alter: true }); // Esto creará la tabla en la base de datos si no existe y eliminará todos los datos existentes
-    await Promise.all(products.map(product => Product.create(product)));
+    await Products.sync({ force: true }); 
+    console.log(products)
+    await Promise.all(products.map(product => Products.create(product)));
     console.log('Productos creados con éxito');
   };
   

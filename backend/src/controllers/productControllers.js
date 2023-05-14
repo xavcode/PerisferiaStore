@@ -5,11 +5,14 @@ const getAllProducts = async () => {
   try {
     const allProducts = await Products.findAll()
     const products = allProducts?.map((product) => product)
+    console.log(allProducts)
     return (products)
   } catch (error) {
     throw new Error(error.message)
   }
 }
+
+
 
 //----------------------------------------------------------------//
 

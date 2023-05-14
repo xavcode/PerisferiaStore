@@ -21,7 +21,7 @@ next();
 });
 
 // acá van los server.use blablabla <3
-// server.use('/', routes); 
+server.use('/', router); 
 
 
 // Error catching endware.

@@ -4,9 +4,6 @@ import Card from '../Card/Card';
 import { startCase } from 'lodash'
 import { FiltersContext } from '../../context/FiltersContext';
 
-
-import { FiltersContext } from '../../context/FiltersContext';
-
 const Cards = () => {
   const [products, setProducts] = useState([]);
   const [productsRender, setProductsRender] = useState([])

@@ -3,8 +3,6 @@ const routeFavorites = require("./routeFavorites");
 const routeOrders = require("./routeOrder");
 const routeUsers = require("./routeUsers");
 const routeProducts = require ('./routeProducts')
-
-
 const router = Router();
 
 router.use('/products', routeProducts)

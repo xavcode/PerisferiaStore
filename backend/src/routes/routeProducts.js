@@ -3,7 +3,7 @@ const { Products } = require("../db");
 const { getAllProducts, getProductsByName } = require("../controllers/productControllers");
 
 //? create an instance of router.. with this we can make like: routerProducts.get or routerProducts.post, etc
-routeProducts = Router()
+const routeProducts = Router()
 
 
 //**********************--GET PRODUCT--************************************/
