@@ -1,6 +1,6 @@
 import React, { useContext } from 'react'
 
-import {FiltersContext} from '../../context/FiltersContext.jsx'
+import { FiltersContext } from '../../context/FiltersContext.jsx'
 
 const Filters = () => {
 
@@ -11,15 +11,15 @@ const Filters = () => {
   const handleChangePrice = (evt) => {
     const value = evt.target.value
     const valueId = evt.target.id
-    if (valueId === 'minPrice') setFilters({...filters, minPrice: value})
-    else if (valueId === 'maxPrice') setFilters({...filters, maxPrice:value})
+    if (valueId === 'minPrice') setFilters({ ...filters, minPrice: value })
+    else if (valueId === 'maxPrice') setFilters({ ...filters, maxPrice: value })
   }
 
   const handleInputText = (evt) => {
     const value = evt.target.value
     const valueId = evt.target.id
-    if (valueId === 'valueMinPrice') setFilters({...filters, minPrice:value})
-    else if (valueId === 'valueMaxPrice')  setFilters({...filters, maxPrice:value})
+    if (valueId === 'valueMinPrice') setFilters({ ...filters, minPrice: value })
+    else if (valueId === 'valueMaxPrice') setFilters({ ...filters, maxPrice: value })
   }
 
   return (
@@ -27,7 +27,7 @@ const Filters = () => {
       <ul className='flex '>
         <div className='flex m-3 '>
           <div className='flex flex-col items-center justify-center' >
-            <input id='valueMinPrice' className='text-center' type="number" onChange={handleInputText} value={minPrice}  />
+            <input id='valueMinPrice' className='text-center' type="number" onChange={handleInputText} value={minPrice} />
             <li>Desde<input className='mx-3' type="range" id="minPrice" min={0} max={1000} onChange={handleChangePrice} value={minPrice} /></li>
           </div>
           <div className='flex flex-col items-center justify-center' >
@@ -48,11 +48,11 @@ const Filters = () => {
           </span>
           <span>
             <select name="rating" id="rating">
-              <option value="oneStar"> ⭐</option>
-              <option value="twoStar"> ⭐⭐</option>
-              <option value="threeStar"> ⭐⭐⭐</option>
-              <option value="fourStar"> ⭐⭐⭐⭐</option>
               <option value="fiveStar"> ⭐⭐⭐⭐⭐</option>
+              <option value="fourStar"> ⭐⭐⭐⭐</option>
+              <option value="threeStar"> ⭐⭐⭐</option>
+              <option value="twoStar"> ⭐⭐</option>
+              <option value="oneStar"> ⭐</option>
             </select>
           </span>
         </div>

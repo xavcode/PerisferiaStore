@@ -9,12 +9,22 @@ import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 import "../Home/Home.css";
 
 const Home = () => {
+<<<<<<< HEAD
   const images = [
     "https://as1.ftcdn.net/v2/jpg/02/28/19/26/1000_F_228192611_akMH8f6lbZ2NedZluGMgZCco0aKRKtGk.jpg",
     "https://as1.ftcdn.net/v2/jpg/04/51/95/20/1000_F_451952066_Whal7MJnLU0dKyHYFhTjVzBGYHV1BtxW.jpg",
     "https://as1.ftcdn.net/v2/jpg/03/16/49/90/1000_F_316499078_3naGY4WSJIOZqKaMrYaJl2Vknr8NFzc9.jpg",
     "https://as2.ftcdn.net/v2/jpg/00/60/95/33/1000_F_60953364_ZBxSUGv9CebWIH06YF9cTnlALHNpSSxs.jpg",
   ];
+=======
+  return (
+    <div className=' text-white mt-[400px] font-bold'>
+      <h1>HOME PAGE</h1>
+      {/* <img className='bg-cover bg-center min-h-screen' src={homeImage} alt="" /> */}
+    </div>
+  )
+}
+>>>>>>> 11afff4633fa0a1cb3a2af08721a925b0be8adc1
 
   const [currentImage, setCurrentImage] = useState(0);
 
