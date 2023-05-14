@@ -4,9 +4,13 @@ import { FiltersContext } from '../../context/FiltersContext.jsx'
 
 const Filters = () => {
 
-  const { filters, setFilters } = useContext(FiltersContext)
+  const { filters, setFilters, categories } = useContext(FiltersContext)
   const minPrice = filters.minPrice
   const maxPrice = filters.maxPrice
+
+  //get data from FilterContext, for render it in cards jsx. at the while.
+
+  //------------------------Handlers---------------------------//
 
   const handleChangePrice = (evt) => {
     const value = evt.target.value
@@ -20,6 +24,11 @@ const Filters = () => {
     const valueId = evt.target.id
     if (valueId === 'valueMinPrice') setFilters({ ...filters, minPrice: value })
     else if (valueId === 'valueMaxPrice') setFilters({ ...filters, maxPrice: value })
+  }
+
+  const handleSelectCat = (evt) => {
+    const category = evt.target.value
+    setFilters({...filters, catSelected:category})
   }
 
   return (
@@ -38,12 +47,13 @@ const Filters = () => {
 
         <div className='flex items-center'>
           <span>
-            <select name="category" id="category" defaultValue='all' >
+            <select className='text-xl' name="category" id="category" defaultValue='all' onChange={handleSelectCat} >
               <option value="all">Todos</option>
-              <option value="electronic">Electronica</option>
-              <option value="mensClothing">Ropa hombre</option>
-              <option value="womensClothing">Ropa Mujer</option>
-              <option value="jewelry">Joyeria</option>
+              {categories.map(cat => {
+                return (
+                  <option key={cat.id} value={cat.title} >{cat.title}</option>
+                )
+              })}
             </select>
           </span>
           <span>

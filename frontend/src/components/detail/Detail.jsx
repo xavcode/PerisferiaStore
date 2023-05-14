@@ -3,11 +3,12 @@ import { Link, useParams } from 'react-router-dom';
 import { AiFillStar } from "react-icons/ai";
 import axios from 'axios';
 
-const Detail = (prop) => {
+const Detail = () => {
 
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
+  
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(`http://localhost:3001/products/${id}`);
@@ -15,7 +16,6 @@ const Detail = (prop) => {
     }
     fetchData()
   }, []);
-  console.log(product.category)
 
 
 
