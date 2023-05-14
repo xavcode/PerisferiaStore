@@ -2,7 +2,7 @@ const { Product } = require("../models/Product");
 
 const products = [
     {
-      name: 'earbuds blancos con celeste ',
+      title: 'earbuds blancos con celeste ',
       price: 15.000,
       img: "https://ibb.co/tQFH0PH",
       status: 'available',
@@ -12,7 +12,7 @@ const products = [
       brand: 'Marca 1'
     },
     {
-      name: 'earbuds superman',
+      title: 'earbuds superman',
       price: 25.000,
       img: 'https://ibb.co/fpchtyR',
       status: 'available',
@@ -22,9 +22,9 @@ const products = [
       brand: 'Marca 2'
     },
     {
-       name: 'earbuds negro y rojo',
+       title: 'earbuds negro y rojo',
        price: 15.000,
-       img: "https://ibb.co/PC3QS67",
+       img: "https://i.ibb.co/3hGzJCD/earbuds-prod-3.webp",
        status: 'available',
        description: 'Descripción del producto 2',
        rating: 5,
@@ -32,7 +32,7 @@ const products = [
        brand: 'Marca 2'
     },
     {
-       name: 'earbuds negro y amarillo',
+       title: 'earbuds negro y amarillo',
        price: 15.000,
        img: "https://ibb.co/fvgBC79",
        status: 'available',
@@ -42,7 +42,7 @@ const products = [
        brand: 'Marca 2'
     },
     {
-        name: 'earbuds blanco y rosado',
+        title: 'earbuds blanco y rosado',
         price: 15.000,
         img: "https://ibb.co/58VPcx3",
         status: 'available',
