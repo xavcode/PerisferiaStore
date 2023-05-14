@@ -12,6 +12,8 @@ node_modules
 dist
 dist-ssr
 *.local
+.env
+.env.local
 
 # Archivo .env
 .env
@@ -26,7 +28,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-
-*.env
-.env.local

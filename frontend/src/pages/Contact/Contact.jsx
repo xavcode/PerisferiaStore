@@ -6,7 +6,7 @@ const Contact = () => {
 
       <section className='flex flex-col text-center my-3'>
 
-        <h1 className='text-3xl'>Contacto</h1>
+        <h1 className='text-3xl'>Contacto</h1> 
         <p>Por favor, completa el siguiente formulario para contactarnos.</p>
         <form className='flex flex-col bg-inherit gap-2'>
           <label htmlFor="name">Nombre:</label>

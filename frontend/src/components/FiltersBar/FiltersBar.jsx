@@ -1,25 +1,34 @@
 import React, { useContext } from 'react'
 
-import {FiltersContext} from '../../context/FiltersContext.jsx'
+import { FiltersContext } from '../../context/FiltersContext.jsx'
 
 const Filters = () => {
 
-  const { filters, setFilters } = useContext(FiltersContext)
+  const { filters, setFilters, categories } = useContext(FiltersContext)
   const minPrice = filters.minPrice
   const maxPrice = filters.maxPrice
+
+  //get data from FilterContext, for render it in cards jsx. at the while.
+
+  //------------------------Handlers---------------------------//
 
   const handleChangePrice = (evt) => {
     const value = evt.target.value
     const valueId = evt.target.id
-    if (valueId === 'minPrice') setFilters({...filters, minPrice: value})
-    else if (valueId === 'maxPrice') setFilters({...filters, maxPrice:value})
+    if (valueId === 'minPrice') setFilters({ ...filters, minPrice: value })
+    else if (valueId === 'maxPrice') setFilters({ ...filters, maxPrice: value })
   }
 
   const handleInputText = (evt) => {
     const value = evt.target.value
     const valueId = evt.target.id
-    if (valueId === 'valueMinPrice') setFilters({...filters, minPrice:value})
-    else if (valueId === 'valueMaxPrice')  setFilters({...filters, maxPrice:value})
+    if (valueId === 'valueMinPrice') setFilters({ ...filters, minPrice: value })
+    else if (valueId === 'valueMaxPrice') setFilters({ ...filters, maxPrice: value })
+  }
+
+  const handleSelectCat = (evt) => {
+    const category = evt.target.value
+    setFilters({...filters, catSelected:category})
   }
 
   return (
@@ -27,7 +36,7 @@ const Filters = () => {
       <ul className='flex '>
         <div className='flex m-3 '>
           <div className='flex flex-col items-center justify-center' >
-            <input id='valueMinPrice' className='text-center' type="number" onChange={handleInputText} value={minPrice}  />
+            <input id='valueMinPrice' className='text-center' type="number" onChange={handleInputText} value={minPrice} />
             <li>Desde<input className='mx-3' type="range" id="minPrice" min={0} max={1000} onChange={handleChangePrice} value={minPrice} /></li>
           </div>
           <div className='flex flex-col items-center justify-center' >
@@ -38,21 +47,22 @@ const Filters = () => {
 
         <div className='flex items-center'>
           <span>
-            <select name="category" id="category" defaultValue='all' >
+            <select className='text-xl' name="category" id="category" defaultValue='all' onChange={handleSelectCat} >
               <option value="all">Todos</option>
-              <option value="electronic">Electronica</option>
-              <option value="mensClothing">Ropa hombre</option>
-              <option value="womensClothing">Ropa Mujer</option>
-              <option value="jewelry">Joyeria</option>
+              {categories.map(cat => {
+                return (
+                  <option key={cat.id} value={cat.title} >{cat.title}</option>
+                )
+              })}
             </select>
           </span>
           <span>
             <select name="rating" id="rating">
-              <option value="oneStar"> ⭐</option>
-              <option value="twoStar"> ⭐⭐</option>
-              <option value="threeStar"> ⭐⭐⭐</option>
-              <option value="fourStar"> ⭐⭐⭐⭐</option>
               <option value="fiveStar"> ⭐⭐⭐⭐⭐</option>
+              <option value="fourStar"> ⭐⭐⭐⭐</option>
+              <option value="threeStar"> ⭐⭐⭐</option>
+              <option value="twoStar"> ⭐⭐</option>
+              <option value="oneStar"> ⭐</option>
             </select>
           </span>
         </div>

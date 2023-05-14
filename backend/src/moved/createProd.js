@@ -15,7 +15,7 @@ const createProduct = async (req, res) => {
             brand
         } = req.body;
         console.log(req.body)
-        const my_product = await Products.create({
+        const newProduct = await Products.create({
             id,
             name,
             price,
@@ -26,9 +26,9 @@ const createProduct = async (req, res) => {
             category,
             brand 
         })
-            return res.status(200).send({message: 'Actividad creada con Exito' })
+            return res.status(200).send(newProduct)
     } catch (error) {
-       return res.status(404).send('ups');
+       return res.status(404).send(error.message);
     }
 }
 

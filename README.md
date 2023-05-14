@@ -1,2 +1,2 @@
 # PerisferiaStore
-gamers peripherical store
+gamer store

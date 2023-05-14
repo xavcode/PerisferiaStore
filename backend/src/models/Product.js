@@ -1,14 +1,14 @@
-const {DataTypes, UUIDV4} = require ('sequelize');
+const { DataTypes, UUIDV4 } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('products', {
         id: {
             type: DataTypes.UUID,
-            allowNull:false,
+            allowNull: false,
             unique: true,
             primaryKey: true,
             defaultValue: UUIDV4
-            },
+        },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
@@ -31,7 +31,7 @@ module.exports = (sequelize) => {
         },
         rating: {
             type: DataTypes.INTEGER,
-            },
+        },
         category: {
             type: DataTypes.STRING,
             allowNull: false,
