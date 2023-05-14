@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom';
 import axios from 'axios';
 
-const Detail = (prop) => {
+const Detail = () => {
 
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
+  
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(`http://localhost:3001/products/${id}`);
@@ -14,7 +15,6 @@ const Detail = (prop) => {
     }
     fetchData()
   }, []);
-  console.log(product.category)
 
   return (
     <div className='flex mt-[200px] justify-center items-center'>
