@@ -1,7 +1,18 @@
 const { Products } = require('../db');
 
 
-const createProduct = async (req, res) => {
+const createProduct = (prod) => {
+    try {
+        const my_product = Products.create(prod)
+        return my_product
+    } catch (error) {
+        return {
+           error: error.message
+       };
+    }
+}
+
+const add_NewProduct = async (req, res) => {
     try {
         const {
             id,
@@ -12,10 +23,8 @@ const createProduct = async (req, res) => {
             description,
             rating,
             category,
-            brand
         } = req.body;
-        console.log(req.body)
-        const my_product = await Products.create({
+        const new_product = await createProduct({ 
             id,
             name,
             price,
@@ -24,21 +33,10 @@ const createProduct = async (req, res) => {
             description,
             rating,
             category,
-            brand 
-        })
-            return res.status(200).send({message: 'Actividad creada con Exito' })
+        });
+        res.status(200).send('<p>Registro creado con exito</p>')
     } catch (error) {
-       return res.status(404).send('ups');
-    }
-}
-
-const add_NewProduct = async (req, res) => {
-    try {
-        const new_product = await createProduct();
-        console.log(new_product)
-       return res.status(200).send('<h1>Ya esta creado</h1>');
-    } catch (error) {
-       return res.status(404).send({ error: error.message });
+        res.status(404).send({ error: error.message });
     }
 } 
 
