@@ -1,8 +1,8 @@
 import React, { useEffect, useState, useContext } from 'react'
 import axios from "axios";
 import Card from '../Card/Card';
-import { Link } from "react-router-dom";
-import './Cards.css'
+import {startCase} from 'lodash'
+
 
 import { FiltersContext } from '../../context/FiltersContext';
 import { ProductsContext } from '../../context/ProductsContext';
@@ -19,7 +19,7 @@ const Cards = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('https://fakestoreapi.com/products');
+      const response = await axios.get('http://localhost:3001/products');
       setProducts(response.data );
       // console.log(response.data);
     }
@@ -36,12 +36,12 @@ const Cards = () => {
   const productsFiltered = products.filter((product) => product.price >= minPrice && product.price <= maxPrice)
 
   return (
-    <div className='grid mx-8 mt-44 md:mt-24 grid-cols-1  sm:grid-cols-2 gap-8 lg:grid-cols-3 xl:grid-cols-4'>
+    <div className='grid justify-center mx-8 mt-44 md:mt-24 grid-cols-1 sm:grid-cols-2 gap-8 lg:grid-cols-3 xl:grid-cols-4' >
       {productsFiltered.map(product => (
         <Card
           key={product.id}
           id={product.id}
-          title={product.title}
+          title={startCase( product.title)}
           description={product.description}
           price={product.price}
           image={product.image}
