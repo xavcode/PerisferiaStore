@@ -9,7 +9,7 @@ const Cards = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('https://fakestoreapi.com/products');
+      const response = await axios.get('http://localhost:3001/store');
       setProducts(response.data);
     }
     fetchData()
@@ -17,15 +17,15 @@ const Cards = () => {
   return (
     <div className='grid mx-8 mt-44 md:mt-24 grid-cols-1  sm:grid-cols-2 gap-8 lg:grid-cols-3 xl:grid-cols-4'>
       {products.map(product => (
-        <Link className='flex' to={`/store/${product.id}`}>
+        <Link key={product.id} className='flex' to={`/store/${product.id}`}>
         <Card
           products ={products}
           key={product.id}
           id={product.id}
-          title={product.title}
+          title={product.name}
           description={product.description}
           price={product.price}
-          image={product.image}
+          image={product.img}
           category={product.category}
           rating={product.rating}
         />
