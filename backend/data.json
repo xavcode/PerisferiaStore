@@ -1,0 +1,84 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "title": "user1",
+      "last_title": "lasttitle1",
+      "user_title": "user_title1",
+      "email": "email1@mail.com",
+      "password": "password1",
+      "phone": "5551231231"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "title": "Earbuds"
+    },
+    {
+      "id": "2",
+      "title": "Mouses"
+    },
+    {
+      "id": "3",
+      "title": "Keyboards"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "title": "earbuds blancos con celeste ",
+      "price": 15,
+      "image": "https://i.ibb.co/KbS5tz5/earbuds-prod-1.webp",
+      "status": "available",
+      "description": "Descripción del producto 1",
+      "rating": 4,
+      "category": "Earbuds",
+      "brand": "Marca 1"
+    },
+    {
+      "id": "2",
+      "title": "earbuds superman",
+      "price": 25,
+      "image": "https://i.ibb.co/R05xPsn/earbuds-prod-2.webp",
+      "status": "available",
+      "description": "Descripción del producto 2",
+      "rating": 3,
+      "category": "Earbuds",
+      "brand": "Marca 2"
+    },
+    {
+      "id": "3",
+      "title": "earbuds negro y rojo",
+      "price": 10,
+      "image": "https://i.ibb.co/KbS5tz5/earbuds-prod-1.webp",
+      "status": "available",
+      "description": "Descripción del producto 2",
+      "rating": 2,
+      "category": "Earbuds",
+      "brand": "Marca 3"
+    },
+    {
+      "id": "4",
+      "title": "earbuds negro y amarillo",
+      "price": 18,
+      "image": "https://i.ibb.co/rsjTZJ3/earbuds-prod-4.webp",
+      "status": "available",
+      "description": "Descripción del producto 2",
+      "rating": 5,
+      "category": "Earbuds",
+      "brand": "Marca 5"
+    },
+    {
+      "id": "5",
+      "title": "earbuds blanco y rosado",
+      "price": 30,
+      "image": "https://i.ibb.co/9Tj7Y30/earbuds-prod-5.webp",
+      "status": "available",
+      "description": "Descripción del producto 2",
+      "rating": 5,
+      "category": "Earbuds",
+      "brand": "Marca 2"
+    }
+  ]
+}
