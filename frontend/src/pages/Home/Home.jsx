@@ -8,12 +8,20 @@ import { AiFillStar } from "react-icons/ai"; //AiOutlineStar
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 
 const Home = () => {
+
+
+
   const images = [
     "https://as1.ftcdn.net/v2/jpg/02/28/19/26/1000_F_228192611_akMH8f6lbZ2NedZluGMgZCco0aKRKtGk.jpg",
     "https://as1.ftcdn.net/v2/jpg/04/51/95/20/1000_F_451952066_Whal7MJnLU0dKyHYFhTjVzBGYHV1BtxW.jpg",
     "https://as1.ftcdn.net/v2/jpg/03/16/49/90/1000_F_316499078_3naGY4WSJIOZqKaMrYaJl2Vknr8NFzc9.jpg",
     "https://as2.ftcdn.net/v2/jpg/00/60/95/33/1000_F_60953364_ZBxSUGv9CebWIH06YF9cTnlALHNpSSxs.jpg",
   ];
+
+
+
+
+
 
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -36,6 +44,7 @@ const Home = () => {
   };
 
   return (
+    
     <div className="text-left">
       <main className="flex justify-between gap-20 max-w-2xl mx-auto">
         <div className="max-w-350 mt-20 ">
@@ -124,6 +133,7 @@ const Home = () => {
       </div>
     </div>
   );
-};
+  };
+
 
 export default Home;
