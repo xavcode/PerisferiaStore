@@ -42,20 +42,19 @@ const Home = () => {
         <div className="max-w-350 mt-20 relative">
           <div className="flex items-start">
             <div>
-            <h1 className="font-nunito text-6xl font-extrabold leading-13 tracking-0.5% text-black mr-20">
+            <h1 className="font-nunito text-6xl font-extrabold leading-13 tracking-0.5% text-white mr-20">
               Descubre una amplia selección de productos y accesorios.
             </h1>
-            {/* <h5>aa</h5> */}
-            <p className="text-15 font-semibold text-gray-600 leading-5 max-w-285 mb-8">
+            <p className="text-15 font-semibold leading-5 max-w-285 mb-8 text-white font-bold">
               Explora increíbles ofertas y encuentra todo lo que
-              necesitas para tu estilo de vida.<h1 className="text-red-200">
+              necesitas para tu estilo de vida.<h1 className="text-red-300">
                 Haz de las compras una
               experiencia emocionante y descubre un mundo de posibilidades en
               nuestra tienda en línea.</h1> 
               </p> 
-            </div>
+            </div> 
             <img
-              className="w-full h-[600px] w-[600px] h-auto rounded-lg shadow-lg object-cover "
+              className="w-full h-[500px] w-[500px] h-auto rounded-lg shadow-lg object-cover "
               src={images[currentImage]}
               alt="Slide"
               />
@@ -78,16 +77,16 @@ const Home = () => {
       {/*Cartas Inferor de la pagina*/}
 
       <div className="flex justify-between max-w-5xl mx-auto mt-16 px-1">
-        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-gray-500">
-          <h1 className="text-5xl text-gray-800" alt="icon">
+        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-white hover:bg-gray-100">
+          <h1 className="text-5xl text-gray-900" alt="icon">
             <AiFillStar />
           </h1> 
-          <p className="text-sm font-semibold text-gray-800">
+          <p className="text-sm font-semibold text-gray-900">
             Encuentra productos <br /> perfectos para ti.
           </p>  
         </div>
 
-        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-gray-500">
+        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-white hover:bg-gray-100">
           <h1 className="text-5xl text-gray-800" alt="icon">
             <AiFillCustomerService />
           </h1>
@@ -96,7 +95,7 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-gray-500">
+        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-white hover:bg-gray-100">
           <h1 className="text-5xl text-gray-800" alt="icon">
             <AiFillDollarCircle />
           </h1>
@@ -105,7 +104,7 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-gray-500">
+        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-white hover:bg-gray-100">
           <h1 className="text-5xl text-gray-800" alt="icon">
             <AiOutlineFundProjectionScreen />
           </h1>
@@ -114,7 +113,7 @@ const Home = () => {
           </p>
         </div>
 
-        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-gray-500">
+        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-white hover:bg-gray-100">
           <h1 className="text-5xl text-gray-800" alt="icon">
             <AiFillLock />
           </h1>
