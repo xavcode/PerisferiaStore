@@ -10,18 +10,23 @@ export default {
     //   'md': {'min': '768px', 'max': '1023px'},
     //   'lg': {'min': '1024px', 'max': '1279px'},
     //   'xl': {'min': '1280px', 'max': '1535px'},
-    //   '2xl': {'min': '1536px'},    
+    //   '2xl': {'min': '1536px' 'max': '1600px'},
+    //   '3xl': {'min': '1536px'},    
     // },
 
     extend: {
+
+      // screens: {
+      //   '3xl': '1600px',
+      // },
       colors: {
         background: '#262629',
         primary: '#F3AA3A',
         buttons: '#181A20',
-        b_hover:'#F3AA3A',
+        b_hover: '#F3AA3A',
         boxshadow: '',
       }
-    },    
+    },
   },
   plugins: [],
 }

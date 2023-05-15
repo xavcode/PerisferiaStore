@@ -21,7 +21,7 @@
     },
     {
       "id": "3",
-      "title": "Keyboards"
+      "title": "Teclados"
     },
     {
       "id": "4",
@@ -85,7 +85,7 @@
       "id": "5",
       "title": "earbuds blanco y rosado",
       "price": 10,
-      "image": "https://i.ibb.co/rsjTZJ3/earbuds-prod-4.webp",
+      "image": "https://i.ibb.co/9Tj7Y30/earbuds-prod-5.webp",
       "status": "disponible",
       "description": "Los earbuds brindan una calidad de audio increible y tienen una duracion de bateria de 6hs, se recargan con entrada USB tipo-c",
       "rating": 5,
@@ -94,7 +94,7 @@
     },
     {
       "id": "6",
-      "title": "Logitech G502 Hero",
+      "title": "Mouse Logitech G502 Hero",
       "price": 79.99,
       "image": "https://www.techspot.com/images/products/2018/mice/org/2018-10-10-product.jpg",
       "status": "disponible",
@@ -105,7 +105,7 @@
     },
     {
       "id": "7",
-      "title": "Razer DeathAdder Elite",
+      "title": "Mouse Razer DeathAdder Elite",
       "price": 69.99,
       "image": "https://exitocol.vtexassets.com/arquivos/ids/2587248/mouse-razer-deathadder-elite.jpg?v=637302745650270000",
       "status": "disponible",
@@ -116,7 +116,7 @@
     },
     {
       "id": "8",
-      "title": "Corsair M65 RGB Elite",
+      "title": "Mouse Corsair M65 RGB Elite",
       "price": 89.99,
       "image": "https://www.pcgamesn.com/wp-content/uploads/2019/01/Corsair-M65-RGB-ELITE.jpg",
       "status": "disponible",
@@ -127,7 +127,7 @@
     },
     {
       "id": "9",
-      "title": "SteelSeries Rival 600",
+      "title": "Mouse SteelSeries Rival 600",
       "price": 79.99,
       "image": "https://static-geektopia.com/storage/geek/products/steelseries/rival-600/05_rival600_kv_top_hero.png__1850x800_q100_crop-scale_optimize_subsampling-2.png",
       "status": "disponible",
@@ -138,7 +138,7 @@
     },
     {
       "id": "10",
-      "title": "Finalmouse Ultralight 2 Cape Town",
+      "title": "Mouse Finalmouse Ultralight 2 Cape Town",
       "price": 129.99,
       "image": "https://thegamingsetup.com/wp-content/uploads/ultralight2-amzn.jpg",
       "status": "disponible",
@@ -149,7 +149,7 @@
     },
     {
       "id": "11",
-      "title": "HyperX Cloud II",
+      "title": "Auriculares HyperX Cloud II",
       "price": 99.99,
       "image": "https://media.extra.com/s/aurora/00183550_800/HyperX-Cloud-II-Pro-Gaming-Headset-Red?locale=en-GB,en-*,*",
       "status": "disponible",
@@ -160,7 +160,7 @@
     },
     {
       "id": "12",
-      "title": "Razer Kraken Tourtitlent Edition",
+      "title": "Auriculares Razer Kraken Tourtitlent Edition",
       "price": 89.99,
       "image": "https://www.xzone.cz/download/products/RazerKrakenTourtitlentEditionGreen.jpg",
       "status": "disponible",
@@ -171,7 +171,7 @@
     },
     {
       "id": "13",
-      "title": "Corsair Void RGB Elite Wireless",
+      "title": "Auriculares Corsair Void RGB Elite Wireless",
       "price": 129.99,
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-816-143-V01.jpg",
       "status": "disponible",
@@ -182,7 +182,7 @@
     },
     {
       "id": "14",
-      "title": "SteelSeries Arctis 7",
+      "title": "Auriculares SteelSeries Arctis 7",
       "price": 149.99,
       "image": "https://tse1.mm.bing.net/th?id=OIP.6lMDjGodwdkHuC6RdA8R7wHaJ7&pid=Api&P=0",
       "status": "disponible",
@@ -193,7 +193,7 @@
     },
     {
       "id": "15",
-      "title": "Logitech G Pro X",
+      "title": "Auriculares Logitech G Pro X",
       "price": 119.99,
       "image": "https://www.kjell.com/globalassets/productimages/770399_62812.tif?ref=ADA4DC82D9&format=jpg",
       "status": "disponible",
@@ -204,62 +204,62 @@
     },
     {
       "id": "16",
-      "title": "Logitech G Pro Mechanical Gaming Keyboard",
+      "title": "Teclado Logitech G Pro Mechanical Gaming Keyboard",
       "price": 129.99,
       "image": "https://nerdreactor.com/wp-content/uploads/2017/03/Logitech-G-Pro-Gaming-Keyboard.png",
       "status": "disponible",
       "description": "El teclado mecánico Logitech G Pro ofrece una respuesta rápida y precisa, ideal para jugadores profesionales.",
       "rating": 4.5,
-      "category": "Keyboards",
+      "category": "Teclados",
       "brand": "Logitech"
     },
     {
       "id": "17",
-      "title": "Razer Huntsman Elite",
+      "title": "Teclado Razer Huntsman Elite",
       "price": 179.99,
       "image": "https://news.mcr.com.es/wp-content/uploads/2019/01/Huntsman-Elite-WR-2018-Render09.jpg",
       "status": "disponible",
       "description": "El teclado Razer Huntsman Elite cuenta con interruptores ópticos y retroiluminación RGB personalizable para una experiencia de juego inmersiva.",
       "rating": 4.4,
-      "category": "Keyboards",
+      "category": "Teclados",
       "brand": "Razer"
     },
     {
       "id": "18",
-      "title": "Corsair K70 RGB MK.2",
+      "title": "Teclado Corsair K70 RGB MK.2",
       "price": 159.99,
       "image": "https://www.pcgamesn.com/wp-content/uploads/2018/06/Corsair-K70-MK.2-specs-1.jpg",
       "status": "disponible",
       "description": "El teclado Corsair K70 RGB MK.2 ofrece una respuesta rápida y cuenta con retroiluminación RGB dinámica para una experiencia de juego personalizada.",
       "rating": 4.3,
-      "category": "Keyboards",
+      "category": "Teclados",
       "brand": "Corsair"
     },
     {
       "id": "19",
-      "title": "SteelSeries Apex Pro",
+      "title": "Teclado SteelSeries Apex Pro",
       "price": 199.99,
       "image": "https://cdn1.elsalg.dk/inetimagegen.ashx?altFmImage_path=/Files/ELSALG/eCom/Pictures/0000000000001.png&Width=280&image=/files/ELSALG/eCom/Pictures/5707119038607.png&width=1024&height=768&crop=5",
       "status": "disponible",
       "description": "El teclado SteelSeries Apex Pro cuenta con interruptores ajustables y una pantalla OLED integrada para una personalización avanzada.",
       "rating": 4.6,
-      "category": "Keyboards",
+      "category": "Teclados",
       "brand": "SteelSeries"
     },
     {
       "id": "20",
-      "title": "HyperX Alloy Origins",
+      "title": "Teclado HyperX Alloy Origins",
       "price": 109.99,
       "image": "https://i1.wp.com/itc.ua/wp-content/uploads/2021/01/alloyorigins60.0-scaled.jpg?fit=2560%2C1707&quality=100&strip=all&ssl=1",
       "status": "disponible",
       "description": "El teclado HyperX Alloy Origins presenta interruptores mecánicos y un diseño compacto para una experiencia de juego precisa y cómoda.",
       "rating": 4.2,
-      "category": "Keyboards",
+      "category": "Teclados",
       "brand": "HyperX"
     },
     {
       "id": "21",
-      "title": "NVIDIA GeForce RTX 3080",
+      "title": "Grafica NVIDIA GeForce RTX 3080",
       "price": 799.99,
       "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6462/6462956cv13d.jpg",
       "status": "disponible",
@@ -270,7 +270,7 @@
     },
     {
       "id": "22",
-      "title": "AMD Radeon RX 6800 XT",
+      "title": "Grafica AMD Radeon RX 6800 XT",
       "price": 699.99,
       "image": "https://interlink-static2.tsbohemia.cz/sapphire-amd-radeon-rx-6800-xt-16g_ien366430.jpg",
       "status": "disponible",
@@ -281,7 +281,7 @@
     },
     {
       "id": "23",
-      "title": "EVGA GeForce RTX 3070",
+      "title": "Grafica EVGA GeForce RTX 3070",
       "price": 599.99,
       "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/14-487-528-V03.jpg",
       "status": "disponible",
@@ -292,7 +292,7 @@
     },
     {
       "id": "24",
-      "title": "MSI GeForce GTX 1660 Super",
+      "title": "Grafica MSI GeForce GTX 1660 Super",
       "price": 299.99,
       "image": "https://tse1.mm.bing.net/th?id=OIP.DPovpyARGrELESVFHhaUvwHaHa&pid=Api&P=0",
       "status": "disponible",
@@ -303,7 +303,7 @@
     },
     {
       "id": "25",
-      "title": "ASUS ROG Strix Radeon RX 6700 XT",
+      "title": "Grafica ASUS ROG Strix Radeon RX 6700 XT",
       "price": 549.99,
       "image": "https://platincdn.com/466/pictures/thumb/450X-AUBDGPFZAH5102021181659_asus_rog_strix_rx6700xt_oc_07.jpg",
       "status": "disponible",

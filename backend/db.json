@@ -1,39 +1,16 @@
 {
-  "users": [
+  "posts": [
     {
-      "id": "1",
-      "title": "user1",
-      "last_title": "lasttitle1",
-      "user_title": "user_title1",
-      "email": "email1@mail.com",
-      "password": "password1",
-      "phone": "5551231231"
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
     }
   ],
-  "categories": [
+  "comments": [
     {
-      "id": "1",
-      "title": "Earbuds"
-    },
-    {
-      "id": "2",
-      "title": "Mouses"
-    },
-    {
-      "id": "3",
-      "title": "Keyboards"
-    },
-    {
-      "id": "4",
-      "title": "Auriculares"
-    },
-    {
-      "id": "5",
-      "title": "Placas de video"
-    },
-    {
-      "id": "6",
-      "title": "Monitores"
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
     }
   ],
   "products": [

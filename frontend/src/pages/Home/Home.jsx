@@ -1,27 +1,20 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { AiFillCustomerService } from "react-icons/ai";
-import { AiFillDollarCircle } from "react-icons/ai"; //AiOutlineDollar
-import { AiFillLock } from "react-icons/ai"; //AiOutlineUnlock
-import { AiFillStar } from "react-icons/ai"; //AiOutlineStar
-import { AiOutlineFundProjectionScreen } from "react-icons/ai";
+
+
+import CardsBottom from "../../components/CardsBottom/CardsBottom";
 
 const Home = () => {
 
-
-
   const images = [
-    "https://as1.ftcdn.net/v2/jpg/02/28/19/26/1000_F_228192611_akMH8f6lbZ2NedZluGMgZCco0aKRKtGk.jpg",
+    "https://pbs.twimg.com/media/D2C4oEIX4AAd3dp.jpg",
+    "https://cdn.wallapop.com/images/10420/e4/0c/__/c10420p853260719/i3008261781.jpg?pictureSize=W640",
     "https://as1.ftcdn.net/v2/jpg/04/51/95/20/1000_F_451952066_Whal7MJnLU0dKyHYFhTjVzBGYHV1BtxW.jpg",
-    "https://as1.ftcdn.net/v2/jpg/03/16/49/90/1000_F_316499078_3naGY4WSJIOZqKaMrYaJl2Vknr8NFzc9.jpg",
-    "https://as2.ftcdn.net/v2/jpg/00/60/95/33/1000_F_60953364_ZBxSUGv9CebWIH06YF9cTnlALHNpSSxs.jpg",
+    "https://tech4gamers.com/wp-content/uploads/2022/03/RTX-30-Series-and-AMD-6000-Series-Price-Drop-1.jpg",
+    "https://ergoplay.com.co/wp-content/uploads/2020/11/WhatsApp-Image-2020-11-09-at-16.44.48.jpeg",
+    "https://nissei.com/media/wysiwyg/HERO-1_7.jpg",
   ];
-
-
-
-
-
 
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -44,96 +37,37 @@ const Home = () => {
   };
 
   return (
-    
-    <div className="text-left">
-      <main className="flex justify-between gap-20 max-w-2xl mx-auto">
-        <div className="max-w-350 mt-20 ">
-          <div className="flex items-start">
-            <div>
-            <h1 className="font-nunito text-6xl font-extrabold leading-13 tracking-0.5% text-black mr-20">
-              Descubre una amplia selección de productos y accesorios.
-            </h1>
-            
-            <p className="text-15 font-semibold text-gray-600 leading-5 max-w-285 mb-8">
-              Explora increíbles ofertas y encuentra todo lo que
-              necesitas para tu estilo de vida.<span className="text-red-200 text-3xl">
+
+    <div className="text-white grid ">
+      <main className="w-[90%]">
+        <div className="flex items-center justify-center mt-20 mx-10 p-3 tracking-wider ">
+          <div className="flex w-[80%] text-center p-8 rounded-xl items-center justify-center">
+            <div className="flex flex-col justify-around items-center mx-5">
+              <p className=" text-5xl font-bold leading-13 text-white mb-10 ">
+                Descubre una amplia selección de productos y accesorios.
+              </p>
+              <p className="text-4xl font-semibold text-white leading-10 max-w-285 ">
+                Explora increíbles ofertas y encuentra todo lo que
+                necesitas para tu estilo de vida. </p>
+              <p className="text-yellow-300 font-semibold text-4xl mt-9 ">
                 Haz de las compras una
-              experiencia emocionante y descubre un mundo de posibilidades en
-              nuestra tienda en línea.</span> 
-              </p> 
+                experiencia emocionante y descubre un mundo de posibilidades en
+                nuestra tienda en línea.</p>
+
             </div>
             <img
-              className="h-[600px] w-[600px]  rounded-lg shadow-lg object-cover "
+              className="h-[600px] w-[600px]  rounded-b-full rounded-t-3xl shadow-lg object-cover "
               src={images[currentImage]}
               alt="Slide"
-              />
+            />
           </div>
-          {/* <button
-            className="absolute left-20 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-2 rounded-full"
-            onClick={previousImage}
-            >
-            &#8249;
-            </button>
-            <button
-            className="absolute right-20 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white px-4 py-2 rounded-full"
-            onClick={nextImage}
-            >
-            &#8250;
-          </button> */}
         </div>
       </main>
 
-      {/*Cartas Inferor de la pagina*/}
-
-      <div className="flex justify-between max-w-5xl mx-auto mt-16 px-1">
-        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-gray-500">
-          <h1 className="text-5xl text-gray-800" alt="icon">
-            <AiFillStar />
-          </h1> 
-          <p className="text-sm font-semibold text-gray-800">
-            Encuentra productos <br /> perfectos para ti.
-          </p>  
-        </div>
-
-        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-gray-500">
-          <h1 className="text-5xl text-gray-800" alt="icon">
-            <AiFillCustomerService />
-          </h1>
-          <p className="text-sm font-semibold text-gray-800">
-            Transforma tus deseos en realidad.
-          </p>
-        </div>
-
-        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-gray-500">
-          <h1 className="text-5xl text-gray-800" alt="icon">
-            <AiFillDollarCircle />
-          </h1>
-          <p className="text-sm font-semibold text-gray-800">
-            Descuentos exclusivos 30% al 50%.
-          </p>
-        </div>
-
-        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-gray-500">
-          <h1 className="text-5xl text-gray-800" alt="icon">
-            <AiOutlineFundProjectionScreen />
-          </h1>
-          <p className="text-sm font-semibold text-gray-800">
-            Todo lo que buscas en un solo sitio.
-          </p>
-        </div>
-
-        <div className="flex items-center flex-col gap-4 h-46 w-46 p-1 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl bg-gray-500">
-          <h1 className="text-5xl text-gray-800" alt="icon">
-            <AiFillLock />
-          </h1>
-          <p className="text-sm font-semibold text-gray-800">
-            Tu <br /> compra Segura.
-          </p>
-        </div>
-      </div>
+      <CardsBottom />
     </div>
   );
-  };
+};
 
 
 export default Home;
