@@ -40,7 +40,6 @@ const prepareDataDataBase = async (product) => {
     }).catch(error => {
         return { error: error.message }
     })
-    console.log(prod)
     return prod;
 };
 
