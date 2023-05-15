@@ -93,7 +93,7 @@ const About = () => {
     </div>
     <div className="p-4">
       <h2 className="text-xl font-bold mb-2">Gabriel Londero</h2>
-      <p className="text-gray-600 mb-2">leo@example.com</p>
+      <p className="text-gray-600 mb-2">gabriellondero40@gmail.com</p>
       <p className="text-gray-600 mb-2">376469-4291</p>
       <p className="text-gray-600 mb-4">GitHub: gablon29</p>
       <p className="text-gray-600">Rol: Back-end</p>
