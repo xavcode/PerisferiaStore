@@ -35,7 +35,7 @@ const Detail = () => {
               <h5 className="max-w-[200px] text-xl font-semibold tracking-tight text-gray-900 text-center mb-2">{product.title}</h5>
             </Link>
             <div className="flex items-center">
-              <span className="text-center font-bold text-red-600 mr-2">Rating: {product.rating}</span>
+              <span className="text-center text-xl font-bold text-red-600 mr-2">Rating: {product.rating}</span>
               <span className="text-2xl text-left font-bold text-gray-900 ml-4">Precio: {`${product.price}$ `}</span>
             </div>
           </div>

@@ -1,39 +1,16 @@
 {
-  "users": [
+  "posts": [
     {
-      "id": "1",
-      "title": "user1",
-      "last_title": "lasttitle1",
-      "user_title": "user_title1",
-      "email": "email1@mail.com",
-      "password": "password1",
-      "phone": "5551231231"
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
     }
   ],
-  "categories": [
+  "comments": [
     {
-      "id": "1",
-      "title": "Earbuds"
-    },
-    {
-      "id": "2",
-      "title": "Mouses"
-    },
-    {
-      "id": "3",
-      "title": "Keyboards"
-    },
-    {
-      "id": "4",
-      "title": "Auriculares"
-    },
-    {
-      "id": "5",
-      "title": "Placas de video"
-    },
-    {
-      "id": "6",
-      "title": "Monitores"
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
     }
   ],
   "products": [
@@ -162,7 +139,7 @@
       "id": "12",
       "title": "Razer Kraken Tourtitlent Edition",
       "price": 89.99,
-      "image": "https://www.xzone.cz/download/products/RazerKrakenTourtitlentEditionGreen.jpg",
+      "image": "https://s3.amazonaws.com/images.ecwid.com/images/17477641/1643941681.jpg",
       "status": "disponible",
       "description": "Los auriculares Razer Kraken Tourtitlent Edition cuentan con sonido THX Spatial Audio y son ideales para jugar y comunicarse con claridad.",
       "rating": 4.2,
