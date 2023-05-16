@@ -16,7 +16,7 @@ const add_NewProduct = async (req, res) => {
     try {
         const {
             id,
-            name,
+            title,
             price,
             img,
             status,
@@ -26,7 +26,7 @@ const add_NewProduct = async (req, res) => {
         } = req.body;
         const new_product = await createProduct({ 
             id,
-            name,
+            title,
             price,
             img,
             status,

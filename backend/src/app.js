@@ -2,7 +2,7 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
-const routes = require('./routes')
+const router = require('./routes/index');
 require('./db');
 const server = express();
 server.name = 'BACKEND';
@@ -20,7 +20,7 @@ next();
 });
 
 // acá van los server.use blablabla <3
-// server.use('/', routes); 
+server.use('/', router); 
 
 
 // Error catching endware.

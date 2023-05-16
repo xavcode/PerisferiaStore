@@ -46,7 +46,7 @@ const Cards = () => {
           title={startCase(product.title)}
           description={product.description}
           price={product.price}
-          image={product.image}
+          image={product.img}
           category={product.category}
           rating={product.rating}
         />
