@@ -1,16 +1,22 @@
 import React from 'react'
-import { Link } from "react-router-dom";
+
 
 const Card = (props) => {
   return (
-    <div className='grid min-w-[280px] max-w-[320px]'>
-
-      <div className="flex flex-col rounded-lg bg-white pt-4 justify-between p-5">
-        <div >
-          <Link className='flex flex-col justify-center items-center' to={`/store/${props.id}`}>
-            <img className=" max-h-[150px] max-w-[150px] min-h-[100px] min-w-[100px] align-center justify-center my-2" src={props.image} alt={props.title} />
-            <h5 className="max-w-[150px] text-xl font-semibold tracking-tight text-gray-900 text-center ">{props.title}</h5>
-          </Link>
+    <div className='grid min-w-[300px]'>
+      <div className="flex flex-col rounded-lg bg-white justify-between pt-8 align-center">
+        <div className='flex justify-center align-center'>
+          <img className=" flex h-[220px] w-[200px] align-center justify-center" src={props.image} alt={props.title} />
+        </div>
+        <div className="px-5 pb-5">
+          <div href="#">
+            <h5 className="text-xl font-semibold tracking-tight text-gray-900 text-center">{props.title}</h5>
+          </div>
+          <div className="grid justify-center">
+            <span className="text-center font-bold text-red-600">Rating: {props.rating.rate}</span>
+            <span className="text-2xl text-center font-bold text-gray-900 ">{`${props.price}$ `}</span>
+            <div className="text-white bg-buttons hover:bg-b_hover font-medium rounded-lg text-sm px-5 py-2 text-center "> Agregar al carrito</div>
+          </div>
         </div>
         <div className="grid justify-center">
           <span className="text-center font-bold text-red-600">Rating: {props.rating}</span>
