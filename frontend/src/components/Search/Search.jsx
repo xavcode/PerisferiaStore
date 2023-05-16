@@ -22,7 +22,7 @@ const Search = () => {
 
   return (
     <div className='flex items-center'>
-      <input type="search" className='w-[180px] h-8 rounded-lg text-base text-black p-3' onChange={handleInputSearch} />
+      <input type="search" className=' w-[180px] h-8 rounded-lg text-base bg-inputs text-text p-3' onChange={handleInputSearch} />
       <button onClick={handleClickSearch}> <MdSearch /> </button>
     </div>
   )

@@ -13,11 +13,12 @@ export const UserProvider = ({ children }) => {
     phone: '',
     mail: '',
     password: '',
+    Adress: '',
+    profileImage: '',
+    theme:'',
     isAdmin: '',
     isActive: '',
     isAuthenticated: '',
-    Adress: '',
-    profileImage: '',
   })
 
   useEffect(() => {
