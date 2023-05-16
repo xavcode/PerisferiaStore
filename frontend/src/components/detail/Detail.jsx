@@ -11,7 +11,7 @@ const Detail = (prop) => {
 
     useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
+      const response = await axios.get(`http://localhost:3001/store/${id}`);
       setStateDetail([response.data]);
     }
     fetchData()
@@ -28,7 +28,7 @@ const Detail = (prop) => {
           title={product.title}
           description={product.description}
           price={product.price}
-          image={product.image}
+          img={product.img}
           category={product.category}
           rating={product.rating}
         />

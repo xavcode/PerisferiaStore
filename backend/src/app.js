@@ -23,7 +23,7 @@ next();
 
 // acá van los server.use blablabla <3
 
-server.use('/', router )
+server.use('/', router)
 
 // Error catching endware.
 server.use((err, req, res, next) => { // eslint-disable-line no-unused-vars
