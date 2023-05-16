@@ -51,7 +51,7 @@ const Filters = () => {
             <li>Hasta<input className='mx-3' type="range" id="maxPrice" min={0} max={1000} onChange={handleChangePrice} value={maxPrice} /></li>
           </div>
         </div>
-
+  
         <div className='flex items-center'>
           <span>
             <select className='text-xl' name="category" id="category" defaultValue='all' onChange={handleSelectCat} >
@@ -75,7 +75,9 @@ const Filters = () => {
         </div>
       </ul>
     </div>
-  )
+  );
+  
+  
 }
 
 export default Filters
