@@ -3,7 +3,7 @@ const { DataTypes, UUIDV4 } = require('sequelize');
 module.exports = (sequelize) => {
     sequelize.define('Products', {
         id: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING,
             allowNull:false,
             unique: true,
             primaryKey: true,
@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         status: {
-            type: DataTypes.ENUM('disponible', 'fuera de stock'),
+            type: DataTypes.ENUM('disponible', 'Sin stock'),
             defaultValue: 'disponible',
         },
         description: {
