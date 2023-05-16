@@ -1,9 +1,9 @@
-export default obj = {
+{
   "users": [
     {
       "id": "1",
-      "title": "user1",
-      "last_title": "lasttitle1",
+      "name": "user1",
+      "last_name": "lasttitle1",
       "user_title": "user_title1",
       "email": "email1@mail.com",
       "password": "password1",

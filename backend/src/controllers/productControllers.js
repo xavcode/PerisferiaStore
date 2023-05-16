@@ -1,10 +1,11 @@
 const { Products } = require('../db');
 const axios = require('axios')
+const datab = require('../datab.json')
 
-const getProduct_api = async () => {
+const getProduct_api =  () => {
     try {
-        const response = await axios.get('https://fakestoreapi.com/products')
-        const dataApi = await response.data.map(({
+        const response =  datab
+        const dataApi = response.products.map(({
             id, title, price, description, category, image, rating
         }) => {
             return {
@@ -35,7 +36,7 @@ const prepareDataDataBase = async (product) => {
             description: product.price,
             category: product.category,
             img: product.img,
-            rating: product.rating.rate
+            rating: product.rating
         }
     }).catch(error => {
         return { error: error.message }

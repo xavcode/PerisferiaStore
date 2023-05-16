@@ -8,13 +8,8 @@ const router_get = Router();
 
 router_get.get('/', createRecordProduct);
 router_get.get('/store', getAllProducts);
+router_get.get('/store/name', get_Products_By_Name);
 router_get.get('/store/:id', addProductById);
-router_get.get('/name', get_Products_By_Name);
-router_get.get('/json', (req, res) =>{
-    const jsonData = datab;
-    res.send(jsonData)
-})
-//router_get.post('/', createdProd)
 
 
 module.exports = router_get

@@ -36,8 +36,6 @@ const { Users, Order, Products } = sequelize.models;
 Users.belongsToMany(Order, { through: "order_user" });
 Order.belongsTo(Users, { through: "order_user" });
 
-// Users.hasMany(Reviews)
-// Reviews.belongsTo(Users)
 
 
 Order.belongsToMany(Products, { through: 'order_product' });
