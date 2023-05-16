@@ -3,7 +3,6 @@ const { createRecordProduct } = require('../controllers/productControllers');
 const { getAllProducts } = require('../controllers/productControllers');
 const { addProductById } = require('../controllers/addProductById');
 const { get_Products_By_Name } = require('../controllers/addProductByName');
-const datab = require('../datab.json')
 const router_get = Router();
 
 router_get.get('/', createRecordProduct);
