@@ -6,6 +6,7 @@ import { AiFillLock } from "react-icons/ai"; //AiOutlineUnlock
 import { AiFillStar } from "react-icons/ai"; //AiOutlineStar
 import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 
+<<<<<<< HEAD
 // const CardsBottom = () => {
 //   return (
 
@@ -37,6 +38,12 @@ import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 const CardsBottom = () => {
   return (
     <div className="flex flex-wrap justify-center gap-12 mt-16">
+=======
+const CardsBottom = () => {
+  return (
+
+    <div className="flex justify-center w-auto gap-12 mt-16 ">
+>>>>>>> cfe8abba332e43cb38f203bb0190a59d96c37dbc
       <CardBottom
         icon={<AiFillStar />}
         text={<p>Encuentra productos perfectos para ti.</p>}
@@ -58,7 +65,11 @@ const CardsBottom = () => {
         text={<p>Tu compra Segura.</p>}
       />
     </div>
+<<<<<<< HEAD
   );
+=======
+  )
+>>>>>>> cfe8abba332e43cb38f203bb0190a59d96c37dbc
 }
 
 export default CardsBottom

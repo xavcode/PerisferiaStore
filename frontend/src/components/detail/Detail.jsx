@@ -11,7 +11,7 @@ const Detail = () => {
   
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(`http://localhost:3001/products/${id}`);
+      const response = await axios.get(`http://localhost:3001/store/${id}`);
       setProduct(response.data);
     }
     fetchData()
@@ -29,7 +29,11 @@ const Detail = () => {
         <div className='flex px-2 bg-bg_card gap-3'>
           <div className='flex flex-col items-start'>
             <div className='flex flex-col justify-center items-center'>
+<<<<<<< HEAD
               <img className=" max-h-[350px] max-w-[250px] min-h-[200px] min-w-[200px] align-center justify-center my-2" src={product.image} alt={product.title} />
+=======
+              <img className=" max-h-[350px] max-w-[250px] min-h-[200px] min-w-[200px] align-center justify-center my-2" src={product.img} alt={product.title} />
+>>>>>>> cfe8abba332e43cb38f203bb0190a59d96c37dbc
               <h5 className="max-w-[200px] text-2xl font-semibold tracking-tight text-text text-center mb-2">{startCase(product.title)}</h5>
             </div>
             <div className="w-full flex items-center justify-center gap-2 p-1">
