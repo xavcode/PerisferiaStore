@@ -46,7 +46,7 @@ const prepareDataDataBase = async (product) => {
 
 const createRecordProduct = async (req, res) => {
     try {
-        const record = await getProduct_api()
+        const record =  await getProduct_api()
         record.forEach(async (product) => {
             const { id, name, price, description, category, img, rating } = product;
             return await prepareDataDataBase({
