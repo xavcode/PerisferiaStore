@@ -1,5 +1,4 @@
 const { Products } = require('../db');
-const axios = require('axios')
 const datab = require('../datab.json')
 
 const getProduct_api =  () => {
@@ -84,5 +83,5 @@ module.exports = {
     createRecordProduct,
     getProduct_api
 };
-
+    
 //----------------------------------------------------------------//
