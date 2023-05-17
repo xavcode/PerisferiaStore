@@ -1,7 +1,18 @@
-import React from "react";
+import React, { useRef } from 'react';
 import mouse from "../imgAbout/mouse.jpeg"
+import emailjs from "@emailjs/browser";
+
 
 const Contact = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_6ar7zht', 'template_9kgyz5r', form.current, 'tbbTLTxwOaY7CkWAO')
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
+  }
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-4xl w-full px-6">
@@ -17,7 +28,7 @@ const Contact = () => {
         </div>
 
         <div className="mt-8">
-          <form className="space-y-6">
+          <form className="space-y-6" ref={form} onSubmit={sendEmail}>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
               <div>
                 <label
@@ -28,6 +39,7 @@ const Contact = () => {
                 </label>
                 <input
                   type="text"
+                  name="user_name"
                   className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white"
                   placeholder="Nombre"
                 />
@@ -42,6 +54,7 @@ const Contact = () => {
                 </label>
                 <input
                   type="text"
+                  name="user_email"
                   className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white"
                   placeholder="Correo Electrónico"
                 />
@@ -56,6 +69,7 @@ const Contact = () => {
                   Mensaje
                 </label>
                 <textarea
+                  name="user_message"
                   className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white w-74 h-64 "
                   placeholder="Escribe aquí"
                 />
