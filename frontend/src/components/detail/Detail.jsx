@@ -1,64 +1,91 @@
-import React, { useState, useEffect } from 'react'
-import { Link, useParams } from 'react-router-dom';
-import { startCase } from 'lodash';
+import React from "react";
+import mouse from "../imgAbout/mouse.jpeg"
 
-import axios from 'axios';
-
-const Detail = () => {
-
-  const [product, setProduct] = useState({});
-  const { id } = useParams();
-  
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(`http://localhost:3001/store/${id}`);
-      setProduct(response.data);
-    }
-    fetchData()
-  }, []);
-
+const Contact = () => {
   return (
-    <div className='flex mt-[200px] justify-center items-center'>
-      <div className="flex flex-col rounded-lg bg-bg_card pt-4 p-5">
-      <Link to="/store" className="text-gray-500 hover:text-gray-900 mb-2">
-        <svg className="w-6 h-6  mr-2" stroke="currentColor" >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg></Link>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="max-w-4xl w-full px-6">
+        <div className="text-center">
+          <img
+            src={mouse}
+            alt="not fun"
+            className="h-16 w-auto mx-auto"
+          />
+          <h2 className="mt-8 text-4xl font-extrabold text-white">
+            Contacto 📱
+          </h2>
+        </div>
 
-        {/* image side */}
-        <div className='flex px-2 bg-bg_card gap-3'>
-          <div className='flex flex-col items-start'>
-            <div className='flex flex-col justify-center items-center'>
-<<<<<<< HEAD
-              <img className=" max-h-[350px] max-w-[250px] min-h-[200px] min-w-[200px] align-center justify-center my-2" src={product.image} alt={product.title} />
-=======
-              <img className=" max-h-[350px] max-w-[250px] min-h-[200px] min-w-[200px] align-center justify-center my-2" src={product.img} alt={product.title} />
->>>>>>> cfe8abba332e43cb38f203bb0190a59d96c37dbc
-              <h5 className="max-w-[200px] text-2xl font-semibold tracking-tight text-text text-center mb-2">{startCase(product.title)}</h5>
+        <div className="mt-8">
+          <form className="space-y-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div>
+                <label
+                  htmlFor="Nombre"
+                  className="block text-lg font-medium text-white"
+                >
+                  Ingresa tu nombre
+                </label>
+                <input
+                  type="text"
+                  className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white"
+                  placeholder="Nombre"
+                />
+              </div>
+
+              <div>
+                <label
+                  htmlFor="Apellido"
+                  className="block text-lg font-medium text-white"
+                >
+                  Correo Electrónico
+                </label>
+                <input
+                  type="text"
+                  className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white"
+                  placeholder="Correo Electrónico"
+                />
+              </div>
+              {/*class="flex flex-col items-cente rjustify-center h-screen*/}
+
+              <div>
+                <label
+                  htmlFor="Mensaje"
+                  className="block text-lg font-medium text-white"
+                >
+                  Mensaje
+                </label>
+                <textarea
+                  className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white w-74 h-64 "
+                  placeholder="Escribe aquí"
+                />
+              </div>
+
             </div>
-            <div className="w-full flex items-center justify-center gap-2 p-1">
-              <span className="text-center text-xl font-bold text-text_rating ">Rating: {product.rating}</span>
-              <span className="text-xl text-left font-bold text-text ">Precio: {`${product.price}$ `}</span>
+
+            <div>
+              <button
+                type="submit"
+                className="mt-4 w-full py-4 bg-yellow-400 hover:bg-yellow-300 text-white text-xl font-medium rounded focus:outline-none focus:bg-yellow-300"
+              >
+                Enviar
+              </button>
             </div>
-          </div>
-          {/* description side */}
-          <div className='flex flex-col w-[200px] text-justify justify-between pb-1'>
-            <p className='w-[200px] text-text mb-2'> Descripción: {`${product.description}`}</p>
-            <p className='text-text w-[200px] text'> Categoría: {`${product.category}`}</p>
-            <p className='text-text  '> Colores:
-              <select className='ml-4 bg-gray-200 ' name="colorPicker" id="colorPicker">
-                <option className='bg-gray-200 hover:bg-transparent' value="red">Rojo</option>
-                <option className='bg-gray-200 hover:bg-transparent' value="yellow">Amarillo</option>
-                <option className='bg-gray-200 hover:bg-transparent' value="blue">Azul</option>
-              </select>
+
+            <p className="mt-4 text-lg text-white">
+              ¿Algún problema?{" "}
+              <a className="font-medium text-yellow-300 hover:text-sky-500">
+                Info aquí
+              </a>
             </p>
-            <p className='text-text '> Estado: {`${product.status}`}</p>
-            <a href="#" className=" mt-3 text-text_btn bg-btn hover:bg-btn_hover font-medium rounded-lg text-sm px-5 py-2 text-center "> Agregar al carrito</a>
-          </div>
+          </form>
         </div>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Detail
+
+
+
+export default Contact;
