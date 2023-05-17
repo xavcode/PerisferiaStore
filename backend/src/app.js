@@ -4,7 +4,9 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = require('./routes/index');
 require('./db');
+
 const server = express();
+
 server.name = 'BACKEND';
 
 server.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
