@@ -52,5 +52,5 @@ module.exports = (sequelize) => {
       type: DataTypes.ENUM('claro', 'oscuro'),
       defaultValue: 'claro',
     },
-  });
-};
+    });
+  };
