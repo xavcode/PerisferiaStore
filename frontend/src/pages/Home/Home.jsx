@@ -6,7 +6,6 @@ import { useState } from "react";
 import CardsBottom from "../../components/CardsBottom/CardsBottom";
 
 const Home = () => {
-
   const images = [
     "https://pbs.twimg.com/media/D2C4oEIX4AAd3dp.jpg",
     "https://cdn.wallapop.com/images/10420/e4/0c/__/c10420p853260719/i3008261781.jpg?pictureSize=W640",
@@ -37,7 +36,6 @@ const Home = () => {
   };
 
   return (
-
     <div className="text-white grid ">
       <main className="w-[90%]">
         <div className="flex items-center justify-center mt-20 mx-10 p-3 tracking-wider ">
@@ -67,7 +65,7 @@ const Home = () => {
       <CardsBottom />
     </div>
   );
-};
+}
 
 
 export default Home;
