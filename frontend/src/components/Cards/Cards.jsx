@@ -40,13 +40,14 @@ const Cards = () => {
           title={startCase(product.name)}
           description={product.description}
           price={product.price}
-          image={product.img}
+          image={product.image}
           category={product.category}
           rating={product.rating}
         />
       ))
       }
     </div>
-  )
-}
-export default Cards
+  );
+};
+
+export default Cards;

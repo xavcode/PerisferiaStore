@@ -17,7 +17,7 @@ router.use('/', (req, res, next) => {
             return router_delete(req, res, next);
         default: 
             return res.status(405).send('Metodo no permitido')
-   }
+}
 })
 
 // router.get("/", createRecordProduct)
