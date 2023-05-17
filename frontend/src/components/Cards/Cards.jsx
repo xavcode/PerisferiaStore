@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Card from '../Card/Card';
 import { startCase } from 'lodash'
-
 import { FiltersContext } from '../../context/FiltersContext';
 import { DataContext } from '../../context/DataContext';
 
@@ -38,10 +37,10 @@ const Cards = () => {
         <Card
           key={product.id}
           id={product.id}
-          title={startCase(product.title)}
+          title={startCase(product.name)}
           description={product.description}
           price={product.price}
-          image={product.image}
+          image={product.img}
           category={product.category}
           rating={product.rating}
         />

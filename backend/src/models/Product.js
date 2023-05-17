@@ -1,10 +1,10 @@
 const { DataTypes, UUIDV4 } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('products', {
+    sequelize.define('Products', {
         id: {
-            type: DataTypes.UUID,
-            allowNull: false,
+            type: DataTypes.STRING,
+            allowNull:false,
             unique: true,
             primaryKey: true,
             defaultValue: UUIDV4
@@ -22,8 +22,8 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         status: {
-            type: DataTypes.ENUM('Disponible', 'Sin stock'),
-            defaultValue: 'available',
+            type: DataTypes.ENUM('disponible', 'Sin stock'),
+            defaultValue: 'disponible',
         },
         description: {
             type: DataTypes.STRING,
@@ -36,10 +36,10 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
             allowNull: false,
         },
-        brand: {
-            type: DataTypes.STRING,
-            allowNull: false,
-        },
+        // brand: {
+        //     type: DataTypes.STRING,
+        //     allowNull: false,
+        // },
     }, {
         timestamps: false
     }
