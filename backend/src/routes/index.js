@@ -6,8 +6,6 @@ const router_get = require("./gets");
 const router_delete = require("./delete");
 const router = Router();
 
-router.use('/products', routeProducts)
-
 
 router.use('/', (req, res, next) => {
     switch (req.method) {
