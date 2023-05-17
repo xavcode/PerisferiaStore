@@ -23,7 +23,7 @@ export const UserProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios('http://localhost:3001/users/')
+      const response = await axios('http://localhost:3001/usuarios')
       setUserData(response.data)
     }
     fetchData()
