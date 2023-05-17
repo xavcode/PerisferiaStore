@@ -1,13 +1,18 @@
 {
   "users": [
     {
-      "id": "1",
-      "title": "user1",
-      "last_title": "lasttitle1",
-      "user_title": "user_title1",
-      "email": "email1@mail.com",
-      "password": "password1",
-      "phone": "5551231231"
+      "name": "name1",
+      "lastName": "lastName1",
+      "userName": "username1",
+      "phone": "55512312312",
+      "mail": "email1@mail.com",
+      "password": "password",
+      "Adress": "Calle false 123",
+      "profileImage": "https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "theme": "ligth",
+      "isAdmin": "true",
+      "isActive": "true",
+      "isAuthenticated": "true"
     }
   ],
   "categories": [

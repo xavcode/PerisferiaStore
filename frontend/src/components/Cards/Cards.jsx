@@ -1,55 +1,50 @@
-import React, { useEffect, useState, useContext } from 'react';
-import axios from "axios";
-import { Link } from 'react-router-dom';
+import React, { useEffect, useState, useContext } from 'react'
 import Card from '../Card/Card';
 import { FiltersContext } from '../../context/FiltersContext';
+import { DataContext } from '../../context/DataContext';
+
 
 const Cards = () => {
-  const [products, setProducts] = useState([]);
-  const [productsRender, setProductsRender] = useState([]);
 
-  const { filters } = useContext(FiltersContext);
-  const minPrice = filters.minPrice;
-  const maxPrice = filters.maxPrice;
-  const searched = filters.searched;
-  const category = filters.catSelected;
+  const [productsRender, setProductsRender] = useState([])
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get('http://localhost:3001/store');
-      setProducts(response.data);
-    }
-    fetchData();
-  }, []);
+  const globalData = useContext(DataContext)
+  const products = globalData.products
 
-  const productsSearched = products.filter((product) => product.title.includes(searched));
+  const { filters } = useContext(FiltersContext)
+  const minPrice = filters.minPrice
+  const maxPrice = filters.maxPrice
+  const searched = filters.searched
+  const category = filters.catSelected
 
-  const productsFiltered = products.filter((product) => product.price >= minPrice && product.price <= maxPrice && (
-    category === 'all' || category === product.category
-  ));
+//function to search items with the searchBar, and filter the results with the range selector. 
+  const productsToRender = products.filter((product) => {
+    const priceInRange = product.price >= minPrice && product.price <= maxPrice;
+    const matchesCategory = category === 'all' || category === product.category;
+    const matchesSearch = searched === '' || product.title.includes(searched);
 
-  const productsToRender = searched !== '' ? productsSearched : productsFiltered;
+    return priceInRange && matchesCategory && matchesSearch;
+  });
 
   useEffect(() => {
     setProductsRender(productsToRender);
   }, [minPrice, maxPrice, category, searched]);
 
   return (
-    <div className='grid mx-8 mt-44 md:mt-24 grid-cols-1  sm:grid-cols-2 gap-8 lg:grid-cols-3 xl:grid-cols-4'>
-      {productsRender.map((product) => (
-        <Link key={product.id} className='flex' to={`/store/${product.id}`}>
-          <Card
-            key={product.id}
-            id={product.id}
-            title={product.name}
-            description={product.description}
-            price={product.price}
-            image={product.img}
-            category={product.category}
-            rating={product.rating}
-          />
-        </Link>
-      ))}
+    <div className='grid gap-6 mx-10 mt-32 md:mt-40 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 justify-center ' >
+      {productsToRender.map(product => (
+        <Card
+          key={product.id}
+          id={product.id}
+          title={startCase(product.title)}
+          description={product.description}
+          price={product.price}
+          image={product.image}
+          category={product.category}
+          rating={product.rating}
+        />
+      ))
+      }
     </div>
   );
 };

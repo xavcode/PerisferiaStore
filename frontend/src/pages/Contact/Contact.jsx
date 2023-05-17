@@ -1,28 +1,105 @@
-import React from 'react'
+import React, { useRef } from 'react';
+import mouse from "../imgAbout/mouse.jpeg"
+import emailjs from "@emailjs/browser";
+
 
 const Contact = () => {
+  const form = useRef();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_6ar7zht', 'template_9kgyz5r', form.current, 'tbbTLTxwOaY7CkWAO')
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
+  }
   return (
-    <div className=' text-white mt-[200px] flex justify-center items-center font-bold'>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="max-w-4xl w-full px-6">
+        <div className="text-center">
+          <img
+            src={mouse}
+            alt="not fun"
+            className="h-16 w-auto mx-auto"
+          />
+          <h2 className="mt-8 text-4xl font-extrabold text-white">
+            Contacto 📱
+          </h2>
+        </div>
 
-      <section className='flex flex-col text-center my-3'>
+        <div className="mt-8">
+          <form className="space-y-6" ref={form} onSubmit={sendEmail}>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+              <div>
+                <label
+                  htmlFor="Nombre"
+                  className="block text-lg font-medium text-white"
+                >
+                  Ingresa tu nombre
+                </label>
+                <input
+                  type="text"
+                  name="user_name"
+                  className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white"
+                  placeholder="Nombre"
+                />
+              </div>
 
-        <h1 className='text-3xl'>Contacto</h1> 
-        <p>Por favor, completa el siguiente formulario para contactarnos.</p>
-        <form className='flex flex-col bg-inherit gap-2'>
-          <label htmlFor="name">Nombre:</label>
-          <input className='rounded-lg h-12' type="text" id="name" name="name" required />
+              <div>
+                <label
+                  htmlFor="Apellido"
+                  className="block text-lg font-medium text-white"
+                >
+                  Correo Electrónico
+                </label>
+                <input
+                  type="text"
+                  name="user_email"
+                  className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white"
+                  placeholder="Correo Electrónico"
+                />
+              </div>
+              {/*class="flex flex-col items-cente rjustify-center h-screen*/}
 
-          <label htmlFor="email">Correo electrónico:</label>
-          <input className='rounded-lg h-12' type="email" id="email" name="email" required />
+              <div>
+                <label
+                  htmlFor="Mensaje"
+                  className="block text-lg font-medium text-white"
+                >
+                  Mensaje
+                </label>
+                <textarea
+                  name="user_message"
+                  className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white w-74 h-64 "
+                  placeholder="Escribe aquí"
+                />
+              </div>
 
-          <label htmlFor="message">Mensaje:</label>
-          <textarea className='rounded-lg h-32'id="message" name="message" required></textarea>
+            </div>
 
-          <button className='bg-primary w-full h-10 rounded-lg ' type="submit">Enviar</button>
-        </form>
-      </section>
+            <div>
+              <button
+                type="submit"
+                className="mt-4 w-full py-4 bg-yellow-400 hover:bg-yellow-300 text-white text-xl font-medium rounded focus:outline-none focus:bg-yellow-300"
+              >
+                Enviar
+              </button>
+            </div>
+
+            <p className="mt-4 text-lg text-white">
+              ¿Algún problema?{" "}
+              <a className="font-medium text-yellow-300 hover:text-sky-500">
+                Info aquí
+              </a>
+            </p>
+          </form>
+        </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Contact
+
+
+
+export default Contact;

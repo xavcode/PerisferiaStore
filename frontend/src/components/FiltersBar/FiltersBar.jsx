@@ -32,29 +32,29 @@ const Filters = () => {
   }
 
   return (
-    <div className='flex h-20 sm:mt-[154px] md:mt-16 accent-orange-800 text-orange-800 items-center justify-around  bg-white rounded-lg font-semibold  '>
-      <ul className='flex '>
-        <div className='flex m-3 gap-3'>
-          <div className='flex flex-col justify-center' >
-            <div className='flex justify-between'>
-              <label htmlFor="valueMinPrice"> $USD</label>
-              <input id='valueMinPrice' className='text-center' type="number" onChange={handleInputText} value={minPrice} />
-            </div>
-            <li>Desde<input className='mx-3' type="range" id="minPrice" min={0} max={1000} onChange={handleChangePrice} value={minPrice} /></li>
-          </div>
-          
-          <div className='flex flex-col justify-center' >
-            <div className='flex justify-between'>
-              <label htmlFor="valueMaxPrice"> $USD</label>
-              <input id='valueMaxPrice' className='text-center' type="number" onChange={handleInputText} value={maxPrice} />
-            </div >
-            <li>Hasta<input className='mx-3' type="range" id="maxPrice" min={0} max={1000} onChange={handleChangePrice} value={maxPrice} /></li>
-          </div>
-        </div>
+    <div className='bg-black h-36 w-full fixed top-0 z-20'>
+      <div className='flex fixed top-16 w-full gap-36 font-bold accent-text_filters_bar text-text_filters_bar justify-evenly bg-bg_card rounded-lg px-10 z-10 border-2 border-gray-400'>
+        <div className='flex w-full justify-around '>
 
-        <div className='flex items-center'>
-          <span>
-            <select className='text-xl' name="category" id="category" defaultValue='all' onChange={handleSelectCat} >
+          <div className='flex flex-col justify-center' >
+            <div className='flex justify-between'>
+              <label className='bg-inputs' htmlFor="valueMinPrice"> $USD</label>
+              <input id='valueMinPrice' className='bg-inputs text-center' type="number" max={1000} onChange={handleInputText} value={minPrice} />
+            </div>
+            <span>Desde<input className='bg-inputs mx-3' type="range" id="minPrice" min={0} max={1000} onChange={handleChangePrice} value={minPrice} /></span>
+          </div>
+
+          <div className='flex flex-col justify-center' >
+            <div className='flex justify-between'>
+              <label className='bg-inputs' htmlFor="valueMaxPrice"> $USD</label>
+              <input id='valueMaxPrice' className=' bg-inputs accent-red-600 text-center' type="number" max={1000} onChange={handleInputText} value={maxPrice} />
+            </div >
+            <span>Hasta<input className='bg-inputs mx-3' type="range" id="maxPrice" min={0} max={1000} onChange={handleChangePrice} value={maxPrice} /></span>
+          </div>
+
+          <div className='flex flex-col items-center justify-center '>
+            <label htmlFor="category">CATEGORIA</label>
+            <select className='bg-inputs text-md text-center ' name="category" id="category" defaultValue='all' onChange={handleSelectCat} >
               <option value="all">Todos</option>
               {categories.map(cat => {
                 return (
@@ -62,20 +62,43 @@ const Filters = () => {
                 )
               })}
             </select>
-          </span>
-          <span>
-            <select name="rating" id="rating">
-              <option value="fiveStar"> ⭐⭐⭐⭐⭐</option>
-              <option value="fourStar"> ⭐⭐⭐⭐</option>
-              <option value="threeStar"> ⭐⭐⭐</option>
-              <option value="twoStar"> ⭐⭐</option>
-              <option value="oneStar"> ⭐</option>
+          </div>
+          <div className='flex flex-col items-center justify-center '>
+            <label htmlFor="brand">MARCA</label>
+            <select className='text-md text-center bg-inputs' name="brand" id="brand">
+              <option value="all">Todos</option>
+              <option value="asus">Asus</option>
+              <option value="Nvidia">Nvidia</option>
+              <option value="Razer">Razer</option>
             </select>
-          </span>
+          </div>
+
+
+          {/* group checkbox*/}
+          <div className='flex flex-col items-center justify-around m-2' >
+            {/* individual checkbox*/}
+            <span>Ordenar por</span>
+            <div>
+              <div className='flex flex-col items-center justify-center'>
+                <select className='bg-inputs' name="order" id="order">
+                  <option value="from_greater_price">De mayor a menor</option>
+                  <option value="from_lower_price">De menor a mayor</option>
+                </select>
+                <select className='bg-inputs' name="sort" id="sort">
+                  <option value="from_greater_rate">De mayor a menor</option>
+                  <option value="from_lower_rate">De menor a mayor</option>
+                </select>
+              </div>
+            </div>
+
+
+          </div>
         </div>
-      </ul>
+      </div>
     </div>
-  )
+  );
+
+
 }
 
 export default Filters
