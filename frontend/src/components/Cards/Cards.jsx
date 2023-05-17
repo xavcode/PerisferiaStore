@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react'
 import Card from '../Card/Card';
 import { startCase } from 'lodash'
-
 import { FiltersContext } from '../../context/FiltersContext';
 import { DataContext } from '../../context/DataContext';
 
@@ -33,15 +32,15 @@ const Cards = () => {
   }, [minPrice, maxPrice, category, searched]);
 
   return (
-    <div className='grid gap-8 mx-12 mt-32 md:mt-24 grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6  ' >
+    <div className='grid gap-6 mx-10 mt-32 md:mt-40 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 justify-center ' >
       {productsToRender.map(product => (
         <Card
           key={product.id}
           id={product.id}
-          title={startCase(product.title)}
+          title={startCase(product.name)}
           description={product.description}
           price={product.price}
-          image={product.image}
+          image={product.img}
           category={product.category}
           rating={product.rating}
         />
