@@ -7,17 +7,17 @@ import { FiltersContext } from '../../context/FiltersContext'
 const Search = () => {
   const [search, setSearch] = useState('')
 
-  const {filters, setFilters} = useContext(FiltersContext)
-  
-  
+  const { filters, setFilters } = useContext(FiltersContext)
+
+
   const handleClickSearch = () => {
-    setFilters({...filters, searched:search})
+    setFilters({ ...filters, searched: search })
   }
 
   const handleInputSearch = (evt) => {
     const productSearched = evt.target.value
     // setSearch(productSearched) for use with the button later
-    setFilters({...filters, searched:productSearched})
+    setFilters({ ...filters, searched: productSearched })
   }
 
   return (

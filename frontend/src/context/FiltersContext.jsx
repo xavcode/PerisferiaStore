@@ -13,6 +13,8 @@ export const FilterProvider = ({ children }) => {
     minPrice: 10,
     maxPrice: 1000,
     catSelected:'all',
+    orderBy:'from_lower',
+    sortBy:'price'
   })
 
   useEffect(() => {
