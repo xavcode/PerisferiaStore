@@ -8,6 +8,12 @@ export const FiltersContext = createContext()
 
 export const FilterProvider = ({ children }) => {
   const [categories, setCategories] = useState([])
+  const [filters, setFilters] = useState({
+    searched: '',
+    minPrice: 10,
+    maxPrice: 1000,
+    catSelected:'all',
+  })
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,12 +23,7 @@ export const FilterProvider = ({ children }) => {
     fetchData()
   }, [])
 
-  const [filters, setFilters] = useState({
-    searched: '',
-    minPrice: 10,
-    maxPrice: 1000,
-    catSelected:'all',
-  })
+  
 
   return (
     <FiltersContext.Provider value={{
