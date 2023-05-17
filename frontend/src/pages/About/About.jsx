@@ -10,8 +10,13 @@ import fausto from "../imgAbout/fausto.jpeg";
 const About = () => {
   return (
     <div className="bg-black-100 py-20 px-6">
-      <div className="text-center mb-10">
-        <h1 className="text-5xl font-bold">
+      <div className="text-center">
+
+         <br />
+         <br />
+         <br />
+
+        <h1 className="text-5xl font-bold md:mt-20 ">
           ¡Bienvenidos a <span className="text-yellow-300">Perisferia!</span>
         </h1>
       </div>
@@ -63,9 +68,9 @@ const About = () => {
       <br />
       <br />
 
-      <div className="flex justify-center">
+   <div className="flex flex-wrap justify-center">
   {/* Carta de Alan */}
-  <div className="w-64 bg-white rounded-lg shadow-lg mx-4 transform transition duration-500 hover:scale-105">
+  <div className="w-full sm:w-64 bg-white rounded-lg shadow-lg mx-4 my-4 transform transition duration-500 hover:scale-105">
     <div className="w-full h-64 rounded-t-lg overflow-hidden">
       <img
         src={alan}
@@ -83,7 +88,7 @@ const About = () => {
   </div>
 
   {/* Carta de Cesar */}
-  <div className="w-64 bg-white rounded-lg shadow-lg mx-4 transform transition duration-500 hover:scale-105 text-black">
+  <div className="w-full sm:w-64 bg-white rounded-lg shadow-lg mx-4 my-4 transform transition duration-500 hover:scale-105">
     <div className="w-full h-64 rounded-t-lg overflow-hidden">
       <img
         src={cesar}
@@ -101,7 +106,7 @@ const About = () => {
   </div>
 
         {/* Carta de Thomi  */}
-        <div className="w-64 bg-white rounded-lg shadow-lg mx-4 transform transition duration-500 hover:scale-105 text-black">
+        <div className="w-full sm:w-64 bg-white rounded-lg shadow-lg mx-4 my-4 transform transition duration-500 hover:scale-105">
     <div className="w-full h-64 rounded-t-lg overflow-hidden">
           <img
             src={tomas}
@@ -119,19 +124,19 @@ const About = () => {
         </div>
 
         {/* Carta de Fer */}
-        <div className="w-64 bg-white rounded-lg shadow-lg mx-2 transform transition duration-500 hover:scale-105 text-black">
+        <div className="w-full sm:w-64 bg-white rounded-lg shadow-lg mx-4 my-4 transform transition duration-500 hover:scale-105">
     <div className="w-full h-64 rounded-t-lg overflow-hidden">
           <img
-            src={fer}
+            src={fausto}
             alt="Foto de Leo"
             className="w-full w-full h-full object-cover"
             />
             </div>
           <div className="p-4">
-            <h2 className="text-xl font-bold mb-2">Fernando Luna</h2>
-            <p className="text-gray-600 mb-2">ferfuego46lun@gmail.com</p>
-            <p className="text-gray-600 mb-2">3804114694</p>
-            <p className="text-gray-600 mb-4">GitHub: FeerLuna</p>
+            <h2 className="text-xl font-bold mb-2">Fausto Lalia</h2>
+            <p className="text-gray-600 mb-2">faustolaliam@gmail.com</p>
+            <p className="text-gray-600 mb-2">1164633364</p> 
+            <p className="text-gray-600 mb-4">GitHub: Fauter</p>
             <p className="text-gray-600">Rol: Back-end</p>
           </div>
         </div>
@@ -147,62 +152,62 @@ const About = () => {
       <br />
       <br />
 
-      <div className="flex justify-center">
-        {/* Carta de Leonel */}
-        <div className="w-64 bg-white rounded-lg shadow-lg mx-4 transform transition duration-500 hover:scale-105">
+  <div className="flex flex-wrap justify-center">
+  {/* Carta de Leonel */}
+  <div className="w-full sm:w-64 bg-white rounded-lg shadow-lg mx-4 my-4 transform transition duration-500 hover:scale-105">
     <div className="w-full h-64 rounded-t-lg overflow-hidden">
-          <img
-            src={leonel}
-            alt="belgrano"
-            className="w-full w-full h-full object-cover"
-            />
-            </div>
-          <div className="p-4">
-            <h2 className="text-xl font-bold mb-2 text-black">Leonel Aguilera</h2>
-            <p className="text-gray-600 mb-2">leonelcarp142nuevo@gmail.com</p>
-            <p className="text-gray-600 mb-2">2615591495</p>
-            <p className="text-gray-600 mb-4">GitHub: Leonel42aguil</p>
-            <p className="text-gray-600">Rol: Front-end</p>
-          </div>
-        </div>
+      <img
+        src={leonel}
+        alt="belgrano"
+        className="w-full h-full object-cover"
+      />
+    </div>
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-2 text-black">Leonel Aguilera</h2>
+      <p className="text-gray-600 mb-2">leonelcarp142nuevo@gmail.com</p>
+      <p className="text-gray-600 mb-2">2615591495</p>
+      <p className="text-gray-600 mb-4">GitHub: Leonel42aguil</p>
+      <p className="text-gray-600">Rol: Front-end</p>
+    </div>
+  </div>
 
-        {/* Carta de Javi */}
-        <div className="w-64 bg-white rounded-lg shadow-lg mx-4 transform transition duration-500 hover:scale-105">
+  {/* Carta de Javi */}
+  <div className="w-full sm:w-64 bg-white rounded-lg shadow-lg mx-4 my-4 transform transition duration-500 hover:scale-105">
     <div className="w-full h-64 rounded-t-lg overflow-hidden">
-          <img
-            src={javi}
-            alt="belgrano"
-            className="w-full w-full h-full object-cover"
-            />
-            </div>
-          <div className="p-4">
-            <h2 className="text-xl font-bold mb-2 text-black">Javier Diaz</h2>
-            <p className="text-gray-600 mb-2">javiermauriciodiaz@gmail.com</p>
-            <p className="text-gray-600 mb-2">3058620193</p>
-            <p className="text-gray-600 mb-4">GitHub: Xaxier9015</p>
-            <p className="text-gray-600">Rol: Front-end</p>
-          </div>
-        </div>
-       
-         {/* Carta de fausto */}
-         <div className="w-64 bg-white rounded-lg shadow-lg mx-4 transform transition duration-500 hover:scale-105">
+      <img
+        src={javi}
+        alt="belgrano"
+        className="w-full h-full object-cover"
+      />
+    </div>
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-2 text-black">Javier Diaz</h2>
+      <p className="text-gray-600 mb-2">javiermauriciodiaz@gmail.com</p>
+      <p className="text-gray-600 mb-2">3058620193</p>
+      <p className="text-gray-600 mb-4">GitHub: Xaxier9015</p>
+      <p className="text-gray-600">Rol: Front-end</p>
+    </div>
+  </div>
+
+  {/* Carta de Fausto */}
+  <div className="w-full sm:w-64 bg-white rounded-lg shadow-lg mx-4 my-4 transform transition duration-500 hover:scale-105">
     <div className="w-full h-64 rounded-t-lg overflow-hidden">
-          <img
-            src={fausto}
-            alt="belgrano"
-            className="w-full w-full h-full object-cover"
-            />
-            </div>
-          <div className="p-4">
-            <h2 className="text-xl font-bold mb-2 text-black">Fausto Lalia</h2>
-            <p className="text-gray-600 mb-2">faustolaliam@gmail.com</p>
-            <p className="text-gray-600 mb-2">1164633364</p>
-            <p className="text-gray-600 mb-4">GitHub: Fauter</p>
-            <p className="text-gray-600">Rol: Front-end</p>
-          </div>
-        </div>
-        
-      </div>
+      <img
+        src={fer}
+        alt="belgrano" 
+        className="w-full h-full object-cover"
+      />
+    </div>
+    <div className="p-4">
+      <h2 className="text-xl font-bold mb-2 text-black">Fer Luna</h2>
+      <p className="text-gray-600 mb-2">ferfuego46lun@gmail.com</p> 
+      <p className="text-gray-600 mb-2">3804114694</p>
+      <p className="text-gray-600 mb-4">GitHub: FeerLuna</p>
+      <p className="text-gray-600">Rol: Front-end</p>
+    </div>
+  </div>
+</div>
+
     </div>
   );
 };
