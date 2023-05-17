@@ -37,7 +37,7 @@ const Cards = () => {
         <Card
           key={product.id}
           id={product.id}
-          title={startCase(product.title)}
+          title={startCase(product.name)}
           description={product.description}
           price={product.price}
           image={product.img}

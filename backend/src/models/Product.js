@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
             primaryKey: true,
             defaultValue: UUIDV4
         },
-        title: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
