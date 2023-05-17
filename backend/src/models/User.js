@@ -39,5 +39,17 @@ module.exports = (sequelize) => {
       type: DataTypes.BOOLEAN,
       defaultValue: false,
     },
+    is_active: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
+    is_authenticated: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
+    theme: {
+      type: DataTypes.ENUM('claro', 'oscuro'),
+      defaultValue: 'claro',
+    },
   });
 };

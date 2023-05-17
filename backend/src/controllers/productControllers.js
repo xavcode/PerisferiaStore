@@ -84,5 +84,5 @@ module.exports = {
     createRecordProduct,
     getProduct_api
 };
-    
+
 //----------------------------------------------------------------//
