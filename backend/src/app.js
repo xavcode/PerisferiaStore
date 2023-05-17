@@ -3,7 +3,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const router = require('./routes/index');
-const router_get = require('./routes/gets');
 require('./db');
 
 const server = express();
