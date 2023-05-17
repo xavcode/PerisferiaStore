@@ -11,6 +11,7 @@ import Error from './pages/Error/Error';
 import Detail from './components/detail/Detail';
 
 function App() {
+  
   return (
     <BrowserRouter>
       <Header />

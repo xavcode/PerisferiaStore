@@ -10,7 +10,7 @@ import Search from '../Search/Search';
 const Header = () => {
 
   return (
-    <div className=' h-[150px] flex justify-around px-3 fixed top-0 left-0 md:h-[60px] w-full items-center font-bold bg-primary rounded-b-lg'>
+    <div className=' h-[150px] flex justify-around px-3 fixed top-0 left-0 md:h-[60px] w-full items-center font-bold bg-header rounded-b-lg z-50 '>
       <ul className=' justify-around md:flex  text-2xl md:m-8 md:gap-6  '>
         <li><Link to='/'> Inicio </Link></li>
         <li><Link to='/store/'> Tienda </Link></li>

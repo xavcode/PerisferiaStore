@@ -1,14 +1,21 @@
 import React from 'react'
 import Cards from '../../components/Cards/Cards'
-import Header from '../../components/Header/Header'
 import Footer from '../../components/Footer/Footer'
+import Filters from '../../components/FiltersBar/FiltersBar'
+
+
 
 const Store = () => {
+
+
   return (
+
     <div >
-      <Header /> 
+      <div className='flex flex-col w-screen'>
+        <Filters />
+      </div>
       <Cards />
-      <Footer/>
+      <Footer />
     </div>
   )
 }

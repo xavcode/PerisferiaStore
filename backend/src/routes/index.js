@@ -6,6 +6,7 @@ const router_get = require("./gets");
 const router_delete = require("./delete");
 const router = Router();
 
+router.use('/products', routeProducts)
 
 
 router.use('/', (req, res, next) => {
@@ -29,5 +30,4 @@ router.use('/', (req, res, next) => {
 // router.use("/user", (req, res) => {
 //     res.status(200).send('<h1>Ahi encontre el error</h1>')
 // });
-
 module.exports = router;

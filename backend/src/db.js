@@ -9,7 +9,7 @@ const {
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:5432/${DB_NAME}`, {
   logging: false, // set to console.log to see the raw SQL queries
   dialect: 'postgres',
-});
+}); 
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -42,7 +42,6 @@ Users.belongsToMany(Products, { through: 'Favorites' })
 
 Order.belongsToMany(Products, { through: 'order_product' });
 Products.belongsToMany(Order, { through: 'order_product' });
-
 
 module.exports = {
   ...sequelize.models, // para poder importar los modelos así: const { Product, User } = require('./db.js');

@@ -1,0 +1,376 @@
+{
+  "users": [
+    {
+      "name": "name1",
+      "lastName": "lastName1",
+      "userName": "username1",
+      "phone": "55512312312",
+      "mail": "email1@mail.com",
+      "password": "password",
+      "Adress": "Calle false 123",
+      "profileImage": "https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940",
+      "theme": "ligth",
+      "isAdmin": "true",
+      "isActive": "true",
+      "isAuthenticated": "true"
+    }
+  ],
+  "categories": [
+    {
+      "id": "1",
+      "title": "Earbuds"
+    },
+    {
+      "id": "2",
+      "title": "Mouses"
+    },
+    {
+      "id": "3",
+      "title": "Teclados"
+    },
+    {
+      "id": "4",
+      "title": "Auriculares"
+    },
+    {
+      "id": "5",
+      "title": "Placas de video"
+    },
+    {
+      "id": "6",
+      "title": "Monitor"
+    }
+  ],
+  "products": [
+    {
+      "id": "1",
+      "title": "earbuds blancos con celeste ",
+      "price": 10,
+      "image": "https://i.ibb.co/KbS5tz5/earbuds-prod-1.webp",
+      "status": "disponible",
+      "description": "Los earbuds ofrecen una experiencia de sonido inmersiva y libertad de movimiento sin cables",
+      "rating": 4,
+      "category": "Earbuds",
+      "brand": "Marca 1"
+    },
+    {
+      "id": "2",
+      "title": "earbuds superman",
+      "price": 25,
+      "image": "https://i.ibb.co/R05xPsn/earbuds-prod-2.webp",
+      "status": "disponible",
+      "description": "Los earbuds brindan una calidad de audio excepcional y son cómodos para largas horas de uso",
+      "rating": 5,
+      "category": "Earbuds",
+      "brand": "Marca 2"
+    },
+    {
+      "id": "3",
+      "title": "earbuds negro y rojo",
+      "price": 10,
+      "image": "https://i.ibb.co/3hGzJCD/earbuds-prod-3.webp",
+      "status": "disponible",
+      "description": "Los earbuds brindan una calidad de audio excepcional y son ideales para comunicarse con claridad",
+      "rating": 5,
+      "category": "Earbuds",
+      "brand": "Marca 2"
+    },
+    {
+      "id": "4",
+      "title": "earbuds negro y amarillo",
+      "price": 10,
+      "image": "https://i.ibb.co/rsjTZJ3/earbuds-prod-4.webp",
+      "status": "disponible",
+      "description": "Los earbuds brindan una calidad de audio y son excelentes para hacer ejercicios sin problemas",
+      "rating": 5,
+      "category": "Earbuds",
+      "brand": "Marca 2"
+    },
+    {
+      "id": "5",
+      "title": "earbuds blanco y rosado",
+      "price": 10,
+      "image": "https://i.ibb.co/9Tj7Y30/earbuds-prod-5.webp",
+      "status": "disponible",
+      "description": "Los earbuds brindan una calidad de audio increible y tienen una duracion de bateria de 6hs, se recargan con entrada USB tipo-c",
+      "rating": 5,
+      "category": "Earbuds",
+      "brand": "Marca 2"
+    },
+    {
+      "id": "6",
+      "title": "Mouse Logitech G502 Hero",
+      "price": 79.99,
+      "image": "https://www.techspot.com/images/products/2018/mice/org/2018-10-10-product.jpg",
+      "status": "disponible",
+      "description": "El mouse gaming Logitech G502 Hero ofrece una precisión excepcional y cuenta con un sensor óptico avanzado.",
+      "rating": 4.5,
+      "category": "Mouses",
+      "brand": "Logitech"
+    },
+    {
+      "id": "7",
+      "title": "Mouse Razer DeathAdder Elite",
+      "price": 69.99,
+      "image": "https://exitocol.vtexassets.com/arquivos/ids/2587248/mouse-razer-deathadder-elite.jpg?v=637302745650270000",
+      "status": "disponible",
+      "description": "El Razer DeathAdder Elite es un mouse ergonómico diseñado para ofrecer un rendimiento de nivel profesional en juegos.",
+      "rating": 4.2,
+      "category": "Mouses",
+      "brand": "Razer"
+    },
+    {
+      "id": "8",
+      "title": "Mouse Corsair M65 RGB Elite",
+      "price": 89.99,
+      "image": "https://www.pcgamesn.com/wp-content/uploads/2019/01/Corsair-M65-RGB-ELITE.jpg",
+      "status": "disponible",
+      "description": "El Corsair M65 RGB Elite es un mouse con un diseño sólido y cuenta con un sensor de alta precisión y personalización de iluminación RGB.",
+      "rating": 4.4,
+      "category": "Mouses",
+      "brand": "Corsair"
+    },
+    {
+      "id": "9",
+      "title": "Mouse SteelSeries Rival 600",
+      "price": 79.99,
+      "image": "https://static-geektopia.com/storage/geek/products/steelseries/rival-600/05_rival600_kv_top_hero.png__1850x800_q100_crop-scale_optimize_subsampling-2.png",
+      "status": "disponible",
+      "description": "El SteelSeries Rival 600 es un mouse con un sistema de peso ajustable y un sensor dual que proporciona una precisión excepcional.",
+      "rating": 4.3,
+      "category": "Mouses",
+      "brand": "SteelSeries"
+    },
+    {
+      "id": "10",
+      "title": "Mouse Finalmouse Ultralight 2 Cape Town",
+      "price": 129.99,
+      "image": "https://thegamingsetup.com/wp-content/uploads/ultralight2-amzn.jpg",
+      "status": "disponible",
+      "description": "El Finalmouse Ultralight 2 Cape Town es un mouse ligero y de alto rendimiento diseñado para jugadores profesionales.",
+      "rating": 4.6,
+      "category": "Mouses",
+      "brand": "Finalmouse"
+    },
+    {
+      "id": "11",
+      "title": "Auriculares HyperX Cloud II",
+      "price": 99.99,
+      "image": "https://media.extra.com/s/aurora/00183550_800/HyperX-Cloud-II-Pro-Gaming-Headset-Red?locale=en-GB,en-*,*",
+      "status": "disponible",
+      "description": "Los auriculares gaming HyperX Cloud II ofrecen un sonido envolvente virtual 7.1 y son cómodos para largas sesiones de juego.",
+      "rating": 4.5,
+      "category": "Auriculares",
+      "brand": "HyperX"
+    },
+    {
+      "id": "12",
+      "title": "Auriculares Razer Kraken Tourtitlent Edition",
+      "price": 89.99,
+      "image": "https://www.xzone.cz/download/products/RazerKrakenTourtitlentEditionGreen.jpg",
+      "status": "disponible",
+      "description": "Los auriculares Razer Kraken Tourtitlent Edition cuentan con sonido THX Spatial Audio y son ideales para jugar y comunicarse con claridad.",
+      "rating": 4.2,
+      "category": "Auriculares",
+      "brand": "Razer"
+    },
+    {
+      "id": "13",
+      "title": "Auriculares Corsair Void RGB Elite Wireless",
+      "price": 129.99,
+      "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/26-816-143-V01.jpg",
+      "status": "disponible",
+      "description": "Los auriculares inalámbricos Corsair Void RGB Elite ofrecen una experiencia de sonido inmersiva y libertad de movimiento sin cables.",
+      "rating": 4.4,
+      "category": "Auriculares",
+      "brand": "Corsair"
+    },
+    {
+      "id": "14",
+      "title": "Auriculares SteelSeries Arctis 7",
+      "price": 149.99,
+      "image": "https://tse1.mm.bing.net/th?id=OIP.6lMDjGodwdkHuC6RdA8R7wHaJ7&pid=Api&P=0",
+      "status": "disponible",
+      "description": "Los auriculares SteelSeries Arctis 7 brindan una calidad de audio excepcional y son cómodos para largas sesiones de juego.",
+      "rating": 4.3,
+      "category": "Auriculares",
+      "brand": "SteelSeries"
+    },
+    {
+      "id": "15",
+      "title": "Auriculares Logitech G Pro X",
+      "price": 119.99,
+      "image": "https://www.kjell.com/globalassets/productimages/770399_62812.tif?ref=ADA4DC82D9&format=jpg",
+      "status": "disponible",
+      "description": "Los auriculares Logitech G Pro X ofrecen un sonido preciso y personalizable con tecnología de micrófono Blue VO!CE.",
+      "rating": 4.6,
+      "category": "Auriculares",
+      "brand": "Logitech"
+    },
+    {
+      "id": "16",
+      "title": "Teclado Logitech G Pro Mechanical Gaming Keyboard",
+      "price": 129.99,
+      "image": "https://nerdreactor.com/wp-content/uploads/2017/03/Logitech-G-Pro-Gaming-Keyboard.png",
+      "status": "disponible",
+      "description": "El teclado mecánico Logitech G Pro ofrece una respuesta rápida y precisa, ideal para jugadores profesionales.",
+      "rating": 4.5,
+      "category": "Teclados",
+      "brand": "Logitech"
+    },
+    {
+      "id": "17",
+      "title": "Teclado Razer Huntsman Elite",
+      "price": 179.99,
+      "image": "https://news.mcr.com.es/wp-content/uploads/2019/01/Huntsman-Elite-WR-2018-Render09.jpg",
+      "status": "disponible",
+      "description": "El teclado Razer Huntsman Elite cuenta con interruptores ópticos y retroiluminación RGB personalizable para una experiencia de juego inmersiva.",
+      "rating": 4.4,
+      "category": "Teclados",
+      "brand": "Razer"
+    },
+    {
+      "id": "18",
+      "title": "Teclado Corsair K70 RGB MK.2",
+      "price": 159.99,
+      "image": "https://www.pcgamesn.com/wp-content/uploads/2018/06/Corsair-K70-MK.2-specs-1.jpg",
+      "status": "disponible",
+      "description": "El teclado Corsair K70 RGB MK.2 ofrece una respuesta rápida y cuenta con retroiluminación RGB dinámica para una experiencia de juego personalizada.",
+      "rating": 4.3,
+      "category": "Teclados",
+      "brand": "Corsair"
+    },
+    {
+      "id": "19",
+      "title": "Teclado SteelSeries Apex Pro",
+      "price": 199.99,
+      "image": "https://cdn1.elsalg.dk/inetimagegen.ashx?altFmImage_path=/Files/ELSALG/eCom/Pictures/0000000000001.png&Width=280&image=/files/ELSALG/eCom/Pictures/5707119038607.png&width=1024&height=768&crop=5",
+      "status": "disponible",
+      "description": "El teclado SteelSeries Apex Pro cuenta con interruptores ajustables y una pantalla OLED integrada para una personalización avanzada.",
+      "rating": 4.6,
+      "category": "Teclados",
+      "brand": "SteelSeries"
+    },
+    {
+      "id": "20",
+      "title": "Teclado HyperX Alloy Origins",
+      "price": 109.99,
+      "image": "https://i1.wp.com/itc.ua/wp-content/uploads/2021/01/alloyorigins60.0-scaled.jpg?fit=2560%2C1707&quality=100&strip=all&ssl=1",
+      "status": "disponible",
+      "description": "El teclado HyperX Alloy Origins presenta interruptores mecánicos y un diseño compacto para una experiencia de juego precisa y cómoda.",
+      "rating": 4.2,
+      "category": "Teclados",
+      "brand": "HyperX"
+    },
+    {
+      "id": "21",
+      "title": "Grafica NVIDIA GeForce RTX 3080",
+      "price": 799.99,
+      "image": "https://pisces.bbystatic.com/image2/BestBuy_US/images/products/6462/6462956cv13d.jpg",
+      "status": "disponible",
+      "description": "La NVIDIA GeForce RTX 3080 ofrece un rendimiento gráfico excepcional y es ideal para jugadores entusiastas y creadores de contenido.",
+      "rating": 4.8,
+      "category": "Placas de video",
+      "brand": "NVIDIA"
+    },
+    {
+      "id": "22",
+      "title": "Grafica AMD Radeon RX 6800 XT",
+      "price": 699.99,
+      "image": "https://interlink-static2.tsbohemia.cz/sapphire-amd-radeon-rx-6800-xt-16g_ien366430.jpg",
+      "status": "disponible",
+      "description": "La AMD Radeon RX 6800 XT brinda un rendimiento impresionante y ofrece una experiencia de juego fluida en resoluciones 4K.",
+      "rating": 4.7,
+      "category": "Placas de video",
+      "brand": "AMD"
+    },
+    {
+      "id": "23",
+      "title": "Grafica EVGA GeForce RTX 3070",
+      "price": 599.99,
+      "image": "https://c1.neweggimages.com/ProductImageCompressAll1280/14-487-528-V03.jpg",
+      "status": "disponible",
+      "description": "La EVGA GeForce RTX 3070 ofrece un rendimiento gráfico de alta gama y es compatible con trazado de rayos en tiempo real.",
+      "rating": 4.6,
+      "category": "Placas de video",
+      "brand": "EVGA"
+    },
+    {
+      "id": "24",
+      "title": "Grafica MSI GeForce GTX 1660 Super",
+      "price": 299.99,
+      "image": "https://tse1.mm.bing.net/th?id=OIP.DPovpyARGrELESVFHhaUvwHaHa&pid=Api&P=0",
+      "status": "disponible",
+      "description": "La MSI GeForce GTX 1660 Super brinda un rendimiento sólido en juegos populares y es una opción asequible para jugadores.",
+      "rating": 4.4,
+      "category": "Placas de video",
+      "brand": "MSI"
+    },
+    {
+      "id": "25",
+      "title": "Grafica ASUS ROG Strix Radeon RX 6700 XT",
+      "price": 549.99,
+      "image": "https://platincdn.com/466/pictures/thumb/450X-AUBDGPFZAH5102021181659_asus_rog_strix_rx6700xt_oc_07.jpg",
+      "status": "disponible",
+      "description": "La ASUS ROG Strix Radeon RX 6700 XT ofrece un rendimiento gráfico de primera clase y cuenta con una potente solución de enfriamiento.",
+      "rating": 4.5,
+      "category": "Placas de video",
+      "brand": "ASUS"
+    },
+    {
+      "id": "26",
+      "title": "monitor ASUS ROG Swift PG279Q",
+      "price": 699.99,
+      "image": "https://http2.mlstatic.com/D_NQ_NP_834436-MCO46280926753_062021-O.jpg",
+      "status": "disponible",
+      "description": "El monitor ASUS ROG Swift PG279Q cuenta con una pantalla IPS de 27 pulgadas, resolución WQHD y una alta frecuencia de actualización para una experiencia de juego suave.",
+      "rating": 4.6,
+      "category": "Monitor",
+      "brand": "ASUS"
+    },
+    {
+      "id": "27",
+      "title": "monitor LG 27GN950-B",
+      "price": 899.99,
+      "image": "https://www.lg.com/us/images/monitors/md07500042/gallery/medium02.jpg",
+      "status": "disponible",
+      "description": "El monitor LG 27GN950-B ofrece una pantalla Nano IPS de 27 pulgadas con resolución 4K y una alta frecuencia de actualización para una experiencia de juego inmersiva.",
+      "rating": 4.5,
+      "category": "Monitor",
+      "brand": "LG"
+    },
+    {
+      "id": "28",
+      "title": "monitor AOC CQ32G1",
+      "price": 399.99,
+      "image": "https://tse3.mm.bing.net/th?id=OIP.VJRffm3fbDdf54ZGXKyAFwHaHa&pid=Api&P=0",
+      "status": "disponible",
+      "description": "El monitor AOC CQ32G1 cuenta con una pantalla curva de 32 pulgadas, resolución QHD y una alta frecuencia de actualización para una experiencia de juego envolvente.",
+      "rating": 4.3,
+      "category": "Monitor",
+      "brand": "AOC"
+    },
+    {
+      "id": "29",
+      "title": "monitor BenQ EX2780Q",
+      "price": 549.99,
+      "image": "https://www.displayspecifications.com/images/news/560719c/additional_0.jpg",
+      "status": "disponible",
+      "description": "El monitor BenQ EX2780Q presenta una pantalla IPS de 27 pulgadas, resolución QHD y tecnología HDR para una reproducción de colores vívida y detalles claros en los juegos.",
+      "rating": 4.4,
+      "category": "Monitor",
+      "brand": "BenQ"
+    },
+    {
+      "id": "30",
+      "title": "monitor MSI Optix MAG341CQ",
+      "price": 499.99,
+      "image": "https://www.ask-corp.jp/products/images/msi/optix-mag-1cq_02.jpg",
+      "status": "disponible",
+      "description": "El monitor MSI Optix MAG341CQ es un monitor ultrawide de 34 pulgadas con resolución UWQHD y una alta frecuencia de actualización para una experiencia de juego panorámica.",
+      "rating": 4.2,
+      "category": "Monitor",
+      "brand": "MSI"
+    }
+  ]
+}

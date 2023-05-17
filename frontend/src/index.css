@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.height{
+  height: 910px;
+  width: 1260px; 
+  margin-top: 60px;
+}
+
 *{
   box-sizing: border-box;
   margin: 0;

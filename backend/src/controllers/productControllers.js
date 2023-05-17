@@ -86,3 +86,9 @@ module.exports = {
 };
     
 //----------------------------------------------------------------//
+
+module.exports = {
+  getAllProducts,
+  // getProductById,
+  getProductsByName,
+};
