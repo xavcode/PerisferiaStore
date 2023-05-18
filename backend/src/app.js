@@ -22,7 +22,6 @@ next();
 });
 
 // acá van los server.use blablabla <3
-
 server.use('/', router); 
 
 // Error catching endware.

@@ -2,7 +2,9 @@ const { Router } = require('express');
 const { getAllProducts, createRecordProduct } = require('../controllers/productControllers');
 const { addProductById } = require('../controllers/addProductById');
 const { get_Products_By_Name } = require('../controllers/addProductByName');
+const { createProduct } = require('../controllers/createProd');
 const { get_user } = require('../controllers/getUser');
+
 const router_get = Router();
 
 router_get.get('/', createRecordProduct);
