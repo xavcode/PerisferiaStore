@@ -4,8 +4,7 @@ const get_order = async (req, res) => {
     try {
         const elemento = await Order.findAll({
             include: [
-                { model: Products, attributes: ['name'] },
-                { model: Users, attributes: ['name'] },
+                { model: Products, attributes: ['name'] }
               ],
             });
         res.status(200).json(elemento);

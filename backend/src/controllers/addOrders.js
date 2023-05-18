@@ -11,12 +11,8 @@ const creation_relation = async (req, res) => {
         const newOrder = await Order.create({
             quantity, totalPrice
         });
-        const user = await Users.findAll({
-            where: {
-                name: UserId
-            }
-        })
-        await newOrder.setUsers(user)
+        const user = await Users.findByPk(UserId)
+        await newOrder.setUser(user);
         
         const prod = await Products.findAll({
             where: {

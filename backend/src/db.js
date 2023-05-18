@@ -34,8 +34,8 @@ const { Users, Order, Products } = sequelize.models;
 
 // Aca vendrian las relaciones
 Users.hasMany(Order);
-Products.belongsToMany(Order, { through: 'order_product' });
 Order.belongsTo(Users)
+Products.belongsToMany(Order, { through: 'order_product' });
 Order.belongsToMany(Products, { through: 'order_product' });
 
 
