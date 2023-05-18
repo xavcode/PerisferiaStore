@@ -1,4 +1,5 @@
-const {DataTypes, UUIDV4} = require ('sequelize');
+const { DataTypes, UUIDV4 } = require('sequelize');
+
 
 module.exports = (sequelize) => {
     sequelize.define("order", {
@@ -17,5 +18,8 @@ module.exports = (sequelize) => {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false,
         },
+    },
+    {
+        timestamps: false
     })
 }
