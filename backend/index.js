@@ -42,11 +42,11 @@ const server = require('./src/app.js');
 const { conn } = require('./src/db.js');
 
 // Syncing all the models at once.
-conn.sync({ alter: true }).then(() => {
+conn.sync({ force: true }).then(() => {
     console.log('DB Connected')
     // Agregamos CORS al servidor
 
     server.listen(3001, () => {
-        console.log('Listening on Port: 3001'); // eslint-disable-line no-console
+        console.log('Listening on Port: 3001 happy Codding (❁´◡`❁)'); // eslint-disable-line no-console
     });
 });
