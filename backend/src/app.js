@@ -22,6 +22,7 @@ next();
 });
 
 // acá van los server.use blablabla <3
+server.use('/', router); 
 
 server.use('/', router); 
 

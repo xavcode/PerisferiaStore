@@ -9,7 +9,7 @@ const {
 const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:5432/${DB_NAME}`, {
   logging: false, // set to console.log to see the raw SQL queries
   dialect: 'postgres',
-}); 
+});
 const basename = path.basename(__filename);
 
 const modelDefiners = [];
@@ -36,8 +36,13 @@ const { Users, Order, Products } = sequelize.models;
 Users.belongsToMany(Order, { through: "order_user" });
 Order.belongsTo(Users, { through: "order_user" });
 
+
 Products.belongsToMany(Users, {through: 'Favorites'})
 Users.belongsToMany(Products, { through: 'Favorites' })
+
+// Users.hasMany(Reviews)
+// Reviews.belongsTo(Users)
+
 
 
 Order.belongsToMany(Products, { through: 'order_product' });

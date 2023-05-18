@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 
 const Card = (props) => {
   return (
-    <div className='grid min-w-[280px] max-w-[320px] transition duration-200 ease-in-out hover:scale-[1.03] z-1 hover:shadow-boxshadow rounded-lg hover:shadow-md '>
-      <div className="flex flex-col rounded-lg bg-bg_card pt-4 justify-between p-5">
+    <div className='grid min-w-[280px] max-w-[320px]'>
+
+      <div className="flex flex-col rounded-lg bg-white pt-4 justify-between p-5">
         <div >
           <Link className='flex flex-col justify-center items-center' to={`/store/${props.id}`}>
             <img className=" max-h-[150px] max-w-[150px] min-h-[100px] min-w-[100px] align-center justify-center my-2" src={props.image} alt={props.title} />
