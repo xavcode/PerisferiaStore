@@ -17,6 +17,7 @@ const Header = () => {
         <li><Link to='/store/'> Tienda </Link></li>
         <li><Link to='/about'> Nosotros </Link></li>
         <li><Link to='/contact'> Contacto</Link></li>
+        <li><Link to='/login'>Login</Link></li>
       </ul>
       <div className='flex w-[500px] items-center justify-center'>
         <ul className='px-6 md:flex justify-around items-center gap-4 md:gap-8 text-3xl '>

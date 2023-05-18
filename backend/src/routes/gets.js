@@ -12,5 +12,4 @@ router_get.get('/store/:id', addProductById);
 router_get.get('/usuarios', get_user)
 
 
-
 module.exports = router_get
