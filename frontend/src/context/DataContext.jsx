@@ -11,11 +11,12 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = async () =>{
+      // const response = await axios.get('http://localhost:3001/products/')
       const response = await axios.get('http://localhost:3001/store')
       setProducts(response.data)
     }
 
-  fetchData()
+  fetchData() 
     
   }, [])
   

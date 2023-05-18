@@ -1,5 +1,5 @@
 import React from "react";
-import mouse from "../imgAbout/mouse.jpeg"
+// import mouse from "../imgAbout/mouse.jpeg"
 
 const Contact = () => {
   return (
