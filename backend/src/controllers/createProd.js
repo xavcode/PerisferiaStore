@@ -7,8 +7,8 @@ const createProduct = (prod) => {
         return my_product
     } catch (error) {
         return {
-        error: error.message
-    };
+           error: error.message
+       };
     }
 }
 
