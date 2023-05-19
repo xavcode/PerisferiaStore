@@ -28,12 +28,17 @@ const add_NewProduct = async (req, res) => {
             id,
             name,
             price,
-            img,
             status,
             description,
             rating,
             category,
         });
+        // Guardar la imagen en la base de datos si se subió correctamente
+        if (req.file) {
+        const { filename } = req.file;
+        new_product.img = filename;
+        await new_product.save();
+    }
         res.status(200).send('<p>Registro creado con exito</p>')
     } catch (error) {
         res.status(404).send({ error: error.message });
