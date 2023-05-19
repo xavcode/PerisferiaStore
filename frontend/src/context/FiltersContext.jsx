@@ -17,13 +17,13 @@ export const FilterProvider = ({ children }) => {
     sortBy:'price'
   })
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get('http://localhost:3001/categories/')
-      setCategories(response.data)
-    }
-    fetchData()
-  }, [])
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     const response = await axios.get('http://localhost:3001/categories/')
+  //     setCategories(response.data)
+  //   }
+  //   fetchData()
+  // }, [])
 
   
 

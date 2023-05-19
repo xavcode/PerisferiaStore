@@ -5,21 +5,23 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    colors: {
-      primary: '#F3AA3A',
-      bg: '#262629',
-      bg_card: '#fafaf9',
-      bg_filters_bar: 'white',
-      bg_btn: '#181A20',
-      header: '#F3AA3A',
-      inputs: 'white',
-      btn: 'black',
-      btn_hover: '#F3AA3A',
-      text: 'black',
-      text_btn: 'white',
-      text_filters_bar: '#9a3412',
-      text_rating: '#b91c1c',
-      boxshadow: '#F3AA3A',
+    extend:{
+      colors: {
+        primary: '#F3AA3A',
+        bg: '#262629',
+        bg_card: '#fafaf9',
+        bg_filters_bar: 'white',
+        bg_btn: '#181A20',
+        header: '#F3AA3A',
+        inputs: 'white',
+        btn: 'black',
+        btn_hover: '#F3AA3A',
+        text: 'black',
+        text_btn: 'white',
+        text_filters_bar: '#9a3412',
+        text_rating: '#b91c1c',
+        boxshadow: '#F3AA3A',
+      },
     },
 
     darkMode: {

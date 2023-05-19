@@ -25,15 +25,15 @@ export const UserProvider = ({ children }) => {
   // console.log(userTheme)
   // if(userTheme===true) setUserData({...userData, theme:userTheme})
 
-  useEffect(() => {
+  // useEffect(() => {
 
-    const fetchData = async () => {
-      const response = await axios('http://localhost:3001/users/')
-      setUserData(response.data)
-    }    
+  //   const fetchData = async () => {
+  //     const response = await axios('http://localhost:3001/users/')
+  //     setUserData(response.data)
+  //   }    
 
-    fetchData()
-  }, [])
+  //   fetchData()
+  // }, [])
 
   return (
     <UserContext.Provider value={{
