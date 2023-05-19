@@ -4,12 +4,11 @@ import { startCase } from 'lodash'
 import { FiltersContext } from '../../context/FiltersContext';
 import { DataContext } from '../../context/DataContext';
 
-
 const Cards = () => {
 
   const [productsRender, setProductsRender] = useState([])
 
-  const globalData = useContext(DataContext)
+  const globalData = useContext(DataContext)//Trae los productos
   const products = globalData.products
 
   const { filters } = useContext(FiltersContext)
@@ -27,25 +26,25 @@ const Cards = () => {
     return priceInRange && matchesCategory && matchesSearch;
   });
 
-  useEffect(() => {
+  useEffect(() => { 
     setProductsRender(productsToRender);
   }, [minPrice, maxPrice, category, searched]);
-
+  
   return (
     <div className='grid gap-6 mx-10 mt-32 md:mt-40 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 justify-center ' >
       {productsToRender.map(product => (
         <Card
-          key={product.id}
-          id={product.id}
-          title={startCase(product.name)}
-          description={product.description}
-          price={product.price}
-          image={product.image}
+        key={product.id}
+        id={product.id}
+        title={startCase(product.name)}
+        description={product.description}
+        price={product.price}
+        image={product.img}
           category={product.category}
           rating={product.rating}
         />
       ))
-      }
+    }
     </div>
   );
 };
