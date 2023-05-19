@@ -46,7 +46,8 @@ conn.sync({ alter: false }).then(() => {
     console.log('DB Connected')
     // Agregamos CORS al servidor 
 
+
     server.listen(3001, () => {
-        console.log('Listening on Port: 3001'); // eslint-disable-line no-console
+        console.log('Listening on Port: 3001 happy Codding (❁´◡`❁)'); // eslint-disable-line no-console
     });
 });

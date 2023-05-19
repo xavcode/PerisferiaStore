@@ -46,6 +46,7 @@ const Cards = () => {
       ))
     }
     </div>
-  )
-}
-export default Cards
+  );
+};
+
+export default Cards;

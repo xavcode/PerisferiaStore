@@ -9,6 +9,8 @@ import About from './pages/About/About';
 import Contact from './pages/Contact/Contact';
 import Error from './pages/Error/Error';
 import Detail from './components/detail/Detail';
+import Login from './pages/Login/Login';
+import Register from "./pages/Register/Register";
 
 function App() {
   
@@ -21,6 +23,8 @@ function App() {
         <Route exact path='/store' element={<Store />} />
         <Route path='/store/:id' element={<Detail/>}/>
         <Route exact path='/contact' element={<Contact />} />
+        <Route exact path='/login' element={<Login />} />
+        <Route exact path='/register' element={<Register />} />
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
