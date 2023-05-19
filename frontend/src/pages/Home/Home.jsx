@@ -55,6 +55,10 @@ const Home = () => {
                 nuestra tienda en línea.</p>
 
             </div>
+
+            <br />
+            <br />
+            
             <img
               className="h-[600px] w-[600px]  rounded-b-full rounded-t-3xl shadow-lg object-cover "
               src={images[currentImage]}
@@ -63,8 +67,6 @@ const Home = () => {
           </div>
         </div>
       </main>
-      <LoginButton/>
-      <LogoutButton/>
       <CardsBottom />
     </div>
   );
