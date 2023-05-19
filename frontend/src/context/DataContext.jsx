@@ -12,7 +12,8 @@ export const DataProvider = ({ children }) => {
   const [products2, setProducts2] = useState([])
 
   useEffect(() => {
-    const fetchData = async () => {
+    const fetchData = async () =>{
+      // const response = await axios.get('http://localhost:3001/products/')
       const response = await axios.get('http://localhost:3001/store')
       //for change the whole array to lowercase
       const prods = response.data
@@ -23,8 +24,8 @@ export const DataProvider = ({ children }) => {
 
     }
 
-    fetchData()
-
+  fetchData() 
+    
   }, [])
 
 

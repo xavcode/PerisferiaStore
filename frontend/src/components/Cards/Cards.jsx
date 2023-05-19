@@ -4,7 +4,6 @@ import { startCase } from 'lodash'
 import { FiltersContext } from '../../context/FiltersContext';
 import { DataContext } from '../../context/DataContext';
 
-
 const Cards = () => {
   const globalData = useContext(DataContext)
   const products = globalData.products
@@ -56,7 +55,7 @@ const Cards = () => {
           rating={product.rating}
         />
       ))
-      }
+    }
     </div>
   );
 };

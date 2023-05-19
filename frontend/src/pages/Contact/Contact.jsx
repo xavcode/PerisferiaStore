@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
-import mouse from "../imgAbout/mouse.jpeg"
+import React, { useRef } from "react";
+import mouse from "../imgAbout/mouse.jpeg";
 import emailjs from "@emailjs/browser";
-
+import { useState } from "react";
 
 const Contact = () => {
   const form = useRef();
@@ -9,19 +9,38 @@ const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_6ar7zht', 'template_9kgyz5r', form.current, 'tbbTLTxwOaY7CkWAO')
-      .then(response => console.log(response))
-      .catch(error => console.log(error))
-  }
+    emailjs
+      .sendForm(
+        "service_6ar7zht",
+        "template_9kgyz5r",
+        form.current,
+        "tbbTLTxwOaY7CkWAO"
+      )
+      .then((response) => {
+        console.log(response);
+        setIsSent(true);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  const [isFormValid, setIsFormValid] = useState(false);
+  const validateForm = () => {
+    const formElement = form.current;
+
+    if (formElement.checkValidity()) {
+      setIsFormValid(true);
+    } else {
+      setIsFormValid(false);
+    }
+  };
+
+  const [isSent, setIsSent] = useState(false);
+
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-4xl w-full px-6">
         <div className="text-center">
-          <img
-            src={mouse}
-            alt="not fun"
-            className="h-16 w-auto mx-auto"
-          />
+          <img src={mouse} alt="not fun" className="h-16 w-auto mx-auto" />
           <h2 className="mt-8 text-4xl font-extrabold text-white">
             Contacto 📱
           </h2>
@@ -42,6 +61,8 @@ const Contact = () => {
                   name="user_name"
                   className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white"
                   placeholder="Nombre"
+                  required
+                  onChange={validateForm}
                 />
               </div>
 
@@ -53,13 +74,15 @@ const Contact = () => {
                   Correo Electrónico
                 </label>
                 <input
-                  type="text"
+                  type="email"
                   name="user_email"
                   className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white"
                   placeholder="Correo Electrónico"
+                  pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+                  required
+                  onChange={validateForm}
                 />
               </div>
-              {/*class="flex flex-col items-cente rjustify-center h-screen*/}
 
               <div>
                 <label
@@ -72,17 +95,21 @@ const Contact = () => {
                   name="user_message"
                   className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white w-74 h-64 "
                   placeholder="Escribe aquí"
+                  maxLength={200}
+                  required
+                  onChange={validateForm}
                 />
               </div>
-
             </div>
 
             <div>
               <button
                 type="submit"
                 className="mt-4 w-full py-4 bg-yellow-400 hover:bg-yellow-300 text-white text-xl font-medium rounded focus:outline-none focus:bg-yellow-300"
+                disabled={!isFormValid}
               >
                 Enviar
+                {isSent ? alert('¡Envío de correo exitoso!') : null}
               </button>
             </div>
 
@@ -98,8 +125,5 @@ const Contact = () => {
     </div>
   );
 };
-
-
-
 
 export default Contact;

@@ -31,7 +31,7 @@ const CardsBottom = () => {
         text={<p>Tu compra Segura.</p>}
       />
     </div>
-  )
+  ) 
 }
 
 export default CardsBottom
