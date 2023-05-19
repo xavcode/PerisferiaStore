@@ -1,7 +1,7 @@
 .cart {
     background: #000;
     display: none;
-    padding: 32px;
+    padding: 42px;
     position: fixed;
     right: 0px;
     top: 0px;
@@ -10,23 +10,23 @@
   
   .cart img {
     aspect-ratio: 16/9;
-    width: 100%;
+    width: 90%;
   }
   
   .cart li {
-    border-bottom: 1px solid #444;
-    padding-bottom: 16px;
+    border-bottom: 8px solid #444;
+    padding-bottom: 26px;
   }
   
   .cart footer {
     display: flex;
-    gap: 8px;
+    gap: 18px;
     justify-content: center;
     align-items: center;
   }
   
   .cart footer button {
-    padding: 8px;
+    padding: 18px;
   }
   
   .cart-button {

@@ -1,18 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
-// import { AddToCartIcon, RemoveFromCartIcon } from "../Icons.jsx";
+import { AddToCartIcon, RemoveFromCartIcon } from "../Icons.jsx";
 import Cart from "../Cart/Cart";
-import { FooterCart } from "../footerCart";
 import { useCart } from '../../hooks/useCart';
 
 const Card = (props) => {
-  // const { addToCart, cart, removeFromCart } = useCart();
-
-  // const checkProductInCart = (product) => {
-  //   return cart.some((i) => i.id === product.id);
-  // };
-  // const isProductInCart = checkProductInCart(product);
-  const  {addToCart}  = useCart()
+  const  {addToCart, cart, removeFromCart}  = useCart()
+  const checkProductInCart = prop => {
+    return cart.some(item => item.id === prop.id)
+  }
+  const isProductInCart = checkProductInCart(props)
 
   return (
     <div>
@@ -39,14 +36,17 @@ const Card = (props) => {
               Rating: {props.rating}
             </span>
             <span className="text-2xl text-center font-bold text-text ">{`${props.price}$ `}</span>
-            {/* <a href="#" className="text-text_button bg-btn hover:bg-btn_hover hover:scale-105 font-medium rounded-lg text-sm px-5 py-2 text-center "> Agregar al carrito</a> */}
-            <button className="text-text_button bg-btn hover:bg-btn_hover hover:scale-105 font-medium rounded-lg text-sm px-5 py-2 text-center" >
-              Agregar al carrito
+            <button  style={{ backgroundColor : isProductInCart ? 'red' : '#09f', color: 'black' }} /*className={`bg-blue-500 hover:bg-blue-600 text-black font-semibold py-2 px-4 rounded`}*/  onClick={() => {
+              isProductInCart
+              ? removeFromCart(props)
+              : addToCart(props);
+              }}>
+               {isProductInCart ? <RemoveFromCartIcon /> : <AddToCartIcon />}
             </button>
           </div>
         </div>
       </div>
-    </div>
+    </div> 
   );
 };
 export default Card;
