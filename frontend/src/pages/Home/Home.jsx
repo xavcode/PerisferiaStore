@@ -4,6 +4,8 @@ import { useState } from "react";
 
 
 import CardsBottom from "../../components/CardsBottom/CardsBottom";
+import LoginButton from "../../components/Login/Login";
+import LogoutButton from "../../components/Logout/Logout";
 
 const Home = () => {
   const images = [
@@ -61,7 +63,8 @@ const Home = () => {
           </div>
         </div>
       </main>
-
+      <LoginButton/>
+      <LogoutButton/>
       <CardsBottom />
     </div>
   );
