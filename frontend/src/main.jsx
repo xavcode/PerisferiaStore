@@ -12,7 +12,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   domain="dev-1gp8sh52ahddn5ih.us.auth0.com"
   clientId="D5YD6RCl6AqzDfamDmuxM0cvXYFQchpi"
   authorizationParams={{
-    redirect_uri: "http://127.0.0.1:5173/"
+    redirect_uri: window.location.origin
   }}
   >
   <UserProvider>
