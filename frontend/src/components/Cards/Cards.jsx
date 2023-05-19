@@ -40,12 +40,13 @@ const Cards = () => {
         description={product.description}
         price={product.price}
         image={product.img}
-          category={product.category}
-          rating={product.rating}
+        category={product.category}
+        rating={product.rating}
         />
       ))
     }
     </div>
-  )
-}
-export default Cards
+  );
+};
+
+export default Cards;
