@@ -15,7 +15,7 @@ const Search = () => {
   }
 
   const handleInputSearch = (evt) => {
-    const productSearched = evt.target.value
+    const productSearched = evt.target.value.toLowerCase()
     // setSearch(productSearched) for use with the button later
     setFilters({ ...filters, searched: productSearched })
   }
