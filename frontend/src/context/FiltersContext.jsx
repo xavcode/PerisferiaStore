@@ -24,6 +24,18 @@ export const FilterProvider = ({ children }) => {
     categories: []
   })
 
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await axios.get(`http://localhost:3001/store/`)
+      setCategories(response.data)
+    }
+    fetchData()
+  }, [])
+
+  
+
+
   return (
     <FiltersContext.Provider value={{
       filters,

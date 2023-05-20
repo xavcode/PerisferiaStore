@@ -1,2 +1,0 @@
-# PerisferiaStore
-gamer store
