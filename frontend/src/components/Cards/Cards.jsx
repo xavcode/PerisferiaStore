@@ -21,7 +21,7 @@ const Cards = () => {
   const productsToRender = products.filter((product) => {
     const priceInRange = product.price >= minPrice && product.price <= maxPrice;
     const matchesCategory = category === 'all' || category === product.category;
-    const matchesSearch = searched === '' || product.title.includes(searched);
+    const matchesSearch = searched === '' || product.name.includes(searched);
 
     return priceInRange && matchesCategory && matchesSearch;
   });
