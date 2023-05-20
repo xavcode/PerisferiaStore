@@ -58,7 +58,8 @@ const Filters = () => {
               <option value="all">Todos</option>
               {categories.map(cat => {
                 return (
-                  <option key={cat.id} value={cat.title} >{cat.title}</option>
+                  
+                  <option key={cat.id} value={cat.name} >{cat.name}</option>
                 )
               })}
             </select>
