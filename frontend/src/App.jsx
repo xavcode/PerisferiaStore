@@ -11,9 +11,13 @@ import Error from './pages/Error/Error';
 import Detail from './components/detail/Detail';
 import Login from './pages/Login/Login';
 import Register from "./pages/Register/Register";
+import Layout from './dashboard/components/Layout/Layout';
+import ProductsTable from './dashboard/components/ProductsTable';
+import ProductForm from './dashboard/components/CreateProduct/ProductForm';
+
 
 function App() {
-  
+
   return (
     <BrowserRouter>
       <Header />
@@ -21,10 +25,19 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route exact path='/about' element={<About />} />
         <Route exact path='/store' element={<Store />} />
-        <Route path='/store/:id' element={<Detail/>}/>
+        <Route path='/store/:id' element={<Detail />} />
         <Route exact path='/contact' element={<Contact />} />
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/register' element={<Register />} />
+
+        <Route path='/products' element={<ProductForm />} />
+
+        <Route exact path='/admin' element={<Layout />} />
+        <Route exact path='/admin/products' element={<ProductsTable />} />
+        <Route exact path='/admin/products/create' element={<ProductForm />} />
+
+
+
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>

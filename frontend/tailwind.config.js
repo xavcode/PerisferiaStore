@@ -1,24 +1,11 @@
 export default {
+  darkMode: 'class',
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    // screens: {
-    //   'xs': {'min' : '400', 'max':'639'},
-    //   'sm': {'min': '640px', 'max': '767px'},
-    //   'md': {'min': '768px', 'max': '1023px'},
-    //   'lg': {'min': '1024px', 'max': '1279px'},
-    //   'xl': {'min': '1280px', 'max': '1535px'},
-    //   '2xl': {'min': '1536px' 'max': '1600px'},
-    //   '3xl': {'min': '1536px'},    
-    // },
-
-    extend: {
-
-      // screens: {
-      //   '3xl': '1600px',
-      // },
+    extend:{
       colors: {
         primary: '#F3AA3A',
         bg: '#262629',
@@ -35,8 +22,10 @@ export default {
         text_rating: '#b91c1c',
         boxshadow: '#F3AA3A',
       },
+    },
 
-      darkMode: {
+    darkMode: {
+      colors: {
         primary: '#F3AA3A',
         bg: '#262629',
         bg_card: '#78716c',
@@ -51,9 +40,8 @@ export default {
         text_rating: '',
         text_filters_bar: '',
         boxshadow: '#064e3b',
-
-      },
+      }
     },
   },
-  // plugins: [require("@tailwindcss/forms")],
+  plugins: [require("daisyui")],
 }

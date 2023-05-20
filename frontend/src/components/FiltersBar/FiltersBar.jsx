@@ -8,6 +8,7 @@ const Filters = () => {
   const minPrice = filters.minPrice
   const maxPrice = filters.maxPrice
 
+
   //get data from FilterContext, for render it in cards jsx. at the while.
 
   //------------------------Handlers---------------------------//
@@ -29,6 +30,16 @@ const Filters = () => {
   const handleSelectCat = (evt) => {
     const category = evt.target.value
     setFilters({ ...filters, catSelected: category })
+  }
+
+  const handleSelectSort = (evt) => {
+    const sortBy = evt.target.value
+    setFilters({ ...filters, sortBy: sortBy })
+  }
+
+  const handleSelectOrder = (evt) => {
+    const orderBy = evt.target.value
+    setFilters({ ...filters, orderBy: orderBy })
   }
 
   return (
@@ -56,14 +67,16 @@ const Filters = () => {
             <label htmlFor="category">CATEGORIA</label>
             <select className='bg-inputs text-md text-center ' name="category" id="category" defaultValue='all' onChange={handleSelectCat} >
               <option value="all">Todos</option>
-              {categories.map(cat => {
+              {categories.map((category) => {
                 return (
-                  <option key={cat.id} value={cat.name} >{cat.name}</option>
+
+                  <option key={category} value={category} >{category}</option>
+
                 )
               })}
             </select>
           </div>
-          <div className='flex flex-col items-center justify-center '>
+          {/* <div className='flex flex-col items-center justify-center '>
             <label htmlFor="brand">MARCA</label>
             <select className='text-md text-center bg-inputs' name="brand" id="brand">
               <option value="all">Todos</option>
@@ -71,8 +84,7 @@ const Filters = () => {
               <option value="Nvidia">Nvidia</option>
               <option value="Razer">Razer</option>
             </select>
-          </div>
-
+          </div> */}
 
           {/* group checkbox*/}
           <div className='flex flex-col items-center justify-around m-2' >
@@ -80,18 +92,16 @@ const Filters = () => {
             <span>Ordenar por</span>
             <div>
               <div className='flex flex-col items-center justify-center'>
-                <select className='bg-inputs' name="order" id="order">
-                  <option value="from_greater_price">De mayor a menor</option>
-                  <option value="from_lower_price">De menor a mayor</option>
+                <select className='bg-inputs' name="order" id="order" onChange={handleSelectOrder}>
+                  <option value="price" >Precio</option>
+                  <option value="rating">Rating</option>
                 </select>
-                <select className='bg-inputs' name="sort" id="sort">
-                  <option value="from_greater_rate">De mayor a menor</option>
-                  <option value="from_lower_rate">De menor a mayor</option>
+                <select className='bg-inputs' name="sort" id="sort" onChange={handleSelectSort}>
+                  <option value="from_lower">De menor a mayor</option>
+                  <option value="from_greater">De mayor a menor</option>
                 </select>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
