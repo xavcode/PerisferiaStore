@@ -57,7 +57,6 @@ const Home = () => {
             </div>
 
             <br />
-            <br />
             
             <img
               className="h-[600px] w-[600px]  rounded-b-full rounded-t-3xl shadow-lg object-cover "
