@@ -14,6 +14,7 @@ import Register from "./pages/Register/Register";
 import Layout from './dashboard/components/Layout/Layout';
 import ProductsTable from './dashboard/components/ProductsTable';
 import ProductForm from './dashboard/components/CreateProduct/ProductForm';
+import EditProduct from './dashboard/pages/Products/EditProduct';
 
 
 function App() {
@@ -35,8 +36,7 @@ function App() {
         <Route exact path='/admin' element={<Layout />} />
         <Route exact path='/admin/products' element={<ProductsTable />} />
         <Route exact path='/admin/products/create' element={<ProductForm />} />
-
-
+        <Route exact path='/admin/products/edit/:id' element={<EditProduct />} />
 
         <Route path='*' element={<Error />} />
       </Routes>

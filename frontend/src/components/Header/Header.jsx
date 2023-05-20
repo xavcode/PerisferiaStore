@@ -1,10 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { MdShoppingCart } from "react-icons/md";
 import { MdFavorite } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
 import { MdOutlineLightMode } from 'react-icons/md'
 import { MdDarkMode } from 'react-icons/md'
+import Cart from '../Cart/Cart'
 
 import Search from '../Search/Search';
 
@@ -23,7 +23,7 @@ const Header = () => {
         <ul className='px-6 md:flex justify-around items-center gap-4 md:gap-8 text-3xl '>
           <li> <Search /></li>
           <div className='flex justify-end gap-2 px-1'>
-            <li> <button> <MdShoppingCart /> </button></li>
+            <li>  <Cart /> </li>
             <li> <Link> <MdFavorite> </MdFavorite> </Link> </li>
             <li> <button> <RxAvatar /> </button> </li>
           </div>

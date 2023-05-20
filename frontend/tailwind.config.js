@@ -7,12 +7,12 @@ export default {
   theme: {
     extend:{
       colors: {
-        primary: '#F3AA3A',
+        primary: '#D97706',
         bg: '#262629',
         bg_card: '#fafaf9',
         bg_filters_bar: 'white',
         bg_btn: '#181A20',
-        header: '#F3AA3A',
+        header: '#D97706',
         inputs: 'white',
         btn: 'black',
         btn_hover: '#F3AA3A',

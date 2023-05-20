@@ -11,7 +11,7 @@ const ProductsTable = () => {
 
 
   const handleEdit = (productId) => {
-    // Lógica para editar el producto seleccionado
+    
     setSelectedProductId(productId);
   };
 
@@ -53,7 +53,7 @@ const ProductsTable = () => {
                   <td>{product.category}</td>
                   <td>{product.price}</td>
                   <td>{product.rating}</td>
-                  <td> <button className='btn btn-warning '>Editar</button></td>
+                  <td> <Link to={`/admin/products/edit/${product.id}`}> <button className='btn btn-warning ' onClick={()=>handleEdit(product.id)}>Editar</button></Link></td>
                   <td> <button className='btn btn-error'>Borrar</button></td>
                 </tr>
               )

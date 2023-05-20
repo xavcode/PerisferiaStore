@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { AddToCartIcon, RemoveFromCartIcon } from "../Icons.jsx";
-import Cart from "../Cart/Cart";
+
 import { useCart } from '../../hooks/useCart';
 
 const Card = (props) => {
@@ -13,8 +13,7 @@ const Card = (props) => {
 
   return (
 
-    <div className="grid min-w-[280px] max-w-[320px] transition duration-200 ease-in-out hover:scale-[1.03] z-1 hover:shadow-boxshadow rounded-lg hover:shadow-md ">
-      <Cart />
+    <div className="grid min-w-[260px] min-h-[340px] max-w-[310px] transition duration-200 ease-in-out hover:scale-[1.03] z-1 hover:shadow-boxshadow rounded-lg hover:shadow-md ">
       <div className="flex flex-col rounded-lg bg-bg_card pt-4 justify-between p-5">
         <div>
           <Link
