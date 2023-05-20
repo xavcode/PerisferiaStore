@@ -18,6 +18,7 @@ const Cards = () => {
   //function to search items with the searchBar, and filter the results with the range selector. 
   let productsToRender = products.filter((product) => {
     const priceInRange = product.price >= minPrice && product.price <= maxPrice;
+
     const matchesCategory = catSelected === 'all' || catSelected === product.category;
     const matchesSearch = searched === '' || product.name.includes(searched);
 

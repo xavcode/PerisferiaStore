@@ -69,7 +69,9 @@ const Filters = () => {
               <option value="all">Todos</option>
               {categories.map((category) => {
                 return (
+
                   <option key={category} value={category} >{category}</option>
+
                 )
               })}
             </select>

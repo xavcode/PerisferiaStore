@@ -4,6 +4,8 @@ import { useState } from "react";
 
 
 import CardsBottom from "../../components/CardsBottom/CardsBottom";
+import LoginButton from "../../components/Login/Login";
+import LogoutButton from "../../components/Logout/Logout";
 
 const Home = () => {
   const images = [
