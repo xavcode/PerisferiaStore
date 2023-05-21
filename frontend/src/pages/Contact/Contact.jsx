@@ -1,8 +1,7 @@
 import React, { useRef } from "react";
-import mouse from "../imgAbout/mouse.jpeg";
 import emailjs from "@emailjs/browser";
 import { useState } from "react";
-
+import logoLight from '../../../public/logo-light.jpeg'
 const Contact = () => {
   const form = useRef();
 
@@ -38,9 +37,9 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center">
-      <div className="max-w-4xl w-full px-6">
+      <div className="max-w-4xl w-full px-6 mt-16" >
         <div className="text-center">
-          <img src={mouse} alt="not fun" className="h-16 w-auto mx-auto" />
+          <img src={logoLight} className="h-24 w-auto mx-auto rounded-full" />
           <h2 className="mt-8 text-4xl font-extrabold text-white">
             Contacto 📱
           </h2>
@@ -48,35 +47,35 @@ const Contact = () => {
 
         <div className="mt-8">
           <form className="space-y-6" ref={form} onSubmit={sendEmail}>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div>
+            <div className="grid gap-4 justify-center items-center">
+              <div className="flex w-full ">
                 <label
                   htmlFor="Nombre"
-                  className="block text-lg font-medium text-white"
+                  className="flex text-lg font-medium w-72 text-white"
                 >
                   Ingresa tu nombre
                 </label>
                 <input
                   type="text"
                   name="user_name"
-                  className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white"
+                  className="mt-2 shadow rounded w-[400px] py-3 px-4 text-lg leading-tight  focus:shadow-outline text-white"
                   placeholder="Nombre"
                   required
                   onChange={validateForm}
                 />
               </div>
 
-              <div>
+              <div className="flex">
                 <label
                   htmlFor="Apellido"
-                  className="block text-lg font-medium text-white"
+                  className="flex text-lg font-medium w-72 text-white"
                 >
                   Correo Electrónico
                 </label>
                 <input
                   type="email"
                   name="user_email"
-                  className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white"
+                  className="mt-2 shadow rounded w-[400px] py-3 px-4 text-lg leading-tight "
                   placeholder="Correo Electrónico"
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   required
@@ -84,16 +83,16 @@ const Contact = () => {
                 />
               </div>
 
-              <div>
+              <div className="flex">
                 <label
                   htmlFor="Mensaje"
-                  className="block text-lg font-medium text-white"
+                  className="flex text-lg font-medium w-72 text-white"
                 >
                   Mensaje
                 </label>
                 <textarea
                   name="user_message"
-                  className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline text-white w-74 h-64 "
+                  className="mt-2 shadow rounded w-[400px] py-3 px-4 text-lg leading-tight  "
                   placeholder="Escribe aquí"
                   maxLength={200}
                   required
@@ -102,23 +101,16 @@ const Contact = () => {
               </div>
             </div>
 
-            <div>
+            <div className=" flex items-center justify-center border-2  rounded-3xl py-4  mx-20 border-gray-300  ">
               <button
                 type="submit"
-                className="mt-4 w-full py-4 bg-yellow-400 hover:bg-yellow-300 text-white text-xl font-medium rounded focus:outline-none focus:bg-yellow-300"
+                className=" py-4 flex items-center justify-center w-80 bg-header hover:bg-header/80 focus:bg-header text-white text-xl font-medium rounded "
                 disabled={!isFormValid}
               >
                 Enviar
                 {isSent ? alert('¡Envío de correo exitoso!') : null}
               </button>
-            </div>
-
-            <p className="mt-4 text-lg text-white">
-              ¿Algún problema?{" "}
-              <a className="font-medium text-yellow-300 hover:text-sky-500">
-                Info aquí
-              </a>
-            </p>
+            </div>            
           </form>
         </div>
       </div>

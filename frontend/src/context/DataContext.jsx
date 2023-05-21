@@ -9,18 +9,22 @@ export const DataContext = createContext()
 
 export const DataProvider = ({ children }) => {
   const [products, setProducts] = useState([])
-  const [products2, setProducts2] = useState([])
 
   useEffect(() => {
-    const fetchData = async () =>{
-      // const response = await axios.get('http://localhost:3001/products/')
+    const fetchData = async () =>{      
       const response = await axios.get('http://localhost:3001/store')
       //for change the whole array to lowercase
       const prods = response.data
-      const lowercaseProducts = prods.map((product) => {
-        return { ...product, name: product.name.toLowerCase() };
+      const lowerCaseNameProducts = prods.map((product) => {
+        return { ...product, name: product.name.toLowerCase()
+        };
       });      
-      setProducts(lowercaseProducts)
+      setProducts(lowerCaseNameProducts)      
+      const lowerCaseCategoryProducts = prods.map((product) => {
+        return { ...product, category: product.category.toLowerCase()
+        };
+      });      
+      setProducts(lowerCaseCategoryProducts)
 
     }
 
