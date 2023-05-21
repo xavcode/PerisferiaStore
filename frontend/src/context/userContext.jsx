@@ -5,6 +5,7 @@ import axios from "axios";
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+
   const [userData, setUserData] = useState({
     id: '',
     name: '',
@@ -15,19 +16,24 @@ export const UserProvider = ({ children }) => {
     password: '',
     Adress: '',
     profileImage: '',
-    theme:'',
+    theme: 'dark',
     isAdmin: '',
     isActive: '',
     isAuthenticated: '',
   })
+  // const userTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  // console.log(userTheme)
+  // if(userTheme===true) setUserData({...userData, theme:userTheme})
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios('http://localhost:3001/users/')
-      setUserData(response.data)
-    }
-    fetchData()
-  }, [])
+  // useEffect(() => {
+
+  //   const fetchData = async () => {
+  //     const response = await axios('http://localhost:3001/users/')
+  //     setUserData(response.data)
+  //   }    
+
+  //   fetchData()
+  // }, [])
 
   return (
     <UserContext.Provider value={{

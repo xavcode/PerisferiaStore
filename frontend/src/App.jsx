@@ -11,9 +11,15 @@ import Error from './pages/Error/Error';
 import Detail from './components/detail/Detail';
 import Login from './pages/Login/Login';
 import Register from "./pages/Register/Register";
+import ProductForm from './admin/components/CreateProduct/ProductForm';
+import EditProduct from './admin/pages/Products/EditProduct';
+import Products from './admin/pages/Products/Products';
+import Layout from './admin/components/Layout/Layout';
+import Users from './admin/pages/Users/Users';
+import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
 
 function App() {
-  
+
   return (
     <BrowserRouter>
       <Header />
@@ -21,10 +27,23 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route exact path='/about' element={<About />} />
         <Route exact path='/store' element={<Store />} />
-        <Route path='/store/:id' element={<Detail/>}/>
+        <Route path='/store/:id' element={<Detail />} />
         <Route exact path='/contact' element={<Contact />} />
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/register' element={<Register />} />
+
+        <Route  path= '/admin' >
+          <Route index element={<Layout/>}/>
+          
+          <Route  path='products' element={<Products />} />
+          <Route  path='/admin/products/create' element={<ProductForm />} />
+          <Route  path='/admin/products/edit/:id' element={<EditProduct />} />
+          <Route  path='/admin/users' element={<Users/>} />
+
+          <Route  path='/admin/users/create' element={<CreateUserForm />} />
+          <Route  path='/admin/users/edit/:id' element={<CreateUserForm />} />
+        </Route>
+       
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
