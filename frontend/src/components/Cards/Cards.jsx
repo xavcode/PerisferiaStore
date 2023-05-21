@@ -10,6 +10,7 @@ const Cards = () => {
 
   const globalData = useContext(DataContext)//Trae los productos
   const products = globalData.products
+  // console.log(products);
 
   const { filters } = useContext(FiltersContext)
   const minPrice = filters.minPrice
@@ -21,14 +22,15 @@ const Cards = () => {
   const productsToRender = products.filter((product) => {
     const priceInRange = product.price >= minPrice && product.price <= maxPrice;
     const matchesCategory = category === 'all' || category === product.category;
-    const matchesSearch = searched === '' || product.title.includes(searched);
+    const matchesSearch = searched === '' || product.name.includes(searched); 
 
     return priceInRange && matchesCategory && matchesSearch;
   });
-
+ 
   useEffect(() => { 
     setProductsRender(productsToRender);
   }, [minPrice, maxPrice, category, searched]);
+
   
   return (
     <div className='grid gap-6 mx-10 mt-32 md:mt-40 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 3xl:grid-cols-6 justify-center ' >

@@ -10,7 +10,7 @@ const Card = (props) => {
     return cart.some(item => item.id === prop.id)
   }
   const isProductInCart = checkProductInCart(props)
-
+// console.log(props);
   return (
     <div>
       <Cart />
@@ -29,14 +29,14 @@ const Card = (props) => {
               <h5 className="max-w-[150px] text-xl font-semibold tracking-tight text-text text-center ">
                 {props.title}
               </h5>
-            </Link>
+            </Link> 
           </div>
           <div className="grid justify-center">
             <span className="text-center font-bold text-xl text-text_rating">
               Rating: {props.rating}
             </span>
             <span className="text-2xl text-center font-bold text-text ">{`${props.price}$ `}</span>
-            <button  style={{ backgroundColor : isProductInCart ? 'red' : '#09f', color: 'black' }} /*className={`bg-blue-500 hover:bg-blue-600 text-black font-semibold py-2 px-4 rounded`}*/  onClick={() => {
+            <button  style={{ backgroundColor : isProductInCart ? '#B00201' : '#17266C', color: 'white' }} onClick={() => {
               isProductInCart
               ? removeFromCart(props)
               : addToCart(props);

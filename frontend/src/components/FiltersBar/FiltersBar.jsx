@@ -8,6 +8,7 @@ const Filters = () => {
   const minPrice = filters.minPrice
   const maxPrice = filters.maxPrice
 
+
   //get data from FilterContext, for render it in cards jsx. at the while.
 
   //------------------------Handlers---------------------------//
@@ -58,7 +59,7 @@ const Filters = () => {
               <option value="all">Todos</option>
               {categories.map(cat => {
                 return (
-                  <option key={cat.id} value={cat.title} >{cat.title}</option>
+                  <option key={cat.id} value={cat.name} >{cat.name}</option>
                 )
               })}
             </select>
@@ -84,10 +85,10 @@ const Filters = () => {
                   <option value="from_greater_price">De mayor a menor</option>
                   <option value="from_lower_price">De menor a mayor</option>
                 </select>
-                <select className='bg-inputs' name="sort" id="sort">
+                {/* <select className='bg-inputs' name="sort" id="sort">
                   <option value="from_greater_rate">De mayor a menor</option>
                   <option value="from_lower_rate">De menor a mayor</option>
-                </select>
+                </select> */}
               </div>
             </div>
 

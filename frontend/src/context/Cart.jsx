@@ -6,24 +6,29 @@ import { cartReducer, cartInitialState } from "../reducer/cart";
 export const CartContext = createContext();
 
 function useCartReducer() {
-  const [state, dispatch] = useReducer(cartReducer, cartInitialState);//El estado y la accion | Estado inicial
-  const addToCart = (Product) => dispatch({
-  type: "ADD_TO_CART",
-  payload: Product,
-})
+  const [state, dispatch] = useReducer(cartReducer, cartInitialState); //El estado y la accion | Estado inicial
+  const addToCart = (Product) =>
+    dispatch({
+      type: "ADD_TO_CART",
+      payload: Product,
+    });
 
-  const removeFromCart = (Product) => dispatch({
+  const removeFromCart = (Product) =>
+    dispatch({
       type: "REMOVE_FROM_CART",
       payload: Product,
     });
 
   const clearCart = () => dispatch({ type: "CLEAR_CART" });
 
-  return { state, addToCart, removeFromCart, clearCart}
+  const decreaseQuantity = (p) =>
+    dispatch({ type: "DECREASE_QUANTITY", payload: p });
+
+  return { state, addToCart, removeFromCart, clearCart, decreaseQuantity };
 }
 
 export function CartProvider({ children }) {
-  const {  state, addToCart, removeFromCart, clearCart } = useCartReducer()
+  const { state, addToCart, removeFromCart, clearCart, decreaseQuantity } = useCartReducer();
 
   return (
     <CartContext.Provider
@@ -32,6 +37,7 @@ export function CartProvider({ children }) {
         addToCart,
         clearCart,
         removeFromCart,
+        decreaseQuantity,
       }}
     >
       {children}

@@ -4,6 +4,7 @@ export const cartInitialState =
 export const CART_ACTION_TYPES = {
   ADD_TO_CART: "ADD_TO_CART",
   REMOVE_FROM_CART: "REMOVE_FROM_CART",
+  DECREASE_QUANTITY: "DECREASE_QUANTITY",
   CLEAR_CART: "CLEAR_CART",
 };
 
@@ -46,6 +47,30 @@ export const cartReducer = (state, action) => {
       updateLocalStorage(newState)
       return newState
     }
+
+    case CART_ACTION_TYPES.DECREASE_QUANTITY: {
+      const { id } = actionPayload;
+      const productInCartIndex = state.findIndex((i) => i.id === id);
+
+      if (productInCartIndex >= 0) {
+        const newState = structuredClone(state);
+        newState[productInCartIndex].quantity += 1; 
+        updateLocalStorage(newState)
+        return newState;
+      }
+
+      const newState = [
+        ...state,
+        {
+          ...actionPayload,
+          quantity: 1,
+        },
+      ];
+      
+      updateLocalStorage(newState)
+      return newState
+    }
+
 
     case CART_ACTION_TYPES.CLEAR_CART: {
       updateLocalStorage([])
