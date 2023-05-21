@@ -39,28 +39,13 @@ const ProductForm = () => {
       setLoading(true);
       const response = await axios.post("http://localhost:3001/", formData)
       setRes(response)
-      console.log(response)
       // setRes(res.data);
     } catch (error) {
       alert(error.message);
     } finally {
       setLoading(false);
     }
-    console.log(formData)
   }
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     axios.post('http://localhost:3001/', formData)
-  //       .then((res) => console.log(res));
-  //   } catch (error) {
-  //     throw new Error(error)
-  //   }
-  // };
-
-
 
   return (
     <div className="flex flex-col items-center bg-gray-900 text-white py-3 px-10 mt-16  w-full  h-screen ">
@@ -194,7 +179,7 @@ const ProductForm = () => {
 
               <button
                 type='submit'
-                onSubmit={handleSubmit}
+                // onSubmit={handleSubmit}
                 className="bg-white hover:bg-primary text-gray-700 h-16 font-bold py-2  mt-4 rounded w-40 items-center flex  justify-center"
                 id='btn_create'
               >

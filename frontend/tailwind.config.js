@@ -20,7 +20,7 @@ export default {
         text_btn: 'white',
         text_filters_bar: '#9a3412',
         text_rating: '#b91c1c',
-        boxshadow: '#F3AA3A',
+        boxshadow: '#D97706',
       },
     },
 

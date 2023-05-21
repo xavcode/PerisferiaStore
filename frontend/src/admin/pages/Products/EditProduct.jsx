@@ -1,22 +1,21 @@
 import React from 'react'
-import { useState, useEffect, useContext,  } from 'react';
+import { useState, useEffect, useContext, } from 'react';
 import axios from 'axios'
-import { Link,useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { FiltersContext } from '../../../context/FiltersContext';
 
 const EditProduct = () => {
-  const {categories} = useContext(FiltersContext)
-  console.log(categories)
-  const {id}= useParams()
-  
+  const { categories } = useContext(FiltersContext)
+  const { id } = useParams()
+
   const [formData, setFormData] = useState({
     id: null,
     name: '',
     description: '',
-    quantity: 0,
     status: 'disponible',
     rating: 3,
+    quantity: 1,
     category: '',
     price: 0,
     image: '',
@@ -26,15 +25,18 @@ const EditProduct = () => {
     const fetchProduct = async () => {
       const response = await axios.get(`http://localhost:3001/store/${id}`)
       setFormData(response.data)
-      console.log(response.data)
+      // console.log(response.data)
     }
     fetchProduct()
   }, [])
 
 
+
+
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
+    console.log(e.target.value)
   };
 
   const handleSubmit = (e) => {
@@ -77,19 +79,6 @@ const EditProduct = () => {
           ></textarea>
         </div>
         <div>
-          <label htmlFor="quantity" className="text-lg font-semibold">
-            Cantidad:
-          </label>
-          <input
-            type="number"
-            id="quantity"
-            name="quantity"
-            value={formData.quantity}
-            onChange={handleChange}
-            className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
-          />
-        </div>
-        <div>
           <label htmlFor="status" className="text-lg font-semibold">
             Estado:
           </label>
@@ -103,6 +92,19 @@ const EditProduct = () => {
             <option value="available">Disponible</option>
             <option value="unavailable">Sin Stock</option>
           </select>
+        </div>
+        <div>
+          <label htmlFor="quantity" className="text-lg font-semibold">
+            Cantidad:
+          </label>
+          <input
+            type="number"
+            id="quantity"
+            name="quantity"
+            value={formData.quantity}
+            onChange={handleChange}
+            className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
+          />
         </div>
         <div>
           <label htmlFor="rating" className="text-lg font-semibold">
@@ -156,7 +158,7 @@ const EditProduct = () => {
           />
         </div>
         <div className="col-span-2 flex justify-end">
-          <button type="submit" className="bg-white hover:bg-primary text-gray-700 font-bold py-2 px-4 rounded">
+          <button className="bg-white hover:bg-primary text-gray-700 font-bold py-2 px-4 rounded">
             Guardar
           </button>
           <button type="button" className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded" >

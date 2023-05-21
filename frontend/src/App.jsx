@@ -11,11 +11,12 @@ import Error from './pages/Error/Error';
 import Detail from './components/detail/Detail';
 import Login from './pages/Login/Login';
 import Register from "./pages/Register/Register";
-import Layout from './dashboard/components/Layout/Layout';
-import ProductsTable from './dashboard/components/ProductsTable';
-import ProductForm from './dashboard/components/CreateProduct/ProductForm';
-import EditProduct from './dashboard/pages/Products/EditProduct';
-
+import ProductForm from './admin/components/CreateProduct/ProductForm';
+import EditProduct from './admin/pages/Products/EditProduct';
+import Products from './admin/pages/Products/Products';
+import Layout from './admin/components/Layout/Layout';
+import Users from './admin/pages/Users/Users';
+import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
 
 function App() {
 
@@ -31,13 +32,18 @@ function App() {
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/register' element={<Register />} />
 
-        <Route path='/products' element={<ProductForm />} />
+        <Route  path= '/admin' >
+          <Route index element={<Layout/>}/>
+          
+          <Route  path='products' element={<Products />} />
+          <Route  path='/admin/products/create' element={<ProductForm />} />
+          <Route  path='/admin/products/edit/:id' element={<EditProduct />} />
+          <Route  path='/admin/users' element={<Users/>} />
 
-        <Route exact path='/admin' element={<Layout />} />
-        <Route exact path='/admin/products' element={<ProductsTable />} />
-        <Route exact path='/admin/products/create' element={<ProductForm />} />
-        <Route exact path='/admin/products/edit/:id' element={<EditProduct />} />
-
+          <Route  path='/admin/users/create' element={<CreateUserForm />} />
+          <Route  path='/admin/users/edit/:id' element={<CreateUserForm />} />
+        </Route>
+       
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
