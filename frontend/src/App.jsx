@@ -18,6 +18,7 @@ import Layout from './admin/components/Layout/Layout';
 import Users from './admin/pages/Users/Users';
 import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
 import { User, useAuth0 } from '@auth0/auth0-react';
+import LoginButton from './components/Login/Login';
 
 function App() {
   const {user} = useAuth0();
@@ -33,7 +34,6 @@ function App() {
         <Route exact path='/contact' element={<Contact />} />
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/register' element={<Register />} />
-
         <Route  path= '/admin' >
           <Route index element={<Layout/>}/>
           
