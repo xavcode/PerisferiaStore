@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-
+import { startCase } from 'lodash'
 import { FiltersContext } from '../../context/FiltersContext.jsx'
 
 const Filters = () => {
@@ -7,6 +7,7 @@ const Filters = () => {
   const { filters, setFilters, categories } = useContext(FiltersContext)
   const minPrice = filters.minPrice
   const maxPrice = filters.maxPrice
+
 
   //get data from FilterContext, for render it in cards jsx. at the while.
 
@@ -31,9 +32,19 @@ const Filters = () => {
     setFilters({ ...filters, catSelected: category })
   }
 
+  const handleSelectSort = (evt) => {
+    const sortBy = evt.target.value
+    setFilters({ ...filters, sortBy: sortBy })
+  }
+
+  const handleSelectOrder = (evt) => {
+    const orderBy = evt.target.value
+    setFilters({ ...filters, orderBy: orderBy })
+  }
+
   return (
     <div className='bg-black h-36 w-full fixed top-0 z-20'>
-      <div className='flex fixed top-16 w-full gap-36 font-bold accent-text_filters_bar text-text_filters_bar justify-evenly bg-bg_card rounded-lg px-10 z-10 border-2 border-gray-400'>
+      <div className='relative flex top-16 w-full gap-36 font-bold accent-text_filters_bar text-text_filters_bar justify-evenly bg-bg_filters_bar rounded-lg px-10 z-10 border-2 border-gray-400'>
         <div className='flex w-full justify-around '>
 
           <div className='flex flex-col justify-center' >
@@ -56,43 +67,29 @@ const Filters = () => {
             <label htmlFor="category">CATEGORIA</label>
             <select className='bg-inputs text-md text-center ' name="category" id="category" defaultValue='all' onChange={handleSelectCat} >
               <option value="all">Todos</option>
-              {categories.map(cat => {
+              {categories.map((category) => {
                 return (
-                  
-                  <option key={cat.id} value={cat.name} >{cat.name}</option>
+                  <option key={category} value={category} > {startCase(category)}</option>
+
                 )
               })}
             </select>
           </div>
-          <div className='flex flex-col items-center justify-center '>
-            <label htmlFor="brand">MARCA</label>
-            <select className='text-md text-center bg-inputs' name="brand" id="brand">
-              <option value="all">Todos</option>
-              <option value="asus">Asus</option>
-              <option value="Nvidia">Nvidia</option>
-              <option value="Razer">Razer</option>
-            </select>
-          </div>
-
 
           {/* group checkbox*/}
           <div className='flex flex-col items-center justify-around m-2' >
             {/* individual checkbox*/}
-            <span>Ordenar por</span>
-            <div>
+            <span>Ordenar por</span>            
               <div className='flex flex-col items-center justify-center'>
-                <select className='bg-inputs' name="order" id="order">
-                  <option value="from_greater_price">De mayor a menor</option>
-                  <option value="from_lower_price">De menor a mayor</option>
+                <select className='bg-inputs' name="order" id="order" onChange={handleSelectSort}>
+                  <option value="price" >Precio</option>
+                  <option value="rating">Rating</option>
                 </select>
-                <select className='bg-inputs' name="sort" id="sort">
-                  <option value="from_greater_rate">De mayor a menor</option>
-                  <option value="from_lower_rate">De menor a mayor</option>
+                <select className='bg-inputs' name="sort" id="sort" onChange={handleSelectOrder}>
+                  <option value="from_lower">De menor a mayor</option>
+                  <option value="from_greater">De mayor a menor</option>
                 </select>
-              </div>
-            </div>
-
-
+              </div>            
           </div>
         </div>
       </div>
