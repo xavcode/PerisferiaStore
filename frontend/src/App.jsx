@@ -43,7 +43,6 @@ function App() {
           <Route  path='/admin/users/create' element={<CreateUserForm />} />
           <Route  path='/admin/users/edit/:id' element={<CreateUserForm />} />
         </Route>
-       
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
