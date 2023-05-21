@@ -8,6 +8,7 @@ import LoginButton from "../../components/Login/Login";
 import LogoutButton from "../../components/Logout/Logout";
 import Profile from "../../components/Profile/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
+import DashboardUser from "../../components/DashboardUser/DashboardUser";
 
 const Home = () => {
   const images = [
@@ -72,7 +73,8 @@ const Home = () => {
         </div>
       </main>
       {isAuthenticated ? <LogoutButton/> : <LoginButton/>}
-      <Profile/>
+      {/* <Profile/> */}
+      {/* <DashboardUser/> */}
       <CardsBottom />
     </div>
   );
