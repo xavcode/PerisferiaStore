@@ -6,6 +6,9 @@ import { useState } from "react";
 import CardsBottom from "../../components/CardsBottom/CardsBottom";
 import LoginButton from "../../components/Login/Login";
 import LogoutButton from "../../components/Logout/Logout";
+import Profile from "../../components/Profile/Profile";
+import { useAuth0 } from "@auth0/auth0-react";
+import DashboardUser from "../../components/DashboardUser/DashboardUser";
 
 const Home = () => {
   const images = [
@@ -16,6 +19,8 @@ const Home = () => {
     "https://ergoplay.com.co/wp-content/uploads/2020/11/WhatsApp-Image-2020-11-09-at-16.44.48.jpeg",
     "https://nissei.com/media/wysiwyg/HERO-1_7.jpg",
   ];
+
+  const { isAuthenticated, isLoading } = useAuth0()
 
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -36,6 +41,8 @@ const Home = () => {
   const nextImage = () => {
     setCurrentImage((prevImage) => (prevImage + 1) % images.length);
   };
+
+  if(isLoading) return <h1>Loading...</h1>
 
   return (
     <div className="text-white grid w-screen h-screen">
@@ -65,6 +72,9 @@ const Home = () => {
           </div>
         </div>
       </main>
+      {isAuthenticated ? <LogoutButton/> : <LoginButton/>}
+      {/* <Profile/> */}
+      {/* <DashboardUser/> */}
       <CardsBottom />
     </div>
   );
