@@ -11,7 +11,7 @@ const Cards = () => {
   const globalData = useContext(DataContext)//Trae los productos
   const products = globalData.products
   // console.log(products);
-
+ 
   const { filters } = useContext(FiltersContext)
   const minPrice = filters.minPrice
   const maxPrice = filters.maxPrice

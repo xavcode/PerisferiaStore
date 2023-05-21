@@ -15,7 +15,7 @@ function CartItem({
   addToCart,
   decreaseQuantity
 }) {
-
+  
   return (
     <li>
       <img src={img ? img : image} alt={name ? name : title} className="w-21 h-21" />

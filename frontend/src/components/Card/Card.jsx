@@ -7,11 +7,13 @@ import { useCart } from '../../hooks/useCart';
 const Card = (props) => {
   const  {addToCart, cart, removeFromCart}  = useCart()
   const checkProductInCart = prop => {
+    if (cart && Array.isArray(cart)) {
     return cart.some(item => item.id === prop.id)
+    } 
   }
   const isProductInCart = checkProductInCart(props)
-// console.log(props);
-  return (
+console.log('--->', cart);
+  return ( 
     <div>
       <Cart />
       <div className="grid min-w-[280px] max-w-[320px] transition duration-200 ease-in-out hover:scale-[1.03] z-1 hover:shadow-boxshadow rounded-lg hover:shadow-md ">

@@ -53,24 +53,18 @@ export const cartReducer = (state, action) => {
       const productInCartIndex = state.findIndex((i) => i.id === id);
 
       if (productInCartIndex >= 0) {
-        const newState = structuredClone(state);
-        newState[productInCartIndex].quantity += 1; 
-        updateLocalStorage(newState)
+        const newState = [...state];
+        if (newState[productInCartIndex].quantity > 1) {
+          newState[productInCartIndex].quantity -= 1;
+        } else {
+          newState.splice(productInCartIndex, 1);
+        }
+        updateLocalStorage(newState);
         return newState;
       }
 
-      const newState = [
-        ...state,
-        {
-          ...actionPayload,
-          quantity: 1,
-        },
-      ];
-      
-      updateLocalStorage(newState)
-      return newState
+      return state;
     }
-
 
     case CART_ACTION_TYPES.CLEAR_CART: {
       updateLocalStorage([])
