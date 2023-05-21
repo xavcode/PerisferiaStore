@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from 'react'
-import { createContext } from "react";
+import { createContext, useContext } from "react";
+import { DataContext } from './DataContext';
 import axios from 'axios';
+
 
 // create context for get the categories for filters.
 
 export const FiltersContext = createContext()
 
+
 export const FilterProvider = ({ children }) => {
-  const [categories, setCategories] = useState([])
+  const { products } = useContext(DataContext)
+  
+  const categoriesFiltered = new Set(products.map(product=>product.category)) 
+  const categories = [...categoriesFiltered]
+
   const [filters, setFilters] = useState({
     searched: '',
     minPrice: 10,
     maxPrice: 1000,
-    catSelected:'all',
+    catSelected: 'all',
+    orderBy: 'from_lower',
+    sortBy: 'price',
+    categories: []
   })
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const response = await axios.get(`http://localhost:3001/store/`)
-      setCategories(response.data)
-    }
-    fetchData()
-  }, [])
-
-  
 
   return (
     <FiltersContext.Provider value={{

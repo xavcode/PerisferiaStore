@@ -116,4 +116,10 @@ const Detail = (props) => {
   );
 };
 
+<<<<<<< HEAD
 export default Detail;
+=======
+
+export default Detail
+
+>>>>>>> 9eaf7f2ca2cec3586f3e7b92afac751366efb9d2
