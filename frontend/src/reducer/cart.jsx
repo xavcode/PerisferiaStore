@@ -1,4 +1,4 @@
-export const cartInitialState = [];
+export const cartInitialState = JSON.parse(window.localStorage.getItem("cart")) || [];
 
 export const cartReducer = (state, action) => {
   const { type, payload } = action;
