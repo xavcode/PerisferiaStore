@@ -11,7 +11,7 @@ const UsersTable = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await axios('http://localhost:3001/users/');
+        const response = await axios('https://perisferiastore-production-9f09.up.railway.app/users');
         console.log(response.data)
         setUsers(response.data);
       } catch (error) {

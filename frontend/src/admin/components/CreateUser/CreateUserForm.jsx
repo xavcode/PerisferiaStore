@@ -29,7 +29,7 @@ export function CreateUserForm() {
     e.preventDefault();
     console.log('Datos del formulario:', formData);
     try {
-      const response = await axios.post('http://localhost:3001/user', formData)
+      const response = await axios.post('https://perisferiastore-production-9f09.up.railway.app/user', formData)
     } catch (error) {
       console.log(error)
       throw new Error (error)
