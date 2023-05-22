@@ -4,8 +4,6 @@ import { useState } from "react";
 
 
 import CardsBottom from "../../components/CardsBottom/CardsBottom";
-import LoginButton from "../../components/Login/Login";
-import LogoutButton from "../../components/Logout/Logout";
 import Profile from "../../components/Profile/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { DashboardUserBuyer } from "../../components/DashboardUserBuyer/DashboardUserBuyer";
@@ -42,7 +40,6 @@ const Home = () => {
     setCurrentImage((prevImage) => (prevImage + 1) % images.length);
   };
 
-  if(isLoading) return <h1>Loading...</h1>
 
   return (
     <div className="text-white grid w-screen h-screen">
@@ -72,7 +69,7 @@ const Home = () => {
           </div>
         </div>
       </main>
-      {isAuthenticated ? <LogoutButton/> : ''}
+
       {/* <Profile/> */}
       {/* <DashboardUser/> */}
       {/* <DashboardUserBuyer/> */}

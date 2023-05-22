@@ -7,10 +7,10 @@ const Users = () => {
   return (
     <div className='flex justify-center items-center' >
       <div>
-        <Sidebar />
+        <UsersTable />
       </div>
       <div className='flex justify-center items-center'>
-        <UsersTable />
+        <Sidebar />
       </div>
     </div>
   )
