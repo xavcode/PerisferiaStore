@@ -17,13 +17,18 @@ import Products from './admin/pages/Products/Products';
 import Layout from './admin/components/Layout/Layout';
 import Users from './admin/pages/Users/Users';
 import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
-import { User, useAuth0 } from '@auth0/auth0-react';
-import LoginButton from './components/Login/Login';
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
+// import { User, useAuth0 } from '@auth0/auth0-react';
+// import LoginButton from './components/Login/Login';
 
+
+const user = true
+
+// const { user } = useAuth0();
 function App() {
 
   return (
-   
+
     <BrowserRouter>
       <Header />
       <Routes>
@@ -34,16 +39,25 @@ function App() {
         <Route exact path='/contact' element={<Contact />} />
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/register' element={<Register />} />
-        <Route  path= '/admin' >
-          <Route/>
-          <Route  path='products' element={<Products />} />
-          <Route  path='/admin/products/create' element={<ProductForm />} />
-          <Route  path='/admin/products/edit/:id' element={<EditProduct />} />
+
+
+        <Route element={<ProtectedRoutes user={user}>
+          <Route path='/admin' >
+            <Route index element={<Layout />} />
+            <Route path='products' element={<Products />} />
+            <Route path='/admin/products/create' element={<ProductForm />} />
+            <Route path='/admin/products/edit/:id' element={<EditProduct />} />
+            <Route path='/admin/users' element={<Users />} />
+            <Route path='/admin/users/create' element={<CreateUserForm />} />
+            <Route path='/admin/users/edit/:id' element={<CreateUserForm />} />
+          </Route>
+        </ProtectedRoutes>}>
+
         </Route>
         <Route path='*' element={<Error />} />
       </Routes>
-      </BrowserRouter>
-   
+    </BrowserRouter>
+
   )
 }
 

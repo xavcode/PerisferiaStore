@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { MdFavorite } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
-import { MdOutlineLightMode } from 'react-icons/md'
-import { MdDarkMode } from 'react-icons/md'
+// import { MdOutlineLightMode } from 'react-icons/md'
+// import { MdDarkMode } from 'react-icons/md'
 import Cart from '../Cart/Cart'
 import logo from '../../../public/logo-dark.jpeg'
 import { useAuth0 } from '@auth0/auth0-react';
@@ -14,6 +14,7 @@ import Search from '../Search/Search';
 const Header = () => {
 
   const { loginWithRedirect} = useAuth0();
+
 
   return (
     <div className='dark h-[150px] flex justify-around px-3 fixed top-0 left-0 md:h-[60px] w-full items-center font-bold bg-header dark:dark rounded-b-lg z-50 '>
@@ -33,7 +34,7 @@ const Header = () => {
           <div className='flex justify-end gap-2 px-1'>
             <li> <Cart /> </li>
             <li> <Link> <MdFavorite> </MdFavorite> </Link> </li>
-            <li> <button> <RxAvatar /> </button> </li>
+            <li> <button onClick={loginWithRedirect}> <RxAvatar /> </button> </li>
           </div>
         </ul>
       </div>
