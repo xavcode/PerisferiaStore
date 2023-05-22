@@ -14,8 +14,7 @@ import LoginButton from '../Login/Login';
 import LogoutButton from '../Logout/Logout';
 
 const Header = () => {
-  const { loginWithRedirect, user, isAuthenticated } = useAuth0();
-
+  const {  user, isAuthenticated } = useAuth0();
   return (
     <div className='dark h-[150px] flex justify-around px-3 fixed top-0 left-0 md:h-[60px] w-full items-center font-bold bg-header dark:dark rounded-b-lg z-50 '>
       <Link to='/'>
@@ -32,7 +31,7 @@ const Header = () => {
         <ul className='px-6 md:flex justify-around items-center gap-4 md:gap-8 text-3xl'>
           <li><Search /></li>
           <div className='flex justify-end gap-2 px-1'>
-            <li><span className="icon-container"><Cart /></span></li>
+            <li><Cart /></li>
             <li  > {isAuthenticated ? <LogoutButton /> : <LoginButton />}  </li>
             <li><img className='w-[48px] h-[48px] rounded-full ' src={isAuthenticated ? user.picture : avatar} alt="nada" /></li>
           </div>
