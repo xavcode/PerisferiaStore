@@ -26,7 +26,6 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-
         <Route path='/' element={<Home />} />
         <Route exact path='/about' element={<About />} />
         <Route exact path='/store' element={<Store />} />

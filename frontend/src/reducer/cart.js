@@ -4,6 +4,7 @@ export const cartInitialState =
 export const CART_ACTION_TYPES = {
   ADD_TO_CART: "ADD_TO_CART",
   REMOVE_FROM_CART: "REMOVE_FROM_CART",
+  DECREASE_QUANTITY: "DECREASE_QUANTITY",
   CLEAR_CART: "CLEAR_CART",
 };
 
@@ -45,6 +46,24 @@ export const cartReducer = (state, action) => {
       const newState =  state.filter((item) => item.id !== id);
       updateLocalStorage(newState)
       return newState
+    }
+
+    case CART_ACTION_TYPES.DECREASE_QUANTITY: {
+      const { id } = actionPayload;
+      const productInCartIndex = state.findIndex((i) => i.id === id);
+
+      if (productInCartIndex >= 0) {
+        const newState = [...state];
+        if (newState[productInCartIndex].quantity > 1) {
+          newState[productInCartIndex].quantity -= 1;
+        } else {
+          newState.splice(productInCartIndex, 1);
+        }
+        updateLocalStorage(newState);
+        return newState;
+      }
+
+      return state;
     }
 
     case CART_ACTION_TYPES.CLEAR_CART: {
