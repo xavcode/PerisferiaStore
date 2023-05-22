@@ -21,7 +21,7 @@ import { User, useAuth0 } from '@auth0/auth0-react';
 import LoginButton from './components/Login/Login';
 
 function App() {
-  const {user} = useAuth0();
+
   return (
    
     <BrowserRouter>
@@ -35,17 +35,11 @@ function App() {
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/register' element={<Register />} />
         <Route  path= '/admin' >
-          <Route index element={<Layout/>}/>
-          
+          <Route/>
           <Route  path='products' element={<Products />} />
           <Route  path='/admin/products/create' element={<ProductForm />} />
           <Route  path='/admin/products/edit/:id' element={<EditProduct />} />
-          <Route  path='/admin/users' element={<Users/>} />
-
-          <Route  path='/admin/users/create' element={<CreateUserForm />} />
-          <Route  path='/admin/users/edit/:id' element={<CreateUserForm />} />
         </Route>
-       
         <Route path='*' element={<Error />} />
       </Routes>
       </BrowserRouter>
