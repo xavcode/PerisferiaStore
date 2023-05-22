@@ -1,10 +1,11 @@
 import React from 'react'
 import { createContext, useEffect, useState } from "react";
-import axios from "axios";
+import { useAuth0 } from '@auth0/auth0-react';
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
+  const { user, isAuthenticated } = useAuth0();
 
   const [userData, setUserData] = useState({
     id: '',
