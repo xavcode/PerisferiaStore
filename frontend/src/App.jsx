@@ -10,7 +10,7 @@ import Contact from './pages/Contact/Contact';
 import Error from './pages/Error/Error';
 import Detail from './components/detail/Detail';
 import Login from './components/Login/Login';
-import Register from "./pages/Register/Register";
+import Register from "./pages/Register/Register"
 import ProductForm from './admin/components/CreateProduct/ProductForm';
 import EditProduct from './admin/pages/Products/EditProduct';
 import Products from './admin/pages/Products/Products';

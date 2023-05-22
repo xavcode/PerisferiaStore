@@ -12,6 +12,10 @@ export const updateLocalStorage = (state) => {
         window.localStorage.setItem("cart", JSON.stringify(state));
 };
 
+function structuredClone(obj) {
+  return JSON.parse(JSON.stringify(obj));
+}
+
 export const cartReducer = (state, action) => {
   const { type: actionType, payload: actionPayload } = action;
   switch (actionType) {
