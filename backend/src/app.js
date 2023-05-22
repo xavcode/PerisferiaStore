@@ -15,14 +15,14 @@ server.use(cookieParser());
 server.use(morgan('dev'));
 
 server.options('*', (req, res) => {
-  res.header('Access-Control-Allow-Origin', 'https://perisferia-store.vercel.app/');
+  res.header('Access-Control-Allow-Origin', 'https://perisferia-store-2ttp.vercel.app/');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.sendStatus(200);
 });
 
 server.use('*', (req, res, next) => {
-  res.header('Access-Control-Allow-Origin', 'https://perisferia-store.vercel.app/'); // update to match the domain you will make the request from
+  res.header('Access-Control-Allow-Origin', 'https://perisferia-store-2ttp.vercel.app/'); // update to match the domain you will make the request from
   res.header('Access-Control-Allow-Credentials', 'true');
   res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
   res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, DELETE');
