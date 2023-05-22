@@ -13,15 +13,14 @@ function CartItem({
   price,
   quantity,
   addToCart,
-  decreaseQuantity
+  decreaseQuantity,
 }) {
-  
   return (
     <li>
       <img src={img ? img : image} alt={name ? name : title} className="w-21 h-21" />
       <div>
         <h1 className="text-lg font-bold">⭐: {rating}</h1>
-        <strong className="text-xl">{name ? name  : title}</strong> -${price}
+        <strong className="text-xl">{name ? name : title}</strong> -${price}
       </div>
 
       <footer className="flex items-center justify-between mt-2">
@@ -35,8 +34,8 @@ function CartItem({
 
 export default function Cart() {
   const cartCheckboxId = useId();
-  const { cart, clearCart, addToCart } = useCart();
-  console.log(cart);
+  const { cart, clearCart, addToCart, decreaseQuantity } = useCart();
+
   return (
     <>
       <label className="cart-button" htmlFor={cartCheckboxId}>
@@ -55,15 +54,16 @@ export default function Cart() {
         >
           <ClearCartIcon />
         </button>
-        {cart.map((product) => (
-          <ul key={product.id}>
+        <ul>
+          {cart.map((product) => (
             <CartItem
               key={product.id}
               addToCart={() => addToCart(product)}
+              decreaseQuantity={() => decreaseQuantity(product)}
               {...product}
             />
-          </ul>
-        ))}
+          ))}
+        </ul>
       </div>
     </>
   );
