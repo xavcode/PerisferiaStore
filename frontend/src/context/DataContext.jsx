@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import axios from 'axios'
 
 import { createContext, useState } from "react";
+import { lowerCase } from 'lodash';
 
 export const DataContext = createContext()
 
@@ -10,15 +11,27 @@ export const DataProvider = ({ children }) => {
   const [products, setProducts] = useState([])
 
   useEffect(() => {
-    const fetchData = async () =>{
+    const fetchData = async () =>{      
       const response = await axios.get('http://localhost:3001/store')
-      setProducts(response.data)
+      //for change the whole array to lowercase
+      const prods = response.data
+      const lowerCaseNameProducts = prods.map((product) => {
+        return { ...product, name: product.name.toLowerCase()
+        };
+      });      
+      setProducts(lowerCaseNameProducts)      
+      const lowerCaseCategoryProducts = prods.map((product) => {
+        return { ...product, category: product.category.toLowerCase()
+        };
+      });      
+      setProducts(lowerCaseCategoryProducts)
+
     }
 
-  fetchData()
+  fetchData() 
     
   }, [])
-  
+
 
   return (
     <DataContext.Provider value={{
