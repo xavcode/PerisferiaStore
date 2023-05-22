@@ -25,8 +25,7 @@ const Header = () => {
         <li><Link to='/store/'> Tienda </Link></li>
         <li><Link to='/about'> Nosotros </Link></li>
         <li><Link to='/contact'> Contacto</Link></li>
-        {/* <li><Link to='/login'>Login</Link></li> */}
-        
+        <li><Link to='/login'>Login</Link></li>
       </ul>
       <div className='flex w-[500px] items-center justify-center'>
         <ul className='px-6 md:flex justify-around items-center gap-4 md:gap-8 text-3xl '>
@@ -34,11 +33,7 @@ const Header = () => {
           <div className='flex justify-end gap-2 px-1'>
             <li> <Cart /> </li>
             <li> <Link> <MdFavorite> </MdFavorite> </Link> </li>
-            <li> <button onClick={() => loginWithRedirect()}><RxAvatar /></button> </li>
-          </div>
-          <div className='flex border-2 '>
-            <li> <button> <MdOutlineLightMode /> </button> </li>
-            <li> <button> <MdDarkMode /> </button> </li>
+            <li> <button> <RxAvatar /> </button> </li>
           </div>
         </ul>
       </div>
