@@ -15,7 +15,7 @@ import Register from "./pages/Register/Register";
 import ProductForm from './admin/components/CreateProduct/ProductForm';
 import EditProduct from './admin/pages/Products/EditProduct';
 import Products from './admin/pages/Products/Products';
-import Layout from './admin/components/Layout/Layout';
+import Main from './admin/components/Main/Main';
 import Users from './admin/pages/Users/Users';
 import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
@@ -30,6 +30,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
+    <Route path='/admin' element={<Main />} />
 
         <Route path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
@@ -40,7 +41,6 @@ function App() {
         <Route exact path='/register' element={<Register />} />
 
         <Route element={<ProtectedRoutes user={user} />}>
-          <Route path='/admin' element={<Layout />} />
           <Route path='/admin/products' element={<Products />} />
           <Route path='/admin/products/create' element={<ProductForm />} />
           <Route path='/admin/products/edit/:id' element={<EditProduct />} />
@@ -48,7 +48,6 @@ function App() {
           <Route path='/admin/users/create' element={<CreateUserForm />} />
           <Route path='/admin/users/edit/:id' element={<CreateUserForm />} />
         </Route>
-
 
         <Route path='*' element={<Error />} />
       </Routes>

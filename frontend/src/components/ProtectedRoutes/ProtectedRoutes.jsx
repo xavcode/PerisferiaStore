@@ -3,11 +3,11 @@ import { Navigate, Outlet, } from 'react-router-dom'
 
 const ProtectedRoutes = ({ user, children, redirectTo = '/home' }) => {
 
-    if (!user) {
-        return <Navigate to={redirectTo} />
-    }
+    // if (!user) {
+    //     return <Navigate to={redirectTo} />
+    // }
 
-    console.log(`desde el protected: ${user}`)
+    // console.log(`desde el protected: ${user}`)
     return children ? children : <Outlet />
 }
 
