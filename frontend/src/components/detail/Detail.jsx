@@ -9,7 +9,7 @@ import { useCart } from "../../hooks/useCart.js";
 const Detail = (props) => {
   const { addToCart, removeFromCart, cart } = useCart();
   
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState({}); 
   const { id } = useParams();
 
   useEffect(() => {
@@ -116,10 +116,6 @@ const Detail = (props) => {
   );
 };
 
-<<<<<<< HEAD
-export default Detail;
-=======
 
 export default Detail
 
->>>>>>> 9eaf7f2ca2cec3586f3e7b92afac751366efb9d2
