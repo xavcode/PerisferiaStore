@@ -1,13 +1,14 @@
 import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
+import { Navigate, Outlet, } from 'react-router-dom'
 
-const ProtectedRoutes = ({ children }) => {
+const ProtectedRoutes = ({ user, children, redirectTo = '/home' }) => {
 
     if (!user) {
-        return <Navigate to='/store' />
+        return <Navigate to={redirectTo} />
     }
 
-    return <Outlet/>
+    console.log(`desde el protected: ${user}`)
+    return children ? children : <Outlet />
 }
 
 
