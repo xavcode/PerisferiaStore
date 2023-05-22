@@ -8,7 +8,7 @@ import LoginButton from "../../components/Login/Login";
 import LogoutButton from "../../components/Logout/Logout";
 import Profile from "../../components/Profile/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
-import DashboardUser from "../../components/DashboardUser/DashboardUser";
+import { DashboardUserBuyer } from "../../components/DashboardUserBuyer/DashboardUserBuyer";
 
 const Home = () => {
   const images = [
@@ -20,7 +20,7 @@ const Home = () => {
     "https://nissei.com/media/wysiwyg/HERO-1_7.jpg",
   ];
 
-  const { isAuthenticated, isLoading } = useAuth0()
+  const { isAuthenticated, isLoading, user } = useAuth0()
 
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -72,9 +72,10 @@ const Home = () => {
           </div>
         </div>
       </main>
-      {isAuthenticated ? <LogoutButton/> : <LoginButton/>}
+      {isAuthenticated ? <LogoutButton/> : ''}
       {/* <Profile/> */}
       {/* <DashboardUser/> */}
+      {/* <DashboardUserBuyer/> */}
       <CardsBottom />
     </div>
   );

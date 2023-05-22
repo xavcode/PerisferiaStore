@@ -15,6 +15,10 @@ import ProductForm from './admin/components/CreateProduct/ProductForm';
 import EditProduct from './admin/pages/Products/EditProduct';
 import Products from './admin/pages/Products/Products';
 import Layout from './admin/components/Layout/Layout';
+import Users from './admin/pages/Users/Users';
+import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
+import { User, useAuth0 } from '@auth0/auth0-react';
+import LoginButton from './components/Login/Login';
 
 function App() {
 
@@ -29,7 +33,6 @@ function App() {
         <Route exact path='/contact' element={<Contact />} />
         <Route exact path='/login' element={<Login />} />
         <Route exact path='/register' element={<Register />} />
-
         <Route  path= '/admin' >
           <Route/>
           <Route  path='products' element={<Products />} />
