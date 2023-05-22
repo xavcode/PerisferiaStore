@@ -33,7 +33,7 @@ const Header = () => {
           <div className='flex justify-end gap-2 px-1'>
             <li> <Cart /> </li>
             <li> <Link> <MdFavorite> </MdFavorite> </Link> </li>
-            <li> <button> <RxAvatar /> </button> </li>
+            <li> <button onClick={() => loginWithRedirect()}><RxAvatar /></button> </li>
           </div>
         </ul>
       </div>
@@ -41,4 +41,8 @@ const Header = () => {
   )
 }
 
+
+
 export default Header
+
+
