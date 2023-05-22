@@ -17,6 +17,7 @@ import Products from './admin/pages/Products/Products';
 import Layout from './admin/components/Layout/Layout';
 import Users from './admin/pages/Users/Users';
 import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
+import CreateProductForm from './components/FormTest';
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
+        <Route exact path='/testForm' element={<CreateProductForm/> } />
         <Route path='/' element={<Home />} />
         <Route exact path='/about' element={<About />} />
         <Route exact path='/store' element={<Store />} />
