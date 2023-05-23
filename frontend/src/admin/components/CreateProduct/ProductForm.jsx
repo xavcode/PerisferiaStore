@@ -1,12 +1,16 @@
 import React from 'react'
 import axios from 'axios'
-
+import { useContext } from 'react';
 import { useState } from 'react';
+import { startCase } from 'lodash';
+
+import { FiltersContext } from '../../../context/FiltersContext';
 
 const ProductForm = () => {
   const [loading, setLoading] = useState(false);
   const [res, setRes] = useState({});
 
+  const { categories } = useContext(FiltersContext)
 
   const [formData, setFormData] = useState({
     name: '',
@@ -19,13 +23,10 @@ const ProductForm = () => {
     my_file: null
   });
 
-
-
   const handleChange = (e) => {
     const tag = e.target.id
     const val = (e.target.value)
     setFormData({ ...formData, [tag]: val })
-    console.log({ [tag]: val })
   };
 
   const handleSelectFile = (e) => {
@@ -37,7 +38,7 @@ const ProductForm = () => {
     e.preventDefault()
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:3001/", formData)
+      const response = await axios.post("https://perisferiastore-production.up.railway.app/", formData)
       setRes(response)
       // setRes(res.data);
     } catch (error) {
@@ -92,10 +93,14 @@ const ProductForm = () => {
                 onChange={handleChange}
                 className="w-60 bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
               >
+
                 <option value="any">Seleccionar</option>
-                <option value="keyboards">Auriculares</option>
-                <option value="headsets">Auriculares</option>
-                <option value="mouses">Mouses</option>
+                {categories.map(cat => {
+                  return (
+                    <option key={cat} value={cat}>{startCase(cat)}</option>
+                  )
+
+                })}
               </select>
 
               {/* <img src="" alt="img_product" className='w-[150px] h-[150px] bg-white rounded-lg text-black' /> */}

@@ -10,15 +10,15 @@ module.exports = (sequelize) => {
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
       unique: true
     },
     address: {
@@ -29,7 +29,7 @@ module.exports = (sequelize) => {
     },
     mail: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     img: {
       type: DataTypes.STRING,

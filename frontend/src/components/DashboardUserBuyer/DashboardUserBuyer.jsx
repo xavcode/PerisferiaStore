@@ -1,18 +1,18 @@
 import React from 'react'
 import axios from 'axios';
 import { useState } from 'react';
+import { useAuth0 } from "@auth0/auth0-react";
 
-export function CreateUserForm() {
+export function DashboardUserBuyer() {
+    const {user} = useAuth0()
   const [formData, setFormData] = useState({
-    name: '',
-    last_name: '',
+    name: user.given_name,
+    last_name: user.family_name,
     username: '',
     address: '',
-    password: '',
-    mail: '',
-    img: '',
+    mail: user.email,
+    img: user.picture? user.picture: '',
     phone: '',
-    isAdmin: false,
   });
 
   const handleChange = (e) => {
@@ -29,7 +29,7 @@ export function CreateUserForm() {
     e.preventDefault();
     console.log('Datos del formulario:', formData);
     try {
-      const response = await axios.post('https://perisferiastore-production.up.railway.app/user', formData)
+      const response = await axios.post('https://perisferiastore-production.up.railway.app/store/user', formData)
     } catch (error) {
       console.log(error)
       throw new Error (error)
@@ -99,20 +99,7 @@ export function CreateUserForm() {
                 required
               />
             </div>
-            <div>
-              <label htmlFor="password" className="text-lg">
-                Contraseña
-              </label>
-              <input
-                type="password"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline bg-white text-black"
-                required
-              />
-            </div>
+            
             <div>
               <label htmlFor="mail" className="text-lg">
                 Correo Electrónico
@@ -155,19 +142,7 @@ export function CreateUserForm() {
                 required
               />
             </div>
-            <div className="col-span-2">
-              <label htmlFor="isAdmin" className="flex items-center">
-                <input
-                  type="checkbox"
-                  id="isAdmin"
-                  name="isAdmin"
-                  checked={formData.isAdmin}
-                  onChange={handleChange}
-                  className="mr-2 leading-tight"
-                />
-                <span className="text-lg">Es Administrador</span>
-              </label>
-            </div>
+            
           </div>
           <div className="mt-6">
             <button
