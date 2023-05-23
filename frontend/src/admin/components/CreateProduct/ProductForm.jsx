@@ -38,7 +38,7 @@ const ProductForm = () => {
     e.preventDefault()
     try {
       setLoading(true);
-      const response = await axios.post("http://localhost:3001/", formData)
+      const response = await axios.post("https://perisferiastore-production.up.railway.app/", formData)
       setRes(response)
       // setRes(res.data);
     } catch (error) {
