@@ -4,20 +4,21 @@ module.exports = (sequelize) => {
   sequelize.define('Users', {
     id: {
       type: DataTypes.INTEGER,
+      type: DataTypes.INTEGER,
       primaryKey: true,
-      autoIncrement: true
+      autoIncrement: true,
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     last_name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     username: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
       unique: true
     },
     address: {
@@ -28,7 +29,7 @@ module.exports = (sequelize) => {
     },
     mail: {
       type: DataTypes.STRING,
-      allowNull: false,
+      // allowNull: false,
     },
     img: {
       type: DataTypes.STRING,

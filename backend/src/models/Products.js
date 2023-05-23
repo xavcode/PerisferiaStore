@@ -9,7 +9,7 @@ module.exports = (sequelize) => {
             primaryKey: true,
             defaultValue: UUIDV4
         },
-        title: {
+        name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         status: {
-            type: DataTypes.ENUM('disponible', 'Sin stock'),
+            type: DataTypes.ENUM('disponible', 'Sin stock', 'eliminado'),
             defaultValue: 'disponible',
         },
         description: {

@@ -1,13 +1,16 @@
-const {DataTypes, UUIDV4} = require ('sequelize');
+const { DataTypes, UUIDV4 } = require('sequelize');
+
 
 module.exports = (sequelize) => {
     sequelize.define("order", {
         id: {
             type: DataTypes.STRING,
             defaultValue: UUIDV4,
+            type: DataTypes.STRING,
+            defaultValue: UUIDV4,
             allowNull: false,
             unique: true,
-            primaryKey: true,
+            primaryKey: true, 
         },
         quantity: {
             type: DataTypes.INTEGER,
@@ -17,5 +20,8 @@ module.exports = (sequelize) => {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false,
         },
+    },
+    {
+        timestamps: false
     })
 }

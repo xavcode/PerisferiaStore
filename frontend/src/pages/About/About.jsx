@@ -106,7 +106,7 @@ const About = () => {
           <img
             src={tomas}
             alt="Foto de Leo"
-            className="w-full w-full h-full object-cover"
+            className="w-full h-full object-cover"
             />
             </div>
           <div className="p-4">
@@ -124,7 +124,7 @@ const About = () => {
           <img
             src={fer}
             alt="Foto de Leo"
-            className="w-full w-full h-full object-cover"
+            className="w-full h-full object-cover"
             />
             </div>
           <div className="p-4">
@@ -154,7 +154,7 @@ const About = () => {
           <img
             src={leonel}
             alt="belgrano"
-            className="w-full w-full h-full object-cover"
+            className="w-full h-full object-cover"
             />
             </div>
           <div className="p-4">
@@ -172,7 +172,7 @@ const About = () => {
           <img
             src={javi}
             alt="belgrano"
-            className="w-full w-full h-full object-cover"
+            className="w-full h-full object-cover"
             />
             </div>
           <div className="p-4">
@@ -190,7 +190,7 @@ const About = () => {
           <img
             src={fausto}
             alt="belgrano"
-            className="w-full w-full h-full object-cover"
+            className="w-full h-full object-cover"
             />
             </div>
           <div className="p-4">
