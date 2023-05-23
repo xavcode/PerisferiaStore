@@ -14,7 +14,7 @@ const EditProfile = () => {
     const handleSubmit = async (e) => {
       e.preventDefault();
       try {
-        const response = await axios.put("https://perisferiastore-production-9f09.up.railway.app/store/users/" + userData.id, userData);
+        const response = await axios.put("https://perisferiastore-production.up.railway.app/store/users/" + userData.id, userData);
         console.log(response.data);
         alert("Cambios guardados exitosamente");
       } catch (error) {
