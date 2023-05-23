@@ -23,7 +23,7 @@ const EditProduct = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await axios.get(`https://perisferiastore-production-9f09.up.railway.app/store${id}`)
+      const response = await axios.get(`https://perisferiastore-production.up.railway.app/store${id}`)
       setFormData(response.data)
       // console.log(response.data)
     }
