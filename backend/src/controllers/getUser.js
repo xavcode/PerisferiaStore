@@ -10,7 +10,7 @@ const get_user = async (req, res) => {
                 through: {
                     attributes: [],
                 }
-            }
+            },
         });
         return res.status(200).json(user);
     } catch (error) {
