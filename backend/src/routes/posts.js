@@ -45,7 +45,8 @@ router_Post.post('/', upload.single('file'), async (req, res) => {
       description,
       rating,
       category,
-    });
+        });
+        delete req.file
         res.json({ message: 'Archivo recibido y guardado en Supabase con éxito' });
     } catch (error) {
   console.error(error);
