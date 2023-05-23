@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { CartIcon, ClearCartIcon } from "../Icons.jsx";
 import { useId } from "react";
 import { useCart } from "../../hooks/useCart";
+import { BsFillTrash3Fill, BsCartX } from "react-icons/bs";
+import { IoMdAdd, IoMdRemove } from "react-icons/io";
+import { AiOutlineShoppingCart, AiOutlineArrowLeft } from "react-icons/ai";
 
 function CartItem({
   img,
@@ -13,74 +15,155 @@ function CartItem({
   quantity,
   addToCart,
   decreaseQuantity,
+  removeFromCart,
 }) {
+  const handleDecreaseQuantity = () => {
+    if (quantity > 1) {
+      decreaseQuantity();
+    }
+  };
+
+  const handleIncreaseQuantity = () => {
+    addToCart();
+  };
+
   return (
-    <div >
-      <div>
-        {/* image */}
+    <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500">
+      <div className="w-full min-h-[150px] flex items-center gap-x-4">
         <div>
-          <img src={image} alt="" />
+          <img className="max-w-[120px]" src={image} alt="" />
+        </div>
+        <div className="w-full flex flex-col">
+          <div className="flex justify-between mb-2">
+            <div className="text-sm uppercase font-medium max-w-[240px] text-black">
+              {title}
+            </div>
+            <div>
+              <div>
+                <div
+                  className="text-xl cursor-pointer"
+                  onClick={removeFromCart}
+                >
+                  <BsFillTrash3Fill className="text-gray-500 hover:text-red-500 transition" />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="flex gap-x-2 h-[36px] text-sm">
+            <div className="flex flex-1 max-w-[100px] items-center h-full border text-gray-700 font-medium">
+              <div
+                className="flex-1 h-full flex justify-center items-center cursor-pointer"
+                onClick={handleDecreaseQuantity}
+              >
+                <IoMdRemove />
+              </div>
+              <div className="h-full flex justify-center items-center px-2">
+				{quantity}
+              </div>
+              <div
+                className="flex-1 h-full flex justify-center items-center cursor-pointer"
+                onClick={handleIncreaseQuantity}
+              >
+                <IoMdAdd />
+              </div>
+            </div>
+            <div className="flex-1 flex items-center justify-around text-gray-700">
+              {price}
+            </div>
+            <div className="flex-1 flex justify-end items-center font-medium text-gray700">
+            Precio: {price * quantity}
+            </div>
+          </div>
         </div>
       </div>
     </div>
-       
-      
   );
 }
 
 export default function Cart() {
   const cartCheckboxId = useId();
-  const { cart, clearCart, addToCart, decreaseQuantity } = useCart();
+  const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } =
+    useCart();
   const [isCartOpen, setCartOpen] = useState(false);
 
   const handleCartToggle = () => {
     setCartOpen(!isCartOpen);
   };
 
+  const handleClearCart = () => {
+    clearCart();
+  };
+
+  // Calcular el total de precios
+  const totalPrice = cart.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  );
+
   return (
-    <>
-      <div className="relative">
-        <label
-          className="cart-button bg-blue-500 rounded-full text-white cursor-pointer"
-          htmlFor={cartCheckboxId}
-          onClick={handleCartToggle}
-        >
-          <CartIcon />
-          {cart.length > 0 && (
-            <span className="absolute top-0 right-0 -mt-2 -mr-2 w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-full text-sm">
-              {cart.length}
-            </span>
+    <div>
+      <div>
+        <div className="relative">
+          <div className="cursor-pointer flex relative" onClick={handleCartToggle}>
+            <AiOutlineShoppingCart />
+            {cart.length > 0 && (
+              <span className="absolute top-0 right-0 -mt-2 -mr-2 w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-full text-sm">
+                {cart.length}
+              </span>
+            )}
+          </div>
+
+          <input id={cartCheckboxId} type="checkbox" hidden />
+          {isCartOpen && (
+            <div
+              className="cart-overlay fixed inset-0 bg-black opacity-50"
+              onClick={handleCartToggle}
+            />
           )}
-        </label>
-        <input id={cartCheckboxId} type="checkbox" hidden />
-        {isCartOpen && (
-          <div className="cart-overlay fixed inset-0 bg-black opacity-50" onClick={handleCartToggle} />
-        )}
-        <div
-          className={`cart bg-white fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2/3 max-w-md p-4 overflow-y-auto ${
-            isCartOpen ? "" : "hidden"
-          }`}
-          style={{ maxHeight: "80vh" }} // Establece una altura máxima para el scroll
-        >
-          <button
-            className="bg-red-500 text-white rounded-full p-2 absolute top-2 right-2"
-            onClick={handleCartToggle}
+          <div
+            className={`cart bg-white fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2/3 max-w-md p-4 overflow-y-auto ${
+              isCartOpen ? "" : "hidden"
+            }`}
+            style={{ maxHeight: "80vh" }}
           >
-            <ClearCartIcon />
-          </button>
-          <ul>
-            {cart.map((product) => (
-              <CartItem
-                key={product.id}
-                addToCart={() => addToCart(product)}
-                decreaseQuantity={() => decreaseQuantity(product)}
-                {...product}
+            <div className="flex justify-between mb-4">
+              <AiOutlineArrowLeft
+                className="text-xl cursor-pointer text-gray-700"
+                onClick={handleCartToggle}
               />
-            ))}
-          </ul>
-          {cart.length === 0 && <p className="text-center text-gray-500">Tu Carrito esta vacio</p>}
+              <h3 className="text-sm uppercase font-medium max-w-[1200px] text-black ml-6">Carrito</h3>
+              <div
+                className="text-xl cursor-pointer"
+                onClick={handleClearCart}
+              >
+                <BsCartX className="text-gray-500 hover:text-red-500 transition" />
+              </div>
+            </div>
+            <ul>
+              {cart.map((product) => (
+                <CartItem
+                  key={product.id}
+                  addToCart={() => addToCart(product)}
+                  decreaseQuantity={() => decreaseQuantity(product)}
+                  removeFromCart={() => removeFromCart(product)}
+                  {...product}
+                />
+              ))}
+            </ul>
+            {cart.length === 0 && (
+              <p className="text-center text-gray-500">Tu Carrito está vacío</p>
+            )}
+            {cart.length > 0 && (
+              <>
+                <p className="text-right font-medium text-gray-700">
+                  Total: {totalPrice}
+                </p>
+                {/* Resto del contenido */}
+              </>
+            )}
+          </div>
         </div>
       </div>
-    </>
+    </div>
   );
 }

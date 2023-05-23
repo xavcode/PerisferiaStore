@@ -21,6 +21,7 @@ import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { UserContext } from './context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
+import CreateProductForm from './components/FormTest';
 
 function App() {
   const { user, isAuthenticated } = useAuth0()
@@ -30,7 +31,8 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-    <Route path='/admin' element={<Main />} />
+        <Route path='/admin' element={<Main />} />
+        <Route path='/testForm' element={<CreateProductForm/>}/>
 
         <Route path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
@@ -41,6 +43,8 @@ function App() {
         <Route exact path='/register' element={<Register />} />
 
         <Route element={<ProtectedRoutes user={user} />}>
+
+          <Route path='/admin/' element={<Main />} />
           <Route path='/admin/products' element={<Products />} />
           <Route path='/admin/products/create' element={<ProductForm />} />
           <Route path='/admin/products/edit/:id' element={<EditProduct />} />
