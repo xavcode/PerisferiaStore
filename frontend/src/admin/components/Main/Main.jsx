@@ -1,14 +1,18 @@
-// import React from 'react'
-// import ProductsTable from '../ProductsTable/ProductsTable'
+import React from 'react'
+import Sidebar from '../Sidebar/Sidebar'
+import Stats from '../Stats/Stats'
 
-// const Main = () => {
-//     return (
-//         <div className='h-full w-full flex  ml-[200px] relative items-center justify-center text-white text-3xl bg-trs ' >
+const Main = () => {
+  return (
+    <div className='flex w-screen h-screen '>
+      <div className='flex w-screen justify-center fixed mt-20 '>
+        <Stats />
+      </div>
+      <div>
+        <Sidebar />
+      </div>
+    </div>
+  )
+}
 
-//             <ProductsTable />
-
-//         </div>
-//     )
-// }
-
-// export default Main
+export default Main

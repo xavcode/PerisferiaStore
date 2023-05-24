@@ -5,11 +5,11 @@ import ProductsTable from '../../components/ProductsTable/ProductsTable'
 const Products = () => {
   return (
     <div className='flex justify-center items-center' >
+      <div className='flex justify-center items-center'>
+        <ProductsTable />
+      </div>
       <div>
         <Sidebar />
-      </div>
-      <div className='flex justify-center items-center'>
-        <ProductsTable/>
       </div>
     </div>
   )
