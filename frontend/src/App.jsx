@@ -19,6 +19,7 @@ import Users from './admin/pages/Users/Users';
 import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
 import { User, useAuth0 } from '@auth0/auth0-react';
 import LoginButton from './components/Login/Login';
+import FormTest from '../FormTest';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route exact path='/test' element={<FormTest/>} />
         <Route exact path='/about' element={<About />} />
         <Route exact path='/store' element={<Store />} />
         <Route path='/store/:id' element={<Detail />} />
