@@ -1,10 +1,13 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { DataContext } from "../../../context/DataContext";
+import { useContext } from "react";
 
 const CreateProductForm = () => {
   const [file, setFile] = useState(null);
-  const history = useHistory();
+  const navigate = useNavigate()
+  const { setUpdateFlag } = useContext(DataContext);
 
   const [newProduct, setNewProduct] = useState({
     file: null,
@@ -17,14 +20,6 @@ const CreateProductForm = () => {
     category: ''
 
   })
-
-  // const [previewImage, setPreviewImage] = useState(null);
-  // const [name, setName] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [status, setStatus] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [rating, setRating] = useState("");
-  // const [category, setCategory] = useState("");
 
   const fileInputRef = useRef();
 
@@ -56,17 +51,17 @@ const CreateProductForm = () => {
     try {
       const response = await axios.post('http://localhost:3001/', formData);
       // console.log(response.data)
-      history.push('/home')
-
-      // console.log(response.data)
-      // El formulario se envió exitosamente
+      alert('Producto creado con éxito')
+      setUpdateFlag(true)
+      navigate('/admin/products')
       // Realiza cualquier acción adicional que necesites aquí
     } catch (error) {
       console.error(error);
       // Handle error: Mostrar mensaje de error o tomar otra acción
     }
-
   };
+  
+  
 
   return (
     <div className="min-h-screen flex items-center justify-center">
