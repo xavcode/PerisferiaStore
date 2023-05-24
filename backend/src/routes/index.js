@@ -4,6 +4,7 @@ const {createRecordProduct, getAllProducts } = require("../controllers/productCo
 const router_Post = require("./posts");
 const router_get = require("./gets");
 const router_delete = require("./delete");
+const router_put = require("./puts");
 const router = Router();
 
 router.use('/', (req, res, next) => {
@@ -14,6 +15,8 @@ router.use('/', (req, res, next) => {
             return router_Post(req, res, next);
         case 'DELETE':
             return router_delete(req, res, next);
+        case 'PUT':
+            return router_put(req, res, next);
         default: 
             return res.status(405).send('Metodo no permitido')
 }

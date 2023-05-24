@@ -1,10 +1,5 @@
 const { Products, Users } = require('../db');
 
-const add_favorite = (producto) => {
-    const newRecord = Favorite.create(producto);
-    return newRecord;
-};
-
 const addNewFavorite = async (req, res) => {
     try {
         const {
@@ -21,28 +16,8 @@ const addNewFavorite = async (req, res) => {
     };
 };
 
-const assddNewFavorite = async (req, res) => {
-    try {
-        const {
-            userId,
-            productId } = req.body;
-        const prod = await Favorite.create({
-            userId,
-            productId,
-        })
-        // const user = await Users.findAll({
-        //     where: { id: userId },
-        //     include: 
-        // })
-        prod.addUsers(user)
-        return res.status(200).send('exito');
-    } catch (error) {
-        return res.status(404).json({ error: error.message })
-    }
-}
 module.exports = {
     addNewFavorite,
-    assddNewFavorite
 }
 
 /***

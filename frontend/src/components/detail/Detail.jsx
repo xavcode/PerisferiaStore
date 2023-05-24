@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { startCase } from "lodash";
 import { AddToCartIcon, RemoveFromCartIcon } from "../Icons.jsx";
@@ -15,7 +14,6 @@ const Detail = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.get(`http://localhost:3001/store/${id}`);
-      // const response = await axios.get(`https://perisferiastore-production.up.railway.app/store/${id}`);
       setProduct(response.data);
     };
     fetchData(); 
