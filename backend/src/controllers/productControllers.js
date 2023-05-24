@@ -32,7 +32,7 @@ const prepareDataDataBase = async (product) => {
         },
         defaults: {
             price: product.price,
-            description: product.price,
+            description: product.description,
             category: product.category,
             img: product.img,
             rating: product.rating
