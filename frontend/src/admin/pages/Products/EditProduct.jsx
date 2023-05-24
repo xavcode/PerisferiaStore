@@ -23,13 +23,15 @@ const EditProduct = () => {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await axios.get(
-        `https://perisferiastore-production.up.railway.app/store${id}`
-      );
-      setFormData(response.data);
-    };
-    fetchProduct();
-  }, []);
+      const response = await axios.get(`http://localhost:3001/store/${id}`)  //https://perisferiastore-production.up.railway.app/store${id}
+      setFormData(response.data)
+      // console.log(response.data)
+    }
+    fetchProduct()
+  }, [])
+
+
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
