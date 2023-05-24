@@ -3,7 +3,6 @@ import { createContext, useContext } from "react";
 import { DataContext } from './DataContext';
 import axios from 'axios';
 
-
 // create context for get the categories for filters.
 
 export const FiltersContext = createContext()
@@ -22,7 +21,7 @@ export const FilterProvider = ({ children }) => {
     catSelected: 'all',
     orderBy: 'from_lower',
     sortBy: 'price',
-    categories: []
+    categories: [],
   })
 
   return (
@@ -36,3 +35,4 @@ export const FilterProvider = ({ children }) => {
   )
 }
 
+ 
