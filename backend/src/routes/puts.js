@@ -6,7 +6,8 @@ const { initialEdit } = require('../controllers/editProduct');
 const { initialEdit_user } = require('../controllers/editUser');
 const upload = multer({ dest: 'uploads/' })
 
-router_put.put('/product', initialEdit);
-router_put.put('/user', initialEdit_user);
+router_put.put('/product', initialEdit); // editar product
+
+router_put.put('/user', initialEdit_user); // editar usuario
 
 module.exports = router_put;
