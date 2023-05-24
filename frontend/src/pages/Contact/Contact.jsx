@@ -2,8 +2,11 @@ import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import logoLight from '../../../public/logo-light.jpeg'
-const Contact = () => {
+
+const Contact = () => { 
   const form = useRef();
+  const [isFormValid, setIsFormValid] = useState(false);
+  const [isSent, setIsSent] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -18,11 +21,11 @@ const Contact = () => {
       .then((response) => {
         console.log(response);
         setIsSent(true);
+        alert('¡Envío de correo exitoso!');
       })
       .catch((error) => console.log(error));
   };
 
-  const [isFormValid, setIsFormValid] = useState(false);
   const validateForm = () => {
     const formElement = form.current;
 
@@ -33,7 +36,25 @@ const Contact = () => {
     }
   };
 
-  const [isSent, setIsSent] = useState(false);
+
+ // VALIDACION PARA IMPLEMENTAR MAS ADELANTE
+
+  // const validateMessage = (message) => {
+  //   const regex = /insulto|amenaza/gi;
+  //   return !regex.test(message);
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const messageInput = form.current.user_message;
+  //   const isMessageValid = validateMessage(messageInput.value);
+
+  //   if (isMessageValid) {
+  //     sendEmail(e);
+  //   } else {
+  //     alert('El mensaje contiene contenido inapropiado. Por favor, revíselo antes de enviarlo.');
+  //   }
+  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center ">
@@ -105,10 +126,9 @@ const Contact = () => {
               <button
                 type="submit"
                 className=" py-4 flex items-center justify-center w-80 bg-header hover:bg-header/80 focus:bg-header text-white text-xl font-medium rounded "
-                disabled={!isFormValid}
+                disabled={!isFormValid || isSent}
               >
                 Enviar
-                {isSent ? alert('¡Envío de correo exitoso!') : null}
               </button>
             </div>
           </form>
