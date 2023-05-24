@@ -52,12 +52,12 @@ const CreateProductForm = () => {
       const response = await axios.post('http://localhost:3001/', formData);
       // console.log(response.data)
       alert('Producto creado con éxito')
-      setUpdateFlag(true)
+      setUpdateFlag(true) // actualizamos la peticion a la base de datos de DataContext
       navigate('/admin/products')
-      // Realiza cualquier acción adicional que necesites aquí
+      
     } catch (error) {
       console.error(error);
-      // Handle error: Mostrar mensaje de error o tomar otra acción
+      
     }
   };
   
