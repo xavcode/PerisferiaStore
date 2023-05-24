@@ -1,42 +1,40 @@
-import React from 'react'
-import { useState, useEffect, useContext, } from 'react';
-import axios from 'axios'
+import React from "react";
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 
-import { FiltersContext } from '../../../context/FiltersContext';
+import { FiltersContext } from "../../../context/FiltersContext";
 
 const EditProduct = () => {
-  const { categories } = useContext(FiltersContext)
-  const { id } = useParams()
+  const { categories } = useContext(FiltersContext);
+  const { id } = useParams();
 
   const [formData, setFormData] = useState({
     id: null,
-    name: '',
-    description: '',
-    status: 'disponible',
-    rating: 3,
+    name: "",
+    description: "",
+    status: "disponible",
+    rating: 1,
     quantity: 1,
-    category: '',
+    category: "",
     price: 0,
-    image: '',
+    image: "",
   });
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await axios.get(`https://perisferiastore-production.up.railway.app/store${id}`)
-      setFormData(response.data)
-      // console.log(response.data)
-    }
-    fetchProduct()
-  }, [])
-
-
-
+      const response = await axios.get(
+        `https://perisferiastore-production.up.railway.app/store${id}`
+      );
+      setFormData(response.data);
+    };
+    fetchProduct();
+  }, []);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    console.log(e.target.value)
+    console.log(e.target.value);
   };
 
   const handleSubmit = (e) => {
@@ -46,12 +44,24 @@ const EditProduct = () => {
 
   return (
     <div className="fixed justify-center flex flex-col items-center bg-gray-900 text-white py-3 px-16  mt-20 mb-5 w-full mx-4 rounded-lg">
-      <Link to="/admin/products" className="text-gray-500 hover:text-gray-900 mb-2">
-        <svg className="w-6 h-6  mr-2" stroke="currentColor" >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg></Link>
+      <Link
+        to="/admin/products"
+        className="text-gray-500 hover:text-gray-900 mb-2"
+      >
+        <svg className="w-6 h-6  mr-2" stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          />
+        </svg>
+      </Link>
       <h2 className="text-3xl font-bold mb-4">Editar Producto</h2>
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 max-w-2xl">
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-2 gap-4 max-w-2xl"
+      >
         <div>
           <label htmlFor="name" className="text-lg font-semibold">
             Producto:
@@ -110,14 +120,20 @@ const EditProduct = () => {
           <label htmlFor="rating" className="text-lg font-semibold">
             Rating:
           </label>
-          <input
+          <select
             type="number"
             id="rating"
             name="rating"
             value={formData.rating}
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
-          />
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
         </div>
         <div>
           <label htmlFor="category" className="text-lg font-semibold">
@@ -158,10 +174,13 @@ const EditProduct = () => {
           />
         </div>
         <div className="col-span-2 flex justify-end">
-          <button className="bg-white hover:bg-primary text-gray-700 font-bold py-2 px-4 rounded">
+          <button type="submit" className="bg-white hover:bg-primary text-gray-700 font-bold py-2 px-4 rounded">
             Guardar
           </button>
-          <button type="button" className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded" >
+          <button
+            type="button"
+            className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded"
+          >
             Cancelar
           </button>
         </div>

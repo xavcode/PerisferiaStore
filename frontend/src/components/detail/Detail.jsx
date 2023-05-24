@@ -1,9 +1,12 @@
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { startCase } from "lodash";
 import { AddToCartIcon, RemoveFromCartIcon } from "../Icons.jsx";
 
 import axios from "axios";
 import { useCart } from "../../hooks/useCart.jsx";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const Detail = (props) => {
   const { addToCart, removeFromCart, cart } = useCart();

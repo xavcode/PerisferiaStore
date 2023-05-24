@@ -36,7 +36,6 @@ const Contact = () => {
     }
   };
 
-
  // VALIDACION PARA IMPLEMENTAR MAS ADELANTE
 
   // const validateMessage = (message) => {
