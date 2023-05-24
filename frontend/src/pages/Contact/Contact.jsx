@@ -36,7 +36,7 @@ const Contact = () => {
   const [isSent, setIsSent] = useState(false);
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
+    <div className="min-h-screen flex items-center justify-center ">
       <div className="max-w-4xl w-full px-6 mt-16" >
         <div className="text-center">
           <img src={logoLight} className="h-24 w-auto mx-auto rounded-full" />
@@ -58,7 +58,7 @@ const Contact = () => {
                 <input
                   type="text"
                   name="user_name"
-                  className="mt-2 shadow rounded w-[400px] py-3 px-4 text-lg leading-tight  focus:shadow-outline text-white"
+                  className="mt-2 shadow rounded w-[400px] py-3 px-4 text-lg leading-tight  focus:shadow-outline text-black bg-inputs"
                   placeholder="Nombre"
                   required
                   onChange={validateForm}
@@ -75,7 +75,7 @@ const Contact = () => {
                 <input
                   type="email"
                   name="user_email"
-                  className="mt-2 shadow rounded w-[400px] py-3 px-4 text-lg leading-tight "
+                  className="mt-2 shadow rounded w-[400px] py-3 px-4 text-lg leading-tight  text-black bg-inputs"
                   placeholder="Correo Electrónico"
                   pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
                   required
@@ -92,7 +92,7 @@ const Contact = () => {
                 </label>
                 <textarea
                   name="user_message"
-                  className="mt-2 shadow rounded w-[400px] py-3 px-4 text-lg leading-tight  "
+                  className="mt-2 shadow rounded w-[400px] py-3 px-4 text-lg leading-tight   text-black bg-inputs"
                   placeholder="Escribe aquí"
                   maxLength={200}
                   required
@@ -110,7 +110,7 @@ const Contact = () => {
                 Enviar
                 {isSent ? alert('¡Envío de correo exitoso!') : null}
               </button>
-            </div>            
+            </div>
           </form>
         </div>
       </div>
