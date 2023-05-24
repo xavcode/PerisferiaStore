@@ -1,5 +1,7 @@
+import React from "react";
 import { Link, useParams } from "react-router-dom";
 import { startCase } from "lodash";
+import { useState, useEffect } from "react";
 import { AddToCartIcon, RemoveFromCartIcon } from "../Icons.jsx";
 
 import axios from "axios";
