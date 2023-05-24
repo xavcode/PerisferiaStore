@@ -5,7 +5,7 @@ import "./index.css";
 import { FilterProvider } from "./context/FiltersContext.jsx";
 import { DataProvider } from "./context/DataContext.jsx";
 import { UserProvider } from "./context/userContext.jsx";
-import { CartProvider } from "./context/cart.jsx";
+import { CartProvider } from "./context/Cart.jsx";
 import { Auth0Provider } from "@auth0/auth0-react";
 
 ReactDOM.createRoot(document.getElementById("root")).render(

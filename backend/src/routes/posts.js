@@ -1,12 +1,17 @@
 const { Router } = require('express');
-const { add_NewProduct } = require('../controllers/createProd');
+const { createProduct, add_NewProduct } = require('../controllers/createProd');
 const { create_record_user } = require('../controllers/createUser');
 const { addNewFavorite } = require('../controllers/addFavorites');
 const { creation_relation } = require('../controllers/addOrders');
-
+const fs = require('fs')
 const router_Post = Router();
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });// Directorio donde se guardarán los archivos subidos
 
-router_Post.post('/', add_NewProduct);
+// Ruta POST para recibir el archivo adjunto
+router_Post.post('/', upload.single('file'), add_NewProduct);
+
+
 router_Post.post('/user', create_record_user);
 router_Post.post('/user/favorites', addNewFavorite);
 router_Post.post('/order', creation_relation);
