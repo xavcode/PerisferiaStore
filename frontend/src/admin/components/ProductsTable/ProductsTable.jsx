@@ -15,9 +15,9 @@ const ProductsTable = () => {
     setSelectedProductId(productId);
   };
 
-  const handleDelete = async (id) => {
-    console.log(`Borrando producto con ID: ${id}`);
-    const response = await axios.delete(`http://localhost:3001/store/${productId}`)    
+  const handleDelete = async (productId) => {
+    console.log(`Borrando producto con ID: ${productId}`);
+    const response = await axios.delete(` https://perisferiastore-production.up.railway.app/store${productId}`)    
   };
 
   return (

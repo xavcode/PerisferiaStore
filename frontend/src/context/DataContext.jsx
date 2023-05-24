@@ -13,6 +13,7 @@ export const DataProvider = ({ children }) => {
   useEffect(() => {
     const fetchData = async () =>{      
       const response = await axios.get('http://localhost:3001/store')
+      // const response = await axios.get('https://perisferiastore-production.up.railway.app/store')
       //for change the whole array to lowercase
       const prods = response.data
       const lowerCaseNameProducts = prods.map((product) => {

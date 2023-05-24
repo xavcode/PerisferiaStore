@@ -30,7 +30,6 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-    <Route path='/admin' element={<Main />} />
 
         <Route path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
@@ -41,6 +40,8 @@ function App() {
         <Route exact path='/register' element={<Register />} />
 
         <Route element={<ProtectedRoutes user={user} />}>
+
+          <Route path='/admin/' element={<Main />} />
           <Route path='/admin/products' element={<Products />} />
           <Route path='/admin/products/create' element={<ProductForm />} />
           <Route path='/admin/products/edit/:id' element={<EditProduct />} />

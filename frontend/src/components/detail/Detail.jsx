@@ -1,4 +1,3 @@
-import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import { startCase } from "lodash";
 import { AddToCartIcon, RemoveFromCartIcon } from "../Icons.jsx";
