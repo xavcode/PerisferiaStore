@@ -1,8 +1,10 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import { useHistory } from 'react-router-dom';
 
 const CreateProductForm = () => {
-   const [file, setFile] = useState(null);
+  const [file, setFile] = useState(null);
+  const history = useHistory();
 
   const [newProduct, setNewProduct] = useState({
     file: null,
@@ -54,6 +56,7 @@ const CreateProductForm = () => {
     try {
       const response = await axios.post('http://localhost:3001/', formData);
       // console.log(response.data)
+      history.push('/home')
 
       // console.log(response.data)
       // El formulario se envió exitosamente
