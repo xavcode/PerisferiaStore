@@ -55,8 +55,6 @@ router_Post.post('/', upload.single('file'), async (req, res) => {
 });
 
 
-
-
 router_Post.post('/user', create_record_user);
 router_Post.post('/user/favorites', addNewFavorite);
 router_Post.post('/order', creation_relation);
