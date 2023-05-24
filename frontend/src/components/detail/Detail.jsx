@@ -3,7 +3,7 @@ import { startCase } from "lodash";
 import { AddToCartIcon, RemoveFromCartIcon } from "../Icons.jsx";
 
 import axios from "axios";
-import { useCart } from "../../hooks/useCart.js";
+import { useCart } from "../../hooks/useCart.jsx";
 
 const Detail = (props) => {
   const { addToCart, removeFromCart, cart } = useCart();
