@@ -3,7 +3,6 @@ const { Products, Users } = require('../db');
 const get_user = async (req, res) => {
     try {
         const user = await Users.findAll({
-            attributes: [ 'id', 'name', 'username'],
             include: {
                 model: Products,
                 attributes: ['name', 'description'],
@@ -20,3 +19,9 @@ const get_user = async (req, res) => {
 module.exports = {
     get_user
 }
+/**
+ * last_name
+address
+mail
+phone
+ */
