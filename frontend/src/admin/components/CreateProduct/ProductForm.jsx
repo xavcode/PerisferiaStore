@@ -1,8 +1,17 @@
 import React, { useState, useRef } from "react";
 import axios from "axios";
+import { startCase } from "lodash";
+import { useNavigate } from 'react-router-dom';
+import { DataContext } from "../../../context/DataContext";
+import { useContext } from "react";
+
+import { FiltersContext } from "../../../context/FiltersContext";
 
 const CreateProductForm = () => {
-   const [file, setFile] = useState(null);
+  const [file, setFile] = useState(null);
+  const navigate = useNavigate()
+  const { setUpdateFlag } = useContext(DataContext);
+  const { categories } = useContext(FiltersContext)
 
   const [newProduct, setNewProduct] = useState({
     file: null,
@@ -16,27 +25,18 @@ const CreateProductForm = () => {
 
   })
 
-  // const [previewImage, setPreviewImage] = useState(null);
-  // const [name, setName] = useState("");
-  // const [price, setPrice] = useState("");
-  // const [status, setStatus] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [rating, setRating] = useState("");
-  // const [category, setCategory] = useState("");
-
   const fileInputRef = useRef();
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
-    setNewProduct({...newProduct, previewImage: URL.createObjectURL(selectedFile)})
+    setNewProduct({ ...newProduct, previewImage: URL.createObjectURL(selectedFile) })
   };
 
   const handleChange = (e) => {
-    e.preventDefault();
     const valId = e.target.id
     const val = e.target.value
-    setNewProduct({...newProduct, [valId]:val})
+    setNewProduct({ ...newProduct, [valId]: val })
   }
 
   const handleSubmit = async (e) => {
@@ -51,19 +51,20 @@ const CreateProductForm = () => {
     formData.append('rating', newProduct.rating);
     formData.append('category', newProduct.category);
 
+
     try {
       const response = await axios.post('http://localhost:3001/', formData);
-      // console.log(response.data)
+      alert('Producto creado con éxito')
+      setUpdateFlag(true) // actualizamos la peticion a la base de datos de DataContext
+      navigate('/admin/products')
 
-      // console.log(response.data)
-      // El formulario se envió exitosamente
-      // Realiza cualquier acción adicional que necesites aquí
     } catch (error) {
       console.error(error);
-      // Handle error: Mostrar mensaje de error o tomar otra acción
-    }
 
+    }
   };
+
+
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -79,7 +80,7 @@ const CreateProductForm = () => {
             <input
               type="text"
               id="name"
-              value={newProduct.name}
+              value={newProduct.name.toLowerCase()}
               onChange={handleChange}
               className="mt-1 p-2 bg-gray-200 text-gray-800 rounded w-full"
             />
@@ -93,6 +94,7 @@ const CreateProductForm = () => {
               type="number"
               id="price"
               value={newProduct.price}
+              min={0}
               onChange={handleChange}
               className="mt-1 p-2 bg-gray-200 text-gray-800 rounded w-full"
             />
@@ -142,13 +144,14 @@ const CreateProductForm = () => {
             <label htmlFor="category" className="block font-semibold">
               Categoría:
             </label>
-            <input
-              type="text"
-              id="category"
-              value={newProduct.category}
-              onChange={handleChange}
-              className="mt-1 p-2 bg-gray-200 text-gray-800 rounded w-full"
-            />
+            <select className="select mt-1 p-2 bg-gray-200 text-gray-800 rounded w-full" name="category" id="category" onChange={handleChange}>Category
+              {categories.map(cat => {
+                return(
+                  <option key={cat} value={cat}>{startCase(cat)}</option>
+                )
+              })}
+            </select>
+
           </div>
           <div>
             <label htmlFor="file" className="font-semibold">

@@ -21,6 +21,7 @@ import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { UserContext } from './context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
+import EditUser from './admin/pages/Users/EditUser';
 
 function App() {
   const { user, isAuthenticated } = useAuth0()
@@ -30,7 +31,6 @@ function App() {
     <BrowserRouter>
       <Header />
       <Routes>
-
         <Route path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
         <Route exact path='/about' element={<About />} />
@@ -47,7 +47,7 @@ function App() {
           <Route path='/admin/products/edit/:id' element={<EditProduct />} />
           <Route path='/admin/users' element={<Users />} />
           <Route path='/admin/users/create' element={<CreateUserForm />} />
-          <Route path='/admin/users/edit/:id' element={<CreateUserForm />} />
+          <Route path='/admin/users/edit/:id' element={<EditUser />} />
         </Route>
         <Route path='*' element={<Error />} />
       </Routes>
