@@ -11,46 +11,47 @@ import Contact from "./pages/Contact/Contact";
 import Error from "./pages/Error/Error";
 import Detail from "./components/detail/Detail";
 import Register from "./pages/Register/Register";
-import ProductForm from "./admin/components/CreateProduct/ProductForm";
-import EditProduct from "./admin/pages/Products/EditProduct";
-import Products from "./admin/pages/Products/Products";
-import Main from "./admin/components/Main/Main";
-import Users from "./admin/pages/Users/Users";
-import { CreateUserForm } from "./admin/components/CreateUser/CreateUserForm";
-import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
-import { useAuth0 } from "@auth0/auth0-react";
-import Profile from "./components/Profile/Profile";
+import ProductForm from './admin/components/CreateProduct/ProductForm';
+import EditProduct from './admin/pages/Products/EditProduct';
+import Products from './admin/pages/Products/Products';
+import Main from './admin/components/Main/Main';
+import Users from './admin/pages/Users/Users';
+import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
+import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
+import { UserContext } from './context/userContext';
+import { useAuth0 } from '@auth0/auth0-react';
+import EditUser from './admin/pages/Users/EditUser';
 
 function App() {
 	const { user, isAuthenticated } = useAuth0();
 
 	return (
-		<BrowserRouter>
-			<Header />
-			<Routes>
-				<Route path="/" element={<Home />} />
-				<Route path="/home" element={<Home />} />
-				<Route exact path="/about" element={<About />} />
-				<Route exact path="/store" element={<Store />} />
-				<Route path="/store/:id" element={<Detail />} />
-				<Route exact path="/contact" element={<Contact />} />
-				<Route exact path="/profile" element={<Profile />} />
-				<Route exact path="/register" element={<Register />} />
+    <BrowserRouter>
+      <Header />
+      <Routes>
+        <Route path='/' element={<Home />} />
+        <Route path='/home' element={<Home />} />
+        <Route exact path='/about' element={<About />} />
+        <Route exact path='/store' element={<Store />} />
+        <Route path='/store/:id' element={<Detail />} />
+        <Route exact path='/contact' element={<Contact />} />
+        <Route exact path='/register' element={<Register />} />
 
-				<Route element={<ProtectedRoutes user={user} />}>
-					<Route path="/admin/" element={<Main />} />
-					<Route path="/admin/products" element={<Products />} />
-					<Route path="/admin/products/create" element={<ProductForm />} />
-					<Route path="/admin/products/edit/:id" element={<EditProduct />} />
-					<Route path="/admin/users" element={<Users />} />
-					<Route path="/admin/users/create" element={<CreateUserForm />} />
-					<Route path="/admin/users/edit/:id" element={<CreateUserForm />} />
-				</Route>
+        <Route element={<ProtectedRoutes user={user} />}>
 
-				<Route path="*" element={<Error />} />
-			</Routes>
-		</BrowserRouter>
-	);
+          <Route path='/admin/' element={<Main />} />
+          <Route path='/admin/products' element={<Products />} />
+          <Route path='/admin/products/create' element={<ProductForm />} />
+          <Route path='/admin/products/edit/:id' element={<EditProduct />} />
+          <Route path='/admin/users' element={<Users />} />
+          <Route path='/admin/users/create' element={<CreateUserForm />} />
+          <Route path='/admin/users/edit/:id' element={<EditUser />} />
+        </Route>
+
+        <Route path='*' element={<Error />} />
+      </Routes>
+    </BrowserRouter>
+  )
 }
 
 export default App;
