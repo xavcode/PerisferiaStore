@@ -7,10 +7,8 @@ import { useState, useEffect, useContext} from "react";
 
 import axios from "axios";
 import { useCart } from "../../hooks/useCart.jsx";
-import { useState } from "react";
-import { useEffect } from "react";
 
-const Detail = (props) => {
+const Detail = () => {
   const { addToCart, removeFromCart, cart } = useCart();
   
   const [product, setProduct] = useState({}); 

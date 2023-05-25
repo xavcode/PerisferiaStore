@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
+import Swal from 'sweetalert2'
 
 import { FiltersContext } from "../../../context/FiltersContext";
 
@@ -24,14 +25,20 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       const response = await axios.get(`http://localhost:3001/store/${id}`)  //https://perisferiastore-production.up.railway.app/store${id}
+      const response2 = await axios.put('http://localhost:3001/product', response)
       setFormData(response.data)
-      // console.log(response.data)
     }
     fetchProduct()
   }, [])
 
-
-
+  const onSave = async (formData) => {
+    try {
+      const response = await axios.put('http://localhost:3001/product', formData);
+      console.log(response.data); 
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -41,7 +48,46 @@ const EditProduct = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSave(formData);
+   Swal.fire({
+    title: '¿Guardar cambios?',
+    text: 'Esta acción guardará los cambios realizados.',
+    icon: 'question',
+    showCancelButton: true,
+    confirmButtonText: 'Guardar',
+    cancelButtonText: 'Cancelar',
+    reverseButtons: true
+  }).then((result) => {
+    if (result.isConfirmed) {
+      onSave(formData);
+    } 
+  });
+};
+
+//   PRUEBA DE PI
+
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     Swal.fire({
+//       title: 'Are you sure?',
+//       text: 'Do you want to create the dog?',
+//       icon: 'question',
+//       showCancelButton: true,
+//       confirmButtonText: 'Yes',
+//       cancelButtonText: 'No',
+//       // cancelButtonColor: '#d33',
+//       reverseButtons: true
+//     }).then((result) => {
+//       if (result.isConfirmed) {
+//         onSave(formData);
+//   } else if (result.dismiss === Swal.DismissReason.cancel) {
+//     // Acción a realizar si el usuario hace clic en "No"
+//     Swal.fire('Cancelled', 'Dog creation was cancelled', 'error');
+//   }
+// });
+//   }
+   
+  const handleCancel = () => {
+    window.location.href = "/";
   };
 
   return (
@@ -61,7 +107,7 @@ const EditProduct = () => {
       </Link>
       <h2 className="text-3xl font-bold mb-4">Editar Producto</h2>
       <form
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
         className="grid grid-cols-2 gap-4 max-w-2xl"
       >
         <div>
@@ -176,12 +222,15 @@ const EditProduct = () => {
           />
         </div>
         <div className="col-span-2 flex justify-end">
-          <button type="submit" className="bg-white hover:bg-primary text-gray-700 font-bold py-2 px-4 rounded">
+          <button type="button" className="bg-white hover:bg-primary text-gray-700 font-bold py-2 px-4 rounded" 
+          onSubmit={handleSubmit}
+          > 
             Guardar
           </button>
           <button
             type="button"
             className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded"
+            onClick={handleCancel}
           >
             Cancelar
           </button>
@@ -190,5 +239,5 @@ const EditProduct = () => {
     </div>
   );
 };
-
+//          submit
 export default EditProduct;
