@@ -1,26 +1,10 @@
 const { Products } = require('../db');
+const { STORAGE_KEY, DB_URL } = process.env;
 const fs = require('fs')
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });// Directorio donde se guardarán los archivos subidos
 const { createClient } = require('@supabase/supabase-js');
-const supabase = createClient(
-    'https://kqrineeftgipvsisbads.supabase.co/storage/v1/object/public',
-    'CesarGabriel@291194');
-
-const subirImagen = async (req, res) => {
-    try {
-        const {image} = req.body;
-        const { data, error } = await supabase
-            .storage
-            .from('image')
-            .upload('image' , image)
-        if (error) {
-            throw new Error('Error al subir la imagen a Supabase');
-        } else {
-            res.status(200).json('exito')
-        }
-    } catch (error) {
-        res.status(500).send({error: error.message})
-    } 
-}  
+const supabase = createClient(`${DB_URL}`, `${STORAGE_KEY}`);
 
 const createProduct = (prod) => {
     try {
@@ -35,44 +19,47 @@ const createProduct = (prod) => {
 
 const add_NewProduct = async (req, res) => {
   try {
-    const {
+      const {
       name,
       price,
       status,
       description,
       rating,
       category,
-    } = req.body;
-    const imageFile = req.file;
-    const { data, error } = await supabase.storage
-      .from('image')
-      .upload('image', imageFile);
-
-    if (error) {
-      throw new Error('Error al subir la imagen a Supabase');
+    } = req.body
+    // Lee el contenido del archivo en un búfer
+    const fileData = await fs.promises.readFile(req.file.path.toString());
+      const { data, error } = await supabase.storage.from('image').upload(`${req.file.originalname}`, fileData);
+      
+      // Verifica si hubo un error al guardar el archivo
+      if (error) {
+          throw new Error(`Error al guardar el archivo en Supabase: ${error.message}`);
     }
-      const imageUrl = await response.data.publicURL;
-      console.log(imageUrl)
-
+    await fs.promises.unlink(req.file.path.toString()); //eliminamos el archivo del sistema de archivos
+    
+    let imageUrl = await supabase.storage.from('image').getPublicUrl(`${req.file.originalname}`);
+    
+    console.log(imageUrl.data.publicUrl)
+    let imagenDB = imageUrl.data.publicUrl.toString();
+    
     const new_product = await createProduct({
-      id,
       name,
       price,
-      img: imageUrl, // Utiliza la URL de la imagen en lugar del nombre del archivo
+      img: imagenDB, // Utiliza la URL de la imagen en lugar del nombre del archivo
       status,
       description,
       rating,
       category,
-    });
-
-    res.status(200).json({ success: true, product: new_product }).send(imageUrl);
-  } catch (error) {
-    res.status(500).json({ success: false, error: error.message });
-  }
+        });
+        delete req.file
+        res.json({ message: 'Archivo recibido y guardado en Supabase con éxito' });
+    } catch (error) {
+  console.error(error);
+  res.status(500).json({ error: 'Ocurrió un error en el servidor' });
+}
 }
 
 module.exports = {
   add_NewProduct,
-    createProduct,
-  subirImagen
+    createProduct
 }

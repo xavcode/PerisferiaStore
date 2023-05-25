@@ -16,7 +16,7 @@ const get_order = async (req, res) => {
             include: [
             {
                 model: Users,
-                attributes: ['name']
+                attributes: ['name', 'address']
             },
             {
                 model: Products,

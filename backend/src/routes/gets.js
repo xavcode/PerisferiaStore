@@ -9,7 +9,6 @@ const { getActiveUser } = require('../controllers/getActivesUser');
 
 const router_get = Router();
 
-router_get.get('/', createRecordProduct);
 router_get.get('/store', getAllProducts);
 router_get.get('/store/name', get_Products_By_Name);
 router_get.get('/store/:id', addProductById);
@@ -19,3 +18,4 @@ router_get.get('/orders', get_order);
 
 
 module.exports = router_get
+ 

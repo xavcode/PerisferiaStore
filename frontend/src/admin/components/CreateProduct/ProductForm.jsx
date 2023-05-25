@@ -1,202 +1,268 @@
-import React from 'react'
-import axios from 'axios'
-import { useContext } from 'react';
-import { useState } from 'react';
-import { startCase } from 'lodash';
+import React, { useState, useRef } from "react";
+import axios from "axios";
+import { useNavigate } from 'react-router-dom';
+import { DataContext } from "../../../context/DataContext";
+import { useContext } from "react";
 
-import { FiltersContext } from '../../../context/FiltersContext';
+const CreateProductForm = () => {
+  const [file, setFile] = useState(null);
+  const navigate = useNavigate()
+  const { setUpdateFlag } = useContext(DataContext);
 
-const ProductForm = () => {
-  const [loading, setLoading] = useState(false);
-  const [res, setRes] = useState({});
-
-  const { categories } = useContext(FiltersContext)
-
-  const [formData, setFormData] = useState({
+  const [newProduct, setNewProduct] = useState({
+    file: null,
+    previewImage: null,
     name: '',
-    description: '',
-    quantity: '',
+    price: '',
     status: 'disponible',
-    rating: 3,
-    price: 0,
-    img: '',
-    my_file: null
-  });
+    description: '',
+    rating: '',
+    category: ''
 
-  const handleChange = (e) => {
-    const tag = e.target.id
-    const val = (e.target.value)
-    setFormData({ ...formData, [tag]: val })
+  })
+
+  const fileInputRef = useRef();
+
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    setNewProduct({...newProduct, previewImage: URL.createObjectURL(selectedFile)})
   };
 
-  const handleSelectFile = (e) => {
-    const file = e.target.files[0]
-    setFormData({ ...formData, my_file: file });
+  const handleChange = (e) => {
+    e.preventDefault();
+    const valId = e.target.id
+    const val = e.target.value
+    setNewProduct({...newProduct, [valId]:val})
   }
 
   const handleSubmit = async (e) => {
-    e.preventDefault()
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('name', newProduct.name);
+    formData.append('price', newProduct.price);
+    formData.append('status', newProduct.status);
+    formData.append('description', newProduct.description);
+    formData.append('rating', newProduct.rating);
+    formData.append('category', newProduct.category);
+
     try {
-      setLoading(true);
-      const response = await axios.post("https://perisferiastore-production.up.railway.app/", formData)
-      setRes(response)
-      // setRes(res.data);
+      const response = await axios.post('http://localhost:3001/', formData);
+      // console.log(response.data)
+      alert('Producto creado con éxito')
+      setUpdateFlag(true) // actualizamos la peticion a la base de datos de DataContext
+      navigate('/admin/products')
+      
     } catch (error) {
-      alert(error.message);
-    } finally {
-      setLoading(false);
+      console.error(error);
+      
     }
-  }
+  };
+  
+  
 
   return (
-    <div className="flex flex-col items-center bg-gray-900 text-white py-3 px-10 mt-16  w-full  h-screen ">
-      <h2 className=" items-center justify-center text-3xl font-bold mb-4">Subir Producto</h2>
-      <div className='flex flex-col justify- items-center w-[400px] p-2'>
-        <div className='flex'>
-          <form onSubmit={handleSubmit} className=" w-full flex flex-col justify-between mx-auto m-2 p-2 " encType='enctype="multipart/form-data' >
-            <div className="mb-4 flex gap-2 items-center justify-between ">
-              <label htmlFor="name" className="text-lg font-semibold">
-                Producto:
-              </label>
-              <input
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                className="w-60 bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
-              />
-            </div>
+    <div className="min-h-screen flex items-center justify-center">
+      <div className="max-w-2xl w-4/5 px-6">
+        <h2 className="text-2xl font-bold mb-4">Crear Producto</h2>
+        <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
 
-            <div className="mb-4 flex gap-2 items-center justify-between">
-              <label htmlFor="description" className="text-lg font-semibold">
-                Descripción:
-              </label>
-              <textarea
-                id="description"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                className="w-60 bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
-                rows={2}
-              ></textarea>
-            </div>
 
-            <div className='flex mb-4 gap-2 justify-between items-center w-[400px]'>
-              <label htmlFor="status" className="text-lg font-semibold">
-                Categoria:
-              </label>
-              <select
-                id="category"
-                name="category"
-                value={formData.category}
-                onChange={handleChange}
-                className="w-60 bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
-              >
+          <div>
+            <label htmlFor="name" className="block font-semibold">
+              Nombre:
+            </label>
+            <input
+              type="text"
+              id="name"
+              value={newProduct.name}
+              onChange={handleChange}
+              className="mt-1 p-2 bg-gray-200 text-gray-800 rounded w-full"
+            />
+          </div>
 
-                <option value="any">Seleccionar</option>
-                {categories.map(cat => {
-                  return (
-                    <option key={cat} value={cat}>{startCase(cat)}</option>
-                  )
+          <div>
+            <label htmlFor="price" className="block font-semibold">
+              Precio:
+            </label>
+            <input
+              type="number"
+              id="price"
+              value={newProduct.price}
+              onChange={handleChange}
+              className="mt-1 p-2 bg-gray-200 text-gray-800 rounded w-full"
+            />
+          </div>
 
-                })}
-              </select>
+          <div>
+            <label htmlFor="status" className="block font-semibold">
+              Estado:
+            </label>
 
-              {/* <img src="" alt="img_product" className='w-[150px] h-[150px] bg-white rounded-lg text-black' /> */}
-            </div>
-            <div className="mb-4 flex gap-2 items-center justify-between">
-              <label htmlFor="quantity" className="text-lg font-semibold">
-                Cantidad:
-              </label>
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                value={formData.quantity}
-                onChange={handleChange}
-                className="w-60 bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
-              />
-            </div>
-            <div className="mb-4 flex gap-2 items-center justify-between">
-              <label htmlFor="status" className="text-lg font-semibold">
-                Estado:
-              </label>
-              <select
-                id="status"
-                name="status"
-                value={formData.status}
-                onChange={handleChange}
-                className="w-60 bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
-              >
-                <option value="available">Disponible</option>
-                <option value="unavailable">Sin Stock</option>
-              </select>
-            </div>
-            <div className="mb-4 flex gap-2 items-center justify-between">
-              <label htmlFor="rating" className="text-lg font-semibold">
-                Rating:
-              </label>
-              <input
-                type="number"
-                id="rating"
-                name="rating"
-                value={formData.rating}
-                onChange={handleChange}
-                className="w-60 bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
-              />
-            </div>
-            <div className="mb-4 flex gap-2 items-center justify-between">
-              <label htmlFor="price" className="text-lg font-semibold">
-                Price:
-              </label>
-              <input
-                type="number"
-                id="price"
-                name="price"
-                onChange={handleChange}
-                value={formData.price}
-                className="w-60 bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
-              />
-            </div>
-            <div className="mb-4 flex gap-2 items-center justify-between">
-              <label htmlFor="image" className="text-lg font-semibold">
-                Imagen:
-              </label>
+            <select className=" select mt-1 p-2 bg-gray-200 text-gray-800 rounded w-full" name="status" id="status" onChange={handleChange}>
+              <option value="disponible">Disponible</option>
+              <option value="sin stock">Sin stock</option>
+              <option value="eliminado">Eliminado</option>
+            </select>
+
+          </div>
+
+          <div>
+            <label htmlFor="description" className="block font-semibold">
+              Descripción:
+            </label>
+            <textarea
+              id="description"
+              value={newProduct.description}
+              onChange={handleChange}
+              className="mt-1 p-2 bg-gray-200 text-gray-800 rounded w-full"
+            ></textarea>
+          </div>
+
+          <div>
+            <label htmlFor="rating" className="block font-semibold">
+              Calificación:
+            </label>
+
+            <select name="rating" id="rating" value={newProduct.rating} onChange={handleChange}
+              className=" select mt-1 p-2 bg-gray-200 text-gray-800 rounded w-full ">
+              <option value={1}>1</option>
+              <option value={2}>2</option>
+              <option value={3}>3</option>
+              <option value={4}>4</option>
+              <option value={5}>5</option>
+            </select>
+          </div>
+
+          <div>
+            <label htmlFor="category" className="block font-semibold">
+              Categoría:
+            </label>
+            <input
+              type="text"
+              id="category"
+              value={newProduct.category}
+              onChange={handleChange}
+              className="mt-1 p-2 bg-gray-200 text-gray-800 rounded w-full"
+            />
+          </div>
+          <div>
+            <label htmlFor="file" className="font-semibold">
+              Archivo:
+            </label>
+            <div className="flex items-center">
               <input
                 type="file"
-                id="image"
-                name="image"
-                onChange={handleSelectFile}
-                className="w-60 bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white flex "
+                id="file"
+                ref={fileInputRef}
+                className="hidden"
+                onChange={handleFileChange}
               />
-            </div>
-
-            <div className='flex justify-between items-center'>
-              <img src="" alt="img_product" className='w-[150px] h-[150px] bg-white rounded-lg text-black' />
-              {/* <button
-                onClick={handleUpload}
-                className="bg-white hover:bg-primary text-gray-700 h-16 font-bold py-2 px-4 rounded w-40"
-                id='btn_create'
-              >
-                Añadir imagen
-              </button> */}
-
               <button
-                type='submit'
-                // onSubmit={handleSubmit}
-                className="bg-white hover:bg-primary text-gray-700 h-16 font-bold py-2  mt-4 rounded w-40 items-center flex  justify-center"
-                id='btn_create'
+                type="button"
+                onClick={() => fileInputRef.current.click()}
+                className="px-4 py-2 text-sm font-medium bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
               >
-                Crear Producto
+                Seleccionar Archivo
               </button>
+              {newProduct.previewImage && (
+                <img
+                  src={newProduct.previewImage}
+                  alt="Preview"
+                  className="ml-4 h-20 w-20 object-cover rounded"
+                />
+              )}
             </div>
+          </div>
 
-          </form>
-        </div>
+          <button
+            type="submit"
+            className="col-span-1  btn btn-outline btn-success"
+          >
+            Enviar
+          </button>
+        </form>
       </div>
     </div>
   );
 };
 
-export default ProductForm;
+export default CreateProductForm;
+
+
+
+
+// import React, { useState } from 'react';
+// import './formcss.css'
+// import axios from 'axios';
+
+// const CreateProductForm = () => {
+//   const [file, setFile] = useState(null);
+//   const [name, setName] = useState('');
+//   const [price, setPrice] = useState('');
+//   const [status, setStatus] = useState('');
+//   const [description, setDescription] = useState('');
+//   const [rating, setRating] = useState('');
+//   const [category, setCategory] = useState('');
+
+//   const handleFileChange = (e) => {
+//     setFile(e.target.files[0]);
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+
+//     const formData = new FormData();
+//     formData.append('file', file);
+//     formData.append('name', name);
+//     formData.append('price', price);
+//     formData.append('status', status);
+//     formData.append('description', description);
+//     formData.append('rating', rating);
+//     formData.append('category', category);
+
+//     try {
+//       await axios.post('http://localhost:3001/', formData);
+//       // El formulario se envió exitosamente
+//       // Realiza cualquier acción adicional que necesites aquí
+//     } catch (error) {
+//       console.error(error);
+//       // Handle error: Mostrar mensaje de error o tomar otra acción
+//     }
+//   };
+
+//   return (
+//     <div className='formstyle'>
+// //      <div className='formDos'>
+//     <form onSubmit={handleSubmit}>
+//       <label htmlFor="file">Archivo:</label>
+//       <input type="file" id="file" onChange={handleFileChange} />
+
+//       <label htmlFor="name">Nombre:</label>
+//       <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
+
+//       <label htmlFor="price">Precio:</label>
+//       <input type="text" id="price" value={price} onChange={(e) => setPrice(e.target.value)} />
+
+//       <label htmlFor="status">Estado:</label>
+//       <input type="text" id="status" value={status} onChange={(e) => setStatus(e.target.value)} />
+
+//       <label htmlFor="description">Descripción:</label>
+//       <textarea id="description" value={description} onChange={(e) => setDescription(e.target.value)} />
+
+//       <label htmlFor="rating">Calificación:</label>
+//       <input type="text" id="rating" value={rating} onChange={(e) => setRating(e.target.value)} />
+
+//       <label htmlFor="category">Categoría:</label>
+//           <input type="text" id="category" value={category} onChange={(e) => setCategory(e.target.value)} />
+
+//       <button type="submit">Enviar</button>
+//         </form>
+//       </div>
+//       </div>
+//   );
+// };
+
+// export default CreateProductForm;

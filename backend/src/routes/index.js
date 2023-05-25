@@ -7,10 +7,9 @@ const router_delete = require("./delete");
 const router_put = require("./puts");
 const router = Router();
 
-
 router.use('/', (req, res, next) => {
     switch (req.method) {
-        case 'GET':
+        case 'GET': 
             return router_get(req, res, next);
         case 'POST':
             return router_Post(req, res, next);
