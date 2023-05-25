@@ -147,19 +147,10 @@ const Filters = () => {
                 id="sort"
                 onChange={handleSelectOrder}
               >
-                <option value="from_lower">De menor a mayor</option>
-                <option value="from_greater">De mayor a menor</option>
+                <option value="from_lower">De Menor a Mayor</option>
+                <option value="from_greater">De Mayor a Menor</option>
               </select>
 
-              <select
-                className="bg-inputs"
-                name="clasificacion"
-                id="clasificacion"
-                // onChange={filteredProductss}
-              >
-                <option value="mas">Mayor precio</option>
-                <option value="menos">Menor precio</option>
-              </select>
             </div>
           </div>
         </div>
