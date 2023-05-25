@@ -10,7 +10,7 @@ const get_order = async (req, res) => {
             //     attributes: { exclude: ['orderId', 'createdAt', 'updatedAt'] } // Excluye los atributos orderId, createdAt y updatedAt de order_product
             // },
             // },
-             attributes: {
+            attributes: {
                 exclude: ['createdAt', 'updatedAt'] // Excluye las fechas createdAt y updatedAt
             },
             include: [
