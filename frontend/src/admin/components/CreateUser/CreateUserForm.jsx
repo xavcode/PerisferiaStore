@@ -1,38 +1,43 @@
 import React from 'react'
 import axios from 'axios';
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 
 export function CreateUserForm() {
+  const fileInputRef = useRef();
+  const [file, setFile] = useState(null);
+
   const [formData, setFormData] = useState({
     name: '',
     last_name: '',
     username: '',
     address: '',
     password: '',
+    previewImage: '',
     mail: '',
     img: '',
     phone: '',
-    isAdmin: false,
+    isAdmin: 'unchecked',
   });
 
+  const handleFileChange = (e) => {
+    const selectedFile = e.target.files[0];
+    setFile(selectedFile);
+    setFormData({ ...formData, previewImage: URL.createObjectURL(selectedFile) })
+  };
+  
   const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    const fieldValue = type === 'checkbox' ? checked : value;
-
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: fieldValue,
-    }));
+    
+    const valId = e.target.id
+    const val = e.target.value
+    setFormData({ ...formData, [valId]: val })
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('Datos del formulario:', formData);
     try {
-      const response = await axios.post('http://localhost:3001/user', formData) // https://perisferiastore-production.up.railway.app/user
+      await axios.post('http://localhost:3001/user', formData) // https://perisferiastore-production.up.railway.app/user
     } catch (error) {
-      console.log(error)
-      throw new Error (error)
+      throw new Error(error)
     }
   };
 
@@ -127,20 +132,7 @@ export function CreateUserForm() {
                 required
               />
             </div>
-            <div>
-              <label htmlFor="img" className="text-lg">
-                Imagen
-              </label>
-              <input
-                type="text"
-                id="img"
-                name="img"
-                value={formData.img}
-                onChange={handleChange}
-                className="mt-2 shadow appearance-none border rounded w-full py-3 px-4 text-lg leading-tight focus:outline-none focus:shadow-outline bg-white text-black"
-                required
-              />
-            </div>
+          
             <div>
               <label htmlFor="phone" className="text-lg">
                 Teléfono
@@ -155,13 +147,46 @@ export function CreateUserForm() {
                 required
               />
             </div>
+
+            <div className='flex flex-col items-start justify-between'>
+              <label htmlFor="file" className="font-semibold">
+                Archivo:
+              </label>
+              <div className="flex items-center">
+                <input
+                  type="file"
+                  id="file"
+                  ref={fileInputRef}
+                  className="hidden"
+                  onChange={handleFileChange}
+                />
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current.click()}
+                  className="px-4 py-2 text-sm font-medium bg-gray-200 text-gray-800 rounded hover:bg-gray-300"
+                >
+                  Seleccionar Archivo
+                </button>
+                {formData.previewImage && (
+                  <img
+                    src={formData.previewImage}
+                    alt="Preview"
+                    className="ml-4 h-20 w-20 object-cover rounded"
+                  />
+                )}
+              </div>
+            </div>
+
+
+
             <div className="col-span-2">
               <label htmlFor="isAdmin" className="flex items-center">
                 <input
                   type="checkbox"
                   id="isAdmin"
                   name="isAdmin"
-                  checked={formData.isAdmin}
+                  // checked={formData.isAdmin}
+                  value={formData.isAdmin}
                   onChange={handleChange}
                   className="mr-2 leading-tight"
                 />

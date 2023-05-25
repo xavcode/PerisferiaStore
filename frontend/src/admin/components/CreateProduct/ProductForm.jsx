@@ -34,7 +34,6 @@ const CreateProductForm = () => {
   };
 
   const handleChange = (e) => {
-    e.preventDefault();
     const valId = e.target.id
     const val = e.target.value
     setNewProduct({ ...newProduct, [valId]: val })
