@@ -1,7 +1,6 @@
 import React, { useReducer } from 'react'
 import { useEffect } from 'react';
 import axios from 'axios'
-
 import { createContext, useState } from "react";
 import { lowerCase } from 'lodash';
 
@@ -9,6 +8,7 @@ export const DataContext = createContext()
 
 export const DataProvider = ({ children }) => {
   const [products, setProducts] = useState([])
+  const [updateFlag, setUpdateFlag] = useState(false); // agregar el cambio de estado para detonar el useEffect
 
   useEffect(() => {
     const fetchData = async () =>{      
@@ -31,13 +31,14 @@ export const DataProvider = ({ children }) => {
 
   fetchData() 
     
-  }, [])
+  }, [updateFlag])
 
 
   return (
     <DataContext.Provider value={{
       products,
       setProducts,
+      setUpdateFlag
 
     }} >
       {children}

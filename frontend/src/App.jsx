@@ -1,16 +1,15 @@
-import React from 'react'
-import { useContext } from 'react';
+import React from "react";
+import { useContext } from "react";
 
 import { Routes, Route } from "react-router-dom";
-import Home from './pages/Home/Home';
-import { BrowserRouter } from 'react-router-dom';
-import Header from './components/Header/Header';
-import Store from './pages/Store/Store';
-import About from './pages/About/About';
-import Contact from './pages/Contact/Contact';
-import Error from './pages/Error/Error';
-import Detail from './components/detail/Detail';
-// import Login from './pages/Login/Login';
+import Home from "./pages/Home/Home";
+import { BrowserRouter } from "react-router-dom";
+import Header from "./components/Header/Header";
+import Store from "./pages/Store/Store";
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
+import Error from "./pages/Error/Error";
+import Detail from "./components/detail/Detail";
 import Register from "./pages/Register/Register";
 import ProductForm from './admin/components/CreateProduct/ProductForm';
 import EditProduct from './admin/pages/Products/EditProduct';
@@ -21,16 +20,15 @@ import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { UserContext } from './context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
+import EditUser from './admin/pages/Users/EditUser';
 
 function App() {
-  const { user, isAuthenticated } = useAuth0()
+	const { user, isAuthenticated } = useAuth0();
 
-
-  return (
+	return (
     <BrowserRouter>
       <Header />
       <Routes>
-
         <Route path='/' element={<Home />} />
         <Route path='/home' element={<Home />} />
         <Route exact path='/about' element={<About />} />
@@ -47,7 +45,7 @@ function App() {
           <Route path='/admin/products/edit/:id' element={<EditProduct />} />
           <Route path='/admin/users' element={<Users />} />
           <Route path='/admin/users/create' element={<CreateUserForm />} />
-          <Route path='/admin/users/edit/:id' element={<CreateUserForm />} />
+          <Route path='/admin/users/edit/:id' element={<EditUser />} />
         </Route>
 
         <Route path='*' element={<Error />} />
@@ -56,4 +54,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

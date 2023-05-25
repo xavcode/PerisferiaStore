@@ -34,12 +34,15 @@ const add_NewProduct = async (req, res) => {
       // Verifica si hubo un error al guardar el archivo
       if (error) {
           throw new Error(`Error al guardar el archivo en Supabase: ${error.message}`);
-        }
-        await fs.promises.unlink(req.file.path.toString());
-        let imageUrl = await supabase.storage.from('image').getPublicUrl(`${req.file.originalname}`);
-        console.log(imageUrl.data.publicUrl)
-        let imagenDB = imageUrl.data.publicUrl.toString();
-        const new_product = await createProduct({
+    }
+    await fs.promises.unlink(req.file.path.toString()); //eliminamos el archivo del sistema de archivos
+    
+    let imageUrl = await supabase.storage.from('image').getPublicUrl(`${req.file.originalname}`);
+    
+    console.log(imageUrl.data.publicUrl)
+    let imagenDB = imageUrl.data.publicUrl.toString();
+    
+    const new_product = await createProduct({
       name,
       price,
       img: imagenDB, // Utiliza la URL de la imagen en lugar del nombre del archivo

@@ -1,9 +1,9 @@
 import React from 'react'
-
 import { Link, useParams } from "react-router-dom";
 import { startCase } from "lodash";
+import { useState, useEffect } from "react";
 import { AddToCartIcon, RemoveFromCartIcon } from "../Icons.jsx";
-import { useState, useEffect, useContext} from "react";
+
 
 import axios from "axios";
 import { useCart } from "../../hooks/useCart.jsx";
