@@ -1,4 +1,4 @@
-const { Users } = require('../db');
+const { Users } = require('../../db');
 
 const getActiveUser = async (req, res) => {
     try {

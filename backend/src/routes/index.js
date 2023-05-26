@@ -1,6 +1,4 @@
 const { Router } = require("express");
-const { createProduct } = require("../controllers/createProd");
-const {createRecordProduct, getAllProducts } = require("../controllers/productControllers");
 const router_Post = require("./posts");
 const router_get = require("./gets");
 const router_delete = require("./delete");

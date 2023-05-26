@@ -10,7 +10,7 @@ const get_user_carrito = async (req, res) => {
                     include: [
                         {
                             model: Products,
-                            attributes: ['id' ,'name'] // Obtener solo el nombre del producto
+                            attributes: ['id','name','price'] // Obtener solo el nombre del producto
                         }
                     ]
                 }
@@ -20,7 +20,7 @@ const get_user_carrito = async (req, res) => {
         const result = user.map(user => {
             const carrito = {
                 id: user.Carrito.id,
-                products: user.Carrito.Products.map(product => ({id: product.id, name: product.name }))
+                products: user.Carrito.Products.map(product => ({id: product.id, name: product.name, price: product.price }))
             };
             return {
                 name: user.name,
