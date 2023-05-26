@@ -1,30 +1,25 @@
 const { Users } = require('../../db');
 
-const edit_user = async (userId, field, newValue) => {
+const edit_user = async (userId, campos) => {
     try {
        // Actualizar el campo específico del producto en la base de datos
-    const updatedProduct = await Users.update(
-        { [field]: newValue },
-        { where: { id: userId } }
-    );
-
-    if (updatedProduct > 0) {
-      return Users.findByPk(userId);
-    } else {
-      console.log('El producto no fue encontrado.', userId);
-    }
+      const resulUser = await Users.findByPk(userId)
+      const result = await resulUser.update(campos);
+      return result;
   } catch (error) {
-    console.error('Error al actualizar el campo del producto:', error);
+      console.error('Error al actualizar el campo del usuario:', error);
+      throw error
   }
 };
 
 const initialEdit_user = async (req, res) => {
     try {
-        const { userId, field, newValue } = req.body;
-        const user_Edit = await edit_user(userId, field, newValue);
+      const { userId, campos } = req.body;
+      console.log(campos)
+        const user_Edit = await edit_user(userId, campos);
         res.status(200).json(user_Edit)
     } catch (error) {
-        res.satus(500).send({ error: error.message });
+        res.status(500).send({ error: error.message });
     }
 };
 
