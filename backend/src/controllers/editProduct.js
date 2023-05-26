@@ -20,7 +20,7 @@ const edit_product = async (productId, field, newValue) => {
 
 const initialEdit = async (req, res) => {
     try {
-        const { productId, field, newValue } = req.body;
+        const { productId,  field, newValue } = req.body;
         const productEdit = await edit_product(productId, field, newValue);
         res.status(200).json(productEdit)
     } catch (error) {
