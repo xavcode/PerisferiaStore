@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const { createProduct, add_NewProduct } = require('../controllers/createProd');
-const { create_record_user } = require('../controllers/createUser');
-const { addNewFavorite } = require('../controllers/addFavorites');
-const { creation_relation } = require('../controllers/addOrders');
+const { createProduct, add_NewProduct } = require('../controllers/Product/createProd');
+const { create_record_user } = require('../controllers/Users/createUser');
+const { addNewFavorite } = require('../controllers/Favorites/addFavorites');
+const { creation_relation } = require('../controllers/Orders/addOrders');
 const fs = require('fs')
 const router_Post = Router();
 const multer = require('multer');
@@ -11,12 +11,12 @@ const upload = multer({ dest: 'uploads/' });// Directorio donde se guardarán lo
 
 // Ruta POST para recibir el archivo adjunto
 router_Post.post('/', upload.single('file'), add_NewProduct);
-
-
-router_Post.post('/user', create_record_user);
+router_Post.post('/user', upload.single('file'), create_record_user);
 router_Post.post('/user/favorites', addNewFavorite);
 router_Post.post('/store', addProductCarrito)
 router_Post.post('/order', creation_relation);
+
+
 // router_Post.post('/login', authController);
 
 

@@ -1,4 +1,4 @@
-const { Favorites } = require('../db');
+const { Favorites } = require('../../db');
 
 const delete_favorite = async (req, res) => {
     try {
