@@ -27,7 +27,3 @@ const initialEdit_user = async (req, res) => {
         res.satus(500).send({ error: error.message });
     }
 };
-
-module.exports = {
-    initialEdit_user
-}

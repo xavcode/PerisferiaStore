@@ -1,6 +1,6 @@
 const { Router } = require('express');
-const { delete_favorite } = require('../controllers/deleteFavorites');
-const { delete_Product } = require('../controllers/deleteProducts');
+const { delete_favorite } = require('../controllers/Favorites/deleteFavorites');
+const { delete_Product } = require('../controllers/Product/deleteProducts');
 const { delete_Product_onCarrito } = require('../controllers/Carrito/deleteProCar');
 const router_delete = Router();
 

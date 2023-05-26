@@ -1,5 +1,5 @@
-const { Products } = require('../db');
-const datab = require('../datab.json')
+const { Products } = require('../../db');
+const datab = require('../../datab.json')
 
 const getProduct_api =  () => {
     try {

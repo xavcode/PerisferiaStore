@@ -1,5 +1,5 @@
 const { Op } = require('sequelize');
-const { Products } = require('../db');
+const { Products } = require('../../db');
 
 const get_Products_By_Name = async (req, res) => {
         try {
