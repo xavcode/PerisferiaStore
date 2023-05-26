@@ -1,11 +1,10 @@
 const { Router } = require('express');
-const { getAllProducts, createRecordProduct } = require('../controllers/productControllers');
-const { addProductById } = require('../controllers/addProductById');
-const { get_Products_By_Name } = require('../controllers/addProductByName');
-const { createProduct } = require('../controllers/createProd');
-const { get_user } = require('../controllers/getUser');
-const { get_order } = require('../controllers/getOrder');
-const { getActiveUser } = require('../controllers/getActivesUser');
+const { getAllProducts, createRecordProduct } = require('../controllers/Product/productControllers');
+const { addProductById } = require('../controllers/Product/addProductById');
+const { get_Products_By_Name } = require('../controllers/Product/addProductByName');
+const { get_user } = require('../controllers/Users/getUser');
+const { get_order } = require('../controllers/Orders/getOrder');
+const { getActiveUser } = require('../controllers/Users/getActivesUser');
 const { get_user_carrito } = require('../controllers/Carrito/getProductOnCarrito');
 
 const router_get = Router();
