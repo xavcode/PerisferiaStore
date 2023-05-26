@@ -10,7 +10,7 @@ const { get_user_carrito } = require('../controllers/Carrito/getProductOnCarrito
 
 const router_get = Router();
 
-router_get.get('/', createRecordProduct);
+router_get.get('/', createRecordProduct)
 router_get.get('/store', getAllProducts);
 router_get.get('/store/name', get_Products_By_Name);
 router_get.get('/store/:id', addProductById);

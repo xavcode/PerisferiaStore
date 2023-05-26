@@ -6,7 +6,7 @@ import { RxAvatar } from "react-icons/rx";
 // import { MdDarkMode } from 'react-icons/md'
 import avatar from '../../assets/images/profile-default-image.png'
 import Cart from '../Cart/Cart'
-import logo from '../../../public/logo-dark.jpeg'
+import logo from '../../assets/images/logo-dark.jpeg'
 import { useAuth0 } from '@auth0/auth0-react';
 
 import Search from '../Search/Search';

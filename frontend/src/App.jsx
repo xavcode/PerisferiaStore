@@ -22,6 +22,7 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { UserContext } from './context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
 import EditUser from './admin/pages/Users/EditUser';
+import Reviews from './components/Reviews/Reviews';
 
 function App() {
   const { user, isAuthenticated } = useAuth0()
@@ -38,6 +39,8 @@ function App() {
         <Route path='/store/:id' element={<Detail />} />
         <Route exact path='/contact' element={<Contact />} />
         <Route exact path='/register' element={<Register />} />
+        <Route exact path='/reviews' element={<Reviews />} />
+
 
         <Route element={<ProtectedRoutes user={user} />}>
 
