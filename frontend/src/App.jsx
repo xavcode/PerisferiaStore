@@ -24,9 +24,9 @@ import EditUser from './admin/pages/Users/EditUser';
 import Reviews from './components/Reviews/Reviews';
 
 function App() {
-	const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
-	return (
+  return (
     <BrowserRouter>
       <Header />
       <Routes>
@@ -38,11 +38,11 @@ function App() {
         <Route exact path='/contact' element={<Contact />} />
         <Route exact path='/register' element={<Register />} />
         <Route exact path='/reviews' element={<Reviews />} />
+        <Route path='/admin/' element={<Main />} />
 
 
         <Route element={<ProtectedRoutes user={user} />}>
 
-          <Route path='/admin/' element={<Main />} />
           <Route path='/admin/products' element={<Products />} />
           <Route path='/admin/products/create' element={<ProductForm />} />
           <Route path='/admin/products/edit/:id' element={<EditProduct />} />
