@@ -63,29 +63,6 @@ const EditProduct = () => {
   });
 };
 
-//   PRUEBA DE PI
-
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     Swal.fire({
-//       title: 'Are you sure?',
-//       text: 'Do you want to create the dog?',
-//       icon: 'question',
-//       showCancelButton: true,
-//       confirmButtonText: 'Yes',
-//       cancelButtonText: 'No',
-//       // cancelButtonColor: '#d33',
-//       reverseButtons: true
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//         onSave(formData);
-//   } else if (result.dismiss === Swal.DismissReason.cancel) {
-//     // Acción a realizar si el usuario hace clic en "No"
-//     Swal.fire('Cancelled', 'Dog creation was cancelled', 'error');
-//   }
-// });
-//   }
-   
   const handleCancel = () => {
     window.location.href = "/";
   };

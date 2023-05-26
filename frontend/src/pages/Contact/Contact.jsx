@@ -38,7 +38,7 @@ const Contact = () => {
       confirmButtonText: 'Sí',
       cancelButtonText: 'No',
     }).then((result) => {
-      if (result.isConfirmed) {
+      if (result.isConfirmed) { 
         emailjs
           .sendForm(
             "service_6ar7zht",
