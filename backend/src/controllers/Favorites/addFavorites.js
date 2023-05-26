@@ -1,4 +1,4 @@
-const { Products, Users } = require('../db');
+const { Products, Users } = require('../../db');
 
 const addNewFavorite = async (req, res) => {
     try {
