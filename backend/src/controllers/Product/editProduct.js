@@ -1,18 +1,13 @@
 const { Products } = require('../../db');
 
-const edit_product = async (productId, field, newValue) => {
-    try {
-       // Actualizar el campo específico del producto en la base de datos
-    const updatedProduct = await Products.update(
-        { [field]: newValue },
-        { where: { id: productId } }
-    );
-
-    if (updatedProduct > 0) {
-      return Products.findByPk(productId);
-    } else {
-      console.log('El producto no fue encontrado.', productId);
-    }
+const edit_product = async (productId, campos) => {
+  try {
+    // buscamos el producto
+    const product = await Products.findByPk(productId)
+    
+    // Actualizar el campo específico del producto en la base de datos
+    const updatedProduct = await product.update(campos);
+    return updatedProduct;
   } catch (error) {
     console.error('Error al actualizar el campo del producto:', error);
   }
@@ -22,12 +17,11 @@ const initialEdit = async (req, res) => {
     try {
       const {
         productId,
-        field,
-        newValue } = req.body;
-        const productEdit = await edit_product(productId, field, newValue);
+        campos } = req.body;
+        const productEdit = await edit_product(productId, campos);
         res.status(200).json(productEdit)
     } catch (error) {
-        res.satus(500).send({ error: error.message });
+        res.status(500).send({ error: error.message });
     }
 };
 
