@@ -11,8 +11,7 @@ const UsersTable = () => {
 
     const fetchUsers = async () => {
       try {
-        const response = await axios('https://perisferiastore-production.up.railway.app/users');
-        console.log(response.data)
+        const response = await axios('http://localhost:3001/users'); //https://perisferiastore-production.up.railway.app/users
         setUsers(response.data);
       } catch (error) {
         console.error('Error al obtener los usuarios:', error);
@@ -62,7 +61,7 @@ const UsersTable = () => {
                   <th>{idx + 1}</th>
                   <td className='w-[150px] h-[150px] flex justify-center items-center '><img className='rounded-full w-20 h-20' src={avatar} alt="" /></td>
                   <td>{user.name}</td>
-                  <td>{user.lastName}</td>
+                  <td>{user.lastname}</td>
                   <td>{user.username}</td>
                   <td>{user.email}</td>
                   <td className='w-[15%]'><Link to={`/admin/users/edit/${user.id}`}><button className='btn btn-outline btn-warning' onClick={() => handleEdit(user.id)}>Editar</button></Link></td>
