@@ -1,4 +1,4 @@
-const { Products } = require('../db');
+const { Products } = require('../../db');
 const { STORAGE_KEY, DB_URL } = process.env;
 const fs = require('fs')
 const multer = require('multer');
