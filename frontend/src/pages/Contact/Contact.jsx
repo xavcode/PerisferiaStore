@@ -1,9 +1,7 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { useState } from "react";
-import logoLight from '../../../public/logo-light.jpeg'
-import Swal from 'sweetalert2';
-
+import logoLight from '../../assets/images/logo-light.jpeg'
 
 const Contact = () => { 
   const form = useRef();
