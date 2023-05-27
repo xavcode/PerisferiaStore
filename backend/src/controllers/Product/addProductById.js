@@ -1,9 +1,14 @@
-const { Products } = require('../db');
+const { Products, Review } = require('../../db');
 
 const addProductById = async (req, res) => {
     try {
         const { id } = req.params;
-        const product = await Products.findByPk(id);
+        const product = await Products.findByPk(id, {
+            include: {
+                model: Review,
+                attributes: ['userId', 'comment']
+            }
+        });
         if (!product) {
         return res.status(404).json({ message: 'Product not found' });
         }

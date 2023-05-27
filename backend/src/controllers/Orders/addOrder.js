@@ -1,4 +1,4 @@
-const { Order, Products } = require('../db');
+const { Order, Products } = require('../../db');
 
 const new_order = (order) => {
     const orderCreate =  Order.create(order);

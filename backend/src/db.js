@@ -48,13 +48,13 @@ Order.belongsToMany(Products, { through: 'order_product' });
 Products.belongsToMany(Users, { through: 'Favorites' });
 Users.belongsToMany(Products, { through: 'Favorites' });
 
-// establecemos la creacion del carrito varios a varios
+
 Users.hasOne(Carrito);
 Carrito.hasMany(Products);
 
-// relacion de review con productos y users
-Products.belongsToMany(Review, { through: 'Review_Product' });
-Users.belongsToMany(Review, { through: 'Review_Users' })
+Products.hasMany(Review)
+Users.hasMany(Review)
+
 
 
 // Users.hasMany(Reviews)
