@@ -161,9 +161,9 @@ const EditProduct = () => {
           <button className="bg-white hover:bg-primary text-gray-700 font-bold py-2 px-4 rounded">
             Guardar
           </button>
-          <button type="button" className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded" >
+          <Link to="/admin/products" type="button" className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded" >
             Cancelar
-          </button>
+          </Link>
         </div>
       </form>
     </div>

@@ -10,7 +10,6 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Error from "./pages/Error/Error";
 import Detail from "./components/detail/Detail";
-import Register from "./pages/Register/Register";
 import ProductForm from './admin/components/CreateProduct/ProductForm';
 import EditProduct from './admin/pages/Products/EditProduct';
 import Products from './admin/pages/Products/Products';
@@ -36,7 +35,6 @@ function App() {
         <Route exact path='/store' element={<Store />} />
         <Route path='/store/:id' element={<Detail />} />
         <Route exact path='/contact' element={<Contact />} />
-        <Route exact path='/register' element={<Register />} />
         <Route exact path='/reviews' element={<Reviews />} />
 
 
