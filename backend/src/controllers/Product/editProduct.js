@@ -14,10 +14,9 @@ const edit_product = async (productId, campos) => {
 };
 
 const initialEdit = async (req, res) => {
-    try {
-      const {
-        productId,
-        campos } = req.body;
+  try {
+    const { productId } = req.params;
+      const { campos } = req.body;
         const productEdit = await edit_product(productId, campos);
         res.status(200).json(productEdit)
     } catch (error) {
