@@ -5,7 +5,7 @@ import { RxAvatar } from "react-icons/rx";
 import Search from "../Search/Search";
 import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
 import Cart from "../Cart/Cart";
-// import logo from "../../../public/logo-dark.jpeg";
+import logo from "../../assets/images/logo-dark.jpeg"
 
 const Header = () => {
 	return (
@@ -13,7 +13,7 @@ const Header = () => {
 			<Link to="/">
 				<img
 					className="h-[60px] fixed top-0 left-1 opacity-90 rounded-full"
-					// src={logo}
+					src={logo}
 					alt="logo"
 				/>
 			</Link>

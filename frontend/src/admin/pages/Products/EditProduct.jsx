@@ -224,7 +224,7 @@ const EditProduct = () => {
             onClick={handleCancel}
           >
             Cancelar
-          </button>
+          </ button>
         </div>
       </form>
     </div>
