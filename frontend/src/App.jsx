@@ -15,6 +15,7 @@ import EditProduct from './admin/pages/Products/EditProduct';
 import Products from './admin/pages/Products/Products';
 import Main from './admin/components/Main/Main';
 import Users from './admin/pages/Users/Users';
+import Profile from "./components/Profile/Profile";
 import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { UserContext } from './context/userContext';
@@ -36,6 +37,7 @@ function App() {
         <Route path='/store/:id' element={<Detail />} />
         <Route exact path='/contact' element={<Contact />} />
         <Route exact path='/reviews' element={<Reviews />} />
+        <Route exact path='/profile' element={<Profile />} />
 
 
         <Route element={<ProtectedRoutes user={user} />}>
