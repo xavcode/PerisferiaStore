@@ -25,7 +25,7 @@ function CartItem({
 
 	const handleIncreaseQuantity = () => {
 		addToCart();
-	};
+	}
 
 	return (
 		<div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500">
@@ -79,8 +79,7 @@ function CartItem({
 
 export default function Cart() {
 	const cartCheckboxId = useId();
-	const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } =
-		useCart();
+	const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } = useCart();
 	const [isCartOpen, setCartOpen] = useState(false);
 
 	const handleCartToggle = () => {
@@ -95,6 +94,16 @@ export default function Cart() {
 		(total, product) => total + product.price * product.quantity,
 		0
 	);
+ 
+	const handleClick = async (event) => {
+		event.preventDefault();
+		try {
+		  const response = await axios.post(`http://localhost:3001/payment`);
+		  console.log("Pago correcta", response);
+		} catch (error) {
+		  console.error("Pago no realizado", error);
+		}
+	  };
 
 	return (
 		<div>
@@ -152,7 +161,7 @@ export default function Cart() {
 						{cart.length > 0 && (
 							<>
 								<p className="text-right font-medium text-gray-700">
-									Total: {totalPrice}
+									Total: {totalPrice} <button className="bg-red-500">Comprar</button>
 								</p>
 								{/* Resto del contenido */}
 							</>
