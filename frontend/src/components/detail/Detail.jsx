@@ -9,7 +9,7 @@ import axios from "axios";
 import { useCart } from "../../hooks/useCart.jsx";
 import Reviews from '../Reviews/Reviews.jsx';
 
-const Detail = (props) => {
+const Detail = () => {
   const { addToCart, removeFromCart, cart } = useCart();
 
   const [product, setProduct] = useState({});

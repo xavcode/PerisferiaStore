@@ -5,7 +5,7 @@ import { RxAvatar } from "react-icons/rx";
 import Search from "../Search/Search";
 import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
 import Cart from "../Cart/Cart";
-import logo from "../../assets/images/logo-dark.jpeg";
+import logo from "../../assets/images/logo-dark.jpeg"
 
 const Header = () => {
 	return (
