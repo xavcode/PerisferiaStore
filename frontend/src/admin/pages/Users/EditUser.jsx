@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import axios from 'axios';
 
 const EditUser = () => {
@@ -9,19 +10,15 @@ const EditUser = () => {
     address: '',
     password: '',
     mail: '',
-    img: null,
     phone: '',
-    isAdmin: false,
   });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const campos = { ...formData };
 
     try {
-      const response = await axios.put(`http://localhost:3001/admin/users/edit/${user.id}`, {
-        userId: userId,
-        campos: formData,
-      });
+      const response = await axios.put(`http://localhost:3001/admin/users/${user.id}`, campos);
 
       console.log(response.data);
     } catch (error) {

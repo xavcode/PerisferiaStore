@@ -16,7 +16,7 @@ import Products from './admin/pages/Products/Products';
 import Main from './admin/components/Main/Main';
 import Users from './admin/pages/Users/Users';
 import Profile from "./components/Profile/Profile";
-import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
+import  CreateUserForm  from './admin/components/CreateUser/CreateUserForm';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { UserContext } from './context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
