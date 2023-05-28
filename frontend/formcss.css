@@ -1,0 +1,13 @@
+.divClass {
+    border: 5px solid red;
+    height: 100vh;
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.divDos {
+    display: block;
+    justify-content: center;
+}

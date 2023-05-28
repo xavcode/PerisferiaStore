@@ -1,20 +1,20 @@
 const { Router } = require("express");
-const { createProduct } = require("../controllers/createProd");
-const {createRecordProduct, getAllProducts } = require("../controllers/productControllers");
 const router_Post = require("./posts");
 const router_get = require("./gets");
 const router_delete = require("./delete");
+const router_put = require("./puts");
 const router = Router();
-
 
 router.use('/', (req, res, next) => {
     switch (req.method) {
-        case 'GET':
+        case 'GET': 
             return router_get(req, res, next);
         case 'POST':
             return router_Post(req, res, next);
         case 'DELETE':
             return router_delete(req, res, next);
+        case 'PUT':
+            return router_put(req, res, next);
         default: 
             return res.status(405).send('Metodo no permitido')
 }

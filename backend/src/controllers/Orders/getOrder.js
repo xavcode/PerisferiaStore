@@ -1,4 +1,4 @@
-const { Order, Products, Users } = require('../db');
+const { Order, Products, Users } = require('../../db');
 
 const get_order = async (req, res) => {
     try {
@@ -16,7 +16,7 @@ const get_order = async (req, res) => {
             include: [
             {
                 model: Users,
-                attributes: ['name']
+                attributes: ['name', 'address']
             },
             {
                 model: Products,
