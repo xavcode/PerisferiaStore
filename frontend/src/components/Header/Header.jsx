@@ -7,7 +7,6 @@ import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
 import Cart from "../Cart/Cart";
 import logo from "../../assets/images/logo-dark.jpeg"
 
-
 const Header = () => {
 	return (
 		<div className="dark h-[150px] flex justify-around px-3 fixed top-0 left-0 md:h-[60px] w-full items-center font-bold bg-header dark:dark rounded-b-lg z-50">
