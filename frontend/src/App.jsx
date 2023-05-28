@@ -10,18 +10,19 @@ import About from "./pages/About/About";
 import Contact from "./pages/Contact/Contact";
 import Error from "./pages/Error/Error";
 import Detail from "./components/detail/Detail";
-import Register from "./pages/Register/Register";
 import ProductForm from './admin/components/CreateProduct/ProductForm';
 import EditProduct from './admin/pages/Products/EditProduct';
 import Products from './admin/pages/Products/Products';
 import Main from './admin/components/Main/Main';
 import Users from './admin/pages/Users/Users';
+import Profile from "./components/Profile/Profile";
 import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { UserContext } from './context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
 import EditUser from './admin/pages/Users/EditUser';
 import MyForm from "./TestForm";
+import Reviews from './components/Reviews/Reviews';
 
 function App() {
 	const { user, isAuthenticated } = useAuth0();
@@ -37,7 +38,9 @@ function App() {
         <Route exact path='/store' element={<Store />} />
         <Route path='/store/:id' element={<Detail />} />
         <Route exact path='/contact' element={<Contact />} />
-        <Route exact path='/register' element={<Register />} />
+        <Route exact path='/reviews' element={<Reviews />} />
+        <Route exact path='/profile' element={<Profile />} />
+
 
         <Route element={<ProtectedRoutes user={user} />}>
 
