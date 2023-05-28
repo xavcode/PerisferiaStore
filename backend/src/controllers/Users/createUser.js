@@ -12,31 +12,32 @@ const create_user =  (newUser) => {
 const create_record_user = async (req, res) => {
     try {
         const {id, name, last_name, username, address, password,
-            mail, img, phone, is_active } = req.body;
+            mail, phone, is_admin } = req.body;
         
-    //     const fileData = await fs.promises.readFile(req.file.path.toString());
-    //     const { data, error } = await supabase
-    //         .storage
-    //         .from('Usuarios')
-    //         .upload(`${req.file.originalname}`, fileData);
+        // descomentar cuando se tenga el formulario para la creacion del usuario
+
+        const fileData = await fs.promises.readFile(req.file.path.toString());
+        const { data, error } = await supabase
+            .storage
+            .from('Usuarios')
+            .upload(`${req.file.originalname}`, fileData);
       
-    //   // Verifica si hubo un error al guardar el archivo
-    //   if (error) {
-    //       throw new Error(`Error al guardar el archivo en Supabase: ${error.message}`);
-    // }
-    // await fs.promises.unlink(req.file.path.toString()); //eliminamos el archivo del sistema de archivos
+      // Verifica si hubo un error al guardar el archivo
+      if (error) {
+          throw new Error(`Error al guardar el archivo en Supabase: ${error.message}`);
+    }
+    await fs.promises.unlink(req.file.path.toString()); //eliminamos el archivo del sistema de archivos
     
-    //     let imageUrl = await supabase
-    //         .storage
-    //         .from('Usuarios')
-    //         .getPublicUrl(`${req.file.originalname}`);
-    //     let imagenDB = imageUrl.data.publicUrl.toString();
+        let imageUrl = await supabase
+            .storage
+            .from('Usuarios')
+            .getPublicUrl(`${req.file.originalname}`);
+        let imagenDB = imageUrl.data.publicUrl.toString();
 
         const userCreate = await create_user({
             id, name, last_name, username,
             address, password, mail,
-            img, phone,
-            is_active
+            img: imagenDB, phone, is_admin
         });
         return res.status(200).send('<p>Usuario creado con exito</p>')
     } catch (error) {

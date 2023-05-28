@@ -14,9 +14,8 @@ export function CreateUserForm() {
     password: '',
     previewImage: '',
     mail: '',
-    img: '',
     phone: '',
-    isAdmin: 'unchecked',
+    is_admin: 'unchecked',
   });
 
   const handleFileChange = (e) => {
@@ -36,6 +35,7 @@ export function CreateUserForm() {
     e.preventDefault();
     try {
       await axios.post('http://localhost:3001/user', formData) // https://perisferiastore-production.up.railway.app/user
+      console.log(formData)
     } catch (error) {
       throw new Error(error)
     }
@@ -186,7 +186,7 @@ export function CreateUserForm() {
                   id="isAdmin"
                   name="isAdmin"
                   // checked={formData.isAdmin}
-                  value={formData.isAdmin}
+                  value={formData.is_admin}
                   onChange={handleChange}
                   className="mr-2 leading-tight"
                 />
