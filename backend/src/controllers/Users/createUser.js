@@ -13,8 +13,12 @@ const create_record_user = async (req, res) => {
     try {
         const {id, name, last_name, username, address, password,
             mail, phone, is_active } = req.body;
+        
         const fileData = await fs.promises.readFile(req.file.path.toString());
-        const { data, error } = await supabase.storage.from('Usuarios').upload(`${req.file.originalname}`, fileData);
+        const { data, error } = await supabase
+            .storage
+            .from('Usuarios')
+            .upload(`${req.file.originalname}`, fileData);
       
       // Verifica si hubo un error al guardar el archivo
       if (error) {
@@ -22,12 +26,18 @@ const create_record_user = async (req, res) => {
     }
     await fs.promises.unlink(req.file.path.toString()); //eliminamos el archivo del sistema de archivos
     
-    let imageUrl = await supabase.storage.from('Usuarios').getPublicUrl(`${req.file.originalname}`);
-    
-    console.log(imageUrl.data.publicUrl)
-    let imagenDB = imageUrl.data.publicUrl.toString();
-        const userCreate = await create_user({ id, name, last_name, username, address, password,
-            mail, img: imagenDB, phone, is_active });
+        let imageUrl = await supabase
+            .storage
+            .from('Usuarios')
+            .getPublicUrl(`${req.file.originalname}`);
+        let imagenDB = imageUrl.data.publicUrl.toString();
+
+        const userCreate = await create_user({
+            id, name, last_name, username,
+            address, password, mail,
+            img: imagenDB, phone,
+            is_active
+        });
         return res.status(200).send('<p>Usuario creado con exito</p>')
     } catch (error) {
         return res.status(404).send({ error: error.message });
