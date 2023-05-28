@@ -36,9 +36,11 @@ const UsersTable = () => {
     <div className=" bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end overflow-y-auto">
       <div className=' flex gap-40 justify-center items-center mb-5'>
         <h2 className="text-[2rem] mb-2">Lista de Usuarios</h2>
-        <button className='btn btn-outline btn-success'>
-          <Link to='/admin/users/create'>Crear usuario</Link>
-        </button>
+        <Link to='/admin/users/create'>
+          <button className='btn btn-outline btn-success'>
+            Crear usuario
+          </button>
+        </Link>
       </div>
       <div className=' h-[500px]  m-auto justify-center'>
         <table className="  text-[1.3rem] mr-10 text-center">
