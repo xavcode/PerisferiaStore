@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const EditUser = () => {
   const { id } = useParams();
   const userId = id;
+  const navigation = useNavigate();
   useEffect(() => {
     const peticion = async () => {
       try {
@@ -47,11 +48,10 @@ const EditUser = () => {
         camposEditados.campos[key] = formData[key];
       }
     }
-    console.log(camposEditados)
     try {
       const response = await axios.put(`http://localhost:3001/admin/user/${userId}`, camposEditados);
-
       console.log(response.data);
+      navigation('/admin/users')
     } catch (error) {
       console.error(error);
     }
