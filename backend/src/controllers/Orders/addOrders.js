@@ -26,7 +26,7 @@ const creation_relation = async (req, res) => {
             error: error.message
         });
     };
-};
+}; 
 
 module.exports = {
     creation_relation
