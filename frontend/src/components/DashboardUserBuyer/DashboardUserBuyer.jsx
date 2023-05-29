@@ -20,7 +20,7 @@ export function DashboardUserBuyer() {
     const fieldValue = type === 'checkbox' ? checked : value;
 
     setFormData((prevData) => ({
-      ...prevData,
+      ...prevData, 
       [name]: fieldValue,
     }));
   };

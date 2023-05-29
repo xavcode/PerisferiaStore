@@ -8,6 +8,6 @@ const upload = multer({ dest: 'uploads/' })
 
 router_put.put('/product/:productId', initialEdit); // editar product
 
-router_put.put('admin/user/:userId', initialEdit_user); // editar usuario
+router_put.put('/admin/user/:userId', initialEdit_user); // editar usuario
 
-module.exports = router_put;
+module.exports = router_put; 
