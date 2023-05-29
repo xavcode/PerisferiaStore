@@ -1,10 +1,10 @@
-const { Order, Products } = require('../db');
+const { Order, Products } = require('../../db');
 
 const new_order = (order) => {
     const orderCreate =  Order.create(order);
     return orderCreate;
 }
-
+ 
 const create_register_order = async (req, res) => {
     try {
         const { quantity, totalPrice, producto } = req.body;

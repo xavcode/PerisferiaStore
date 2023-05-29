@@ -1,4 +1,4 @@
-const { Products, Users } = require('../db');
+const { Products, Users } = require('../../db');
 
 const get_user = async (req, res) => {
     try {
@@ -19,9 +19,3 @@ const get_user = async (req, res) => {
 module.exports = {
     get_user
 }
-/**
- * last_name
-address
-mail
-phone
- */

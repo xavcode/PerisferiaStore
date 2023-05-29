@@ -1,30 +1,59 @@
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { useState } from "react";
-import logoLight from '../../../public/logo-light.jpeg'
+import logoLight from '../../assets/images/logo-light.jpeg'
 
 const Contact = () => { 
   const form = useRef();
   const [isFormValid, setIsFormValid] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
+  // const sendEmail = (e) => {
+  //   e.preventDefault();
+  //   emailjs
+  //     .sendForm(
+  //       "service_6ar7zht",
+  //       "template_9kgyz5r",
+  //       form.current,
+  //       "tbbTLTxwOaY7CkWAO"
+  //     )
+  //     .then((response) => {
+  //       console.log(response);
+  //       setIsSent(true);
+  //       alert('¡Envío de correo exitoso!');
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
+
   const sendEmail = (e) => {
     e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "service_6ar7zht",
-        "template_9kgyz5r",
-        form.current,
-        "tbbTLTxwOaY7CkWAO"
-      )
-      .then((response) => {
-        console.log(response);
-        setIsSent(true);
-        alert('¡Envío de correo exitoso!');
-      })
-      .catch((error) => console.log(error));
+  
+    // Muestra el diálogo de confirmación
+    Swal.fire({
+      title: '¿Seguro que quieres enviar?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) { 
+        emailjs
+          .sendForm(
+            "service_6ar7zht",
+            "template_9kgyz5r",
+            form.current,
+            "tbbTLTxwOaY7CkWAO"
+          )
+          .then((response) => {
+            console.log(response);
+            setIsSent(true);
+            Swal.fire('¡Envío de correo exitoso!', '', 'success');
+          })
+          .catch((error) => console.log(error));
+      }
+    });
   };
+  
 
   const validateForm = () => {
     const formElement = form.current;
@@ -35,26 +64,6 @@ const Contact = () => {
       setIsFormValid(false);
     }
   };
-
-
- // VALIDACION PARA IMPLEMENTAR MAS ADELANTE
-
-  // const validateMessage = (message) => {
-  //   const regex = /insulto|amenaza/gi;
-  //   return !regex.test(message);
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const messageInput = form.current.user_message;
-  //   const isMessageValid = validateMessage(messageInput.value);
-
-  //   if (isMessageValid) {
-  //     sendEmail(e);
-  //   } else {
-  //     alert('El mensaje contiene contenido inapropiado. Por favor, revíselo antes de enviarlo.');
-  //   }
-  // };
 
   return (
     <div className="min-h-screen flex items-center justify-center ">
@@ -127,6 +136,7 @@ const Contact = () => {
                 type="submit"
                 className=" py-4 flex items-center justify-center w-80 bg-header hover:bg-header/80 focus:bg-header text-white text-xl font-medium rounded "
                 disabled={!isFormValid || isSent}
+                onClick={sendEmail}
               >
                 Enviar
               </button>

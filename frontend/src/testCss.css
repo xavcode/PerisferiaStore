@@ -1,0 +1,18 @@
+.test {
+    display: block;
+    justify-content: center;
+    height: 100vh;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    border: 5px solid red;
+}
+.box_test {
+    display: block;
+    text-align: center;
+    justify-content: center;
+    height: 100%;
+}
+form input {
+    color: black;
+}

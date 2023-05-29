@@ -1,4 +1,4 @@
-const { Order, Products, Users } = require('../db')
+const { Order, Products, Users } = require('../../db')
 
 const create_order = async (order) => {
     const newOrder = await Orders.create();
@@ -26,7 +26,7 @@ const creation_relation = async (req, res) => {
             error: error.message
         });
     };
-};
+}; 
 
 module.exports = {
     creation_relation
