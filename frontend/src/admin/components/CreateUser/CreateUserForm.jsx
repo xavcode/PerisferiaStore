@@ -35,6 +35,15 @@ const CreateUserForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const result = await Swal.fire({
+      title: "¿Estás seguro de crear el usuario?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: "No",
+      reverseButtons: true,
+    });
+    if (result.isConfirmed) {
     const { file, ...data } = formData;
     const formDataToSend = new FormData();
     formDataToSend.append('file', file);
@@ -43,15 +52,61 @@ const CreateUserForm = () => {
     });
     try {
       const response = await axios.post('http://localhost:3001/user', formDataToSend);
+      Swal.fire(
+        "¡Usuario creado!",
+        "El usuario ha sido creado exitosamente.",
+        "success"
+      );
       console.log('Respuesta del servidor:', response.data);
-      alert('Producto creado con éxito');
-      // Hacer cualquier otra acción deseada después de enviar el formulario
-      navigate('/admin/products'); // Ejemplo: redireccionar a la página de productos del administrador
+      navigate('/admin/users');
     } catch (error) {
       console.error('Error:', error);
-      // Manejar el error de envío de formulario como se desee
+    }
+  } else if (result.isDenied) {
+    Swal.fire("Cancelado", "No se ha creado ningún usuario.", "info");
+  }
+  };
+
+   const handleSubmitoo = async (e) => {
+    e.preventDefault();
+    const result = await Swal.fire({
+      title: "¿Estás seguro de crear el usuario?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: "No",
+      reverseButtons: true,
+    });
+    if (result.isConfirmed) {
+      try {
+        await axios.post("http://localhost:3001/user", formData);
+        Swal.fire(
+          "¡Usuario creado!",
+          "El usuario ha sido creado exitosamente.",
+          "success"
+        );
+      } catch (error) {
+        throw new Error(error);
+      }
+    } else if (result.isDenied) {
+      Swal.fire("Cancelado", "No se ha creado ningún usuario.", "info");
     }
   };
+ 
+
+  const isFormValid = () => {
+    const {
+      name,
+      last_name,
+      username,
+      address,
+      password,
+      previewImage,
+      mail,
+      phone,
+    } = formData;
+    return name !== "" && last_name !== "" && username !== "" && address !== "" && password !== "" && previewImage !== "" && mail !== "" && phone !== "";
+  }; 
 
   return (
     <div className="min-h-screen flex items-center justify-center">
@@ -428,17 +483,4 @@ export default CreateUserForm;
       Swal.fire("Cancelado", "No se ha creado ningún usuario.", "info");
     }
   };
-
-  const isFormValid = () => {
-    const {
-      name,
-      last_name,
-      username,
-      address,
-      password,
-      previewImage,
-      mail,
-      phone,
-    } = formData;
-    return name !== "" && last_name !== "" && username !== "" && address !== "" && password !== "" && previewImage !== "" && mail !== "" && phone !== "";
-  }; */}
+ */}

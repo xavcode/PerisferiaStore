@@ -21,7 +21,7 @@ const EditProduct = () => {
     category: "",
     quantity: 1,
   });
-  console.log('aaaa',categories);
+  // console.log('aaaa',categories);
 
   useEffect(() => {
     const product = products.find((product) => product.id === id);
@@ -68,6 +68,8 @@ const EditProduct = () => {
       }
     });
   };
+
+  console.log('aaaaaaaaaaaaffffffffff');
 
   const handleCancel = () => {
     window.location.href = "/";
