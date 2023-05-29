@@ -16,6 +16,9 @@ const edit_product = async (product) => {
 
 const initialEdit = async (req, res) => {
   try {
+    // const {
+    //   productId,
+    //   campos } = req.body;
     const { name, price, img, status, description, rating, category, id } = req.body;
 
     const productEdit = await edit_product({ name, price, img, status, description, rating, category, id });
