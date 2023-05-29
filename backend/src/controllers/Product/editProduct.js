@@ -15,7 +15,6 @@ const edit_product = async (product) => {
 const initialEdit = async (req, res) => {
   try {
     const { name, price, img, status, description, rating, category, id } = req.body;
-    
     const productEdit = await edit_product({ name, price, img, status, description, rating, category, id });
     res.status(200).json(productEdit);
   } catch (error) {
@@ -24,5 +23,5 @@ const initialEdit = async (req, res) => {
 };
 
 module.exports = {
-  initialEdit, 
+  initialEdit,
 };

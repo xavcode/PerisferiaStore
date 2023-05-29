@@ -1,8 +1,9 @@
 const { Products, Users, Carrito } = require('../../db');
 
-const get_user_carrito = async (req, res) => {
+const get_user_carrito_by_id = async (req, res) => {
     try {
-        const user =  await Users.findAll({
+        const { userId } = req.params;
+        const user = await Users.findByPk( userId, {
             attributes: ['name'], // Obtener solo el nombre del usuario
             include: [
                 {
@@ -10,19 +11,23 @@ const get_user_carrito = async (req, res) => {
                     include: [
                         {
                             model: Products,
-                            attributes: ['name','price'] // Obtener solo el nombre del producto
+                            attributes: ['id','name','price', 'img'] // Obtener solo el nombre del producto
                         }
                     ]
                 }
             ]
         });
-        const arrayUser = [user];
-        
+        const arrayUser = [user]
         // Limpiando la respuesta 
-        const result = user.map(user => {
+        const result = arrayUser.map(user => {
             if (user.Carrito !== null) {
                 const carrito = {
-                    products: user.Carrito.Products.map(product => ({ id: product.id, name: product.name, price: product.price }))
+                    products: user.Carrito.Products.map(product => ({
+                        id: product.id,
+                        name: product.name,
+                        price: product.price,
+                        img: product.img,
+                    }))
                 };
                 return {
                     name: user.name,
@@ -30,17 +35,15 @@ const get_user_carrito = async (req, res) => {
                 };
             } else {
                 return {
-                    name: user.name,
                     Carrito: 'No hay productos'
                 }
             }
         })
-        // console.log(user[0].Carrito)
         return res.status(200).json(result);
     } catch (error) {
         return res.status(400).json({ error: error.message });
     }
 }
 module.exports = {
-    get_user_carrito
+    get_user_carrito_by_id
 }

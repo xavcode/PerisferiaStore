@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState, useContext } from 'react';
-import { Link  } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 import { DataContext } from '../../../context/DataContext';
@@ -12,7 +12,6 @@ const ProductsTable = () => {
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [deletedProductId, setDeletedProductId] = useState(null);
 
-  
   const handleEdit = (productId) => {    
     setSelectedProductId(productId);
   };
@@ -48,11 +47,12 @@ const ProductsTable = () => {
     <div className=" bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end overflow-y-auto">
       <div className='  flex gap-40 justify-center items-center mb-5'>
         <h2 className="text-[2rem]  mb-2">Lista de Productos</h2>
-        <button className='btn btn-outline btn-success ml-20 '>
-          <Link to='/admin/products/create' >Subir producto</Link>
-        </button>
+        <Link to='/admin/products/create' >
+          <button className='btn btn-outline btn-success ml-20 '>Añadir producto
+          </button>
+        </Link>
       </div>
-      <div  className=' h-[500px] flex justify-center  '>
+      <div className=' h-[500px] flex justify-center  '>
         <table className=" table-compact text-[1.3rem]  mr-10 text-center overflow-auto">
           <thead>
             <tr>
@@ -79,10 +79,10 @@ const ProductsTable = () => {
                   <td>{startCase(product.category)}</td>
                   <td>{product.price}</td>
                   <td>{product.rating}</td>
-                  <td className='w-[15%]' > 
-                  <Link to={`/admin/products/edit/${product.id}`}> 
-                  <button className='btn btn-outline btn-warning' onClick={()=>handleEdit(product.id)}>Editar</button></Link></td> 
-                  <td> <button className='btn btn-outline btn-error' onClick={()=>handleDelete(product.id)}>Borrar</button></td>
+                  <td className='w-[15%]' >
+                    <Link to={`/admin/products/edit/${product.id}`}>
+                      <button className='btn btn-outline btn-warning' onClick={() => handleEdit(product.id)}>Editar</button></Link></td>
+                  <td> <button className='btn btn-outline btn-error' onClick={() => handleDelete(product.id)}>Borrar</button></td>
                 </tr>
               )
             })}
