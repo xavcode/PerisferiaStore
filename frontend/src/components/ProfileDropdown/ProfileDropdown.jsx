@@ -35,7 +35,7 @@ const ProfileDropdown = () => {
     // Aquí puedes utilizar axios o cualquier otra librería para hacer una solicitud HTTP a tu endpoint de creación de usuarios
     // Por ejemplo:
     axios.post('http://localhost:3001/user', {
-      password: '',
+      password: 'hola1234#',
       name: user.given_name,
       lastName: user.family_name,
       userName: user.nickname,
@@ -43,10 +43,10 @@ const ProfileDropdown = () => {
       mail: user.email,
       address: user.address,
       profileImage: user.picture,
-      theme: 'dark',
-      isAdmin: user.isAdmin,
-      isActive: user.isActive,
-      isAuthenticated: true,
+      // theme: 'dark',
+      // isAdmin: user.isAdmin,
+      // isActive: user.isActive,
+      // isAuthenticated: true,
     })
       .then(response => {
         // Manejar la respuesta exitosa, si es necesario

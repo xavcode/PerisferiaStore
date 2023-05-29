@@ -8,7 +8,6 @@ export const UserProvider = ({ children }) => {
   const { user, isAuthenticated } = useAuth0();
 
   const [userData, setUserData] = useState({
-    id: '',
     name: '',
     lastName: '',
     userName: '',
@@ -17,15 +16,13 @@ export const UserProvider = ({ children }) => {
     address: '',
     password: '',
     profileImage: '',
-    theme: 'dark',
-    isAdmin: '',
-    isActive: '',
-    isAuthenticated: false,
   });
 
   useEffect(() => {
     if (isAuthenticated && user) {
-      setUserData({
+      setUserData((prevUserData) => ({
+        ...prevUserData,
+        password: 'hola',
         name: user.given_name,
         lastName: user.family_name,
         userName: user.nickname,
@@ -33,30 +30,24 @@ export const UserProvider = ({ children }) => {
         mail: user.email,
         address: user.address,
         profileImage: user.picture,
-        theme: 'dark',
-        isAdmin: user.isAdmin,
-        isActive: user.isActive,
-        isAuthenticated: isAuthenticated,
-        
-      });
+      }));
     }
   }, [isAuthenticated, user]);
 
   useEffect(() => {
-    const fetchData = async () => {
+    const createUser = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/user/');
-        setUserData((prevUserData) => ({
-          ...prevUserData,
-          ...response.data,
-        }));
+        const response = await axios.post('http://localhost:3001/user', userData);
+        console.log('User created successfully:', response.data);
       } catch (error) {
-        console.error('Error fetching user data:', error);
+        console.error('Error creating user:', error);
       }
     };
 
-    fetchData();
-  }, []);
+    if (isAuthenticated && user) {
+      createUser();
+    }
+  }, [isAuthenticated, user, userData]);
 
   return (
     <UserContext.Provider value={{ userData, setUserData }}>
