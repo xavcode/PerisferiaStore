@@ -7,9 +7,6 @@ import { FiltersContext } from "../../../context/FiltersContext";
 import { DataContext } from "../../../context/DataContext";
 
 const EditProduct = () => {
-  const { categories } = useContext(FiltersContext)
-  const { id } = useParams()
-  
   const { products } = useContext(DataContext);
   const { categories } = useContext(FiltersContext);
   const { id } = useParams();
@@ -49,17 +46,18 @@ const EditProduct = () => {
       // console.log(response.data)
       }
       fetchProduct()
-    }, [id])
+  }, [id])
+  useEffect(() => {
+    const product = products.find((product) => product.id === id);
+    if (product) {
+      setFormData(product);
+    }
+}, [id, products]);
       
   
 
 
 
-    const product = products.find((product) => product.id === id);
-    if (product) {
-      setFormData(product);
-    }
-  }, [id, products]);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
