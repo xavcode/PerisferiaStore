@@ -12,10 +12,12 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.1.0",
     "@emailjs/browser": "^3.11.0",
+    "@mercadopago/sdk-react": "^0.0.10",
     "@supabase/supabase-js": "^2.22.0",
     "autoprefixer": "^10.4.14",
     "axios": "^1.4.0",
     "daisyui": "^2.51.6",
+    "dotenv": "^16.0.3",
     "lodash": "^4.17.21",
     "postcss": "^8.4.23",
     "react": "^18.2.0",

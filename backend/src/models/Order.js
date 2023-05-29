@@ -20,6 +20,14 @@ module.exports = (sequelize) => {
             type: DataTypes.DECIMAL(10, 2),
             allowNull: false,
         },
+        name: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        img: {
+            type: DataTypes.STRING,
+            allowNull: false
+        },
     },
     {
         timestamps: false
