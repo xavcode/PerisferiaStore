@@ -2,8 +2,7 @@ const { Products, Users, Carrito } = require('../../db');
 
 const get_user_carrito = async (req, res) => {
     try {
-        const { userId } = req.params;
-        const user =  await Users.findByPk(userId, {
+        const user =  await Users.findAll({
             attributes: ['name'], // Obtener solo el nombre del usuario
             include: [
                 {
@@ -32,6 +31,7 @@ const get_user_carrito = async (req, res) => {
                 };
             } else {
                 return {
+                    name: user.name,
                     Carrito: 'No hay productos'
                 }
             }
