@@ -16,11 +16,12 @@ import Products from './admin/pages/Products/Products';
 import Main from './admin/components/Main/Main';
 import Users from './admin/pages/Users/Users';
 import Profile from "./components/Profile/Profile";
-import { CreateUserForm } from './admin/components/CreateUser/CreateUserForm';
+import  CreateUserForm  from './admin/components/CreateUser/CreateUserForm';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { UserContext } from './context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
 import EditUser from './admin/pages/Users/EditUser';
+import MyForm from "./TestForm";
 import Reviews from './components/Reviews/Reviews';
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/test' element={<MyForm />} />
         <Route path='/home' element={<Home />} />
         <Route exact path='/about' element={<About />} />
         <Route exact path='/store' element={<Store />} />
