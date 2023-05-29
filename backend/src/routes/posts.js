@@ -3,7 +3,6 @@ const { createProduct, add_NewProduct } = require('../controllers/Product/create
 const { create_record_user } = require('../controllers/Users/createUser');
 const { addNewFavorite } = require('../controllers/Favorites/addFavorites');
 const { creation_relation } = require('../controllers/Orders/addOrders');
-const { addProductCarrito } = require('../controllers/Carrito/addCarrito');
 const { create_Order, receive_Webhook } = require('../controllers/mercadoPago/Payment.js');
 const { addProductCarrito } = require('../controllers/Carrito/addCarrito');
 const { create_record_review } = require('../controllers/Review/addReview');

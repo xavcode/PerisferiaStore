@@ -12,6 +12,6 @@ router_put.put('/product/:productId', initialEdit); // editar product
 
 router_put.put('/admin/user/:userId', initialEdit_user); // editar usuario
 router_put.put('/admin/user/decline/:userId', decline_users)
-router_put.put('/admin/user/active/:userId', active_users)
+router_put.put('/admin/user/active/:userId', active_users);
 
 module.exports = router_put; 
