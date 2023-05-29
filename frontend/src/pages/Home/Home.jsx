@@ -1,10 +1,9 @@
-import React from "react";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
-
+import { useAuth0 } from "@auth0/auth0-react";
+import axios from "axios";
 import CardsBottom from "../../components/CardsBottom/CardsBottom";
 import Profile from "../../components/Profile/Profile";
-import { useAuth0 } from "@auth0/auth0-react";
 import { DashboardUserBuyer } from "../../components/DashboardUserBuyer/DashboardUserBuyer";
 import BubbleWsp from "../../components/bubbleWsp/BubbleWsp";
 
@@ -18,7 +17,7 @@ const Home = () => {
     "https://nissei.com/media/wysiwyg/HERO-1_7.jpg",
   ];
 
-  const { isAuthenticated, isLoading, user } = useAuth0()
+  const { isAuthenticated, isLoading, user } = useAuth0();
 
   const [currentImage, setCurrentImage] = useState(0);
 
@@ -30,6 +29,8 @@ const Home = () => {
     return () => clearInterval(timer);
   }, [images.length]);
 
+
+
   const previousImage = () => {
     setCurrentImage(
       (prevImage) => (prevImage - 1 + images.length) % images.length
@@ -39,7 +40,6 @@ const Home = () => {
   const nextImage = () => {
     setCurrentImage((prevImage) => (prevImage + 1) % images.length);
   };
-
 
   return (
     <div className="text-white grid w-screen h-screen">
@@ -52,11 +52,11 @@ const Home = () => {
               </p>
               <p className="  text-2xl font-semibold text-white leading-10 max-w-285 ">
                 Explora increíbles ofertas y encuentra todo lo que
-                necesitas para tu estilo de vida. </p>
+                necesitas para tu estilo de vida.
+              </p>
               <p className="  text-primary font-semibold text-3xl mt-2 ">
-                Haz de las compras una
-                experiencia emocionante y descubre un mundo de posibilidades en
-                nuestra tienda en línea.</p>
+                Haz de las compras una experiencia emocionante y descubre un mundo de posibilidades en nuestra tienda en línea.
+              </p>
             </div>
 
             <div>
@@ -76,7 +76,6 @@ const Home = () => {
       <CardsBottom />
     </div>
   );
-}
-
+};
 
 export default Home;
