@@ -5,14 +5,14 @@ import { MdPerson, MdEdit } from 'react-icons/md';
 import avatar from '../../assets/images/profile-default-image.png';
 import LoginButton from '../Login/Login';
 import LogoutButton from '../Logout/Logout';
-import { useContext } from "react";
-import { UserContext } from '../../context/userContext';
+
+
 
 const ProfileDropdown = () => {
   const { user, isAuthenticated } = useAuth0();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
-  const { setUserData } = useContext(UserContext);
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -31,36 +31,6 @@ const ProfileDropdown = () => {
     };
   }, []);
 
-  const createNewUser = () => {
-    // Aquí puedes utilizar axios o cualquier otra librería para hacer una solicitud HTTP a tu endpoint de creación de usuarios
-    // Por ejemplo:
-    axios.post('http://localhost:3001/user', {
-      password: 'hola1234#',
-      name: user.given_name,
-      lastName: user.family_name,
-      userName: user.nickname,
-      phone: user.phone,
-      mail: user.email,
-      address: user.address,
-      profileImage: user.picture,
-      // theme: 'dark',
-      // isAdmin: user.isAdmin,
-      // isActive: user.isActive,
-      // isAuthenticated: true,
-    })
-      .then(response => {
-        // Manejar la respuesta exitosa, si es necesario
-        // Por ejemplo, puedes mostrar un mensaje de éxito o realizar alguna acción adicional
-        console.log(response.data);
-        // Actualizar los datos de usuario en el contexto
-        setUserData(response.data);
-      })
-      .catch(error => {
-        // Manejar el error, si es necesario
-        // Por ejemplo, puedes mostrar un mensaje de error o realizar alguna acción adicional
-        console.error('Error creating user:', error);
-      });
-  };
 
   const renderProfileMenu = () => {
     if (isAuthenticated) {
@@ -72,7 +42,7 @@ const ProfileDropdown = () => {
           {isMenuOpen && (
             <ul className="absolute top-full right-0 mt-2 py-2 bg-slate-300 shadow-lg rounded">
               <li>
-              <Link to="/profile" onClick={createNewUser} className="block px-4 py-2 text-xl text-gray-800 hover:bg-gray-200">Perfil</Link>
+              <Link to="/profile" className="block px-4 py-2 text-xl text-gray-800 hover:bg-gray-200">Perfil</Link>
               </li>
               <li>
                 <Link to="/profile/edit" className="block px-4 py-2  text-xl text-gray-800 hover:bg-gray-200">Editar Perfil</Link>
