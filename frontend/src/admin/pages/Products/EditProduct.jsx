@@ -8,27 +8,35 @@ import { FiltersContext } from '../../../context/FiltersContext';
 const EditProduct = () => {
   const { categories } = useContext(FiltersContext)
   const { id } = useParams()
-
+  
   const [formData, setFormData] = useState({
     id: null,
     name: '',
     description: '',
-    status: 'disponible',
-    rating: 3,
-    quantity: 1,
+    status: '',
+    rating: '',
+    quantity: '',
     category: '',
-    price: 0,
-    image: '',
+    price: '',
+    img: '',
   });
-
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await axios.get(`http://localhost:3001/store/${id}`)  //https://perisferiastore-production.up.railway.app/store${id}
-      setFormData(response.data)
+      try {
+        const response = await axios.get(`http://localhost:3001/store/${id}`) //https://perisferiastore-production.up.railway.app/store${id}
+        const product = response.data;
+        if (product) {
+          setFormData(product)
+        }
+      } catch (error) {
+        console.error(error)
+      }
       // console.log(response.data)
-    }
-    fetchProduct()
-  }, [])
+      }
+      fetchProduct()
+    }, [id])
+      
+  
 
 
 
