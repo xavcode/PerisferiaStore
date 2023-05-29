@@ -1,22 +1,27 @@
-const { Products } = require('../../db');
+const { Products } = require("../../db");
 
-const edit_product = async (productId, campos) => {
+// const edit_product = async (productId, campos) => {
+const edit_product = async (product) => {
   try {
     // buscamos el producto
-    const product = await Products.findByPk(productId)
-    
+    // const product = await Products.findByPk(productId)
+    console.log("->>>", product);
+    const productFromDB = await Products.findByPk(product.id);
+
     // Actualizar el campo específico del producto en la base de datos
-    const updatedProduct = await product.update(campos);
+    // const updatedProduct = await product.update(campos);
+    const updatedProduct = await productFromDB.update(product);
     return updatedProduct;
   } catch (error) {
-    console.error('Error al actualizar el campo del producto:', error);
+    console.error("Error al actualizar el campo del producto:", error);
   }
 };
 
 const initialEdit = async (req, res) => {
-  try {
-    const { productId } = req.params;
-    const { campos } = req.body;
+    try {
+      const {
+        productId,
+        campos } = req.body;
         const productEdit = await edit_product(productId, campos);
         res.status(200).json(productEdit)
     } catch (error) {
@@ -25,5 +30,5 @@ const initialEdit = async (req, res) => {
 };
 
 module.exports = {
-    initialEdit
-}
+  initialEdit,
+};
