@@ -1,6 +1,5 @@
 import React from "react";
 import { useContext } from "react";
-
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import { BrowserRouter } from "react-router-dom";
@@ -21,9 +20,16 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { UserContext } from './context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
 import EditUser from './admin/pages/Users/EditUser';
+import { initMercadoPago } from '@mercadopago/sdk-react';
+
+
+const publicKey = 'TAPP_USR-db335c5a-df83-4c51-851a-457b034a660d';
+initMercadoPago(publicKey);
 
 function App() {
 	const { user, isAuthenticated } = useAuth0();
+
+
 
 	return (
     <BrowserRouter>

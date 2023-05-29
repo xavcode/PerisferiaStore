@@ -4,6 +4,7 @@ import { useCart } from "../../hooks/useCart";
 import { BsFillTrash3Fill, BsCartX } from "react-icons/bs";
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
 import { AiOutlineShoppingCart, AiOutlineArrowLeft } from "react-icons/ai";
+import axios from "axios";
 
 function CartItem({
 	img,
@@ -26,6 +27,7 @@ function CartItem({
 	const handleIncreaseQuantity = () => {
 		addToCart();
 	};
+
 
 	return (
 		<div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500">
@@ -96,6 +98,23 @@ export default function Cart() {
 		0
 	);
 
+	const handleClick = async (event) => {
+		event.preventDefault();
+		try {
+		  const response = await axios.post('http://localhost:3001/payment', {
+			cart: cart, // Pasar los productos en el carrito
+			totalPrice: totalPrice // Pasar el total del precio
+		  });
+		  console.log("Pago correcto", response);
+		  console.log(response.data);
+		  // Redireccionar al comprador al init_point de Mercado Pago
+		  window.location.href = response.data.init_point;
+		} catch (error) {
+		  console.error("Pago no realizado", error);
+		  // Manejar el error en caso de que ocurra algún problema durante el pago
+		}
+	  };
+
 	return (
 		<div>
 			<div>
@@ -152,8 +171,10 @@ export default function Cart() {
 						{cart.length > 0 && (
 							<>
 								<p className="text-right font-medium text-gray-700">
-									Total: {totalPrice}
+									Total: {totalPrice}  <button className="bg-red-500" onClick={handleClick}>Comprar</button>
+
 								</p>
+
 								{/* Resto del contenido */}
 							</>
 						)}
