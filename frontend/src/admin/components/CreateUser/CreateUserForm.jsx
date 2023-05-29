@@ -44,9 +44,9 @@ const CreateUserForm = () => {
     try {
       const response = await axios.post('http://localhost:3001/user', formDataToSend);
       console.log('Respuesta del servidor:', response.data);
-      alert('Producto creado con éxito');
+      alert('Usuario creado con éxito');
       // Hacer cualquier otra acción deseada después de enviar el formulario
-      navigate('/admin/products'); // Ejemplo: redireccionar a la página de productos del administrador
+      navigate('/admin/users'); // Ejemplo: redireccionar a la página de productos del administrador
     } catch (error) {
       console.error('Error:', error);
       // Manejar el error de envío de formulario como se desee
