@@ -1,43 +1,61 @@
 import React, { useState, useEffect } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 const EditUser = () => {
+  const { id } = useParams();
+  const userId = id;
+  const navigation = useNavigate();
+  useEffect(() => {
+    const peticion = async () => {
+      try {
+        const userEdit = await axios.get(`http://localhost:3001/admin/users/${userId}`)
+        const user = userEdit.data
+        setFormData(user);
+        setInitialFormData(user)
+      } catch (error) {
+        console.error(error);
+      }
+    }
+    peticion()
+  },[userId])
   const [formData, setFormData] = useState({
-    name: '',
+    name:'',
     last_name: '',
     username: '',
     address: '',
     password: '',
     mail: '',
-    img: null,
     phone: '',
-    isAdmin: false,
   });
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      const response = await axios.put(`http://localhost:3001/admin/users/edit/${user.id}`, {
-        userId: userId,
-        campos: formData,
-      });
-
-      console.log(response.data);
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
+    
+  const [initialFormData, setInitialFormData] = useState({});
+  
   const handleChange = (event) => {
     const { name, value, files, type, checked } = event.target;
-
     setFormData((prevFormData) => ({
       ...prevFormData,
       [name]: type === 'checkbox' ? checked : files ? files[0] : value,
     }));
+    console.log(formData)
   };
-
+  
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    let camposEditados = {campos:{}};
+    for (const key in formData) {
+      if (formData[key] !== initialFormData[key]) {
+        camposEditados.campos[key] = formData[key];
+      }
+    }
+    try {
+      const response = await axios.put(`http://localhost:3001/admin/user/${userId}`, camposEditados);
+      console.log(response.data);
+      navigation('/admin/users')
+    } catch (error) {
+      console.error(error);
+    }
+  };
   return (
     <div className="fixed justify-center flex flex-col items-center bg-gray-900 text-white py-3 px-16 mt-20 mb-5 w-full mx-4 rounded-lg">
         <Link to="/admin/users" className="text-gray-500 hover:text-gray-900 mb-2">
