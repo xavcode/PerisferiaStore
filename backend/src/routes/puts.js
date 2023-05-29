@@ -10,4 +10,4 @@ router_put.put('/product', initialEdit); // editar product
 
 router_put.put('/user', initialEdit_user); // editar usuario
 
-module.exports = router_put;
+module.exports = router_put; 

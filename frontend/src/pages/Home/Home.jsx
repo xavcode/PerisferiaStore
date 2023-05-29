@@ -2,11 +2,11 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 
-
 import CardsBottom from "../../components/CardsBottom/CardsBottom";
 import Profile from "../../components/Profile/Profile";
 import { useAuth0 } from "@auth0/auth0-react";
 import { DashboardUserBuyer } from "../../components/DashboardUserBuyer/DashboardUserBuyer";
+import BubbleWsp from "../../components/bubbleWsp/BubbleWsp";
 
 const Home = () => {
   const images = [
@@ -69,7 +69,7 @@ const Home = () => {
           </div>
         </div>
       </main>
-
+      <BubbleWsp />
       {/* <Profile/> */}
       {/* <DashboardUser/> */}
       {/* <DashboardUserBuyer/> */}
