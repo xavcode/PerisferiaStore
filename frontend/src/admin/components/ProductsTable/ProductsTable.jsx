@@ -10,28 +10,40 @@ import axios from 'axios';
 const ProductsTable = () => {
   const { products } = useContext(DataContext)
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const [deletedProductId, setDeletedProductId] = useState(null);
 
+  
   const handleEdit = (productId) => {    
     setSelectedProductId(productId);
   };
-
+  
   const handleDelete = async (productId) => {
-    Swal.fire({
-      title:'¿Estás seguro?',
-      text: '¿Seguro que quieres eliminar el producto?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: 'Sí',
-      cancelButtonText: 'No',
-      cancelButtonColor: '#d33',
-    }).then(async (result) => {
-      if (result.isConfirmed) {
-    console.log(`Borrando producto con ID: ${productId}`);
-    const response = await axios.delete(` https://perisferiastore-production.up.railway.app/store${productId}`)    
+    try {
+      const confirmed = await Swal.fire({
+        title: '¿Estás seguro?',
+        text: 'Esta acción eliminará el producto permanentemente.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Sí, eliminar',
+        cancelButtonText: 'Cancelar',
+      });
+  
+      if (confirmed.isConfirmed) {
+      const response = await axios.delete(`http://localhost:3001/store/${productId}`);
+      setDeletedProductId(productId);
+      console.log('Producto eliminado', response.data);
+  
+      Swal.fire('Eliminado', 'El producto ha sido eliminado correctamente.', 'success');
+      }
+  
+    } catch (error) {
+      console.error('Error al eliminar', error);
+      Swal.fire('Error', 'Ha ocurrido un error al intentar eliminar el producto.', 'error');
+    }
   };
-  })
-}
-
+  
   return (
     <div className=" bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end overflow-y-auto">
       <div className='  flex gap-40 justify-center items-center mb-5'>
@@ -56,6 +68,9 @@ const ProductsTable = () => {
           </thead>
           <tbody>
             {products.map((product, idx) => {
+              if (product.id === deletedProductId) {
+                return null; 
+              }
               return (
                 <tr className='border-b-2' key={idx}>
                   <th >{idx + 1}</th>

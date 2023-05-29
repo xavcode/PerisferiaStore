@@ -1,49 +1,94 @@
-import React from 'react'
-import axios from 'axios';
-import { useState, useRef } from 'react';
+import React from "react";
+import axios from "axios";
+import { useState, useRef } from "react";
+import Swal from "sweetalert2";
+import { useEffect } from "react";
 
 export function CreateUserForm() {
   const fileInputRef = useRef();
   const [file, setFile] = useState(null);
-
   const [formData, setFormData] = useState({
-    name: '',
-    last_name: '',
-    username: '',
-    address: '',
-    password: '',
-    previewImage: '',
-    mail: '',
-    img: '',
-    phone: '',
-    isAdmin: 'unchecked',
+    name: "",
+    last_name: "",
+    username: "",
+    address: "",
+    password: "",
+    previewImage: "",
+    mail: "",
+    img: "",
+    phone: "",
+    isAdmin: "unchecked",
   });
+  // const [isFormValid, setIsFormValid] = useState(false);
+
+  // const validateForm = () => {
+  //   const { name, last_name } = formData;
+  //   const isNameValid = name.trim() !== '';
+  //   const isLastNameValid = last_name.trim() !== '';
+  //   return isNameValid && isLastNameValid;
+  // };
+
+  // useEffect(() => {
+  //   setIsFormValid(validateForm());
+  // }, [formData]);
 
   const handleFileChange = (e) => {
     const selectedFile = e.target.files[0];
     setFile(selectedFile);
-    setFormData({ ...formData, previewImage: URL.createObjectURL(selectedFile) })
+    setFormData({
+      ...formData,
+      previewImage: URL.createObjectURL(selectedFile),
+    });
   };
-  
+
   const handleChange = (e) => {
-    
-    const valId = e.target.id
-    const val = e.target.value
-    setFormData({ ...formData, [valId]: val })
+    const valId = e.target.id;
+    const val = e.target.value;
+    setFormData({ ...formData, [valId]: val });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await axios.post('http://localhost:3001/user', formData) // https://perisferiastore-production.up.railway.app/user
-    } catch (error) {
-      throw new Error(error)
+    const result = await Swal.fire({
+      title: "¿Estás seguro de crear el usuario?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: "No",
+      reverseButtons: true,
+    });
+    if (result.isConfirmed) {
+      try {
+        await axios.post("http://localhost:3001/user", formData);
+        Swal.fire(
+          "¡Usuario creado!",
+          "El usuario ha sido creado exitosamente.",
+          "success"
+        );
+      } catch (error) {
+        throw new Error(error);
+      }
+    } else if (result.isDenied) {
+      Swal.fire("Cancelado", "No se ha creado ningún usuario.", "info");
     }
   };
 
-  return (
-    <div className='w-full flex justify-center '>
+  const isFormValid = () => {
+    const {
+      name,
+      last_name,
+      username,
+      address,
+      password,
+      previewImage,
+      mail,
+      phone,
+    } = formData;
+    return name !== "" && last_name !== "" && username !== "" && address !== "" && password !== "" && previewImage !== "" && mail !== "" && phone !== "";
+  };
 
+  return (
+    <div className="w-full flex justify-center ">
       <div className=" flex flex-col h-screen items-center  fixed top-20 bg-gray-900 overflow-y-auto">
         <h2 className="text-[2rem] mb-2 justify-center ">Crear Usuario</h2>
         <form className="max-w-screen-xl " onSubmit={handleSubmit}>
@@ -132,7 +177,7 @@ export function CreateUserForm() {
                 required
               />
             </div>
-          
+
             <div>
               <label htmlFor="phone" className="text-lg">
                 Teléfono
@@ -148,7 +193,7 @@ export function CreateUserForm() {
               />
             </div>
 
-            <div className='flex flex-col items-start justify-between'>
+            <div className="flex flex-col items-start justify-between">
               <label htmlFor="file" className="font-semibold">
                 Archivo:
               </label>
@@ -177,8 +222,6 @@ export function CreateUserForm() {
               </div>
             </div>
 
-
-
             <div className="col-span-2">
               <label htmlFor="isAdmin" className="flex items-center">
                 <input
@@ -197,6 +240,7 @@ export function CreateUserForm() {
           <div className="mt-6">
             <button
               className="bg-blue-500 hover:bg-primary text-white text-lg py-3 px-6 rounded-md"
+              disabled={!isFormValid()}
             >
               Crear Usuario
             </button>

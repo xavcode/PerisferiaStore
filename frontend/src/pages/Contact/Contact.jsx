@@ -8,23 +8,6 @@ const Contact = () => {
   const [isFormValid, setIsFormValid] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
-  // const sendEmail = (e) => {
-  //   e.preventDefault();
-  //   emailjs
-  //     .sendForm(
-  //       "service_6ar7zht",
-  //       "template_9kgyz5r",
-  //       form.current,
-  //       "tbbTLTxwOaY7CkWAO"
-  //     )
-  //     .then((response) => {
-  //       console.log(response);
-  //       setIsSent(true);
-  //       alert('¡Envío de correo exitoso!');
-  //     })
-  //     .catch((error) => console.log(error));
-  // };
-
   const sendEmail = (e) => {
     e.preventDefault();
   
