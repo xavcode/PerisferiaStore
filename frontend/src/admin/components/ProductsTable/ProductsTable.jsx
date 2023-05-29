@@ -1,6 +1,7 @@
 import React from 'react'
 import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link  } from 'react-router-dom';
+import Swal from 'sweetalert2';
 
 import { DataContext } from '../../../context/DataContext';
 import { startCase } from 'lodash';
@@ -10,15 +11,26 @@ const ProductsTable = () => {
   const { products } = useContext(DataContext)
   const [selectedProductId, setSelectedProductId] = useState(null);
 
-
   const handleEdit = (productId) => {    
     setSelectedProductId(productId);
   };
 
   const handleDelete = async (productId) => {
+    Swal.fire({
+      title:'¿Estás seguro?',
+      text: '¿Seguro que quieres eliminar el producto?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No',
+      cancelButtonColor: '#d33',
+    }).then(async (result) => {
+      if (result.isConfirmed) {
     console.log(`Borrando producto con ID: ${productId}`);
     const response = await axios.delete(` https://perisferiastore-production.up.railway.app/store${productId}`)    
   };
+  })
+}
 
   return (
     <div className=" bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end overflow-y-auto">
@@ -52,7 +64,9 @@ const ProductsTable = () => {
                   <td>{startCase(product.category)}</td>
                   <td>{product.price}</td>
                   <td>{product.rating}</td>
-                  <td className='w-[15%]' > <Link to={`/admin/products/edit/${product.id}`}> <button className='btn btn-outline btn-warning'>Editar</button></Link></td>
+                  <td className='w-[15%]' > 
+                  <Link to={`/admin/products/edit/${product.id}`}> 
+                  <button className='btn btn-outline btn-warning' onClick={()=>handleEdit(product.id)}>Editar</button></Link></td> 
                   <td> <button className='btn btn-outline btn-error' onClick={()=>handleDelete(product.id)}>Borrar</button></td>
                 </tr>
               )

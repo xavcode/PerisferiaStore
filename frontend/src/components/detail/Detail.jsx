@@ -7,11 +7,12 @@ import { AddToCartIcon, RemoveFromCartIcon } from "../Icons.jsx";
 
 import axios from "axios";
 import { useCart } from "../../hooks/useCart.jsx";
+import Reviews from '../Reviews/Reviews.jsx';
 
-const Detail = (props) => {
+const Detail = () => {
   const { addToCart, removeFromCart, cart } = useCart();
-  
-  const [product, setProduct] = useState({}); 
+
+  const [product, setProduct] = useState({});
   const { id } = useParams();
 
   useEffect(() => {
@@ -19,14 +20,14 @@ const Detail = (props) => {
       const response = await axios.get(`http://localhost:3001/store/${id}`);
       setProduct(response.data);
     };
-    fetchData(); 
+    fetchData();
   }, []);
 
   const isProductInCart = cart.some((item) => item.id === product.id);
 
   return (
-    <div className="flex mt-[200px] justify-center items-center">
-      <div className="flex flex-col rounded-lg bg-bg_card pt-4 p-5">
+    <div className="flex mt-32 items-start justify-center gap-12  ">
+      <div className="flex flex-col rounded-lg bg-bg_card pt-4 p-4 ">
         <Link to="/store" className="text-gray-500 hover:text-gray-900 mb-2">
           <svg className="w-6 h-6  mr-2" stroke="currentColor">
             <path
@@ -113,6 +114,9 @@ const Detail = (props) => {
             </button>
           </div>
         </div>
+      </div>
+      <div className='h-[600px] overflow-auto px-2 border-2 border-gray-300 rounded-lg'>
+        <Reviews />
       </div>
     </div>
   );

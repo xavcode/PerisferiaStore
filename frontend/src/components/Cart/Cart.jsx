@@ -26,7 +26,7 @@ function CartItem({
 
 	const handleIncreaseQuantity = () => {
 		addToCart();
-	};
+	}
 
 
 	return (
@@ -81,8 +81,7 @@ function CartItem({
 
 export default function Cart() {
 	const cartCheckboxId = useId();
-	const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } =
-		useCart();
+	const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } = useCart();
 	const [isCartOpen, setCartOpen] = useState(false);
 
 	const handleCartToggle = () => {
@@ -97,6 +96,8 @@ export default function Cart() {
 		(total, product) => total + product.price * product.quantity,
 		0
 	);
+ 
+
 
 	const handleClick = async (event) => {
 		event.preventDefault();
@@ -171,8 +172,7 @@ export default function Cart() {
 						{cart.length > 0 && (
 							<>
 								<p className="text-right font-medium text-gray-700">
-									Total: {totalPrice}  <button className="bg-red-500" onClick={handleClick}>Comprar</button>
-
+									Total: {totalPrice} <button className="bg-red-500">Comprar</button>
 								</p>
 
 								{/* Resto del contenido */}
