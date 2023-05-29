@@ -3,10 +3,13 @@ const { createProduct, add_NewProduct } = require('../controllers/Product/create
 const { create_record_user } = require('../controllers/Users/createUser');
 const { addNewFavorite } = require('../controllers/Favorites/addFavorites');
 const { creation_relation } = require('../controllers/Orders/addOrders');
+const { addProductCarrito } = require('../controllers/Carrito/addCarrito');
+const { create_Order, receive_Webhook } = require('../controllers/mercadoPago/Payment.js');
 const fs = require('fs')
 const router_Post = Router();
 const multer = require('multer');
-const { addProductCarrito } = require('../controllers/Carrito/addCarrito');
+
+
 const upload = multer({ dest: 'uploads/' });// Directorio donde se guardarán los archivos subidos
 
 // Ruta POST para recibir el archivo adjunto
@@ -21,23 +24,9 @@ router_Post.post('/order', creation_relation);
 
 //******************************************************************/
 //ruta de la pasarela de pagos.
-
-router_Post.post('/payment', async (req, res) => {
-    try {
-        const productIds = req.body.productIds;
-
-      //preferencia de pago
-    const preferenceId = await mercadoPagoVendedorController.createPreference(productIds);
-
-      // Redirige al usuario a la página de pago de Mercado Pago
-    const redirectUrl = `https://www.mercadopago.com/checkout?preference_id=${preferenceId}`;
-    res.redirect(redirectUrl);
-    } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al iniciar el proceso de pago' });
-    }
-});
-
+//router_Post.post('/payment', create_Order);
+router_Post.post('/payment', create_Order);
+router_Post.post('/webhook', receive_Webhook)
 
 module.exports = router_Post;
 
