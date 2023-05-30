@@ -23,6 +23,7 @@ import EditUser from './admin/pages/Users/EditUser';
 import Reviews from './components/Reviews/Reviews';
 import MyForm from "./TestForm";
 import EditProfile from "./pages/EditProfile/EditProfile"
+import DemoRev from "./components/Reviews/DemoRev";
 
 function App() {
   const { user, isAuthenticated } = useAuth0();
@@ -32,7 +33,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/test' element={<MyForm />} />
+        <Route path='/test' element={<DemoRev />} />
         <Route path='/home' element={<Home />} />
         <Route exact path='/about' element={<About />} />
         <Route exact path='/store' element={<Store />} />
