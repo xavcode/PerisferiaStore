@@ -44,6 +44,7 @@ const create_record_user = async (req, res) => {
         delete req.file
         return res.status(200).send('<p>Usuario creado con exito</p>')
     } catch (error) {
+        delete req.file
         return res.status(404).send({ error: error.message });
     }
 }
