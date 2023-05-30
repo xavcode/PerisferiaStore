@@ -31,6 +31,10 @@ export const DataProvider = ({ children }) => {
     fetchData();
   }, [updateFlag]);
   
+<<<<<<< HEAD
+=======
+  // console.log(products)
+>>>>>>> 841d67f1f75d8dbb7143c5f05d3f267fdecb238c
   return (
     <DataContext.Provider value={{
       products,
