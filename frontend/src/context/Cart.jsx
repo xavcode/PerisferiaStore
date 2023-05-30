@@ -38,7 +38,7 @@ export function CartProvider({ children }) {
     useCartReducer();
 
   return (
-    <CartContext.Provider 
+    <CartContext.Provider
       value={{
         cart: state,
         addToCart,
