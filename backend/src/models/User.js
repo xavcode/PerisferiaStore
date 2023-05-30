@@ -23,7 +23,7 @@ module.exports = (sequelize) => {
     },
     address: {
       type: DataTypes.STRING,
-    },
+    }, 
     password: {
       type: DataTypes.STRING,
     },

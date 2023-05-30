@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FiltersContext } from "../../../context/FiltersContext";
 import { DataContext } from "../../../context/DataContext";
@@ -11,15 +11,6 @@ const EditProduct = () => {
   const { categories } = useContext(FiltersContext);
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    id: null,
-    name: '',
-    description: '',
-    status: '',
-    rating: '',
-    quantity: '',
-    category: '',
-    price: '',
-    img: '',
     id: id,
     name: "",
     price: 0,
@@ -30,7 +21,7 @@ const EditProduct = () => {
     category: "",
     quantity: 1,
   });
-  // console.log('aaaa',categories);
+  const navigation = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -98,10 +89,19 @@ const EditProduct = () => {
     });
   };
 
-  console.log('aaaaaaaaaaaaffffffffff');
-
   const handleCancel = () => {
-    window.location.href = "/";
+    Swal.fire({
+      title: 'Cancelar',
+      text: '¿Estás seguro de que deseas cancelar los cambios?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigation('/admin/products');
+      }
+    });
   };
 
   return (
