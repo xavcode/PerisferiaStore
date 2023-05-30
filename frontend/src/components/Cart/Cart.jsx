@@ -1,10 +1,11 @@
-
 import React, { useState, useEffect } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
 import { useCart } from "../../hooks/useCart";
 import { BsFillTrash3Fill, BsCartX } from "react-icons/bs";
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
 import { AiOutlineShoppingCart, AiOutlineArrowLeft } from "react-icons/ai";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function CartItem({
   image,
@@ -78,17 +79,21 @@ function CartItem({
   );
 }
 
-export default function Cart({ userId }) {
+export default function Cart() {
+  const { user, isAuthenticated } = useAuth0();
   const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } = useCart();
   const [isCartOpen, setCartOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    fetchCart();
-  }, []);
+    if (isAuthenticated && cart.length > 0) {
+      fetchCart();
+    }
+  }, [isAuthenticated, cart]);
 
   const fetchCart = async () => {
     try {
-      const response = await axios.get(`http://localhost:3001/user/carrito/${userId}`);
+      const response = await axios.get(`http://localhost:3001/user/carrito/${user.sub}`);
       const userCart = response.data.cart;
       clearCart();
       userCart.products.forEach((product) => {
@@ -112,9 +117,7 @@ export default function Cart({ userId }) {
     0
   );
 
-  const handleClick = async (event) => {
-    event.preventDefault();
-
+  const redirectToPayment = async () => {
     if (!cart || cart.length === 0) {
       console.error("El carrito está vacío");
       return;
@@ -122,7 +125,7 @@ export default function Cart({ userId }) {
 
     try {
       const response = await axios.post("http://localhost:3001/payment", {
-        publicKey: 'TEST-1c120130-f27d-4676-930c-ae6d7014d092',
+        publicKey: "TEST-1c120130-f27d-4676-930c-ae6d7014d092",
         cartId: cart[0].id, // Utiliza el ID del primer producto en el carrito
       });
       console.log("Pago correcto", response);
@@ -170,7 +173,7 @@ export default function Cart({ userId }) {
                   </div>
                   <button
                     className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-red-500 hover:bg-red-600 focus:outline-none"
-                    onClick={handleClick}
+                    onClick={redirectToPayment}
                   >
                     Realizar pago
                   </button>

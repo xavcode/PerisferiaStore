@@ -5,6 +5,7 @@ const { addNewFavorite } = require('../controllers/Favorites/addFavorites');
 const { creation_relation } = require('../controllers/Orders/addOrders');
 const { create_Order, receive_Webhook } = require('../controllers/mercadoPago/Payment.js');
 const { create_record_review } = require('../controllers/Review/addReview');
+const {addProductCarrito} = require ('../controllers/Carrito/addCarrito')
 const fs = require('fs')
 const router_Post = Router();
 const multer = require('multer');

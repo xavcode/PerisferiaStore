@@ -6,26 +6,27 @@ import Search from "../Search/Search";
 import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
 import Cart from "../Cart/Cart";
 import logo from "../../assets/images/logo-dark.jpeg"
-
+import axios from "axios"
 
 
 const Header = () => {
 
 	const [userId, setUserId] = useState(null);
 
-  useEffect(() => {
-    const fetchUserId = async () => {
-      try {
-        const response = await axios.get("/admin/users/userId");
-        setUserId(response.data.id);
-      } catch (error) {
-        console.error("Error al obtener el ID del usuario:", error);
-      }
-    };
-
-    fetchUserId();
-  	}, []);
-
+	useEffect(() => {
+		const fetchUserId = async () => {
+		  try {
+			if (userId) { // Verificar si userId no es nulo
+			  const response = await axios.get(`/admin/users/${userId}`);
+			  setUserId(response.data.id);
+			}
+		  } catch (error) {
+			console.error("Error al obtener el ID del usuario:", error);
+		  }
+		};
+	  
+		fetchUserId();
+	  }, []);
 	return (
 		<div className="dark h-[150px] flex justify-around px-3 fixed top-0 left-0 md:h-[60px] w-full items-center font-bold bg-header dark:dark rounded-b-lg z-50">
 			<Link to="/">
