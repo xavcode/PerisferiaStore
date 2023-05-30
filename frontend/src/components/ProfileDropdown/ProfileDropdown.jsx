@@ -6,10 +6,13 @@ import avatar from '../../assets/images/profile-default-image.png';
 import LoginButton from '../Login/Login';
 import LogoutButton from '../Logout/Logout';
 
+
+
 const ProfileDropdown = () => {
   const { user, isAuthenticated } = useAuth0();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -28,6 +31,7 @@ const ProfileDropdown = () => {
     };
   }, []);
 
+
   const renderProfileMenu = () => {
     if (isAuthenticated) {
       return (
@@ -38,7 +42,7 @@ const ProfileDropdown = () => {
           {isMenuOpen && (
             <ul className="absolute top-full right-0 mt-2 py-2 bg-slate-300 shadow-lg rounded">
               <li>
-                <Link to="/profile" className="block px-4 py-2 text-xl text-gray-800 hover:bg-gray-200">Perfil</Link>
+              <Link to="/profile" className="block px-4 py-2 text-xl text-gray-800 hover:bg-gray-200">Perfil</Link>
               </li>
               <li>
                 <Link to="/profile/edit" className="block px-4 py-2  text-xl text-gray-800 hover:bg-gray-200">Editar Perfil</Link>
