@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { MdFavorite } from "react-icons/md";
 import { RxAvatar } from "react-icons/rx";
@@ -7,7 +7,25 @@ import ProfileDropdown from "../ProfileDropdown/ProfileDropdown";
 import Cart from "../Cart/Cart";
 import logo from "../../assets/images/logo-dark.jpeg"
 
+
+
 const Header = () => {
+
+	const [userId, setUserId] = useState(null);
+
+  useEffect(() => {
+    const fetchUserId = async () => {
+      try {
+        const response = await axios.get("/admin/users/userId");
+        setUserId(response.data.id);
+      } catch (error) {
+        console.error("Error al obtener el ID del usuario:", error);
+      }
+    };
+
+    fetchUserId();
+  	}, []);
+
 	return (
 		<div className="dark h-[150px] flex justify-around px-3 fixed top-0 left-0 md:h-[60px] w-full items-center font-bold bg-header dark:dark rounded-b-lg z-50">
 			<Link to="/">

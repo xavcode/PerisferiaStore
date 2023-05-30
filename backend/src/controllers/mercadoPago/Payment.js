@@ -129,7 +129,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const { Order, Carrito, Products } = require('../../db.js');
+const { Order, Carrito, Products, Users } = require('../../db.js');
 
 const create_Order = async (req, res) => {
   try {
@@ -137,17 +137,23 @@ const create_Order = async (req, res) => {
       access_token: process.env.PROD_ACCESS_TOKEN,
     });
 
-    const { cartId } = req.body; // Obtén el ID del carrito desde el cuerpo de la solicitud
+    const { cartId, userId } = req.body; // Obtén el ID del carrito y el ID del usuario desde el cuerpo de la solicitud
 
-    const carrito = await Carrito.findByPk(cartId, {
-      include: [{ model: Products, as: 'Products' }], // Incluye los productos asociados al carrito
+    // Obtiene el carrito y los productos del usuario desde la base de datos
+    const usuario = await Users.findByPk(userId, {
+      include: {
+        model: Carrito,
+        include: [{ model: Products, as: 'products' }],
+      },
     });
 
-    if (!carrito) {
-      return res.status(404).json({ error: 'Carrito no encontrado' });
+    if (!usuario) {
+      return res.status(404).json({ error: 'Usuario no encontrado' });
     }
 
-    const items = carrito.Products.map((producto) => {
+    const carrito = usuario.Carrito;
+
+    const items = carrito.products.map((producto) => {
       return {
         title: producto.name,
         unit_price: parseFloat(producto.price),
@@ -159,6 +165,11 @@ const create_Order = async (req, res) => {
 
     const preference = {
       items: items,
+      payer: {
+        name: usuario.name,
+        surname: usuario.last_name,
+        email: usuario.mail,
+      },
       back_urls: {
         success: 'http://localhost:5173/store',
         failure: 'http://localhost:5173/store',

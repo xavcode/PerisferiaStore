@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useId } from "react";
+
+import React, { useState, useEffect } from "react";
 import { useCart } from "../../hooks/useCart";
 import { BsFillTrash3Fill, BsCartX } from "react-icons/bs";
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
@@ -7,11 +7,8 @@ import { AiOutlineShoppingCart, AiOutlineArrowLeft } from "react-icons/ai";
 import axios from "axios";
 
 function CartItem({
-  img,
   image,
-  name,
   title,
-  rating,
   price,
   quantity,
   addToCart,
@@ -26,7 +23,7 @@ function CartItem({
 
   const handleIncreaseQuantity = () => {
     addToCart();
-  }
+  };
 
   return (
     <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500">
@@ -43,7 +40,8 @@ function CartItem({
               <div>
                 <div
                   className="text-xl cursor-pointer"
-                  onClick={removeFromCart}>
+                  onClick={removeFromCart}
+                >
                   <BsFillTrash3Fill className="text-gray-500 hover:text-red-500 transition" />
                 </div>
               </div>
@@ -53,7 +51,8 @@ function CartItem({
             <div className="flex flex-1 max-w-[100px] items-center h-full border text-gray-700 font-medium">
               <div
                 className="flex-1 h-full flex justify-center items-center cursor-pointer"
-                onClick={handleDecreaseQuantity}>
+                onClick={handleDecreaseQuantity}
+              >
                 <IoMdRemove />
               </div>
               <div className="h-full flex justify-center items-center px-2">
@@ -61,14 +60,15 @@ function CartItem({
               </div>
               <div
                 className="flex-1 h-full flex justify-center items-center cursor-pointer"
-                onClick={handleIncreaseQuantity}>
+                onClick={handleIncreaseQuantity}
+              >
                 <IoMdAdd />
               </div>
             </div>
             <div className="flex-1 flex items-center justify-around text-gray-700">
               {price}
             </div>
-            <div className="flex-1 flex justify-end items-center font-medium text-gray700">
+            <div className="flex-1 flex justify-end items-center font-medium text-gray-700">
               Precio: {price * quantity}
             </div>
           </div>
@@ -78,10 +78,26 @@ function CartItem({
   );
 }
 
-export default function Cart() {
-  const cartCheckboxId = useId();
-  const { cart, cartId, clearCart, addToCart, decreaseQuantity, removeFromCart } = useCart();
+export default function Cart({ userId }) {
+  const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } = useCart();
   const [isCartOpen, setCartOpen] = useState(false);
+
+  useEffect(() => {
+    fetchCart();
+  }, []);
+
+  const fetchCart = async () => {
+    try {
+      const response = await axios.get(`http://localhost:3001/user/carrito/${userId}`);
+      const userCart = response.data.cart;
+      clearCart();
+      userCart.products.forEach((product) => {
+        addToCart(product);
+      });
+    } catch (error) {
+      console.error("Error al obtener el carrito del usuario:", error);
+    }
+  };
 
   const handleCartToggle = () => {
     setCartOpen(!isCartOpen);
@@ -99,18 +115,20 @@ export default function Cart() {
   const handleClick = async (event) => {
     event.preventDefault();
 
-    if (!cartId) {
-      console.error("El ID del carrito no está definido");
+    if (!cart || cart.length === 0) {
+      console.error("El carrito está vacío");
       return;
     }
 
     try {
-      const response = await axios.post('http://localhost:3001/payment', {
-        cartId: cartId, // Pasar el ID del carrito
+      const response = await axios.post("http://localhost:3001/payment", {
+        publicKey: 'TEST-1c120130-f27d-4676-930c-ae6d7014d092',
+        cartId: cart[0].id, // Utiliza el ID del primer producto en el carrito
       });
       console.log("Pago correcto", response);
       console.log(response.data);
       window.location.href = response.data.init_point;
+      console.log(response.data.init_point)
     } catch (error) {
       console.error("Pago no realizado", error);
     }
@@ -122,62 +140,49 @@ export default function Cart() {
         <div className="relative">
           <div
             className="cursor-pointer flex relative"
-            onClick={handleCartToggle}>
-            <AiOutlineShoppingCart className="mt-2 " />
-            {cart.length > 0 && (
-              <span className="absolute top-0 right-0 -mt-2 -mr-2 w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-full text-sm">
-                {cart.length}
-              </span>
-            )}
-          </div>
-
-          <input id={cartCheckboxId} type="checkbox" hidden />
-          {isCartOpen && (
-            <div
-              className="cart-overlay fixed inset-0 bg-black opacity-50"
-              onClick={handleCartToggle}
-            />
-          )}
-          <div
-            className={`cart bg-white fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2/3 max-w-md p-4 overflow-y-auto ${
-              isCartOpen ? "" : "hidden"
-            }`}
-            style={{ maxHeight: "80vh" }}>
-            <div className="flex justify-between mb-4">
-              <AiOutlineArrowLeft
-                className="text-xl cursor-pointer text-gray-700"
-                onClick={handleCartToggle}
-              />
-              <h3 className="text-sm uppercase font-medium max-w-[1200px] text-black ml-6">
-                Carrito
-              </h3>
-              <div className="text-xl cursor-pointer" onClick={handleClearCart}>
-                <BsCartX className="text-gray-500 hover:text-red-500 transition" />
-              </div>
+            onClick={handleCartToggle}
+          >
+            <AiOutlineShoppingCart className="w-6 h-6" />
+            <div className="absolute -top-2 -right-2 flex justify-center items-center bg-red-500 rounded-full text-white w-4 h-4 text-xs">
+              {cart.length}
             </div>
-            <ul>
-              {cart.map(product => (
-                <CartItem
-                  key={product.id}
-                  addToCart={() => addToCart(product)}
-                  decreaseQuantity={() => decreaseQuantity(product)}
-                  removeFromCart={() => removeFromCart(product)}
-                  {...product}
-                />
-              ))}
-            </ul>
-            {cart.length === 0 && (
-              <p className="text-center text-gray-500">Tu Carrito está vacío</p>
-            )}
-            {cart.length > 0 && (
-              <>
-                <p className="text-right font-medium text-gray-700">
-                  Total: {totalPrice} <button className="bg-red-500" onClick={handleClick}>Comprar</button>
-                </p>
-                {/* Resto del contenido */}
-              </>
-            )}
           </div>
+          {isCartOpen && (
+            <div className="origin-top-right absolute right-0 mt-2 w-96 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+                {cart.map((item) => (
+                  <CartItem
+                    key={item.id}
+                    image={item.image}
+                    title={item.title}
+                    price={item.price}
+                    quantity={item.quantity}
+                    addToCart={() => addToCart(item)}
+                    decreaseQuantity={() => decreaseQuantity(item)}
+                    removeFromCart={() => removeFromCart(item)}
+                  />
+                ))}
+              </div>
+              {cart.length > 0 && (
+                <div className="py-2 flex justify-between px-4">
+                  <div className="text-sm font-medium text-gray-700">
+                    Total: {totalPrice}
+                  </div>
+                  <button
+                    className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-red-500 hover:bg-red-600 focus:outline-none"
+                    onClick={handleClick}
+                  >
+                    Realizar pago
+                  </button>
+                </div>
+              )}
+              {cart.length === 0 && (
+                <div className="py-2 px-4 text-sm font-medium text-gray-700">
+                  No hay productos en el carrito
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
