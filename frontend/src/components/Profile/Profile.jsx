@@ -9,47 +9,50 @@ const Profile = () => {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center mt-8 ">
-      <div className="max-w-md w-full bg-slate-200 rounded-md overflow-hidden shadow-md">
-        <div className="p-6">
-          <div className="flex items-center justify-center mb-4">
-            <div className="w-35 h-35  mr-4 ">
-              {isAuthenticated && <img src={user.picture} alt="Avatar" className="rounded-md w-full  m-1 h-full " />}
+    <div className="min-h-screen flex items-center justify-center mt-8">
+      <div className="max-w-xl w-full bg-white rounded-lg overflow-hidden shadow-lg p-6">
+        {isAuthenticated && (
+          <>
+            <h2 className="text-3xl font-bold mb-4 text-gray-800 text-center">Perfil</h2>
+            <div className="flex items-center justify-center mb-8">
+              <div className="relative w-36 h-36 mr-4">
+                <img src={user.picture} alt="Avatar" className="rounded-full w-full h-full object-cover" />
+              </div>
             </div>
-          </div>
-          {isAuthenticated && (
-            <>
-              <div className="mb-4">
-                <h2 className=" flex  items-center justify-center text-xl font-bold mb-2 text-gray-500 m-2">Información personal</h2>
-                <p className="text-gray-500">
+            <div className="mb-8">
+              <h3 className="text-2xl font-semibold mb-4 text-gray-800 text-center">Información personal</h3>
+              <div className="text-gray-700">
+                <div className="mb-2">
                   <span className="font-semibold">Nombre:</span> {user.name}
-                </p>
-                <p className="text-gray-500">
+                </div>
+                <div className="mb-2">
                   <span className="font-semibold">Correo electrónico:</span> {user.email}
-                </p>
-                <p className="text-gray-500">
+                </div>
+                <div className="mb-2">
                   <span className="font-semibold">Teléfono:</span> 1234567890
-                </p>
+                </div>
+              </div>
+            </div>
 
-              </div>
-              <div className="mb-4">
-                <h2 className="flex  items-center justify-center text-xl font-bold mb-2 text-gray-500">Dirección de envío</h2>
-                <p className="text-gray-500">
+            <div>
+              <h3 className="text-2xl font-semibold mb-4 text-gray-800 text-center">Dirección de envío</h3>
+              <div className="text-gray-700">
+                <div className="mb-2">
                   <span className="font-semibold">Calle:</span> Calle Principal
-                </p>
-                <p className="text-gray-500">
+                </div>
+                <div className="mb-2">
                   <span className="font-semibold">Ciudad:</span> Ciudad Principal
-                </p>
-                <p className="text-gray-500">
+                </div>
+                <div className="mb-2">
                   <span className="font-semibold">País:</span> País Principal
-                </p>
-                <p className="text-gray-500">
+                </div>
+                <div className="mb-2">
                   <span className="font-semibold">Código Postal:</span> 5300
-                </p>
+                </div>
               </div>
-            </>
-          )}
-        </div>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
