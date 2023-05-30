@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { useCart } from "../../hooks/useCart";
+import React, { useContext, useState } from "react";
+import { CartContext } from "../../context/Cart";
 import { BsFillTrash3Fill, BsCartX } from "react-icons/bs";
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
 import { AiOutlineShoppingCart, AiOutlineArrowLeft } from "react-icons/ai";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 function CartItem({
+  id,
   image,
   title,
   price,
@@ -18,12 +17,12 @@ function CartItem({
 }) {
   const handleDecreaseQuantity = () => {
     if (quantity > 1) {
-      decreaseQuantity();
+      decreaseQuantity(id);
     }
   };
 
   const handleIncreaseQuantity = () => {
-    addToCart();
+    addToCart(id);
   };
 
   return (
@@ -80,29 +79,9 @@ function CartItem({
 }
 
 export default function Cart() {
-  const { user, isAuthenticated } = useAuth0();
-  const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } = useCart();
+  const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } =
+    useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (isAuthenticated && cart.length > 0) {
-      fetchCart();
-    }
-  }, [isAuthenticated, cart]);
-
-  const fetchCart = async () => {
-    try {
-      const response = await axios.get(`http://localhost:3001/user/carrito/${user.sub}`);
-      const userCart = response.data.cart;
-      clearCart();
-      userCart.products.forEach((product) => {
-        addToCart(product);
-      });
-    } catch (error) {
-      console.error("Error al obtener el carrito del usuario:", error);
-    }
-  };
 
   const handleCartToggle = () => {
     setCartOpen(!isCartOpen);
@@ -124,14 +103,23 @@ export default function Cart() {
     }
 
     try {
+      const products = cart
+        .filter((product) => product.quantity > 0) // Filtrar productos con cantidad mayor a cero
+        .map((product) => ({
+          id: product.id,
+          quantity: product.quantity,
+          price: parseFloat(product.price),
+        }));
+
       const response = await axios.post("http://localhost:3001/payment", {
         publicKey: "TEST-1c120130-f27d-4676-930c-ae6d7014d092",
-        cartId: cart[0].id, // Utiliza el ID del primer producto en el carrito
+        products: products,
       });
+
       console.log("Pago correcto", response);
       console.log(response.data);
       window.location.href = response.data.init_point;
-      console.log(response.data.init_point)
+      console.log(response.data.init_point);
     } catch (error) {
       console.error("Pago no realizado", error);
     }
@@ -152,17 +140,23 @@ export default function Cart() {
           </div>
           {isCartOpen && (
             <div className="origin-top-right absolute right-0 mt-2 w-96 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
-              <div className="py-1" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
+              <div
+                className="py-1"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="options-menu"
+              >
                 {cart.map((item) => (
                   <CartItem
                     key={item.id}
+                    id={item.id}
                     image={item.image}
                     title={item.title}
                     price={item.price}
                     quantity={item.quantity}
-                    addToCart={() => addToCart(item)}
-                    decreaseQuantity={() => decreaseQuantity(item)}
-                    removeFromCart={() => removeFromCart(item)}
+                    addToCart={addToCart}
+                    decreaseQuantity={decreaseQuantity}
+                    removeFromCart={removeFromCart}
                   />
                 ))}
               </div>
