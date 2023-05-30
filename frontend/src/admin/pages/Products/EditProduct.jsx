@@ -11,14 +11,14 @@ const EditProduct = () => {
   const { categories } = useContext(FiltersContext);
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    id: id,
+    // id: id,
     name: "",
     price: 0,
     image: "",
     status: "disponible",
     description: "",
     rating: 1,
-    category: "",
+    category: [],
     quantity: 1,
   });
   const navigation = useNavigate();
@@ -56,6 +56,7 @@ const EditProduct = () => {
   };
 
   const handleSubmit = async (event) => {
+    console.log('<<<<<', formData);
     event.preventDefault();
     Swal.fire({
       title: "¿Guardar cambios?",

@@ -9,7 +9,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 import { FiltersContext } from "../../../context/FiltersContext";
 
-const CreateProductForm = () => {
+const CreateProductForm = () => { 
   const [file, setFile] = useState(null);
   const navigate = useNavigate()
   const { setUpdateFlag } = useContext(DataContext);

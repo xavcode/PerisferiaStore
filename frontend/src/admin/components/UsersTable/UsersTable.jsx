@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import avatar from '../../../assets/images/profile-default-image.png'
@@ -7,7 +7,8 @@ import Swal from 'sweetalert2';
 
 const UsersTable = () => {
   const [users, setUsers] = useState([]);
-
+  // const { userId } = useParams();
+  
   useEffect(() => {
     const fetchUsers = async () => {
       try {
@@ -19,14 +20,13 @@ const UsersTable = () => {
     };
     fetchUsers();
   }, []);
-
+  
   const handleEdit = (userId) => {
     // Lógica para manejar la acción de editar el usuario con el ID proporcionado
     console.log('Editar usuario con ID:', userId);
   };
-
-  const handleDelete = (userId) => {
-    // Lógica para manejar la acción de borrar el usuario con el ID proporcionado
+  
+  const handleDelete = async (userId) => {
     Swal.fire({
       title: '¿Seguro que quieres eliminar el usuario?',
       showCancelButton: true,
@@ -34,15 +34,19 @@ const UsersTable = () => {
       cancelButtonText: 'No',
       reverseButtons: true,
       icon: 'warning',
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        // Lógica para borrar el usuario con el ID proporcionado
-        console.log('Borrar usuario con ID:', userId);
+        try {
+          await axios.put(`http://localhost:3001/admin/user/decline/${id}`);
+          console.log('Usuario borrado con éxito:', id);
+        } catch (error) {
+          console.log('entre aca',userId);
+          console.log('Error al borrar el usuario:', error); 
+        } 
       }
     });
   };
-
-
+  
   return (
     <div className=" bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end overflow-y-auto">
       <div className=' flex gap-40 justify-center items-center mb-5'>

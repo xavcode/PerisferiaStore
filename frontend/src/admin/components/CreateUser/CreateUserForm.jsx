@@ -1,10 +1,12 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import Swal from "sweetalert2";
 
 const CreateUserForm = () => {
+    const { id } = useParams()
     const [formData, setFormData] = useState({
+    id: id, 
     name: '',
     last_name: '',
     username: '',
@@ -35,6 +37,7 @@ const CreateUserForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('aaaa',formData);
     const result = await Swal.fire({
       title: "¿Estás seguro de crear el usuario?",
       icon: "question",
@@ -56,10 +59,10 @@ const CreateUserForm = () => {
         "¡Usuario creado!",
         "El usuario ha sido creado exitosamente.",
         "success"
-      );
-      console.log('Respuesta del servidor:', response.data);
-      navigate('/admin/users');
-    } catch (error) {
+        );
+        console.log('Respuesta del servidor:', response.data);
+        navigate('/admin/users');
+      } catch (error) {
       console.error('Error:', error);
     }
   } else if (result.isDenied) {
