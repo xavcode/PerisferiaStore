@@ -32,7 +32,7 @@ export const DataProvider = ({ children }) => {
   }, [updateFlag]);
   // console.log(products)
   
-  console.log(products)
+  // console.log(products)
   return (
     <DataContext.Provider value={{
       products,

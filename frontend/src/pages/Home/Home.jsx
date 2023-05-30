@@ -29,6 +29,43 @@ const Home = () => {
     return () => clearInterval(timer);
   }, [images.length]);
 
+  useEffect(() => {
+    if(user){
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get('http://localhost:3001/users');
+        const usuarios = response.data;
+        const usuario = usuarios.filter((item) => item.mail === user.email);
+
+        if (!usuario.length) {
+          const userData = {
+            name: user.given_name,
+            last_name: user.family_name,
+            username: user.nickname,
+            phone:  (Math.floor(Math.random() * 10000000) + 1).toString(),
+            mail: user.email,
+            address: (Math.floor(Math.random() * 10000000) + 1).toString(),
+            password: (Math.floor(Math.random() * 10000000) + 1).toString(),
+            img: user.picture
+          };
+    
+          try {
+            await axios.post("http://localhost:3001/user", userData);
+          } catch (error) {
+            console.error("Error al crear el usuario:", error);
+          }
+        }
+      } catch (error) {
+        console.error('Error al obtener los usuarios:', error);
+      }
+    };
+  
+      fetchUsers();
+  }
+  }, [user]);
+
+
+
 
 
   const previousImage = () => {
