@@ -21,8 +21,9 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { UserContext } from './context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
 import EditUser from './admin/pages/Users/EditUser';
-import MyForm from "./TestForm";
 import Reviews from './components/Reviews/Reviews';
+import MyForm from "./TestForm";
+import EditProfile from "./pages/EditProfile/EditProfile"
 
 function App() {
 	const { user, isAuthenticated } = useAuth0();
@@ -40,6 +41,7 @@ function App() {
         <Route exact path='/contact' element={<Contact />} />
         <Route exact path='/reviews' element={<Reviews />} />
         <Route exact path='/profile' element={<Profile />} />
+        <Route exact path='/profile/edit' element={<EditProfile />} />
 
 
         <Route element={<ProtectedRoutes user={user} />}>
