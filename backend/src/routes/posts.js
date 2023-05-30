@@ -9,6 +9,7 @@ const {addProductCarrito} = require ('../controllers/Carrito/addCarrito')
 const fs = require('fs')
 const router_Post = Router();
 const multer = require('multer');
+const { create_store_review } = require('../controllers/StoreReview/createReview');
 
 const upload = multer({ dest: 'uploads/' });// Directorio donde se guardarán los archivos subidos
 
@@ -18,6 +19,7 @@ router_Post.post('/user', upload.single('file'), create_record_user);
 router_Post.post('/user/favorites', addNewFavorite);
 router_Post.post('/product/:id', create_record_review);
 router_Post.post('/store', addProductCarrito)
+router_Post.post('/store/:userId', create_store_review);
 router_Post.post('/order', creation_relation);
 
 
