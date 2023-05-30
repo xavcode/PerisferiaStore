@@ -3,11 +3,13 @@ const { createProduct, add_NewProduct } = require('../controllers/Product/create
 const { create_record_user } = require('../controllers/Users/createUser');
 const { addNewFavorite } = require('../controllers/Favorites/addFavorites');
 const { creation_relation } = require('../controllers/Orders/addOrders');
+const { create_Order, receive_Webhook } = require('../controllers/mercadoPago/Payment.js');
+const { create_record_review } = require('../controllers/Review/addReview');
+const {addProductCarrito} = require ('../controllers/Carrito/addCarrito')
 const fs = require('fs')
 const router_Post = Router();
 const multer = require('multer');
-const { addProductCarrito } = require('../controllers/Carrito/addCarrito');
-const { create_record_review } = require('../controllers/Review/addReview');
+
 const upload = multer({ dest: 'uploads/' });// Directorio donde se guardarán los archivos subidos
 
 // Ruta POST para recibir el archivo adjunto
@@ -21,6 +23,11 @@ router_Post.post('/order', creation_relation);
 
 // router_Post.post('/login', authController);
 
+//******************************************************************/
+//ruta de la pasarela de pagos.
+//router_Post.post('/payment', create_Order);
+router_Post.post('/payment', create_Order);
+router_Post.post('/webhook', receive_Webhook)
 
 module.exports = router_Post;
 

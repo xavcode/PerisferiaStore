@@ -11,29 +11,26 @@ export const DataProvider = ({ children }) => {
   const [updateFlag, setUpdateFlag] = useState(false); // agregar el cambio de estado para detonar el useEffect
 
   useEffect(() => {
-    const fetchData = async () =>{      
-      const response = await axios.get('http://localhost:3001/store')
-      // const response = await axios.get('https://perisferiastore-production.up.railway.app/store')
-      //for change the whole array to lowercase
-      const prods = response.data
-      const lowerCaseNameProducts = prods.map((product) => {
-        return { ...product, name: product.name.toLowerCase()
+    const fetchData = async () => {
+      const response = await axios.get('http://localhost:3001/store');
+      const prods = response.data;
+
+      const lowerCaseProducts = prods.map((product) => {
+        const lcProd = {
+          ...product,
+          name: product.name.toLowerCase(),
+          category: product.category.toLowerCase(),
         };
-      });      
-      setProducts(lowerCaseNameProducts)      
-      const lowerCaseCategoryProducts = prods.map((product) => {
-        return { ...product, category: product.category.toLowerCase()
-        };
-      });      
-      setProducts(lowerCaseCategoryProducts)
 
-    }
+        return lcProd;
+      });
 
-  fetchData() 
-    
-  }, [updateFlag])
+      setProducts(lowerCaseProducts);
+    };
 
-
+    fetchData();
+  }, [updateFlag]);
+  
   return (
     <DataContext.Provider value={{
       products,

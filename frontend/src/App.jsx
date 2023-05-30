@@ -1,6 +1,5 @@
 import React from "react";
 import { useContext } from "react";
-
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home/Home";
 import { BrowserRouter } from "react-router-dom";
@@ -21,13 +20,14 @@ import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { UserContext } from './context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
 import EditUser from './admin/pages/Users/EditUser';
-import MyForm from "./TestForm";
 import Reviews from './components/Reviews/Reviews';
+import MyForm from "./TestForm";
+import EditProfile from "./pages/EditProfile/EditProfile"
 
 function App() {
-	const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
 
-	return (
+  return (
     <BrowserRouter>
       <Header />
       <Routes>
@@ -39,12 +39,13 @@ function App() {
         <Route path='/store/:id' element={<Detail />} />
         <Route exact path='/contact' element={<Contact />} />
         <Route exact path='/reviews' element={<Reviews />} />
+        <Route path='/admin/' element={<Main />} />
         <Route exact path='/profile' element={<Profile />} />
+        <Route exact path='/profile/edit' element={<EditProfile />} />
 
 
         <Route element={<ProtectedRoutes user={user} />}>
 
-          <Route path='/admin/' element={<Main />} />
           <Route path='/admin/products' element={<Products />} />
           <Route path='/admin/products/create' element={<ProductForm />} />
           <Route path='/admin/products/edit/:id' element={<EditProduct />} />
@@ -52,7 +53,6 @@ function App() {
           <Route path='/admin/users/create' element={<CreateUserForm />} />
           <Route path='/admin/users/edit/:id' element={<EditUser />} />
         </Route>
-
         <Route path='*' element={<Error />} />
       </Routes>
     </BrowserRouter>
