@@ -8,6 +8,7 @@ const get_user_carrito = async (req, res) => {
             include: [
                 {
                     model: Carrito,
+                    attributes: ['cantidad'],
                     include: [
                         {
                             model: Products,

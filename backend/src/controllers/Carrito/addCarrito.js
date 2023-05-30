@@ -10,7 +10,24 @@ const addProductCarrito = async (req, res) => {
             include: [Carrito]
         });
         if (user && user.Carrito) {
-            await user.Carrito.addProducts(product);
+            // verificamos si el producto ya esta en el carrito
+            const carritoExisting = await user.Carrito.getProducts({
+                where: { id: productId }
+            });
+            if (carritoExisting.length > 0) {
+                await user.Carrito.addProducts(product, {
+                    through: {
+                        cantidad: carritoExisting[0].CarritoProductos.cantidad + 1
+                    }
+                });
+            } else {
+                // si el producto no existe se lo agrega con la cantidad en 1
+                await user.Carrito.addProducts(product, {
+                    through: {
+                        cantidad: 1
+                    }
+                });
+            }
         } else {
             const newCarrito = await Carrito.create(userId)
             await user.setCarrito(newCarrito);
