@@ -1,6 +1,8 @@
 const { Users } = require('../../db');
 const { STORAGE_KEY, DB_URL } = process.env;
 const fs = require('fs')
+const multer = require('multer');
+const upload = multer({ dest: 'uploads/' });// Directorio donde se guardarán los archivos subidos
 const { createClient } = require('@supabase/supabase-js');
 const supabase = createClient(`${DB_URL}`, `${STORAGE_KEY}`);
 
@@ -11,7 +13,7 @@ const create_user =  (newUser) => {
 
 const create_record_user = async (req, res) => {
     try {
-        const {id, name, last_name, username, address, password,
+        const { name, last_name, username, address, password,
             mail, phone, } = req.body;
         
         // descomentar cuando se tenga el formulario para la creacion del usuario
@@ -26,7 +28,7 @@ const create_record_user = async (req, res) => {
       if (error) {
           throw new Error(`Error al guardar el archivo en Supabase: ${error.message}`);
     }
-    await fs.promises.unlink(req.file.path.toString()); //eliminamos el archivo del sistema de archivos
+        await fs.promises.unlink(req.file.path.toString()); //eliminamos el archivo del sistema de archivos
     
         let imageUrl = await supabase
             .storage
@@ -35,7 +37,7 @@ const create_record_user = async (req, res) => {
         let imagenDB = imageUrl.data.publicUrl.toString();
 
         const userCreate = await create_user({
-            id, name, last_name, username,
+            name, last_name, username,
             address, password, mail,
             img: imagenDB, phone, 
         });

@@ -2,8 +2,7 @@ const { Products, Users, Carrito } = require('../../db');
 
 const get_user_carrito = async (req, res) => {
     try {
-        const { userId } = req.params;
-        const user =  await Users.findByPk(userId, {
+        const user =  await Users.findAll({
             attributes: ['name'], // Obtener solo el nombre del usuario
             include: [
                 {
@@ -21,15 +20,21 @@ const get_user_carrito = async (req, res) => {
         const arrayUser = [user];
         
         // Limpiando la respuesta 
-        const result = arrayUser.map(user => {
-            const carrito = {
-                id: user.Carrito.id,
-                products: user.Carrito.Products.map(product => ({ name: product.name, price: product.price }))
-            };
-            return {
-                name: user.name,
-                Carrito: carrito
-            };
+        const result = user.map(user => {
+            if (user.Carrito !== null) {
+                const carrito = {
+                    products: user.Carrito.Products.map(product => ({ id: product.id, name: product.name, price: product.price }))
+                };
+                return {
+                    name: user.name,
+                    Carrito: carrito
+                };
+            } else {
+                return {
+                    name: user.name,
+                    Carrito: 'No hay productos'
+                }
+            }
         })
         // console.log(user[0].Carrito)
         return res.status(200).json(result);
