@@ -80,9 +80,9 @@ const create_Order = async (req, res) => {
     const preference = {
       items: items,
       back_urls: {
-        success: 'http://localhost:5173/store',
-        failure: 'http://localhost:5173/store',
-        pending: 'http://localhost:3000/pending',
+        success: 'https://perisferia-store.vercel.app/store',
+        failure: 'https://perisferia-store.vercel.app/store',
+        pending: 'https://perisferia-store.vercel.app/pending',
       },
       notification_url: 'https://f3b9-190-183-193-182.sa.ngrok.io/webhook',
     };

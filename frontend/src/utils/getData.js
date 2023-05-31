@@ -2,7 +2,7 @@
 import axios from 'axios'
 const fetchdata = async () => {
   try {
-    const getData = await axios.get('https://perisferiastore-production.up.railway.app/store/categories')
+    const getData = await axios.get('http://localhost:3001/store/categories')
     const response = getData.data
     console.log(response)
     return response

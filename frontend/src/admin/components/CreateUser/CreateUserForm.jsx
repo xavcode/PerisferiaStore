@@ -285,7 +285,7 @@ export default CreateUserForm;
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 //     try {
-//       await axios.post('http://localhost:3001/user', formData) // https://perisferiastore-production.up.railway.app/user
+//       await axios.post('http://localhost:3001/user', formData) // http://localhost:3001/user
 //       console.log(formData)
 //     } catch (error) {
 //       throw new Error(error)
