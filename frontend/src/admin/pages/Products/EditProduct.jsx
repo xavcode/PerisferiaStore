@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FiltersContext } from "../../../context/FiltersContext";
 import { DataContext } from "../../../context/DataContext";
@@ -11,17 +11,17 @@ const EditProduct = () => {
   const { categories } = useContext(FiltersContext);
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    id: id,
+    // id: id,
     name: "",
     price: 0,
     image: "",
     status: "disponible",
     description: "",
     rating: 1,
-    category: "",
+    category: [],
     quantity: 1,
   });
-  console.log('aaaa',categories);
+  const navigation = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -56,6 +56,7 @@ const EditProduct = () => {
   };
 
   const handleSubmit = async (event) => {
+    console.log('<<<<<', formData);
     event.preventDefault();
     Swal.fire({
       title: "¿Guardar cambios?",
@@ -90,7 +91,18 @@ const EditProduct = () => {
   };
 
   const handleCancel = () => {
-    window.location.href = "/";
+    Swal.fire({
+      title: 'Cancelar',
+      text: '¿Estás seguro de que deseas cancelar los cambios?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigation('/admin/products');
+      }
+    });
   };
 
   return (
