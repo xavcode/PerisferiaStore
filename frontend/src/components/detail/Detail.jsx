@@ -12,7 +12,7 @@ import ReviewForm from '../ReviewForm/ReviewForm.jsx';
 
 const Detail = () => {
   const { addToCart, removeFromCart, cart } = useCart();
-
+  const [ actualizandoPage, setActualizandoPage ] = useState(false);
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
