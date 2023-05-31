@@ -15,11 +15,14 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING
         },
         rating: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER   
+        },
+        image: {
+            type: DataTypes.STRING,
         }
 
     },
-        {
-            timestamps: false
-        })
+    {
+      timestamps: true
+  })
 }

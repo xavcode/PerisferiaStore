@@ -11,8 +11,11 @@ module.exports = (sequelize) => {
             type: DataTypes.STRING,
         },
         comment: {
-            type: DataTypes.STRING
+            type: DataTypes.STRING,
         },
+        image: {
+            type: DataTypes.STRING,
+        }
     },
     {
       timestamps: true
