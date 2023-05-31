@@ -12,7 +12,7 @@ const decline_users = async (req, res) => {
         console.error('Surgio un error inesperado');
         res.status(500).json(error);
     }
-}
+} 
 
 module.exports = {
     decline_users
