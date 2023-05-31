@@ -148,8 +148,8 @@ export default function Cart() {
             className="cursor-pointer flex relative"
             onClick={handleCartToggle}
           >
-            <AiOutlineShoppingCart className="w-6 h-6" />
-            <div className="absolute -top-2 -right-2 flex justify-center items-center bg-red-500 rounded-full text-white w-4 h-4 text-xs">
+            <AiOutlineShoppingCart className="w-8 h-8" />
+            <div className="absolute -top-1 -right-2 flex justify-center items-center bg-red-900 rounded-full text-white w-4 h-4 text-sm">
               {cart.length}
             </div>
           </div>
@@ -186,7 +186,7 @@ export default function Cart() {
                     Total: {totalPrice}
                   </div>
                   <button
-                    className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-red-500 hover:bg-red-600 focus:outline-none"
+                    className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-red-900 hover:bg-red-600 focus:outline-none"
                     onClick={redirectToPayment}
                   >
                     Realizar pago
