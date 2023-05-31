@@ -116,7 +116,7 @@ const EditUser = () => {
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="password" className="text-lg font-semibold">
             Contraseña:
           </label>
@@ -128,8 +128,8 @@ const EditUser = () => {
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <label htmlFor="mail" className="text-lg font-semibold">
             Email:
           </label>
@@ -141,7 +141,7 @@ const EditUser = () => {
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
-        </div>
+        </div> */}
         <div>
           <label htmlFor="img" className="text-lg font-semibold">
             Imagen:
