@@ -33,7 +33,7 @@ const Home = () => {
     if(user){
     const fetchUsers = async () => {
       try {
-        const response = await axios.get('http://localhost:3001/users');
+        const response = await axios.get('https://perisferiastore-production.up.railway.app/users');
         const usuarios = response.data;
         const usuario = usuarios.filter((item) => item.mail === user.email);
 
@@ -50,7 +50,7 @@ const Home = () => {
           };
     
           try {
-            await axios.post("http://localhost:3001/user", userData);
+            await axios.post("https://perisferiastore-production.up.railway.app/user", userData);
           } catch (error) {
             console.error("Error al crear el usuario:", error);
           }
