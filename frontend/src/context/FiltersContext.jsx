@@ -17,7 +17,7 @@ export const FilterProvider = ({ children }) => {
   const [filters, setFilters] = useState({
     searched: '',
     minPrice: 10,
-    maxPrice: 1000,
+    maxPrice: 100000,
     catSelected: 'all',
     orderBy: 'from_lower',
     sortBy: 'price',
