@@ -30,7 +30,7 @@ const ProductsTable = () => {
       });
   
       if (confirmed.isConfirmed) {
-      const response = await axios.delete(`https://perisferiastore-production.up.railway.app/store/${productId}`);
+      const response = await axios.delete(`http://localhost:3001/store/${productId}`);
       setDeletedProductId(productId);
       console.log('Producto eliminado', response.data);
   

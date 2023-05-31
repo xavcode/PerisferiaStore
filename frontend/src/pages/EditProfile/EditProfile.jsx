@@ -12,7 +12,7 @@ const EditProfile = () => {
 	useEffect(() => {
 		const peticion = async () => {
 			try {
-				const userEdit = await axios.get(`https://perisferiastore-production.up.railway.app/admin/user/${user.email}`) // /admin/user/:userMail
+				const userEdit = await axios.get(`http://localhost:3001/admin/user/${user.email}`) // /admin/user/:userMail
 				const newuser = userEdit.data;
 				setDataUser(newuser)
 				setFormData(newuser);
@@ -52,7 +52,7 @@ const EditProfile = () => {
 			}
 		}
 		try {
-			const response = await axios.put(`https://perisferiastore-production.up.railway.app/admin/user/${dataUser.id}`, camposEditados);
+			const response = await axios.put(`http://localhost:3001/admin/user/${dataUser.id}`, camposEditados);
 			console.log(response.data);
 			navigation('/store')
 		} catch (error) {

@@ -126,7 +126,7 @@ export default function Cart() {
           price: parseFloat(product.price),
         }));
 
-      const response = await axios.post("https://perisferiastore-production.up.railway.app/payment", {
+      const response = await axios.post("http://localhost:3001/payment", {
         publicKey: "TEST-1c120130-f27d-4676-930c-ae6d7014d092",
         products: products,
       });

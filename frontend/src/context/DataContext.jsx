@@ -12,7 +12,7 @@ export const DataProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get('https://perisferiastore-production.up.railway.app/store');
+      const response = await axios.get('http://localhost:3001/store');
       const prods = response.data;
 
       const lowerCaseProducts = prods.map((product) => {

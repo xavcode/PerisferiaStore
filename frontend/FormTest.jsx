@@ -13,7 +13,7 @@ const FormTest = () => {
     }
 
 const handleSubmit =  async () => {
-    const upload = await axios.post('https://perisferiastore-production.up.railway.app/', state)
+    const upload = await axios.post('http://localhost:3001/', state)
 }
 
   return (

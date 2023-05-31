@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FiltersContext } from "../../../context/FiltersContext";
 import { DataContext } from "../../../context/DataContext";
+import { startCase } from "lodash";
 
 const EditProduct = () => {
   const { products } = useContext(DataContext);
@@ -26,7 +27,7 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`https://perisferiastore-production.up.railway.app/store/${id}`) //https://perisferiastore-production.up.railway.app/store${id}
+        const response = await axios.get(`http://localhost:3001/store/${id}`) //http://localhost:3001/store${id}
         const product = response.data;
         if (product) {
           setFormData(product)
@@ -46,10 +47,6 @@ const EditProduct = () => {
 }, [id, products]);
       
   
-
-
-
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     console.log(e.target.value);
@@ -70,7 +67,7 @@ const EditProduct = () => {
       if (result.isConfirmed) {
         try {
           const responseProductUpdated = await axios.put(
-            `https://perisferiastore-production.up.railway.app/product`,
+            `http://localhost:3001/product`,
             formData
           );
           console.log("respuesta correcta", responseProductUpdated);
@@ -133,7 +130,7 @@ const EditProduct = () => {
             type="text"
             id="name"
             name="name"
-            value={formData.name}
+            value={startCase(formData.name)}
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
@@ -212,7 +209,7 @@ const EditProduct = () => {
             <option value="">Seleccionar categoría</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
-                {category}
+                {startCase(category)}
               </option>
             ))}
           </select>

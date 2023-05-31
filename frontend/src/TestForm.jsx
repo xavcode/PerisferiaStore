@@ -43,7 +43,7 @@ const MyForm = () => {
       console.log(formDataToSend)
     });
     try {
-      const response = await axios.post('https://perisferiastore-production.up.railway.app/user', formDataToSend);
+      const response = await axios.post('http://localhost:3001/user', formDataToSend);
       console.log('Respuesta del servidor:', response.data);
       alert('Producto creado con éxito');
       // Hacer cualquier otra acción deseada después de enviar el formulario
