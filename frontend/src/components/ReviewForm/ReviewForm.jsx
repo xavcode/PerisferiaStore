@@ -4,8 +4,6 @@ import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import axios from 'axios'
 
-
-
 const ReviewForm = ({ id }) => {
   const { user } = useAuth0()
   const [rating, setRating] = useState('5');
@@ -47,8 +45,6 @@ const ReviewForm = ({ id }) => {
         confirmButtonText: 'Ok',
       });
     } else {
-      const date = new Date();
-      const formattedDate = date.toISOString().split('T')[0];
       const sendReview = {
         userId: userId,
         comment: comment,
