@@ -6,7 +6,7 @@ const addProductById = async (req, res) => {
         const product = await Products.findByPk(id, {
             include: {
                 model: Review,
-                attributes: ['userId', 'comment', 'rating', 'image']
+                attributes: ['userId', 'comment', 'rating', 'image', 'createdAt', 'updatedAt']
             }
         });
         if (!product) {
