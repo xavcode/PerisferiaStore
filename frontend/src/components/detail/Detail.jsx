@@ -114,14 +114,15 @@ const Detail = () => {
           </div>
         </div>
         <div>
-          <ReviewForm 
-          id ={id}/>
+          <ReviewForm
+            id={id} />
         </div>
       </div>
 
 
       <div className='h-[600px] overflow-auto px-2 border-2 border-gray-300 rounded-lg'>
-        <Reviews />
+        <Reviews
+        id={id} />
       </div>
     </div>
   );

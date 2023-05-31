@@ -25,8 +25,8 @@ router_get.get('/reviews', get_store_review);
 router_get.get('/users', get_user);
 router_get.get('/users/favoritos', get_user_favorites);
 router_get.get('/users/favoritos/:userId', getUserById_favorites);
+router_get.get('/admin/user/:userMail', getUserByMail);
 router_get.get('/admin/users/:userId', getUserById)
-router_get.get('/admin/users', getUserByMail);
 router_get.get('/user/carrito', get_user_carrito);
 router_get.get('/user/carrito/:userId', get_user_carrito_by_id);
 router_get.get('/userAct', getActiveUser);
