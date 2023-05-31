@@ -30,6 +30,7 @@ export const DataProvider = ({ children }) => {
 
     fetchData();
   }, [updateFlag]);
+  
   return (
     <DataContext.Provider value={{
       products,

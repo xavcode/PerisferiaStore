@@ -1,0 +1,11 @@
+.divDemo {
+    height: 100vh;
+    border: 5px solid red;
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+}
+.text {
+    color:aliceblue;
+    font-size: 40px;
+}

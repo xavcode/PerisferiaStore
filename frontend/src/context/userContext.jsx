@@ -1,6 +1,6 @@
-import React, { createContext, useEffect, useState } from 'react';
+import React from 'react'
+import { createContext, useEffect, useState } from "react";
 import { useAuth0 } from '@auth0/auth0-react';
-import axios from 'axios';
 
 export const UserContext = createContext();
 
@@ -14,53 +14,34 @@ export const UserProvider = ({ children }) => {
     userName: '',
     phone: '',
     mail: '',
-    address: '',
     password: '',
+    Adress: '',
     profileImage: '',
     theme: 'dark',
     isAdmin: '',
     isActive: '',
-    isAuthenticated: false,
-  });
+    isAuthenticated: '',
+  })
+  // const userTheme = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  // console.log(userTheme)
+  // if(userTheme===true) setUserData({...userData, theme:userTheme})
 
-  useEffect(() => {
-    if (isAuthenticated && user) {
-      setUserData({
-        name: user.given_name,
-        lastName: user.family_name,
-        userName: user.nickname,
-        phone: user.phone,
-        mail: user.email,
-        address: user.address,
-        profileImage: user.picture,
-        theme: 'dark',
-        isAdmin: user.isAdmin,
-        isActive: user.isActive,
-        isAuthenticated: isAuthenticated,
-        
-      });
-    }
-  }, [isAuthenticated, user]);
+  // useEffect(() => {
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get('http://localhost:3001/user/');
-        setUserData((prevUserData) => ({
-          ...prevUserData,
-          ...response.data,
-        }));
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-      }
-    };
+  //   const fetchData = async () => {
+  //     const response = await axios('http://localhost:3001/users/')
+  //     setUserData(response.data)
+  //   }    
 
-    fetchData();
-  }, []);
+  //   fetchData()
+  // }, [])
 
   return (
-    <UserContext.Provider value={{ userData, setUserData }}>
+    <UserContext.Provider value={{
+      userData,
+      setUserData
+    }}>
       {children}
     </UserContext.Provider>
-  );
-};
+  )
+}

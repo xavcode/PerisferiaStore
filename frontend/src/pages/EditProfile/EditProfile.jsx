@@ -1,155 +1,217 @@
-import React, { useContext } from "react";
-import { RiUser3Fill } from "react-icons/ri";
-import { UserContext } from "../../context/userContext";
-import axios from "axios";
+import React, { useState } from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import {FiEdit3} from "react-icons/fi"
+
+import { FaUserEdit } from "react-icons/fa";
 
 const EditProfile = () => {
-    const { userData, setUserData } = useContext(UserContext);
-  
-    const handleChange = (e) => {
-      const { id, value } = e.target;
-      setUserData((prevState) => ({ ...prevState, [id]: value }));
-    };
-  
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-      try {
-        const response = await axios.put("https://perisferiastore-production.up.railway.app/store/users/" + userData.id, userData);
-        console.log(response.data);
-        alert("Cambios guardados exitosamente");
-      } catch (error) {
-        console.error(error);
-        alert("Error al guardar los cambios");
-      }
-    };
+	const { user, isLoading, isAuthenticated } = useAuth0();
+	const [name, setName] = useState("");
+	const [email, setEmail] = useState("");
+	const [phone, setPhone] = useState("");
+	const [street, setStreet] = useState("");
+	const [city, setCity] = useState("");
+	const [country, setCountry] = useState("");
+	const [postalCode, setPostalCode] = useState("");
+	const [selectedField, setSelectedField] = useState("");
 
-  return (
-    <div className="min-h-screen bg-shadow flex flex-col justify-center items-center">
-      <nav className="bg-shadow p-4">
-        <div className="container mx-auto">
-          <h1 className="text-white text-3xl font-bold text-center">
-            Editar Perfil
-          </h1>
-        </div>
-      </nav>
-      <div className="container mx-auto p-8">
-        <div className="max-w-md mx-auto bg-white rounded-lg shadow-lg">
-          <div className="p-6">
-            <div className="flex flex-col items-center">
-              <div className="flex items-center justify-center w-32 h-32 bg-blue-100 rounded-full">
-                <RiUser3Fill size={48} className="text-blue-500" />
-              </div>
-              <h2 className="mt-4 text-2xl font-semibold text-black">
-                {userData.name}
-              </h2>
-            </div>
-            <div className="mt-8">
-              <form className="space-y-4" onSubmit={handleSubmit}>
-                <div>
-                  <label className="text-gray-600 block">Nombre:</label>
-                  <input
-                    type="text"
-                    id="name"
-                    className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white text-black"
-                    placeholder="Ingrese su Nombre"
-                    value={userData.name}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label className="text-gray-600 block">Apellido:</label>
-                  <input
-                    type="text"
-                    id="lastName"
-                    className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white text-black"
-                    placeholder="Ingrese su Apellido"
-                    value={userData.lastName}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label className="text-gray-600 block">Teléfono:</label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white text-black"
-                    placeholder="Confirme su Teléfono"
-                    value={userData.phone}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label className="text-gray-600 block">Contraseña:</label>
-                  <input
-                    type="password"
-                    id="password"
-                    className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white text-black"
-                    placeholder="Ingrese su Contraseña"
-                    value={userData.password}
-                    onChange={handleChange}
-                  />
-                  <div>
-                    <label className="text-gray-600 block">
-                      Confirmar Contraseña:
-                    </label>
-                    <input
-                      type="password"
-                      id="confirmPassword"
-                      className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white text-black"
-                      placeholder="Confirme su Contraseña"
-                      value={userData.confirmPassword}
-                      onChange={handleChange}
-                    />
-                  </div>
-                </div>
-                <div>
-                  <label className="text-gray-600 block">
-                    Correo Electrónico:
-                  </label>
-                  <input
-                    type="email"
-                    id="mail"
-                    className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white text-black"
-                    placeholder="Ingrese Correo Electrónico nuevo"
-                    value={userData.mail}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label className="text-gray-600 block">
-                    Confirmar Correo Electrónico:
-                  </label>
-                  <input
-                    type="email"
-                    id="confirmMail"
-                    className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white text-black"
-                    placeholder="Confirme el Correo Electrónico"
-                    value={userData.confirmMail}
-                    onChange={handleChange}
-                  />
-                </div>
-                <div>
-                  <label className="text-gray-600 block">Biografía:</label>
-                  <textarea
-                    id="biography"
-                    className="border w-full text-base px-2 py-1 focus:outline-none focus:ring-0 focus:border-gray-600 bg-white text-black"
-                    placeholder="Breve descripción sobre el usuario."
-                    value={userData.biography}
-                    onChange={handleChange}
-                  ></textarea>
-                </div>
-                <div className="mt-6 text-center">
-                  <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                    Guardar Cambios
-                  </button>
-                </div>
-              </form>
-            </div>
+	const handleSave = () => {
+		// Aquí puedes implementar la lógica para guardar los datos actualizados del perfil
+	};
+
+	if (isLoading) {
+		return <div>Cargando...</div>;
+	}
+
+	return (
+    <div className="flex items-center justify-center mt-8" style={{ height: '125vh' }}>
+    <div className="max-w-xl w-full bg-white rounded-lg overflow-hidden shadow-lg p-6">
+      {isAuthenticated && (
+        <div className="flex items-center justify-center mb-8">
+          <div className="relative w-32 h-32 mr-4">
+            <img src={user.picture} alt="Avatar" className="rounded-full w-full h-full object-cover" />
+            <FaUserEdit className="absolute bottom-0 right-0 text-gray-500 text-2xl cursor-pointer" />
           </div>
         </div>
-      </div>
-    </div>
-  );
+      )}
+
+      {isAuthenticated && (
+        <>
+          <div className="mb-8">
+            <h2 className="text-3xl font-bold mb-2 text-gray-800 text-center">
+              Editar Perfil
+            </h2>
+          </div>
+
+          <div className="mb-8">
+            <h3 className="text-2xl font-semibold mb-4 text-gray-800">
+              Información personal
+            </h3>
+							<div className="flex flex-col text-gray-700">
+								<div className="mb-4">
+									<label className="font-semibold mb-1">Nombre:</label>
+									<div className="flex items-center">
+										<label className="mr-2">{name}</label>
+										<div className="flex items-center ml-auto">
+											<FiEdit3
+												className="cursor-pointer"
+												onClick={() => setSelectedField("Nombre")}
+											/>
+										</div>
+									</div>
+								</div>
+								<div className="mb-4">
+									<label className="font-semibold mb-1">
+										Correo electrónico:
+									</label>
+									<div className="flex items-center">
+										<label className="mr-2">{email}</label>
+										<div className="flex items-center ml-auto">
+											<FiEdit3
+												className="ml-auto cursor-pointer"
+												onClick={() => setSelectedField("email")}
+											/>
+										</div>
+									</div>
+								</div>
+								<div className="mb-4">
+									<label className="font-semibold mb-1">Teléfono:</label>
+									<div className="flex items-center">
+										<label className="mr-2">{phone}</label>
+										<div className="flex items-center ml-auto">
+											<FiEdit3
+												className="cursor-pointer"
+												onClick={() => setSelectedField("Teléfono")}
+											/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div>
+							<h3 className="text-2xl font-semibold mb-4 text-gray-800">
+								Dirección de envío
+							</h3>
+							<div className="flex flex-col text-gray-700">
+								<div className="mb-4">
+									<label className="font-semibold mb-1">Calle:</label>
+									<div className="flex items-center">
+										<span>{street}</span>
+										<div className="flex items-center ml-auto">
+											<FiEdit3
+												className="ml-auto cursor-pointer"
+												onClick={() => setSelectedField("Calle")}
+											/>
+										</div>
+									</div>
+								</div>
+								<div className="mb-4">
+									<label className="font-semibold mb-1">Ciudad:</label>
+									<div className="flex items-center">
+										<span>{city}</span>
+										<div className="flex items-center ml-auto">
+											<FiEdit3
+												className="ml-auto cursor-pointer"
+												onClick={() => setSelectedField("Ciudad")}
+											/>
+										</div>
+									</div>
+								</div>
+								<div className="mb-4">
+									<label className="font-semibold mb-1">País:</label>
+									<div className="flex items-center">
+										<span>{country}</span>
+										<div className="flex items-center ml-auto">
+											<FiEdit3
+												className="ml-auto cursor-pointer"
+												onClick={() => setSelectedField("País")}
+											/>
+										</div>
+									</div>
+								</div>
+								<div className="mb-4">
+									<label className="font-semibold mb-1">Código Postal:</label>
+									<div className="flex items-center">
+										<span>{postalCode}</span>
+										<div className="flex items-center ml-auto">
+											<FiEdit3
+												className="ml-auto cursor-pointer"
+												onClick={() => setSelectedField("Código Postal")}
+											/>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						{selectedField && (
+							<div className="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center">
+								<div className="max-w-sm bg-white rounded-lg overflow-hidden shadow-lg p-6">
+									<h3 className="text-2xl font-semibold mb-4 text-gray-800">
+										Editar {selectedField}
+									</h3>
+									<div className="flex flex-col text-gray-700">
+										<input
+											type="text"
+											value={
+												selectedField === "Codigo Postal"
+													? postalCode
+													: selectedField === "País"
+													? country
+													: selectedField === "Ciudad"
+													? city
+													: selectedField === "Calle"
+													? street
+													: selectedField === "Teléfono"
+													? phone
+													: selectedField === "email"
+													? email
+													: name
+											}
+											onChange={e => {
+												if (selectedField === "Codigo Postal") {
+													setPostalCode(e.target.value);
+												} else if (selectedField === "País") {
+													setCountry(e.target.value);
+												} else if (selectedField === "Ciudad") {
+													setCity(e.target.value);
+												} else if (selectedField === "Calle") {
+													setStreet(e.target.value);
+												} else if (selectedField === "Teléfono") {
+													setPhone(e.target.value);
+												} else if (selectedField === "email") {
+													setEmail(e.target.value);
+												} else {
+													setName(e.target.value);
+												}
+											}}
+											className="border border-gray-300 bg-white px-3 py-2 rounded-lg mb-4"
+										/>
+										<div className="flex justify-center">
+											<button
+												onClick={() => setSelectedField("")}
+												className="bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold">
+												Guardar
+											</button>
+										</div>
+									</div>
+								</div>
+							</div>
+						)}
+
+						<div className="flex justify-center">
+							<button
+								onClick={handleSave}
+								className="bg-blue-500 text-white px-4 py-2 rounded-lg font-semibold">
+								Guardar
+							</button>
+						</div>
+					</>
+				)}
+			</div>
+		</div>
+	);
 };
 
 export default EditProfile;
