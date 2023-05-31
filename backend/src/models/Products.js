@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         price: {
-            type: DataTypes.FLOAT,
+            type: DataTypes.DECIMAL(10),
             allowNull: false,
         },
         img: {
@@ -22,7 +22,7 @@ module.exports = (sequelize) => {
             allowNull: false
         },
         status: {
-            type: DataTypes.ENUM('disponible', 'Sin stock', 'eliminado'),
+            type: DataTypes.ENUM('disponible', 'sin stock', 'eliminado'),
             defaultValue: 'disponible',
         },
         description: {

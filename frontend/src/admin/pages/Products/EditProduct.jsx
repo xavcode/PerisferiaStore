@@ -1,57 +1,118 @@
-import React from 'react'
-import { useState, useEffect, useContext, } from 'react';
-import axios from 'axios'
+import React from "react";
+import { useState, useEffect, useContext } from "react";
+import axios from "axios";
 import { Link, useParams } from "react-router-dom";
-
-import { FiltersContext } from '../../../context/FiltersContext';
+import Swal from "sweetalert2";
+import { FiltersContext } from "../../../context/FiltersContext";
+import { DataContext } from "../../../context/DataContext";
 
 const EditProduct = () => {
-  const { categories } = useContext(FiltersContext)
-  const { id } = useParams()
-
+  const { products } = useContext(DataContext);
+  const { categories } = useContext(FiltersContext);
+  const { id } = useParams();
   const [formData, setFormData] = useState({
-    id: null,
-    name: '',
-    description: '',
-    status: 'disponible',
-    rating: 3,
-    quantity: 1,
-    category: '',
+    id: id,
+    name: "",
     price: 0,
-    image: '',
+    image: "",
+    status: "disponible",
+    description: "",
+    rating: 1,
+    category: "",
+    quantity: 1,
   });
+  console.log('aaaa',categories);
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await axios.get(`https://perisferiastore-production.up.railway.app/store${id}`)
-      setFormData(response.data)
+      try {
+        const response = await axios.get(`http://localhost:3001/store/${id}`) //https://perisferiastore-production.up.railway.app/store${id}
+        const product = response.data;
+        if (product) {
+          setFormData(product)
+        }
+      } catch (error) {
+        console.error(error)
+      }
       // console.log(response.data)
+      }
+      fetchProduct()
+  }, [id])
+  useEffect(() => {
+    const product = products.find((product) => product.id === id);
+    if (product) {
+      setFormData(product);
     }
-    fetchProduct()
-  }, [])
+}, [id, products]);
+      
+  
 
 
 
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({ ...prevFormData, [name]: value }));
-    console.log(e.target.value)
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+    console.log(e.target.value);
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    onSave(formData);
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    Swal.fire({
+      title: "¿Guardar cambios?",
+      icon: "question",
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: "No",
+      cancelButtonColor: "#d33",
+      reverseButtons: true,
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const responseProductUpdated = await axios.put(
+            `http://localhost:3001/product`,
+            formData
+          );
+          console.log("respuesta correcta", responseProductUpdated);
+          Swal.fire({
+            title: "¡Cambios guardados!",
+            text: "Los cambios se guardaron correctamente.",
+            icon: "success",
+            confirmButtonText: "Aceptar",
+          });
+          window.location.href = "/store";
+        } catch (error) {
+          console.error("respuesta incorrecta", error);
+        }
+      } else if (result.dismiss === Swal.DismissReason.cancel) {
+        console.log("Cambios cancelados");
+      }
+    });
+  };
+
+  const handleCancel = () => {
+    window.location.href = "/";
   };
 
   return (
     <div className="fixed justify-center flex flex-col items-center bg-gray-900 text-white py-3 px-16  mt-20 mb-5 w-full mx-4 rounded-lg">
-      <Link to="/admin/products" className="text-gray-500 hover:text-gray-900 mb-2">
-        <svg className="w-6 h-6  mr-2" stroke="currentColor" >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-        </svg></Link>
+      <Link
+        to="/admin/products"
+        className="text-gray-500 hover:text-gray-900 mb-2"
+      >
+        <svg className="w-6 h-6  mr-2" stroke="currentColor">
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth="2"
+            d="M10 19l-7-7m0 0l7-7m-7 7h18"
+          />
+        </svg>
+      </Link>
       <h2 className="text-3xl font-bold mb-4">Editar Producto</h2>
-      <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4 max-w-2xl">
+      <form
+        onSubmit={handleSubmit}
+        className="grid grid-cols-2 gap-4 max-w-2xl"
+      >
         <div>
           <label htmlFor="name" className="text-lg font-semibold">
             Producto:
@@ -110,27 +171,39 @@ const EditProduct = () => {
           <label htmlFor="rating" className="text-lg font-semibold">
             Rating:
           </label>
-          <input
+          <select
             type="number"
             id="rating"
             name="rating"
             value={formData.rating}
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
-          />
+          >
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+          </select>
         </div>
         <div>
           <label htmlFor="category" className="text-lg font-semibold">
             Categoría:
           </label>
-          <input
-            type="text"
+          <select
             id="category"
             name="category"
             value={formData.category}
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
-          />
+          >
+            <option value="">Seleccionar categoría</option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.id}>
+                {category}
+              </option>
+            ))}
+          </select>
         </div>
         <div>
           <label htmlFor="price" className="text-lg font-semibold">
@@ -154,20 +227,27 @@ const EditProduct = () => {
             id="image"
             name="image"
             onChange={handleChange}
+            value={formData.image}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
         </div>
         <div className="col-span-2 flex justify-end">
-          <button className="bg-white hover:bg-primary text-gray-700 font-bold py-2 px-4 rounded">
+          <button
+            type="submit"
+            className="bg-white hover:bg-primary text-gray-700 font-bold py-2 px-4 rounded"
+          >
             Guardar
           </button>
-          <button type="button" className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded" >
+          <button
+            type="button"
+            className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded"
+            onClick={handleCancel}
+          >
             Cancelar
-          </button>
+          </ button>
         </div>
       </form>
     </div>
   );
 };
-
 export default EditProduct;

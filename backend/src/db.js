@@ -3,15 +3,20 @@ const { Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const {
-  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME
+  // DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, PGPASSWORD
+  DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, 
 } = process.env;
  
-const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:5432/${DB_NAME}`, {
+const sequelize = new Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}:/${DB_NAME}`, {
   logging: false, // set to console.log to see the raw SQL queries
   dialect: 'postgres',
 });
+// const sequelize = new Sequelize(PGPASSWORD, {
+//   logging: false, // set to console.log to see the raw SQL queries
+//   dialect: 'postgres',
+// });
 const basename = path.basename(__filename);
-
+ 
 const modelDefiners = [];
 
 // Leemos todos los archivos de la carpeta Models, los requerimos y agregamos al arreglo modelDefiners
@@ -30,7 +35,7 @@ sequelize.models = Object.fromEntries(capsEntries);
 
 // En sequelize.models están todos los modelos importados como propiedades
 // Para relacionarlos hacemos un destructuring
-const { Users, Order, Products } = sequelize.models;
+const { Users, Order, Products, Carrito, Review  } = sequelize.models;
 
 // Aca vendrian las relaciones
 Users.hasMany(Order);
@@ -39,9 +44,18 @@ Products.belongsToMany(Order, { through: 'order_product' });
 Order.belongsToMany(Products, { through: 'order_product' });
 
 
+// establecemos relacion de Favoritos varios a varios
+Products.belongsToMany(Users, { through: 'Favorites' });
+Users.belongsToMany(Products, { through: 'Favorites' });
 
-Products.belongsToMany(Users, {through: 'Favorites'})
-Users.belongsToMany(Products, { through: 'Favorites' })
+
+Users.hasOne(Carrito);
+Carrito.hasMany(Products);
+
+Products.hasMany(Review)
+Users.hasMany(Review)
+
+
 
 // Users.hasMany(Reviews)
 // Reviews.belongsTo(Users)

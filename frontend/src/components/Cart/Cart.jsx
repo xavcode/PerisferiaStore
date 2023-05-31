@@ -1,16 +1,14 @@
-import React, { useState } from "react";
-import { useId } from "react";
-import { useCart } from "../../hooks/useCart";
+import React, { useContext, useState } from "react";
+import { CartContext } from "../../context/Cart";
 import { BsFillTrash3Fill, BsCartX } from "react-icons/bs";
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
 import { AiOutlineShoppingCart, AiOutlineArrowLeft } from "react-icons/ai";
+import axios from "axios";
 
 function CartItem({
-  img,
+  id,
   image,
-  name,
   title,
-  rating,
   price,
   quantity,
   addToCart,
@@ -19,12 +17,18 @@ function CartItem({
 }) {
   const handleDecreaseQuantity = () => {
     if (quantity > 1) {
-      decreaseQuantity();
+      decreaseQuantity(id);
     }
   };
 
   const handleIncreaseQuantity = () => {
-    addToCart();
+    const existingProduct = Cart.find((product) => product.id === id); // Usa cart en lugar de Cart
+    if (existingProduct) {
+      addToCart(id); // Llama a la función addToCart sin cambiar la lógica
+    } else {
+      // Si el producto no existe en el carrito, agrega uno nuevo con cantidad inicial de 1
+      addToCart(id, 1);
+    }
   };
 
   return (
@@ -58,7 +62,7 @@ function CartItem({
                 <IoMdRemove />
               </div>
               <div className="h-full flex justify-center items-center px-2">
-				{quantity}
+                {quantity}
               </div>
               <div
                 className="flex-1 h-full flex justify-center items-center cursor-pointer"
@@ -70,8 +74,8 @@ function CartItem({
             <div className="flex-1 flex items-center justify-around text-gray-700">
               {price}
             </div>
-            <div className="flex-1 flex justify-end items-center font-medium text-gray700">
-            Precio: {price * quantity}
+            <div className="flex-1 flex justify-end items-center font-medium text-gray-700">
+              Precio: {price * quantity}
             </div>
           </div>
         </div>
@@ -81,9 +85,8 @@ function CartItem({
 }
 
 export default function Cart() {
-  const cartCheckboxId = useId();
   const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } =
-    useCart();
+    useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
 
   const handleCartToggle = () => {
@@ -94,74 +97,95 @@ export default function Cart() {
     clearCart();
   };
 
-  // Calcular el total de precios
   const totalPrice = cart.reduce(
     (total, product) => total + product.price * product.quantity,
     0
   );
 
+  const redirectToPayment = async () => {
+    if (!cart || cart.length === 0) {
+      console.error("El carrito está vacío");
+      return;
+    }
+
+    try {
+      const products = cart
+        .filter((product) => product.quantity > 0) // Filtrar productos con cantidad mayor a cero
+        .map((product) => ({
+          id: product.id,
+          quantity: product.quantity,
+          price: parseFloat(product.price),
+        }));
+
+      const response = await axios.post("http://localhost:3001/payment", {
+        publicKey: "TEST-1c120130-f27d-4676-930c-ae6d7014d092",
+        products: products,
+      });
+
+      console.log("Pago correcto", response);
+      console.log(response.data);
+      window.location.href = response.data.init_point;
+      console.log(response.data.init_point);
+    } catch (error) {
+      console.error("Pago no realizado", error);
+    }
+  };
+
   return (
     <div>
       <div>
         <div className="relative">
-          <div className="cursor-pointer flex relative" onClick={handleCartToggle}>
-            <AiOutlineShoppingCart />
-            {cart.length > 0 && (
-              <span className="absolute top-0 right-0 -mt-2 -mr-2 w-6 h-6 flex items-center justify-center bg-red-500 text-white rounded-full text-sm">
-                {cart.length}
-              </span>
-            )}
-          </div>
-
-          <input id={cartCheckboxId} type="checkbox" hidden />
-          {isCartOpen && (
-            <div
-              className="cart-overlay fixed inset-0 bg-black opacity-50"
-              onClick={handleCartToggle}
-            />
-          )}
           <div
-            className={`cart bg-white fixed left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-2/3 max-w-md p-4 overflow-y-auto ${
-              isCartOpen ? "" : "hidden"
-            }`}
-            style={{ maxHeight: "80vh" }}
+            className="cursor-pointer flex relative"
+            onClick={handleCartToggle}
           >
-            <div className="flex justify-between mb-4">
-              <AiOutlineArrowLeft
-                className="text-xl cursor-pointer text-gray-700"
-                onClick={handleCartToggle}
-              />
-              <h3 className="text-sm uppercase font-medium max-w-[1200px] text-black ml-6">Carrito</h3>
-              <div
-                className="text-xl cursor-pointer"
-                onClick={handleClearCart}
-              >
-                <BsCartX className="text-gray-500 hover:text-red-500 transition" />
-              </div>
+            <AiOutlineShoppingCart className="w-6 h-6" />
+            <div className="absolute -top-2 -right-2 flex justify-center items-center bg-red-500 rounded-full text-white w-4 h-4 text-xs">
+              {cart.length}
             </div>
-            <ul>
-              {cart.map((product) => (
-                <CartItem
-                  key={product.id}
-                  addToCart={() => addToCart(product)}
-                  decreaseQuantity={() => decreaseQuantity(product)}
-                  removeFromCart={() => removeFromCart(product)}
-                  {...product}
-                />
-              ))}
-            </ul>
-            {cart.length === 0 && (
-              <p className="text-center text-gray-500">Tu Carrito está vacío</p>
-            )}
-            {cart.length > 0 && (
-              <>
-                <p className="text-right font-medium text-gray-700">
-                  Total: {totalPrice}
-                </p>
-                {/* Resto del contenido */}
-              </>
-            )}
           </div>
+          {isCartOpen && (
+            <div className="origin-top-right absolute right-0 mt-2 w-96 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+              <div
+                className="py-1"
+                role="menu"
+                aria-orientation="vertical"
+                aria-labelledby="options-menu"
+              >
+                {cart.map((item) => (
+                  <CartItem
+                    key={item.id}
+                    id={item.id}
+                    image={item.image}
+                    title={item.title}
+                    price={item.price}
+                    quantity={item.quantity}
+                    addToCart={addToCart}
+                    decreaseQuantity={decreaseQuantity}
+                    removeFromCart={removeFromCart}
+                  />
+                ))}
+              </div>
+              {cart.length > 0 && (
+                <div className="py-2 flex justify-between px-4">
+                  <div className="text-sm font-medium text-gray-700">
+                    Total: {totalPrice}
+                  </div>
+                  <button
+                    className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-red-500 hover:bg-red-600 focus:outline-none"
+                    onClick={redirectToPayment}
+                  >
+                    Realizar pago
+                  </button>
+                </div>
+              )}
+              {cart.length === 0 && (
+                <div className="py-2 px-4 text-sm font-medium text-gray-700">
+                  No hay productos en el carrito
+                </div>
+              )}
+            </div>
+          )}
         </div>
       </div>
     </div>
