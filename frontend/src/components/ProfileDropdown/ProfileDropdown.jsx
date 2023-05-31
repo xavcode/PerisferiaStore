@@ -6,14 +6,12 @@ import avatar from '../../assets/images/profile-default-image.png';
 import LoginButton from '../Login/Login';
 import LogoutButton from '../Logout/Logout';
 
-
-
 const ProfileDropdown = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0(); //Aca es donde le llega los datos del user
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-
+  console.log('->>>>',user)
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -31,13 +29,21 @@ const ProfileDropdown = () => {
     };
   }, []);
 
-
   const renderProfileMenu = () => {
     if (isAuthenticated) {
       return (
         <div className="relative" ref={dropdownRef}>
           <div className="profile-button-container cursor-pointer" onClick={toggleMenu}>
             <img className="w-11 h-11 mt-[2px] rounded-full" src={user.picture || avatar} alt="Profile" />
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <h1>{user.name}</h1>
           </div>
           {isMenuOpen && (
             <ul className="absolute top-full right-0 mt-2 py-2 bg-slate-300 shadow-lg rounded">
