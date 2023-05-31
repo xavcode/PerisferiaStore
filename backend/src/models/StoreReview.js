@@ -2,7 +2,7 @@ const { DataTypes, UUIDV4 } = require('sequelize');
 
 module.exports = (sequelize) => {
     sequelize.define('StoreReview', {
-        id: {
+        id: {  
             type: DataTypes.STRING,
             primaryKey: true,
             defaultValue: UUIDV4
@@ -13,7 +13,7 @@ module.exports = (sequelize) => {
         comment: {
             type: DataTypes.STRING
         },
-    },
+    }, 
     {
       timestamps: true
   })
