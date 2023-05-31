@@ -13,7 +13,7 @@ const UsersTable = () => {
     const fetchUsers = async () => {
       try {
         setIsLoading(true);
-        const response = await axios("http://localhost:3001/userAct");  
+        const response = await axios("https://perisferiastore-production.up.railway.app/userAct");  
 
         setUsers(response.data);
       } catch (error) {
@@ -40,7 +40,7 @@ const UsersTable = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
     try {
-      await axios.put(`http://localhost:3001/admin/user/decline/${userId}`);
+      await axios.put(`https://perisferiastore-production.up.railway.app/admin/user/decline/${userId}`);
       console.log('Usuario borrado con éxito');
       const updatedUsers = users.filter((user) => user.id !== userId);
       setUsers(updatedUsers);
