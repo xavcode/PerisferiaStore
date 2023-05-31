@@ -11,15 +11,6 @@ const EditProduct = () => {
   const { categories } = useContext(FiltersContext);
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    id: null,
-    name: '',
-    description: '',
-    status: '',
-    rating: '',
-    quantity: '',
-    category: '',
-    price: '',
-    img: '',
     id: id,
     name: "",
     price: 0,

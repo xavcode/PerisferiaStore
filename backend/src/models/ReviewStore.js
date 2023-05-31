@@ -1,8 +1,7 @@
-const { INTEGER } = require('sequelize');
 const { DataTypes, UUIDV4 } = require('sequelize');
 
 module.exports = (sequelize) => {
-    sequelize.define('Review', {
+    sequelize.define('ReviewStore', {
         id: {
             type: DataTypes.STRING,
             primaryKey: true,
@@ -13,14 +12,7 @@ module.exports = (sequelize) => {
         },
         comment: {
             type: DataTypes.STRING
-        },
-        rating: {
-            type: DataTypes.INTEGER   
-        },
-        image: {
-            type: DataTypes.STRING,
         }
-
     },
     {
       timestamps: true

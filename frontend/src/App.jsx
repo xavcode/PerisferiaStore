@@ -15,7 +15,7 @@ import Products from './admin/pages/Products/Products';
 import Main from './admin/components/Main/Main';
 import Users from './admin/pages/Users/Users';
 import Profile from "./components/Profile/Profile";
-import  CreateUserForm  from './admin/components/CreateUser/CreateUserForm';
+import CreateUserForm from './admin/components/CreateUser/CreateUserForm';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { UserContext } from './context/userContext';
 import { useAuth0 } from '@auth0/auth0-react';
@@ -23,7 +23,8 @@ import EditUser from './admin/pages/Users/EditUser';
 import Reviews from './components/Reviews/Reviews';
 import MyForm from "./TestForm";
 import EditProfile from "./pages/EditProfile/EditProfile"
-import DemoRev from "./components/Reviews/DemoRev";
+import ReviewForm from "./components/ReviewForm/ReviewForm";
+
 
 function App() {
   const { user, isAuthenticated } = useAuth0();
@@ -33,7 +34,7 @@ function App() {
       <Header />
       <Routes>
         <Route path='/' element={<Home />} />
-        <Route path='/test' element={<DemoRev />} />
+        {/* <Route path='/test' element={<DemoRev />} /> */}
         <Route path='/home' element={<Home />} />
         <Route exact path='/about' element={<About />} />
         <Route exact path='/store' element={<Store />} />
@@ -42,6 +43,7 @@ function App() {
         <Route exact path='/reviews' element={<Reviews />} />
         <Route path='/admin/' element={<Main />} />
         <Route exact path='/profile' element={<Profile />} />
+        <Route exact path='/review' element={<ReviewForm />} />
         <Route exact path='/profile/edit' element={<EditProfile />} />
 
 
