@@ -11,8 +11,7 @@ const ProfileDropdown = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  console.log('->>>>',user)
-  const toggleMenu = () => {
+  const toggleMenu = () => { 
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -35,15 +34,6 @@ const ProfileDropdown = () => {
         <div className="relative" ref={dropdownRef}>
           <div className="profile-button-container cursor-pointer" onClick={toggleMenu}>
             <img className="w-11 h-11 mt-[2px] rounded-full" src={user.picture || avatar} alt="Profile" />
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <h1>{user.name}</h1>
           </div>
           {isMenuOpen && (
             <ul className="absolute top-full right-0 mt-2 py-2 bg-slate-300 shadow-lg rounded">

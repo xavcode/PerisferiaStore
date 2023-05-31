@@ -25,7 +25,6 @@ const Detail = (props) => {
   }, []);
   
   const isProductInCart = cart.some((item) => item.id === product.id);
-  console.log('->>>>',product);
  
   return (
     <div className="flex mt-32 items-start justify-center gap-12  ">
