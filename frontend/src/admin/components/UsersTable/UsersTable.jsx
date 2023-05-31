@@ -22,7 +22,7 @@ const UsersTable = () => {
 
   const handleEdit = (userId) => {
     // Lógica para manejar la acción de editar el usuario con el ID proporcionado
-    console.log('Editar usuario con ID:', userId);
+    // console.log('Editar usuario con ID:', userId);
   };
 
   const handleDelete = (userId) => {

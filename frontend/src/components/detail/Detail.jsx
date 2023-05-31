@@ -103,7 +103,8 @@ const Detail = () => {
               </p>
               <p className="text-text "> Estado: {`${product.status}`}</p>
               <button
-                className={`${isProductInCart ? "bg-red-900" : "bg-indigo-900"} text-white font-bold py-2 px-4 rounded`}
+                className={`${isProductInCart ? "bg-red-900" : "bg-blue-900"} text-white font-bold py-2 px-4 rounded flex justify-center
+                `}
                 onClick={() => {
                   isProductInCart ? removeFromCart(product) : addToCart(product);
                 }}
