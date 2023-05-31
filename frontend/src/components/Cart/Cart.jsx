@@ -22,7 +22,13 @@ function CartItem({
   };
 
   const handleIncreaseQuantity = () => {
-    addToCart(id);
+    const existingProduct = Cart.find((product) => product.id === id); // Usa cart en lugar de Cart
+    if (existingProduct) {
+      addToCart(id); // Llama a la función addToCart sin cambiar la lógica
+    } else {
+      // Si el producto no existe en el carrito, agrega uno nuevo con cantidad inicial de 1
+      addToCart(id, 1);
+    }
   };
 
   return (

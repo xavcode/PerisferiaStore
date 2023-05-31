@@ -35,7 +35,7 @@ const Card = (props) => {
           <span className="text-center font-bold text-xl text-text_rating">
             Rating: {props.rating}
           </span>
-          <span className="text-2xl text-center font-bold text-text ">{`${props.price}$ `}</span>
+          <span className="text-2xl text-center font-bold text-text ">{`$${props.price} `}</span>
           <button className={`bg-${isProductInCart ? 'red-900' : 'blue-900'} text-white flex justify-center rounded-md`} onClick={() => {
             isProductInCart
               ? removeFromCart(props)
