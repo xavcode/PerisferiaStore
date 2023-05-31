@@ -18,7 +18,7 @@ router_Post.post('/', upload.single('file'), add_NewProduct);
 router_Post.post('/user', upload.single('file'), create_record_user);
 router_Post.post('/user/favorites', addNewFavorite);
 router_Post.post('/product/:id', create_record_review);
-router_Post.post('/store', addProductCarrito)
+router_Post.post('/store', addProductCarrito);
 router_Post.post('/store/:userId', create_store_review);
 router_Post.post('/order', creation_relation);
 

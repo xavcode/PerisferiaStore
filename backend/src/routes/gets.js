@@ -17,7 +17,7 @@ const { getUserByMail } = require('../controllers/Users/getUserByMail');
 
 const router_get = Router();
 
-router_get.get('/', createRecordProduct)
+router_get.get('/', createRecordProduct);
 router_get.get('/store', getAllProducts);
 router_get.get('/store/name', get_Products_By_Name);
 router_get.get('/store/:id', addProductById);
