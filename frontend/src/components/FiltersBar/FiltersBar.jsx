@@ -52,13 +52,13 @@ const Filters = () => {
             <div className="flex justify-between">
               <label className="bg-inputs" htmlFor="valueMinPrice">
                 {" "}
-                $USD
+                $ARS
               </label>
               <input
                 id="valueMinPrice"
                 className="bg-inputs text-center"
                 type="number"
-                max={1000}
+                max={100000}
                 onChange={handleInputText}
                 value={minPrice}
               />
@@ -70,7 +70,7 @@ const Filters = () => {
                 type="range"
                 id="minPrice"
                 min={0}
-                max={1000}
+                max={100000}
                 onChange={handleChangePrice}
                 value={minPrice}
               />
@@ -81,13 +81,13 @@ const Filters = () => {
             <div className="flex justify-between">
               <label className="bg-inputs" htmlFor="valueMaxPrice">
                 {" "}
-                $USD
+                $ARS
               </label>
               <input
                 id="valueMaxPrice"
                 className=" bg-inputs accent-red-600 text-center"
                 type="number"
-                max={1000}
+                max={100000}
                 onChange={handleInputText}
                 value={maxPrice}
               />
@@ -99,7 +99,7 @@ const Filters = () => {
                 type="range"
                 id="maxPrice"
                 min={0}
-                max={1000}
+                max={100000}
                 onChange={handleChangePrice}
                 value={maxPrice}
               />

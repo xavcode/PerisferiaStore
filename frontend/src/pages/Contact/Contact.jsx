@@ -2,16 +2,16 @@ import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import logoLight from '../../assets/images/logo-light.jpeg'
+import ReviewsStore from "../../components/ReviewsStore/ReviewsStore";
 
-const Contact = () => { 
+const Contact = () => {
   const form = useRef();
   const [isFormValid, setIsFormValid] = useState(false);
   const [isSent, setIsSent] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
-  
-    // Muestra el diálogo de confirmación
+
     Swal.fire({
       title: '¿Seguro que quieres enviar?',
       icon: 'question',
@@ -19,7 +19,7 @@ const Contact = () => {
       confirmButtonText: 'Sí',
       cancelButtonText: 'No',
     }).then((result) => {
-      if (result.isConfirmed) { 
+      if (result.isConfirmed) {
         emailjs
           .sendForm(
             "service_6ar7zht",
@@ -36,7 +36,7 @@ const Contact = () => {
       }
     });
   };
-  
+
 
   const validateForm = () => {
     const formElement = form.current;
@@ -52,7 +52,7 @@ const Contact = () => {
     <div className="min-h-screen flex items-center justify-center ">
       <div className="max-w-4xl w-full px-6 mt-16" >
         <div className="text-center">
-          <img src={logoLight} className="h-24 w-auto mx-auto rounded-full" />
+          <img src={logoLight} className="h-80 fixed top-16 right-8 rounded-full" />
           <h2 className="mt-8 text-4xl font-extrabold text-white">
             Contacto 📱
           </h2>
@@ -126,6 +126,9 @@ const Contact = () => {
             </div>
           </form>
         </div>
+        <ReviewsStore />
+      </div>
+      <div>
       </div>
     </div>
   );

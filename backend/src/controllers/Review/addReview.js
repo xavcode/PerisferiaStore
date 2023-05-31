@@ -7,20 +7,21 @@ const add_review = async (productId, userId, comment, rating) => {
         const newreview = await Review.create({
             userId: user.name,
             comment: comment,
-            rating: rating
+            rating: rating,
+            image: user.img
         });
         await product.addReview(newreview)
     } catch (error) {
         console.error('Error al cargar el comentario', error)
     }
-}
+};
 
 const create_record_review = async (req, res) => {
     try {
         const { id } = req.params;
         const { userId, comment, rating } = req.body;
         const createRecord = await add_review(id, userId, comment, rating);
-        return res.status(200).send('Comentario creado con exito');
+        return res.status(200).send(createRecord);
     } catch (error) {
         throw new Error('Error al crear el comentario', error);
     }

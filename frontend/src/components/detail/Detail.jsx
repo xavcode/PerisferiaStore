@@ -8,6 +8,7 @@ import { AddToCartIcon, RemoveFromCartIcon } from "../Icons.jsx";
 import axios from "axios";
 import { useCart } from "../../hooks/useCart.jsx";
 import Reviews from '../Reviews/Reviews.jsx';
+import ReviewForm from '../ReviewForm/ReviewForm.jsx';
 
 const Detail = (props) => {
   const { addToCart, removeFromCart, cart } = useCart();
@@ -53,33 +54,53 @@ const Detail = (props) => {
                 {startCase(product.name ? product.name : product.title)}
               </h5>
             </div>
-            <div className="w-full flex items-center justify-center gap-2 p-1">
-              <span className="text-center text-xl font-bold text-text_rating ">
-                Rating: {product.rating}
-              </span>
-              <span className="text-xl text-left font-bold text-text ">
-                Precio: {`${product.price}$ `}
-              </span>
-            </div>
-          </div>
-          {/* description side */}
-          <div className="flex flex-col w-[200px] text-justify justify-between pb-1">
-            <p className="w-[200px] text-text mb-2">
-              {" "}
-              Descripción: {`${product.description}`}
-            </p>
-            <p className="text-text w-[200px] text">
-              {" "}
-              Categoría: {`${product.category}`}
-            </p>
-            <p className="text-text  ">
-              {" "}
-              Colores:
-              <select
-                className="ml-4 bg-gray-200 "
-                name="colorPicker"
-                id="colorPicker"
-              >
+            {/* description side */}
+            <div className="flex flex-col w-[200px] text-justify justify-between pb-1">
+              <p className="w-[200px] text-text mb-2">
+                {" "}
+                Descripción: {`${product.description}`}
+              </p>
+              <p className="text-text w-[200px] text">
+                {" "}
+                Categoría: {`${product.category}`}
+              </p>
+              <p className="text-text  ">
+                {" "}
+                Colores:
+                <select
+                  className="ml-4 bg-gray-200 "
+                  name="colorPicker"
+                  id="colorPicker"
+                >
+                  <option
+                    className="bg-gray-200 hover:bg-transparent"
+                    value="red"
+                  >
+                    Rojo
+                  </option>
+                  <option
+                    className="bg-gray-200 hover:bg-transparent"
+                    value="yellow"
+                  >
+                    Amarillo
+                  </option>
+                  <option
+                    className="bg-gray-200 hover:bg-transparent"
+                    value="blue"
+                  >
+                    Azul
+                  </option>
+                </select>
+              </p>
+              <p className="text-text "> Estado: {`${product.status}`}</p>
+              <button
+                className={`${isProductInCart ? "bg-red-900" : "bg-blue-900"} text-white font-bold py-2 px-4 rounded flex justify-center
+                `}
+                onClick={() => {
+                  isProductInCart ? removeFromCart(product) : addToCart(product);
+                }}
+              />
+                <select>
                 <option
                   className="bg-gray-200 hover:bg-transparent"
                   value="red"
@@ -99,7 +120,7 @@ const Detail = (props) => {
                   Azul
                 </option>
               </select>
-            </p>
+            {/* </p> */}
             <p className="text-text "> Estado: {`${product.status}`}</p>
             <button
               className={`${isProductInCart ? "bg-red-900" : "bg-indigo-900"} text-white font-bold py-2 px-4 rounded`}
@@ -111,10 +132,18 @@ const Detail = (props) => {
             </button>
           </div>
         </div>
+        <div>
+          <ReviewForm
+            id={id} />
+        </div>
       </div>
+
+
       <div className='h-[600px] overflow-auto px-2 border-2 border-gray-300 rounded-lg'>
-        <Reviews />
+        <Reviews
+        id={id} />
       </div>
+    </div>
     </div>
   );
 };
