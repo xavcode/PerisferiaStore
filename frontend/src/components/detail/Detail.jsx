@@ -9,7 +9,7 @@ import axios from "axios";
 import { useCart } from "../../hooks/useCart.jsx";
 import Reviews from '../Reviews/Reviews.jsx';
 
-const Detail = () => {
+const Detail = (props) => {
   const { addToCart, removeFromCart, cart } = useCart();
 
   const [product, setProduct] = useState({});
@@ -22,9 +22,10 @@ const Detail = () => {
     };
     fetchData();
   }, []);
-
+  
   const isProductInCart = cart.some((item) => item.id === product.id);
-
+  console.log('->>>>',product);
+ 
   return (
     <div className="flex mt-32 items-start justify-center gap-12  ">
       <div className="flex flex-col rounded-lg bg-bg_card pt-4 p-4 ">
@@ -45,11 +46,11 @@ const Detail = () => {
             <div className="flex flex-col justify-center items-center">
               <img
                 className=" max-h-[350px] max-w-[250px] min-h-[200px] min-w-[200px] align-center justify-center my-2"
-                src={product.img}
-                alt={product.name}
+                src={product.img ? product.img : product.image}
+                alt={product.name ? product.name : product.title}
               />
               <h5 className="max-w-[200px] text-2xl font-semibold tracking-tight text-text text-center mb-2">
-                {startCase(product.name)}
+                {startCase(product.name ? product.name : product.title)}
               </h5>
             </div>
             <div className="w-full flex items-center justify-center gap-2 p-1">
@@ -102,10 +103,6 @@ const Detail = () => {
             <p className="text-text "> Estado: {`${product.status}`}</p>
             <button
               className={`${isProductInCart ? "bg-red-900" : "bg-indigo-900"} text-white font-bold py-2 px-4 rounded`}
-              // style={{
-              //   backgroundColor: isProductInCart ? "red" : "#09f",
-              //   color: "black",
-              // }}
               onClick={() => {
                 isProductInCart ? removeFromCart(product) : addToCart(product);
               }}

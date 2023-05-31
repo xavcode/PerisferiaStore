@@ -24,7 +24,7 @@ const Card = (props) => {
             <img
               className=" max-h-[150px] max-w-[150px] min-h-[100px] min-w-[100px] align-center justify-center my-2"
               src={props.image}
-              alt={props.title}
+              alt={props.title ? props.title : props.name }
             />
             <h5 className="max-w-[150px] text-xl font-semibold tracking-tight text-text text-center ">
               {props.title}
