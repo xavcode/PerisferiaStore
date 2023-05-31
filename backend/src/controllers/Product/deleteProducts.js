@@ -23,9 +23,8 @@
 // module.exports = {
 //     delete_Product
 // }
-
 const { Products } = require('../../db');
-
+ 
 const delete_Product = async (req, res) => {
     const { id } = req.params;
 

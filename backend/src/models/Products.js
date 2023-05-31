@@ -14,7 +14,7 @@ module.exports = (sequelize) => {
             allowNull: false,
         },
         price: {
-            type: DataTypes.DECIMAL(10, 2),
+            type: DataTypes.DECIMAL(10),
             allowNull: false,
         },
         img: {

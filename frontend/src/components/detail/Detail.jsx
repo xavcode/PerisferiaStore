@@ -59,7 +59,7 @@ const Detail = () => {
                   Rating: {product.rating}
                 </span>
                 <span className="text-xl text-left font-bold text-text ">
-                  Precio: {`${product.price}$ `}
+                  Precio: {`$${product.price} `}
                 </span>
               </div>
             </div>
@@ -103,7 +103,8 @@ const Detail = () => {
               </p>
               <p className="text-text "> Estado: {`${product.status}`}</p>
               <button
-                className={`${isProductInCart ? "bg-red-900" : "bg-indigo-900"} text-white font-bold py-2 px-4 rounded`}
+                className={`${isProductInCart ? "bg-red-900" : "bg-blue-900"} text-white font-bold py-2 px-4 rounded flex justify-center
+                `}
                 onClick={() => {
                   isProductInCart ? removeFromCart(product) : addToCart(product);
                 }}
@@ -122,7 +123,7 @@ const Detail = () => {
 
       <div className='h-[600px] overflow-auto px-2 border-2 border-gray-300 rounded-lg'>
         <Reviews
-        id={id} />
+          id={id} />
       </div>
     </div>
   );
@@ -130,4 +131,3 @@ const Detail = () => {
 
 
 export default Detail
-

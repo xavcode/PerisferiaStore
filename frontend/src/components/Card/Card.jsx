@@ -24,7 +24,7 @@ const Card = (props) => {
             <img
               className=" max-h-[150px] max-w-[150px] min-h-[100px] min-w-[100px] align-center justify-center my-2"
               src={props.image}
-              alt={props.title}
+              alt={props.title ? props.title : props.name }
             />
             <h5 className="max-w-[150px] text-xl font-semibold tracking-tight text-text text-center ">
               {props.title}
@@ -35,8 +35,8 @@ const Card = (props) => {
           <span className="text-center font-bold text-xl text-text_rating">
             Rating: {props.rating}
           </span>
-          <span className="text-2xl text-center font-bold text-text ">{`${props.price}$ `}</span>
-          <button style={{ backgroundColor: isProductInCart ? 'red' : '#09f', color: 'black' }} /*className={`bg-blue-500 hover:bg-blue-600 text-black font-semibold py-2 px-4 rounded`}*/ onClick={() => {
+          <span className="text-2xl text-center font-bold text-text ">{`$${props.price} `}</span>
+          <button className={`bg-${isProductInCart ? 'red-900' : 'blue-900'} text-white flex justify-center rounded-md`} onClick={() => {
             isProductInCart
               ? removeFromCart(props)
               : addToCart(props);

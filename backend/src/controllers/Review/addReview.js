@@ -7,13 +7,14 @@ const add_review = async (productId, userId, comment, rating) => {
         const newreview = await Review.create({
             userId: user.name,
             comment: comment,
-            rating : rating
+            rating: rating,
+            image: user.img
         });
         await product.addReview(newreview)
     } catch (error) {
         console.error('Error al cargar el comentario', error)
     }
-}
+};
 
 const create_record_review = async (req, res) => {
     try {

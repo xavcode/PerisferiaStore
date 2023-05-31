@@ -10,16 +10,20 @@ module.exports = (sequelize) => {
         },
         userId: {
             type: DataTypes.STRING,
-        },
-        comment: {
+        }, 
+        comment: {   
             type: DataTypes.STRING
         },
         rating: {
-            type: DataTypes.INTEGER
+            type: DataTypes.INTEGER   
+        },
+        image: {
+            type: DataTypes.STRING,
         }
 
     },
-        {
-            timestamps: false
-        })
+    {
+      timestamps: true
+  }
+  )
 }
