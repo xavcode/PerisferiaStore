@@ -4,7 +4,6 @@ const { DataTypes } = require('sequelize');
 
 
 module.exports = (sequelize) => {
-<<<<<<< HEAD
   sequelize.define('Carrito', {
     id: {
       type: DataTypes.INTEGER,
@@ -21,8 +20,3 @@ module.exports = (sequelize) => {
         timestamps: false
     })
   }
-=======
-  sequelize.define('Carrito')
-
-}
->>>>>>> 0e4153b47c63b0e117523243ff55a1f9c3bb5895
