@@ -11,7 +11,7 @@ const UsersTable = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios('http://localhost:3001/users'); //https://perisferiastore-production.up.railway.app/users
+        const response = await axios('http://localhost:3001/userAct'); //https://perisferiastore-production.up.railway.app/users
         setUsers(response.data);
       } catch (error) {
         console.error('Error al obtener los usuarios:', error);

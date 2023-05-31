@@ -1,11 +1,13 @@
-const { StoreReview } = require('../../db');
+const { StoreReview, Users } = require('../../db');
 
 const create_store_review = async (req, res) => {
     try {
         const { userId } = req.params;
         const { comment } = req.body;
+        const user = await Users.findByPk(userId);
         const newReview = await StoreReview.create({
             id: userId,
+            userId: user.name,
             comment: comment
         });
         const allReview = await StoreReview.findAll();
