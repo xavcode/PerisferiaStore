@@ -12,6 +12,7 @@ const { get_user_carrito_by_id } = require('../controllers/Users/getUserCarrito'
 const { get_user_favorites } = require('../controllers/Users/getUserFav');
 const { getUserById_favorites } = require('../controllers/Users/userFvById');
 const { get_store_review } = require('../controllers/StoreReview/getAllReview');
+const { getUserByMail } = require('../controllers/Users/getUserByMail');
 
 
 const router_get = Router();
@@ -25,6 +26,7 @@ router_get.get('/users', get_user);
 router_get.get('/users/favoritos', get_user_favorites);
 router_get.get('/users/favoritos/:userId', getUserById_favorites);
 router_get.get('/admin/users/:userId', getUserById)
+router_get.get('/admin/users', getUserByMail);
 router_get.get('/user/carrito', get_user_carrito);
 router_get.get('/user/carrito/:userId', get_user_carrito_by_id);
 router_get.get('/userAct', getActiveUser);
