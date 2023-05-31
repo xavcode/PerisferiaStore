@@ -18,7 +18,7 @@ const Detail = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await axios.get(`http://localhost:3001/store/${id}`);
+      const response = await axios.get(`https://perisferiastore-production.up.railway.app/store/${id}`);
       setProduct(response.data);
     };
     fetchData();
@@ -59,7 +59,7 @@ const Detail = () => {
                   Rating: {product.rating}
                 </span>
                 <span className="text-xl text-left font-bold text-text ">
-                  Precio: {`${product.price}$ `}
+                  Precio: {`$${product.price} `}
                 </span>
               </div>
             </div>
@@ -123,7 +123,7 @@ const Detail = () => {
 
       <div className='h-[600px] overflow-auto px-2 border-2 border-gray-300 rounded-lg'>
         <Reviews
-        id={id} />
+          id={id} />
       </div>
     </div>
   );
@@ -131,4 +131,3 @@ const Detail = () => {
 
 
 export default Detail
-

@@ -4,50 +4,43 @@ import { BsFillTrash3Fill, BsCartX } from "react-icons/bs";
 import { IoMdAdd, IoMdRemove } from "react-icons/io";
 import { AiOutlineShoppingCart, AiOutlineArrowLeft } from "react-icons/ai";
 import axios from "axios";
+import Swal from "sweetalert2";
+import { useCart } from "../../hooks/useCart";
+import { MdDelete } from 'react-icons/md';
 
-function CartItem({
-  id,
-  image,
-  title,
-  price,
-  quantity,
-  addToCart,
-  decreaseQuantity,
-  removeFromCart,
-}) {
-  const handleDecreaseQuantity = () => {
-    if (quantity > 1) {
-      decreaseQuantity(id);
-    }
-  };
-
-  const handleIncreaseQuantity = () => {
-    const existingProduct = Cart.find((product) => product.id === id); // Usa cart en lugar de Cart
-    if (existingProduct) {
-      addToCart(id); // Llama a la función addToCart sin cambiar la lógica
-    } else {
-      // Si el producto no existe en el carrito, agrega uno nuevo con cantidad inicial de 1
-      addToCart(id, 1);
-    }
-  };
+function CartItem(
+  props
+) {
+  const { cart, removeFromCart } = useCart()  
+  const checkProductInCart = prop => {
+    if (cart && Array.isArray(cart)) {
+    return cart.some(item => item.id === prop.id)
+    } 
+  }
+  const isProductInCart = checkProductInCart(props)
 
   return (
     <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500">
       <div className="w-full min-h-[150px] flex items-center gap-x-4">
         <div>
-          <img className="max-w-[120px]" src={image} alt="" />
+          <img className="max-w-[120px]" src={props.image ? props.image : props.img} alt="" />
         </div>
         <div className="w-full flex flex-col">
           <div className="flex justify-between mb-2">
             <div className="text-sm uppercase font-medium max-w-[240px] text-black">
-              {title}
+              {props.title ? props.title : props.name} 
             </div>
             <div>
               <div>
                 <div
                   className="text-xl cursor-pointer"
-                  onClick={removeFromCart}
-                >
+                  onClick={() => {
+                    isProductInCart
+                      ? removeFromCart(props)
+                      : removeFromCart(props);
+                  }}>
+                  {/*Para borrar*/}
+
                   <BsFillTrash3Fill className="text-gray-500 hover:text-red-500 transition" />
                 </div>
               </div>
@@ -57,26 +50,29 @@ function CartItem({
             <div className="flex flex-1 max-w-[100px] items-center h-full border text-gray-700 font-medium">
               <div
                 className="flex-1 h-full flex justify-center items-center cursor-pointer"
-                onClick={handleDecreaseQuantity}
+                onClick={props.decreaseQuantity}
               >
+                {/*Para restar*/}
                 <IoMdRemove />
               </div>
               <div className="h-full flex justify-center items-center px-2">
-                {quantity}
+               {props.quantity} 
               </div>
               <div
                 className="flex-1 h-full flex justify-center items-center cursor-pointer"
-                onClick={handleIncreaseQuantity}
+                onClick={props.addToCart}
               >
+                {/*Para sumar*/}
+
                 <IoMdAdd />
               </div>
             </div>
             <div className="flex-1 flex items-center justify-around text-gray-700">
-              {price}
+            Precio: {props.price}  
             </div>
-            <div className="flex-1 flex justify-end items-center font-medium text-gray-700">
-              Precio: {price * quantity}
-            </div>
+            {/* <div className="flex-1 flex justify-end items-center font-medium text-gray-700">
+              Precio: {props.price * props.quantity} aaa
+            </div> */}
           </div>
         </div>
       </div>
@@ -85,8 +81,7 @@ function CartItem({
 }
 
 export default function Cart() {
-  const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } =
-    useContext(CartContext);
+  const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } = useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
 
   const handleCartToggle = () => {
@@ -94,7 +89,21 @@ export default function Cart() {
   };
 
   const handleClearCart = () => {
-    clearCart();
+    Swal.fire({
+      title: "¿Estás seguro?",
+      text: "Esta acción eliminará todos los productos del carrito",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Sí, borrar todo",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        clearCart();
+        Swal.fire("¡Borrado!", "El carrito ha sido vaciado.", "success");
+      }
+    });
   };
 
   const totalPrice = cart.reduce(
@@ -117,7 +126,7 @@ export default function Cart() {
           price: parseFloat(product.price),
         }));
 
-      const response = await axios.post("http://localhost:3001/payment", {
+      const response = await axios.post("https://perisferiastore-production.up.railway.app/payment", {
         publicKey: "TEST-1c120130-f27d-4676-930c-ae6d7014d092",
         products: products,
       });
@@ -139,8 +148,8 @@ export default function Cart() {
             className="cursor-pointer flex relative"
             onClick={handleCartToggle}
           >
-            <AiOutlineShoppingCart className="w-6 h-6" />
-            <div className="absolute -top-2 -right-2 flex justify-center items-center bg-red-500 rounded-full text-white w-4 h-4 text-xs">
+            <AiOutlineShoppingCart className="w-8 h-8" />
+            <div className="absolute -top-1 -right-2 flex justify-center items-center bg-red-900 rounded-full text-white w-4 h-4 text-sm">
               {cart.length}
             </div>
           </div>
@@ -156,23 +165,28 @@ export default function Cart() {
                   <CartItem
                     key={item.id}
                     id={item.id}
-                    image={item.image}
-                    title={item.title}
+                    image={item.image ? item.image : item.img}
+                    title={item.title ? item.title : item.name}
                     price={item.price}
                     quantity={item.quantity}
-                    addToCart={addToCart}
-                    decreaseQuantity={decreaseQuantity}
+                    addToCart={() => addToCart(item)}
+                    decreaseQuantity={() => decreaseQuantity(item)}
+                    clearCart={clearCart}
+                    // decreaseQuantity={decreaseQuantity} 
                     removeFromCart={removeFromCart}
                   />
                 ))}
               </div>
+              <button onClick={handleClearCart} style={{ color: "red" }}>
+               <MdDelete />
+              </button> 
               {cart.length > 0 && (
                 <div className="py-2 flex justify-between px-4">
                   <div className="text-sm font-medium text-gray-700">
                     Total: {totalPrice}
                   </div>
                   <button
-                    className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-red-500 hover:bg-red-600 focus:outline-none"
+                    className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-red-900 hover:bg-red-600 focus:outline-none"
                     onClick={redirectToPayment}
                   >
                     Realizar pago

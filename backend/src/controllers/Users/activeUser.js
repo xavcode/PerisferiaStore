@@ -5,7 +5,7 @@ const active_users = async (req, res) => {
         const { userId } = req.params;
         const user = await Users.findByPk(userId);
         user.is_active = true;
-        await user.save();
+        await user.save(); 
         console.log('Campo actaulizado con exito');
         res.status(200).send('Estado actualizado');
     } catch (error) {

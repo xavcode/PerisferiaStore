@@ -1,32 +1,35 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useState, useEffect } from 'react';
-import axios from 'axios';
-import avatar from '../../../assets/images/profile-default-image.png'
-import Swal from 'sweetalert2';
+import React from "react";
+import { Link, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
+import axios from "axios";
+import avatar from "../../../assets/images/profile-default-image.png";
+import Swal from "sweetalert2";
 
 const UsersTable = () => {
   const [users, setUsers] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await axios('http://localhost:3001/userAct'); //https://perisferiastore-production.up.railway.app/users
+        setIsLoading(true);
+        const response = await axios("https://perisferiastore-production.up.railway.app/userAct");  
+
         setUsers(response.data);
       } catch (error) {
-        console.error('Error al obtener los usuarios:', error);
+        console.error("Error al obtener los usuarios:", error);
+      } finally {
+        setIsLoading(false);
       }
     };
     fetchUsers();
   }, []);
 
   const handleEdit = (userId) => {
-    // Lógica para manejar la acción de editar el usuario con el ID proporcionado
-    // console.log('Editar usuario con ID:', userId);
+    console.log("Editar usuario con ID:", userId);
   };
 
-  const handleDelete = (userId) => {
-    // Lógica para manejar la acción de borrar el usuario con el ID proporcionado
+  const handleDelete = async (userId) => {
     Swal.fire({
       title: '¿Seguro que quieres eliminar el usuario?',
       showCancelButton: true,
@@ -34,29 +37,33 @@ const UsersTable = () => {
       cancelButtonText: 'No',
       reverseButtons: true,
       icon: 'warning',
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        // Lógica para borrar el usuario con el ID proporcionado
-        console.log('Borrar usuario con ID:', userId);
-      }
-    });
+    try {
+      await axios.put(`https://perisferiastore-production.up.railway.app/admin/user/decline/${userId}`);
+      console.log('Usuario borrado con éxito');
+      const updatedUsers = users.filter((user) => user.id !== userId);
+      setUsers(updatedUsers);
+    } catch (error) {
+      console.error('Error al borrar el usuario:', error);
+      Swal.fire('Error', 'No se pudo borrar el usuario', 'error');
+    }
+  }
+  })
   };
-
-
+  
   return (
     <div className=" bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end overflow-y-auto">
-      <div className=' flex gap-40 justify-center items-center mb-5'>
+      <div className=" flex gap-40 justify-center items-center mb-5">
         <h2 className="text-[2rem] mb-2">Lista de Usuarios</h2>
-        <Link to='/admin/users/create'>
-          <button className='btn btn-outline btn-success'>
-            Crear usuario
-          </button>
+        <Link to="/admin/users/create">
+          <button className="btn btn-outline btn-success">Crear usuario</button>
         </Link>
       </div>
-      <div className=' h-[500px]  m-auto justify-center'>
+      <div className=" h-[500px]  m-auto justify-center">
         <table className="  text-[1.3rem] mr-10 text-center">
           <thead>
-            <tr className='border-b-2'>
+            <tr className="border-b-2">
               <th></th>
               <th>Imagen</th>
               <th>Nombre</th>
@@ -67,26 +74,58 @@ const UsersTable = () => {
               <th>Acción</th>
             </tr>
           </thead>
-          <tbody >
+          <tbody>
             {users.map((user, idx) => {
               return (
-                <tr className='max-h-[150px]' key={idx} >
+                <tr className="max-h-[150px]" key={idx}>
                   <th>{idx + 1}</th>
-                  <td className='w-[150px] h-[150px] flex justify-center items-center '><img className='rounded-full w-20 h-20' src={user.img} alt="" /></td>
+                  <td className="w-[150px] h-[150px] flex justify-center items-center ">
+                    <img
+                      className="rounded-full w-20 h-20"
+                      src={user.img}
+                      alt=""
+                    />
+                  </td>
                   <td>{user.name}</td>
                   <td>{user.last_name}</td>
                   <td>{user.username}</td>
                   <td>{user.mail}</td>
-                  <td className='w-[15%]'><Link to={`/admin/users/edit/${user.id}`}><button className='btn btn-outline btn-warning' onClick={() => handleEdit(user.id)}>Editar</button></Link></td>
-                  <td><button className='btn btn-outline btn-error' onClick={handleDelete}>Borrar</button></td>
+                  <td className="w-[15%]">
+                    <Link to={`/admin/users/edit/${user.id}`}>
+                      <button
+                        className="btn btn-outline btn-warning"
+                        onClick={() => handleEdit(user.id)}
+                      >
+                        Editar
+                      </button>
+                    </Link>
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-outline btn-error"
+                      onClick={() => handleDelete(user.id)}
+                      disabled={isLoading}
+                    >
+                      Borrar
+                    </button>
+                  </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default UsersTable
+export default UsersTable;
+
+
+
+
+
+
+
+
+

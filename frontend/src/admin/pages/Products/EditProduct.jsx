@@ -1,7 +1,7 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FiltersContext } from "../../../context/FiltersContext";
 import { DataContext } from "../../../context/DataContext";
@@ -11,22 +11,22 @@ const EditProduct = () => {
   const { categories } = useContext(FiltersContext);
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    id: id,
+    // id: id,
     name: "",
     price: 0,
     image: "",
     status: "disponible",
     description: "",
     rating: 1,
-    category: "",
+    category: [],
     quantity: 1,
   });
-  console.log('aaaa',categories);
+  const navigation = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/store/${id}`) //https://perisferiastore-production.up.railway.app/store${id}
+        const response = await axios.get(`https://perisferiastore-production.up.railway.app/store/${id}`) //https://perisferiastore-production.up.railway.app/store${id}
         const product = response.data;
         if (product) {
           setFormData(product)
@@ -56,6 +56,7 @@ const EditProduct = () => {
   };
 
   const handleSubmit = async (event) => {
+    console.log('<<<<<', formData);
     event.preventDefault();
     Swal.fire({
       title: "¿Guardar cambios?",
@@ -69,7 +70,7 @@ const EditProduct = () => {
       if (result.isConfirmed) {
         try {
           const responseProductUpdated = await axios.put(
-            `http://localhost:3001/product`,
+            `https://perisferiastore-production.up.railway.app/product`,
             formData
           );
           console.log("respuesta correcta", responseProductUpdated);
@@ -90,7 +91,18 @@ const EditProduct = () => {
   };
 
   const handleCancel = () => {
-    window.location.href = "/";
+    Swal.fire({
+      title: 'Cancelar',
+      text: '¿Estás seguro de que deseas cancelar los cambios?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigation('/admin/products');
+      }
+    });
   };
 
   return (

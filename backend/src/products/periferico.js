@@ -55,7 +55,7 @@ const products = [
   ];
   
   const seedProducts = async () => {
-    await Products.sync({ force: true }); 
+    await Products.sync({ alter: true }); 
     console.log(products)
     await Promise.all(products.map(product => Products.create(product)));
     console.log('Productos creados con éxito');
