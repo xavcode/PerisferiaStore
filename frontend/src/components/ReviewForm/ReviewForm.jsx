@@ -1,9 +1,7 @@
-
 import { useAuth0 } from '@auth0/auth0-react';
 import React, { useEffect, useState } from 'react';
 import axios from 'axios'
-
-
+import Swal from 'sweetalert2';
 
 const ReviewForm = ({ id }) => {
   const { user } = useAuth0()
@@ -36,10 +34,38 @@ const ReviewForm = ({ id }) => {
     setComment(event.target.value);
   };
 
+//   const handleSubmit = async (event) => {
+//     event.preventDefault();
+//     if (!user) {
+//       alert('Inicia sesión para agregar una reseña 😉');
+//     } else {
+//       const date = new Date();
+//       const formattedDate = date.toISOString().split('T')[0];
+//       const sendReview = {
+//         userId: userId,
+//         comment: comment,
+//         rating: rating,
+//       };
+//       try {
+//         await axios.post(`http://localhost:3001/product/${id}`, sendReview);
+
+//       } catch (error) {
+//         console.error('Error al enviar la reseña:', error);
+//       }
+//     }
+//   };
+
+//Si el usuario no ha iniciado sesión, se muestra una alerta de advertencia. Si la reseña se envía correctamente, se muestra una alerta de éxito. Si hay un error al enviar la reseña, se muestra una alerta de error.
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!user) {
-      alert('Inicia sesión para agregar una reseña 😉');
+      Swal.fire({
+        title: 'Inicia sesión',
+        text: 'Inicia sesión para agregar una reseña 😉',
+        icon: 'warning',
+        confirmButtonText: 'Ok',
+      });
     } else {
       const date = new Date();
       const formattedDate = date.toISOString().split('T')[0];
@@ -50,9 +76,20 @@ const ReviewForm = ({ id }) => {
       };
       try {
         await axios.post(`http://localhost:3001/product/${id}`, sendReview);
-
+        Swal.fire({
+          title: 'Reseña enviada',
+          text: 'Gracias por dejar tu reseña.',
+          icon: 'success',
+          confirmButtonText: 'Ok',
+        });
       } catch (error) {
         console.error('Error al enviar la reseña:', error);
+        Swal.fire({
+          title: 'Error',
+          text: 'Hubo un error al enviar la reseña.',
+          icon: 'error',
+          confirmButtonText: 'Ok',
+        });
       }
     }
   };
