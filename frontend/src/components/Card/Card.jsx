@@ -36,7 +36,7 @@ const Card = (props) => {
             Rating: {props.rating}
           </span>
           <span className="text-2xl text-center font-bold text-text ">{`${props.price}$ `}</span>
-          <button style={{ backgroundColor: isProductInCart ? 'red' : '#09f', color: 'black' }} /*className={`bg-blue-500 hover:bg-blue-600 text-black font-semibold py-2 px-4 rounded`}*/ onClick={() => {
+          <button className={`bg-${isProductInCart ? 'red-900' : 'blue-900'} text-white flex justify-center rounded-md`} onClick={() => {
             isProductInCart
               ? removeFromCart(props)
               : addToCart(props);
