@@ -5,6 +5,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 import Swal from 'sweetalert2';
 
 const EditProfile = () => {
+
   const { user, isLoading, isAuthenticated } = useAuth0();
   const [dataUser, setDataUser] = useState({})
   const { id } = useParams();
@@ -223,5 +224,6 @@ const EditProfile = () => {
     </div>
   );
 };
+
 
 export default EditProfile;
