@@ -41,7 +41,6 @@ const EditProfile = () => {
       ...prevFormData,
       [name]: type === 'checkbox' ? checked : files ? files[0] : value,
     }));
-    console.log(formData)
   };
   
   const handleSubmit = async (event) => {
