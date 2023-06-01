@@ -52,7 +52,7 @@ const Contact = () => {
     <div className="min-h-screen flex items-center justify-center ">
       <div className="max-w-4xl w-full px-6 mt-16" >
         <div className="text-center">
-          <img src={logoLight} className="h-80 fixed top-16 right-8 rounded-full" />
+          <img src={logoLight} className="h-36 fixed top-20 right-8 rounded-full" />
           <h2 className="mt-8 text-4xl font-extrabold text-white">
             Contacto 📱
           </h2>

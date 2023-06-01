@@ -59,7 +59,7 @@ const Detail = () => {
                   Rating: {product.rating}
                 </span>
                 <span className="text-xl text-left font-bold text-text ">
-                  Precio: {`${product.price}$ `}
+                  Precio: {`$${product.price} `}
                 </span>
               </div>
             </div>
@@ -124,7 +124,7 @@ const Detail = () => {
 
       <div className='h-[600px] overflow-auto px-2 border-2 border-gray-300 rounded-lg'>
         <Reviews
-        id={id} />
+          id={id} />
       </div>
     </div>
   );
@@ -132,4 +132,3 @@ const Detail = () => {
 
 
 export default Detail
-

@@ -10,8 +10,8 @@ module.exports = (sequelize) => {
         },
         userId: {
             type: DataTypes.STRING,
-        },
-        comment: {
+        }, 
+        comment: {   
             type: DataTypes.STRING
         },
         rating: {
@@ -24,5 +24,6 @@ module.exports = (sequelize) => {
     },
     {
       timestamps: true
-  })
+  }
+  )
 }

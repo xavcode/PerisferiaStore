@@ -1,32 +1,33 @@
 import React from "react";
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FiltersContext } from "../../../context/FiltersContext";
 import { DataContext } from "../../../context/DataContext";
+import { startCase } from "lodash";
 
 const EditProduct = () => {
   const { products } = useContext(DataContext);
   const { categories } = useContext(FiltersContext);
   const { id } = useParams();
   const [formData, setFormData] = useState({
-    id: id,
+    // id: id,
     name: "",
     price: 0,
     image: "",
     status: "disponible",
     description: "",
     rating: 1,
-    category: "",
+    category: [],
     quantity: 1,
   });
-  console.log('aaaa',categories);
+  const navigation = useNavigate();
 
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/store/${id}`) //https://perisferiastore-production.up.railway.app/store${id}
+        const response = await axios.get(`http://localhost:3001/store/${id}`) //http://localhost:3001/store${id}
         const product = response.data;
         if (product) {
           setFormData(product)
@@ -46,16 +47,13 @@ const EditProduct = () => {
 }, [id, products]);
       
   
-
-
-
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     console.log(e.target.value);
   };
 
   const handleSubmit = async (event) => {
+    console.log('<<<<<', formData);
     event.preventDefault();
     Swal.fire({
       title: "¿Guardar cambios?",
@@ -90,7 +88,18 @@ const EditProduct = () => {
   };
 
   const handleCancel = () => {
-    window.location.href = "/";
+    Swal.fire({
+      title: 'Cancelar',
+      text: '¿Estás seguro de que deseas cancelar los cambios?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigation('/admin/products');
+      }
+    });
   };
 
   return (
@@ -121,7 +130,7 @@ const EditProduct = () => {
             type="text"
             id="name"
             name="name"
-            value={formData.name}
+            value={startCase(formData.name)}
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
@@ -200,7 +209,7 @@ const EditProduct = () => {
             <option value="">Seleccionar categoría</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
-                {category}
+                {startCase(category)}
               </option>
             ))}
           </select>

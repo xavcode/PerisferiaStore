@@ -1,13 +1,59 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
+import axios from 'axios'
+
 
 const Profile = () => {
   const { user, isLoading, isAuthenticated } = useAuth0();
+  const [dataLoaded, setDataLoaded] = useState(false);
 
-  if (isLoading) {
+  const [formData, setFormData] = useState({
+    name: '',
+    last_name: '',
+    username: '',
+    address: '',
+    password: '',
+    mail: '',
+    phone: '',
+  });
+
+  useEffect(() => {
+    if (user) {
+      const datosDelUsuario = async () => {
+        try {
+          const userData = await axios.get(`http://localhost:3001/admin/user/${user.email}`);
+          const { name, last_name, mail, phone, address, username} = userData.data;
+          setFormData(prevFormData => ({
+            ...prevFormData,
+            name: name || prevFormData.name,
+            last_name: last_name || prevFormData.last_name,
+            mail: mail || prevFormData.mail,
+            phone: phone || prevFormData.phone,
+            address: address || prevFormData.address,
+            username: username || prevFormData.username
+          }));
+          
+
+          setDataLoaded(true);
+          // console.log('Datos cargados en el estado formData:', formData);
+        } catch (error) {
+          console.error('Error al obtener los datos del usuario:', error);
+        }
+      };
+
+      datosDelUsuario();
+    }
+  }, [user]); // Agregamos 'user' como dependencia del useEffect
+
+  useEffect(() => {
+    if (!isLoading) {
+      setDataLoaded(true);
+    }
+  }, [isLoading]); // Agregamos 'isLoading' como dependencia del useEffect
+
+  if (isLoading || !dataLoaded) {
     return <div>Cargando...</div>;
   }
-
   return (
     <div className="min-h-screen flex items-center justify-center mt-8">
       <div className="max-w-xl w-full bg-white rounded-lg overflow-hidden shadow-lg p-6">
@@ -23,34 +69,43 @@ const Profile = () => {
               <h3 className="text-2xl font-semibold mb-4 text-gray-800 text-center">Información personal</h3>
               <div className="text-gray-700">
                 <div className="mb-2">
-                  <span className="font-semibold">Nombre:</span> {user.name}
+                  <span className="font-semibold">Nombre:</span> {formData.name || user.name}
                 </div>
                 <div className="mb-2">
-                  <span className="font-semibold">Correo electrónico:</span> {user.email}
+                  <span className="font-semibold">Apellido:</span> {formData.last_name || user.given_family}
                 </div>
                 <div className="mb-2">
-                  <span className="font-semibold">Teléfono:</span> 1234567890
+                  <span className="font-semibold">Usuario:</span> {formData.username || user.username}
+                </div>
+                <div className="mb-2">
+                  <span className="font-semibold">Correo electrónico:</span> {formData.mail || user.email}
+                </div>
+                <div className="mb-2">
+                  <span className="font-semibold">Teléfono:</span> {formData.phone || '1234567890'}
+                </div>
+                <div className="mb-2">
+                <span className="font-semibold">Direccion de envio:</span> {formData.address || 'Sin Calle'}
                 </div>
               </div>
             </div>
-
+  
             <div>
-              <h3 className="text-2xl font-semibold mb-4 text-gray-800 text-center">Dirección de envío</h3>
+              {/* <h3 className="text-2xl font-semibold mb-4 text-gray-800 text-center">Dirección de envío</h3>
               <div className="text-gray-700">
                 <div className="mb-2">
-                  <span className="font-semibold">Calle:</span> Calle Principal
+                  <span className="font-semibold">Calle:</span> {formData.address || 'Calle por defecto'}
+                </div> */}
+                {/* <div className="mb-2">
+                  <span className="font-semibold">Ciudad:</span> {formData.city || 'Ciudad Principal'}
                 </div>
                 <div className="mb-2">
-                  <span className="font-semibold">Ciudad:</span> Ciudad Principal
+                  <span className="font-semibold">País:</span> {formData.country || 'País Principal'}
                 </div>
                 <div className="mb-2">
-                  <span className="font-semibold">País:</span> País Principal
-                </div>
-                <div className="mb-2">
-                  <span className="font-semibold">Código Postal:</span> 5300
-                </div>
+                  <span className="font-semibold">Código Postal:</span> {formData.zipCode || '5300'}
+                </div> */}
               </div>
-            </div>
+            
           </>
         )}
       </div>

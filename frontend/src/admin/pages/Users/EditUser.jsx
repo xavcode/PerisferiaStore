@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const EditUser = () => {
@@ -44,6 +45,16 @@ const EditUser = () => {
   
   const handleSubmit = async (event) => {
     event.preventDefault();
+    const confirmResult = await Swal.fire({
+      title: 'Guardar cambios',
+      text: '¿Estás seguro de que deseas guardar los cambios?',
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No',
+    });
+
+    if (confirmResult.isConfirmed) {
     let camposEditados = {campos:{}};
     for (const key in formData) {
       if (formData[key] !== initialFormData[key]) {
@@ -53,11 +64,29 @@ const EditUser = () => {
     try {
       const response = await axios.put(`http://localhost:3001/admin/user/${userId}`, camposEditados);
       console.log(response.data);
+      Swal.fire('Cambios guardados', 'Los cambios se guardaron correctamente.', 'success');
       navigation('/admin/users')
     } catch (error) {
       console.error(error);
     }
   };
+}
+
+  const handleCancel = () => {
+    Swal.fire({
+      title: 'Cancelar',
+      text: '¿Estás seguro de que deseas cancelar los cambios?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Sí',
+      cancelButtonText: 'No',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigation('/admin/users');
+      }
+    });
+  };
+
   return (
     <div className="fixed justify-center flex flex-col items-center bg-gray-900 text-white py-3 px-16 mt-20 mb-5 w-full mx-4 rounded-lg">
         <Link to="/admin/users" className="text-gray-500 hover:text-gray-900 mb-2">
@@ -118,7 +147,7 @@ const EditUser = () => {
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
         </div>
-        <div>
+        {/* <div>
           <label htmlFor="password" className="text-lg font-semibold">
             Contraseña:
           </label>
@@ -130,8 +159,8 @@ const EditUser = () => {
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
-        </div>
-        <div>
+        </div> */}
+        {/* <div>
           <label htmlFor="mail" className="text-lg font-semibold">
             Email:
           </label>
@@ -143,7 +172,7 @@ const EditUser = () => {
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
-        </div>
+        </div> */}
         <div>
           <label htmlFor="img" className="text-lg font-semibold">
             Imagen:
@@ -186,7 +215,7 @@ const EditUser = () => {
           <button className="bg-white hover:bg-primary text-gray-700 font-bold py-2 px-4 rounded">
             Guardar
           </button>
-          <button type="button" className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded" >
+          <button type="button" className="bg-gray-700 hover:bg-gray-800 text-white font-bold py-2 px-4 rounded" onClick={handleCancel}>
             Cancelar
           </button>
         </div>

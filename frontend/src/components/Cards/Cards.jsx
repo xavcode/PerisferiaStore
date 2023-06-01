@@ -15,8 +15,6 @@ const Cards = () => {
 
 
   useEffect(() => {
-    //function to search items with the searchBar, and filter the results with the range selector. 
-
     const productsFiltered = products.filter((product) => {
       const priceInRange = product.price >= minPrice && product.price <= maxPrice;
       const matchesCategory = catSelected === 'all' || catSelected === product.category;
@@ -27,7 +25,7 @@ const Cards = () => {
     const ordered = productsFiltered.sort((a, b) => {
       if (sortBy === 'price') {
         if (orderBy === 'from_lower') {
-          return (a.price - b.price)
+          return (a.price - b.price) 
         }
         else return (b.price - a.price)
       }
@@ -38,8 +36,6 @@ const Cards = () => {
         else return (b.rating - a.rating)
     })
 
-    //custom hook to order the filtered array
-    // const ordered = useSort(productsFiltered, sortBy, orderBy)
     setProductsRender(ordered)
 
   }, [minPrice, maxPrice, catSelected, searched, products, sortBy, orderBy]);
@@ -50,7 +46,7 @@ const Cards = () => {
         <Card
           key={product.id}
           id={product.id}
-          title={startCase(product.name)}
+          title={startCase(product.name ? product.name : product.title)}
           description={product.description}
           price={product.price}
           image={product.img}
