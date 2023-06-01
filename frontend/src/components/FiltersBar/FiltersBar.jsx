@@ -13,20 +13,20 @@ const Filters = () => {
   //------------------------Handlers---------------------------//
 
   const handleChangePrice = (evt) => {
-    const value = evt.target.value;
+    const value = parseInt(evt.target.value);
     const valueId = evt.target.id; 
     if (valueId === "minPrice") setFilters({ ...filters, minPrice: value });
-    else if (valueId === "maxPrice")
-      setFilters({ ...filters, maxPrice: value });
+    else if (valueId === "maxPrice") setFilters({ ...filters, maxPrice: value });
   };
-
+  
   const handleInputText = (evt) => {
-    const value = evt.target.value;
+    const value = parseInt(evt.target.value);
     const valueId = evt.target.id;
-    if (valueId === "valueMinPrice")
+    if (valueId === "valueMinPrice") {
       setFilters({ ...filters, minPrice: value });
-    else if (valueId === "valueMaxPrice")
+    } else if (valueId === "valueMaxPrice") {
       setFilters({ ...filters, maxPrice: value });
+    }
   };
 
   const handleSelectCat = (evt) => {
@@ -43,6 +43,7 @@ const Filters = () => {
     const orderBy = evt.target.value;
     setFilters({ ...filters, orderBy: orderBy });
   };
+  
 
   return (
     <div className="bg-black h-36 w-full fixed top-0 z-20">
@@ -70,7 +71,11 @@ const Filters = () => {
                 type="range"
                 id="minPrice"
                 min={0}
+<<<<<<< HEAD
                 max={10000000}
+=======
+                max={1000000}
+>>>>>>> b87d5f313bb3daffd04493fd1c7d0c02323fee6a
                 onChange={handleChangePrice}
                 value={minPrice}
               />
@@ -87,7 +92,11 @@ const Filters = () => {
                 id="valueMaxPrice"
                 className=" bg-inputs accent-red-600 text-center"
                 type="number"
+<<<<<<< HEAD
                 max={10000000}
+=======
+                max={1000000}
+>>>>>>> b87d5f313bb3daffd04493fd1c7d0c02323fee6a
                 onChange={handleInputText}
                 value={maxPrice}
               />
@@ -99,7 +108,11 @@ const Filters = () => {
                 type="range"
                 id="maxPrice"
                 min={0}
+<<<<<<< HEAD
                 max={10000000}
+=======
+                max={1000000}
+>>>>>>> b87d5f313bb3daffd04493fd1c7d0c02323fee6a
                 onChange={handleChangePrice}
                 value={maxPrice}
               />

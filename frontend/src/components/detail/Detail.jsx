@@ -12,7 +12,7 @@ import ReviewForm from '../ReviewForm/ReviewForm.jsx';
 
 const Detail = () => {
   const { addToCart, removeFromCart, cart } = useCart();
-
+  const [ actualizandoPage, setActualizandoPage ] = useState(false);
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
@@ -22,7 +22,7 @@ const Detail = () => {
       setProduct(response.data);
     };
     fetchData();
-  }, []);
+  }, [actualizandoPage]);
 
   const isProductInCart = cart.some((item) => item.id === product.id);
 
@@ -59,7 +59,7 @@ const Detail = () => {
                   Rating: {product.rating}
                 </span>
                 <span className="text-xl text-left font-bold text-text ">
-                  Precio: {`${product.price}$ `}
+                  Precio: {`$${product.price} `}
                 </span>
               </div>
             </div>
@@ -116,14 +116,15 @@ const Detail = () => {
         </div>
         <div>
           <ReviewForm
-            id={id} />
+            id={id}
+            setActualizandoPage={setActualizandoPage} />
         </div>
       </div>
 
 
       <div className='h-[600px] overflow-auto px-2 border-2 border-gray-300 rounded-lg'>
         <Reviews
-        id={id} />
+          id={id} />
       </div>
     </div>
   );
@@ -131,4 +132,3 @@ const Detail = () => {
 
 
 export default Detail
-
