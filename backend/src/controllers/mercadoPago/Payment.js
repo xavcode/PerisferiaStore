@@ -92,7 +92,6 @@ const create_Order = async (req, res) => {
         name: user.name,
         email: user.mail,
         surname: user.username,
-        address: "calle falsa 123"
       },
       notification_url: 'https://f3b9-190-183-193-182.sa.ngrok.io/webhook',
     };
