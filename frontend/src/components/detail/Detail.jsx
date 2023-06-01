@@ -22,7 +22,7 @@ const Detail = () => {
       setProduct(response.data);
     };
     fetchData();
-  }, []);
+  }, [actualizandoPage]);
 
   const isProductInCart = cart.some((item) => item.id === product.id);
 
@@ -116,7 +116,8 @@ const Detail = () => {
         </div>
         <div>
           <ReviewForm
-            id={id} />
+            id={id}
+            setActualizandoPage={setActualizandoPage} />
         </div>
       </div>
 

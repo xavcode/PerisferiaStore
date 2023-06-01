@@ -4,17 +4,18 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import avatar from "../../../assets/images/profile-default-image.png";
 import Swal from "sweetalert2";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const UsersTable = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useAuth0(); // Obtén el usuario actual del Auth0
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         setIsLoading(true);
-        const response = await axios("http://localhost:3001/userAct");  
-
+        const response = await axios("http://localhost:3001/userAct");
         setUsers(response.data);
       } catch (error) {
         console.error("Error al obtener los usuarios:", error);
@@ -31,25 +32,38 @@ const UsersTable = () => {
 
   const handleDelete = async (userId) => {
     Swal.fire({
-      title: '¿Seguro que quieres eliminar el usuario?',
+      title: "¿Seguro que quieres eliminar el usuario?",
       showCancelButton: true,
-      confirmButtonText: 'Sí',
-      cancelButtonText: 'No',
+      confirmButtonText: "Sí",
+      cancelButtonText: "No",
       reverseButtons: true,
-      icon: 'warning',
+      icon: "warning",
     }).then(async (result) => {
       if (result.isConfirmed) {
-    try {
-      await axios.put(`http://localhost:3001/admin/user/decline/${userId}`);
-      console.log('Usuario borrado con éxito');
-      const updatedUsers = users.filter((user) => user.id !== userId);
-      setUsers(updatedUsers);
-    } catch (error) {
-      console.error('Error al borrar el usuario:', error);
-      Swal.fire('Error', 'No se pudo borrar el usuario', 'error');
-    }
-  }
-  })
+        try {
+          await axios.put(
+            `http://localhost:3001/admin/user/decline/${userId}`
+          );
+          console.log("Usuario borrado con éxito");
+
+          // Enviar el correo electrónico solo al usuario eliminado
+          const deletedUser = users.find((user) => user.id === userId);
+          await axios.post("http://localhost:3001/send-email", {
+            to: deletedUser.mail,
+            subject: "Usuario eliminado",
+            message: `Tu Usuario fue eliminado de nuestro sitio Web. Si quieres reactivarlo, comunícate a este Correo Electrónico: "perisferiastore@gmail.com". Muchas gracias`,
+          });
+          console.log("Correo electrónico enviado");
+
+          // Actualizar la lista de usuarios en el estado local
+          const updatedUsers = users.filter((user) => user.id !== userId);
+          setUsers(updatedUsers);
+        } catch (error) {
+          console.error("Error al borrar el usuario:", error);
+          Swal.fire("Error", "No se pudo borrar el usuario", "error");
+        }
+      }
+    });
   };
   
   return (

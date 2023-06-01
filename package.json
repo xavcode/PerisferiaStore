@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@emailjs/browser": "^3.11.0",
     "cookie-parser": "^1.4.6",
     "daisyui": "^2.51.6",
     "dotenv": "^16.0.3",

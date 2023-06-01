@@ -9,27 +9,27 @@ import axios from "axios"
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-
 const Header = () => {
-
+  const {user} = useAuth0()
   const { isAuthenticated } = useAuth0()
-  const [userId, setUserId] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
-    const fetchUserId = async () => {
-      try {
-        if (userId) { // Verificar si userId no es nulo
-          const response = await axios.get(`/admin/users/${userId}`);
-          setUserId(response.data.id);
+    const fetchId = async () => {
+      if (user && user.email) {
+        try {
+          const response = await axios.get(`http://localhost:3001/admin/user/${user.email}`);
+          setUserData(response.data)
+        } catch (error) {
+          console.error('Error al obtener el usuario:', error);
         }
-      } catch (error) {
-        console.error("Error al obtener el ID del usuario:", error);
       }
     };
 
-    fetchUserId();
-  }, []);
-  return (
+    if (user && user.email) {
+      fetchId();
+    }
+  }, [user]);  return (
     <div className="dark h-[150px] flex justify-around px-3 fixed top-0 left-0 md:h-[60px] w-full items-center font-bold bg-header dark:dark rounded-b-lg z-50">
       <Link to="/">
         <img
@@ -63,7 +63,9 @@ const Header = () => {
           </li>
           <div className="flex justify-end gap-2 px-1 ">
             <li>
-              <Cart />
+              <Cart 
+                userData={userData}
+              />
             </li>
             <div className="flex justify-end gap-2 px-1 w-[250px] relative">
               <li>

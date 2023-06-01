@@ -64,12 +64,16 @@ const create_Order = async (req, res) => {
       access_token: process.env.PROD_ACCESS_TOKEN,
     });
 
-    const { products } = req.body; // Obtén los productos seleccionados enviados desde Cart.jsx
+    const { products, user } = req.body; // Obtén los productos seleccionados enviados desde Cart.jsx
+    console.log(products)
+    console.log(user)
 
     const items = products.map((product) => {
       // Utiliza los productos seleccionados en lugar de obtenerlos de la base de datos
       return {
-        title: product.name,
+        id: product.id,
+        title: product.title,
+        description: product.description,
         unit_price: parseFloat(product.price),
         currency_id: 'ARS',
         quantity: product.quantity,
@@ -83,6 +87,11 @@ const create_Order = async (req, res) => {
         success: 'https://perisferia-store.vercel.app/store',
         failure: 'https://perisferia-store.vercel.app/store',
         pending: 'https://perisferia-store.vercel.app/pending',
+      },
+      payer: {
+        name: user.name,
+        email: user.mail,
+        surname: user.username,
       },
       notification_url: 'https://f3b9-190-183-193-182.sa.ngrok.io/webhook',
     };
