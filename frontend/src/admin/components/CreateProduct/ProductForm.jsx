@@ -9,7 +9,7 @@ import 'sweetalert2/dist/sweetalert2.min.css';
 
 import { FiltersContext } from "../../../context/FiltersContext";
 
-const CreateProductForm = () => { 
+const CreateProductForm = () => {
   const [file, setFile] = useState(null);
   const navigate = useNavigate()
   const { setUpdateFlag } = useContext(DataContext);
@@ -21,7 +21,7 @@ const CreateProductForm = () => {
     price: '',
     status: 'disponible',
     description: '',
-    rating: '',
+    rating: 5,
     category: ''
 
   })
@@ -48,112 +48,62 @@ const CreateProductForm = () => {
     }
   };
 
-//   const handleSubmit = async (e) => {
-//     e.preventDefault();
-//     if (
-//     newProduct.name &&
-//     newProduct.price &&
-//     newProduct.status &&
-//     newProduct.description &&
-//     newProduct.rating &&
-//     newProduct.category &&
-//     file
-//   ) {
-//     Swal.fire({
-//       title: 'Yes/No/Cancel Dialog',
-//       text: '¿Estás seguro de que deseas crear el producto?',
-//       icon: 'question',
-//       showCancelButton: true,
-//       confirmButtonText: 'Yes',
-//       cancelButtonText: 'No',
-//       cancelButtonColor: '#d33',
-//       reverseButtons: true
-//     }).then((result) => {
-//       if (result.isConfirmed) {
-//     const formData = new FormData();
-//     formData.append('file', file);
-//     formData.append('name', newProduct.name);
-//     formData.append('price', newProduct.price);
-//     formData.append('status', newProduct.status);
-//     formData.append('description', newProduct.description);
-//     formData.append('rating', newProduct.rating);
-//     formData.append('category', newProduct.category);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-//     try { 
-//       const response = await axios.post('http://localhost:3001/', formData);
-//       alert('Producto creado con éxito')
-//       setUpdateFlag(true) // actualizamos la peticion a la base de datos de DataContext
-//       navigate('/admin/products')
-//     } catch (error) {
-//       console.error(error);
-//     }
-//   } else if (result.dismiss === Swal.DismissReason.cancel) {
-//     // El usuario hizo clic en "No" o en el botón de cancelar
-//     Swal.fire('Cancelado', 'No se ha creado el producto', 'info');
-//   }
-// });
-// } else {
-// alert('Por favor, complete todos los campos');
-// }
-// };
+    if (
+      newProduct.name &&
+      newProduct.price &&
+      newProduct.status &&
+      newProduct.description &&
+      newProduct.rating &&
+      newProduct.category &&
+      file
+    ) {
+      Swal.fire({
+        title: 'Creacion de un producto',
+        text: '¿Estás seguro de que deseas crear el producto?',
+        icon: 'question',
+        showCancelButton: true,
+        confirmButtonText: 'Yes',
+        cancelButtonText: 'No',
+        cancelButtonColor: '#d33',
+        reverseButtons: true
+      }).then((result) => {
+        if (result.isConfirmed) {
+          const formData = new FormData();
+          formData.append('file', file);
+          formData.append('name', newProduct.name);
+          formData.append('price', newProduct.price);
+          formData.append('status', newProduct.status);
+          formData.append('description', newProduct.description);
+          formData.append('rating', newProduct.rating);
+          formData.append('category', newProduct.category);
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
-
-  if (
-    newProduct.name &&
-    newProduct.price &&
-    newProduct.status &&
-    newProduct.description &&
-    newProduct.rating &&
-    newProduct.category &&
-    file
-  ) {
-    Swal.fire({
-      title: 'Creacion de un producto',
-      text: '¿Estás seguro de que deseas crear el producto?',
-      icon: 'question',
-      showCancelButton: true,
-      confirmButtonText: 'Yes',
-      cancelButtonText: 'No',
-      cancelButtonColor: '#d33',
-      reverseButtons: true
-    }).then((result) => {
-      if (result.isConfirmed) {
-        // El usuario hizo clic en "Yes"
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('name', newProduct.name);
-        formData.append('price', newProduct.price);
-        formData.append('status', newProduct.status);
-        formData.append('description', newProduct.description);
-        formData.append('rating', newProduct.rating);
-        formData.append('category', newProduct.category);
-
-        try {
-          axios.post('http://localhost:3001/', formData)
-            .then(() => {
-              Swal.fire('Éxito', 'Producto creado con éxito', 'success').then(() => {
-                setUpdateFlag(true);
-                navigate('/admin/products');
+          try {
+            axios.post('https://perisferia-store.vercel.app/', formData)
+              .then(() => {
+                Swal.fire('Éxito', 'Producto creado con éxito', 'success').then(() => {
+                  setUpdateFlag(true);
+                  navigate('/admin/products');  
+                });
+              })
+              .catch((error) => {
+                console.error(error);
+                Swal.fire('Error', 'Ha ocurrido un error al crear el producto', 'error');
               });
-            })
-            .catch((error) => {
-              console.error(error);
-              Swal.fire('Error', 'Ha ocurrido un error al crear el producto', 'error');
-            });
-        } catch (error) {
-          console.error(error);
+          } catch (error) {
+            console.error(error);
+          }
+        } else if (result.dismiss === Swal.DismissReason.cancel) {
+          // El usuario hizo clic en "No" o en el botón de cancelar
+          Swal.fire('Cancelado', 'No se ha creado el producto', 'info');
         }
-      } else if (result.dismiss === Swal.DismissReason.cancel) {
-        // El usuario hizo clic en "No" o en el botón de cancelar
-        Swal.fire('Cancelado', 'No se ha creado el producto', 'info');
-      }
-    });
-  } else {
-    alert('Por favor, complete todos los campos');
-  }
-};
+      });
+    } else {
+      Swal.fire('Error', 'Completa todos los campos');
+    }
+  };
 
 
   return (
@@ -234,9 +184,10 @@ const handleSubmit = async (e) => {
             <label htmlFor="category" className="block font-semibold">
               Categoría:
             </label>
-            <select className="select mt-1 p-2 bg-gray-200 text-gray-800 rounded w-full" name="category" id="category" onChange={handleChange}>Category
+            <select className="select mt-1 p-2 bg-gray-200 text-gray-800 rounded w-full" name="category" id="category" onChange={handleChange} required={true}>Category
+              <option value="">Seleccionar</option>
               {categories.map(cat => {
-                return(
+                return (
                   <option key={cat} value={cat}>{startCase(cat)}</option>
                 )
               })}
@@ -275,7 +226,7 @@ const handleSubmit = async (e) => {
           <button
             type="submit"
             className="col-span-1  btn btn-outline btn-success"
-            disabled={!file || !newProduct.name || !newProduct.price || !newProduct.status || !newProduct.description || !newProduct.rating || !newProduct.category}
+
           >
             Crear
           </button>
@@ -320,7 +271,7 @@ export default CreateProductForm;
 //     formData.append('category', category);
 
 //     try {
-//       await axios.post('http://localhost:3001/', formData);
+//       await axios.post('https://perisferiastore-production.up.railway.app/', formData);
 //       // El formulario se envió exitosamente
 //       // Realiza cualquier acción adicional que necesites aquí
 //     } catch (error) {

@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Link, useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import { useAuth0 } from '@auth0/auth0-react';
 
 const EditUser = () => {
+  const { user, isLoading, isAuthenticated } = useAuth0();
   const { id } = useParams();
   const userId = id;
   const navigation = useNavigate();
   useEffect(() => {
     const peticion = async () => {
       try {
-        const userEdit = await axios.get(`https://perisferiastore-production.up.railway.app/admin/users/${userId}`)
+        const userEdit = await axios.get(`https://perisferiastore-production.up.railway.app/admin/users/${userId}`) // /admin/user/:userMail
         const user = userEdit.data
         setFormData(user);
         setInitialFormData(user)
@@ -63,7 +65,7 @@ const EditUser = () => {
       const response = await axios.put(`https://perisferiastore-production.up.railway.app/admin/user/${userId}`, camposEditados);
       console.log(response.data);
       Swal.fire('Cambios guardados', 'Los cambios se guardaron correctamente.', 'success');
-      navigation('/admin/users')
+      navigation('/store')
     } catch (error) {
       console.error(error);
     }

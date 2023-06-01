@@ -4,17 +4,18 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import avatar from "../../../assets/images/profile-default-image.png";
 import Swal from "sweetalert2";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const UsersTable = () => {
   const [users, setUsers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const { user } = useAuth0(); // Obtén el usuario actual del Auth0
 
   useEffect(() => {
     const fetchUsers = async () => {
       try {
         setIsLoading(true);
-        const response = await axios("https://perisferiastore-production.up.railway.app/userAct");  
-
+        const response = await axios.get("https://perisferiastore-production.up.railway.app/users");
         setUsers(response.data);
       } catch (error) {
         console.error("Error al obtener los usuarios:", error);
@@ -31,27 +32,92 @@ const UsersTable = () => {
 
   const handleDelete = async (userId) => {
     Swal.fire({
-      title: '¿Seguro que quieres eliminar el usuario?',
+      title: "¿Seguro que quieres eliminar el usuario?",
       showCancelButton: true,
-      confirmButtonText: 'Sí',
-      cancelButtonText: 'No',
+      confirmButtonText: "Sí,eliminar",
+      cancelButtonText: "No",
       reverseButtons: true,
-      icon: 'warning',
+      icon: "warning",
     }).then(async (result) => {
       if (result.isConfirmed) {
-    try {
-      await axios.put(`https://perisferiastore-production.up.railway.app/admin/user/decline/${userId}`);
-      console.log('Usuario borrado con éxito');
-      const updatedUsers = users.filter((user) => user.id !== userId);
-      setUsers(updatedUsers);
-    } catch (error) {
-      console.error('Error al borrar el usuario:', error);
-      Swal.fire('Error', 'No se pudo borrar el usuario', 'error');
-    }
-  }
-  })
+        try {
+          await axios.put(`https://perisferiastore-production.up.railway.app/admin/user/decline/${userId}`);
+          console.log("Usuario borrado con éxito");
+          Swal.fire("Éxito", "El usuario se eliminó correctamente", "success");
+  
+          // Enviar el correo electrónico solo al usuario eliminado
+          const deletedUser = users.find((user) => user.id === userId);
+          await axios.post("https://perisferiastore-production.up.railway.app/send-email", {
+            to: deletedUser.mail,
+            subject: "Usuario eliminado",
+            message: `Tu Usuario fue eliminado de nuestro sitio Web. Si quieres reactivarlo, comunícate a este Correo Electrónico: "perisferiastore@gmail.com". Muchas gracias`,
+          });
+          console.log("Correo electrónico enviado");
+          // Encontrar el usuario que se eliminará
+          const userToDelete = users.find((user) => user.id === userId);
+  
+          // Actualizar la lista de usuarios en el estado local
+          const updatedUsers = users.filter((user) => user.id !== userId);
+          setUsers(updatedUsers);
+  
+          // Enviar la solicitud para eliminar el usuario
+          await axios.put(`https://perisferiastore-production.up.railway.app/admin/user/decline/${userId}`);
+          console.log("Usuario borrado con éxito");
+  
+          // Enviar el correo electrónico solo al usuario eliminado
+          await axios.post("https://perisferiastore-production.up.railway.app/send-email", {
+            to: userToDelete.mail,
+            subject: "Usuario eliminado",
+            message:
+              "Tu Usuario fue eliminado de nuestro sitio Web. Si quieres reactivarlo, comunícate a este Correo Electrónico: perisferiastore@gmail.com. Muchas gracias",
+          });
+          console.log("Correo electrónico enviado");
+        } catch (error) {
+          console.error("Error al borrar el usuario:", error);
+          Swal.fire("Error", "No se pudo borrar el usuario", "error");
+        }
+      }
+    });
   };
   
+  const handleUnban = async (userId) => {
+    Swal.fire({
+      title: "¿Seguro que quieres reactivar el usuario?",
+      showCancelButton: true,
+      confirmButtonText: "Sí",
+      cancelButtonText: "No",
+      reverseButtons: true,
+      icon: "warning",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.put(
+            `https://perisferiastore-production.up.railway.app/admin/user/active/${userId}`
+          );
+          console.log("Usuario reactivado con éxito");
+  
+          // Enviar el correo electrónico solo al usuario reactivado
+          const unbannedUser = users.find((user) => user.id === userId);
+          await axios.post("https://perisferiastore-production.up.railway.app/send-email", {
+            to: unbannedUser.mail,
+            subject: "Usuario reactivado",
+            message: `Tu Usuario fue reactivado en nuestro sitio Web. Si tienes alguna pregunta, no dudes en contactarnos. Muchas gracias`,
+          });
+          console.log("Correo electrónico enviado");
+  
+          // Actualizar la lista de usuarios en el estado local
+          const updatedUsers = users.map((user) =>
+            user.id === userId ? { ...user, is_active: true } : user
+          );
+          setUsers(updatedUsers);
+        } catch (error) {
+          console.error("Error al reactivar el usuario:", error);
+          Swal.fire("Error", "No se pudo reactivar el usuario", "error");
+        }
+      }
+    });
+  };
+
   return (
     <div className=" bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end overflow-y-auto">
       <div className=" flex gap-40 justify-center items-center mb-5">
@@ -101,13 +167,23 @@ const UsersTable = () => {
                     </Link>
                   </td>
                   <td>
-                    <button
-                      className="btn btn-outline btn-error"
-                      onClick={() => handleDelete(user.id)}
-                      disabled={isLoading}
-                    >
-                      Borrar
-                    </button>
+                    {user.is_active ? (
+                      <button
+                        className="btn btn-outline btn-error"
+                        onClick={() => handleDelete(user.id)}
+                        disabled={isLoading}
+                      >
+                        Borrar
+                      </button>
+                    ) : (
+                      <button
+                        className="btn btn-outline btn-success"
+                        onClick={() => handleUnban(user.id)}
+                        disabled={isLoading}
+                      >
+                        Reactivar
+                      </button>
+                    )}
                   </td>
                 </tr>
               );
@@ -120,12 +196,3 @@ const UsersTable = () => {
 };
 
 export default UsersTable;
-
-
-
-
-
-
-
-
-

@@ -6,15 +6,12 @@ import avatar from '../../assets/images/profile-default-image.png';
 import LoginButton from '../Login/Login';
 import LogoutButton from '../Logout/Logout';
 
-
-
 const ProfileDropdown = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0(); //Aca es donde le llega los datos del user
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-
-  const toggleMenu = () => {
+  const toggleMenu = () => { 
     setIsMenuOpen(!isMenuOpen);
   };
 
@@ -30,7 +27,6 @@ const ProfileDropdown = () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
   }, []);
-
 
   const renderProfileMenu = () => {
     if (isAuthenticated) {

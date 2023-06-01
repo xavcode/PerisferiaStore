@@ -28,7 +28,7 @@ const ReviewsStoreList = () => {
         <ul className="space-y-4">
           {listReviews.map((comment) => (
             <li key={comment.id} className="bg-gray-100 p-4 rounded shadow-md">
-              <div className="text-gray-800 textarea mb-2">
+              <div className="text-gray-800 textarea mb-2 bg-white ">
                 <p className='mx-16'>
                   {comment.comment}
                 </p>

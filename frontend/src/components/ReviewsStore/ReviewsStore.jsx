@@ -9,6 +9,7 @@ const reviewsStore = () => {
   const [userId, setUserId] = useState('')
   const [comment, setComment] = useState('');
 
+
   useEffect(() => {
     const fetchId = async () => {
       if (user && user.email) {
@@ -50,6 +51,7 @@ const reviewsStore = () => {
         icon: 'info',
         confirmButtonText: 'Ok',
       });
+      location.reload();
       setComment('')
 
     } catch (error) {

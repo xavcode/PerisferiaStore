@@ -7,6 +7,7 @@ import axios from "axios";
 import Swal from "sweetalert2";
 import { useCart } from "../../hooks/useCart";
 import { MdDelete } from 'react-icons/md';
+import { useEffect } from "react";
 
 function CartItem(
   props
@@ -20,7 +21,8 @@ function CartItem(
   const isProductInCart = checkProductInCart(props)
 
   return (
-    <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500">
+    // <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500">
+    <div className="flex gap-x-4 py-2 lg:px-6 border-b border-gray-200 w-full font-light text-gray-500 cart-item">
       <div className="w-full min-h-[150px] flex items-center gap-x-4">
         <div>
           <img className="max-w-[120px]" src={props.image ? props.image : props.img} alt="" />
@@ -35,9 +37,10 @@ function CartItem(
                 <div
                   className="text-xl cursor-pointer"
                   onClick={() => {
-                    isProductInCart
-                      ? removeFromCart(props)
-                      : removeFromCart(props);
+                    // isProductInCart
+                    //   ? removeFromCart(props)
+                    //   : removeFromCart(props);
+                    removeFromCart(props)
                   }}>
                   {/*Para borrar*/}
 
@@ -70,9 +73,6 @@ function CartItem(
             <div className="flex-1 flex items-center justify-around text-gray-700">
             Precio: {props.price}  
             </div>
-            {/* <div className="flex-1 flex justify-end items-center font-medium text-gray-700">
-              Precio: {props.price * props.quantity} aaa
-            </div> */}
           </div>
         </div>
       </div>
@@ -80,12 +80,14 @@ function CartItem(
   );
 }
 
-export default function Cart() {
+export default function Cart( {userData}) {
   const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } = useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
+  const userMail = userData?.mail;
 
   const handleCartToggle = () => {
-    setCartOpen(!isCartOpen);
+    // setCartOpen(!isCartOpen);
+    setCartOpen((prevState) => !prevState);
   };
 
   const handleClearCart = () => {
@@ -121,24 +123,51 @@ export default function Cart() {
       const products = cart
         .filter((product) => product.quantity > 0) // Filtrar productos con cantidad mayor a cero
         .map((product) => ({
-          id: product.id,
+          description: product.description,
           quantity: product.quantity,
+          title: product.title,
+          id: product.id,
           price: parseFloat(product.price),
         }));
 
       const response = await axios.post("https://perisferiastore-production.up.railway.app/payment", {
         publicKey: "TEST-1c120130-f27d-4676-930c-ae6d7014d092",
         products: products,
+        user:userData
       });
+      await axios.post("https://perisferiastore-production.up.railway.app/send-email", {
+        to: userMail,
+        subject: "Compra realizada",
+        message: `Un gran poder conlleva una gran responsabilidad. Gracias por tu compra`,
+      });
+      console.log("Correo electrónico enviado")
 
-      console.log("Pago correcto", response);
-      console.log(response.data);
+      // console.log("Pago correcto", response);
+      // console.log(response.data);
       window.location.href = response.data.init_point;
-      console.log(response.data.init_point);
+      // console.log(response.data.init_point);
     } catch (error) {
       console.error("Pago no realizado", error);
     }
   };
+
+  const handleOutsideClick = (event) => {
+    // Verifica si el evento se originó dentro del carrito o sus elementos internos
+    // if (!event.target.closest(".relative")) {
+      // setCartOpen(false);
+    // }
+    if (!event.target.closest(".relative") && !event.target.closest(".cart-item")) {
+      setCartOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick);
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  }, []);
+  
 
   return (
     <div>

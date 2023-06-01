@@ -248,7 +248,7 @@ export default MyForm;
 //       console.log(formDataToSend)
 
 //     // try {
-//     //   const response = await axios.post('http://localhost:3001/user', formDataToSend);
+//     //   const response = await axios.post('https://perisferiastore-production.up.railway.app/user', formDataToSend);
 //     //   console.log('Respuesta del servidor:', response.data);
 //     //   alert('Formulario enviado con éxito');
 //     //   // Hacer cualquier otra acción deseada después de enviar el formulario

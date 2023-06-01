@@ -5,6 +5,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { FiltersContext } from "../../../context/FiltersContext";
 import { DataContext } from "../../../context/DataContext";
+import { startCase } from "lodash";
 
 const EditProduct = () => {
   const { products } = useContext(DataContext);
@@ -46,10 +47,6 @@ const EditProduct = () => {
 }, [id, products]);
       
   
-
-
-
-
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
     console.log(e.target.value);
@@ -133,7 +130,7 @@ const EditProduct = () => {
             type="text"
             id="name"
             name="name"
-            value={formData.name}
+            value={startCase(formData.name)}
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
@@ -212,7 +209,7 @@ const EditProduct = () => {
             <option value="">Seleccionar categoría</option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
-                {category}
+                {startCase(category)}
               </option>
             ))}
           </select>

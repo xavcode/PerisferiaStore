@@ -44,7 +44,7 @@ const Home = () => {
             username: user.nickname,
             phone:  (Math.floor(Math.random() * 10000000) + 1).toString(),
             mail: user.email,
-            address: (Math.floor(Math.random() * 10000000) + 1).toString(),
+            address: null,
             password: (Math.floor(Math.random() * 10000000) + 1).toString(),
             img: user.picture
           };

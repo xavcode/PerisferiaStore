@@ -12,7 +12,7 @@ import ReviewForm from '../ReviewForm/ReviewForm.jsx';
 
 const Detail = () => {
   const { addToCart, removeFromCart, cart } = useCart();
-
+  const [ actualizandoPage, setActualizandoPage ] = useState(false);
   const [product, setProduct] = useState({});
   const { id } = useParams();
 
@@ -22,7 +22,7 @@ const Detail = () => {
       setProduct(response.data);
     };
     fetchData();
-  }, []);
+  }, [actualizandoPage]);
 
   const isProductInCart = cart.some((item) => item.id === product.id);
 
@@ -116,7 +116,8 @@ const Detail = () => {
         </div>
         <div>
           <ReviewForm
-            id={id} />
+            id={id}
+            setActualizandoPage={setActualizandoPage} />
         </div>
       </div>
 
@@ -125,6 +126,7 @@ const Detail = () => {
         <Reviews
           id={id} />
       </div>
+
     </div>
   );
 };
