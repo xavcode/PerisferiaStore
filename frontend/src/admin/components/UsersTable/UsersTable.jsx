@@ -34,18 +34,17 @@ const UsersTable = () => {
     Swal.fire({
       title: "¿Seguro que quieres eliminar el usuario?",
       showCancelButton: true,
-      confirmButtonText: "Sí",
+      confirmButtonText: "Sí,eliminar",
       cancelButtonText: "No",
       reverseButtons: true,
       icon: "warning",
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.put(
-            `http://localhost:3001/admin/user/decline/${userId}`
-          );
+          await axios.put(`http://localhost:3001/admin/user/decline/${userId}`);
           console.log("Usuario borrado con éxito");
-
+          Swal.fire("Éxito", "El usuario se eliminó correctamente", "success");
+  
           // Enviar el correo electrónico solo al usuario eliminado
           const deletedUser = users.find((user) => user.id === userId);
           await axios.post("http://localhost:3001/send-email", {
@@ -54,7 +53,7 @@ const UsersTable = () => {
             message: `Tu Usuario fue eliminado de nuestro sitio Web. Si quieres reactivarlo, comunícate a este Correo Electrónico: "perisferiastore@gmail.com". Muchas gracias`,
           });
           console.log("Correo electrónico enviado");
-
+  
           // Actualizar la lista de usuarios en el estado local
           const updatedUsers = users.filter((user) => user.id !== userId);
           setUsers(updatedUsers);
@@ -65,6 +64,7 @@ const UsersTable = () => {
       }
     });
   };
+  
   
   return (
     <div className=" bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end overflow-y-auto">

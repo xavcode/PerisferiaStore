@@ -70,6 +70,7 @@ const reviewsStore = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Comentario enviado:', comment);
+    location.reload();
     setComment('');
   };
 

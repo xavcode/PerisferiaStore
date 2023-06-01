@@ -87,9 +87,6 @@ const ReviewForm = ({ id }) => {
             location.reload();
           }
         });
-        setActualizandoPage(true)
-        setComment('')
-
       } catch (error) {
         console.error('Error al enviar la reseña:', error);
         Swal.fire({
