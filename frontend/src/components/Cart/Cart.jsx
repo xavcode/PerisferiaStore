@@ -83,7 +83,8 @@ function CartItem(
 export default function Cart( {userData}) {
   const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } = useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
-  console.log(userData)
+  const userMail = userData?.mail;
+  console.log(userMail)
 
   const handleCartToggle = () => {
     setCartOpen(!isCartOpen);
@@ -134,6 +135,12 @@ export default function Cart( {userData}) {
         products: products,
         user:userData
       });
+      await axios.post("http://localhost:3001/send-email", {
+        to: userMail,
+        subject: "Compra realizada",
+        message: `Un gran poder conlleva una gran responsabilidad. Gracias por tu compra`,
+      });
+      console.log("Correo electrónico enviado")
 
       // console.log("Pago correcto", response);
       // console.log(response.data);
