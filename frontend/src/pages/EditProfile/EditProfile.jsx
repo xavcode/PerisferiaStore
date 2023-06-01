@@ -228,14 +228,18 @@ export default EditProfile;
 
 // const EditProfile = () => {
 // 	const { user, isLoading, isAuthenticated } = useAuth0();
-// 	const [name, setName] = useState("");
-// 	const [email, setEmail] = useState("");
-// 	const [phone, setPhone] = useState("");
-// 	const [street, setStreet] = useState("");
-// 	const [city, setCity] = useState("");
-// 	const [country, setCountry] = useState("");
-// 	const [postalCode, setPostalCode] = useState("");
-// 	const [selectedField, setSelectedField] = useState("");
+//const [formData, setFormData] = useState({
+// 	name: '',
+// 	last_name: '',
+// 	username: '',
+// 	address: '',
+// 	password: '',
+// 	mail: '',
+// 	phone: '',
+// });
+
+
+
 
 // 	const handleSave = () => {
 // 		// Aquí puedes implementar la lógica para guardar los datos actualizados del perfil
