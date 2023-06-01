@@ -126,6 +126,7 @@ const Detail = () => {
         <Reviews
           id={id} />
       </div>
+
     </div>
   );
 };
