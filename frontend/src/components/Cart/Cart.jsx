@@ -80,9 +80,10 @@ function CartItem(
   );
 }
 
-export default function Cart() {
+export default function Cart( {userData}) {
   const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } = useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
+  console.log(userData)
 
   const handleCartToggle = () => {
     setCartOpen(!isCartOpen);
@@ -121,20 +122,23 @@ export default function Cart() {
       const products = cart
         .filter((product) => product.quantity > 0) // Filtrar productos con cantidad mayor a cero
         .map((product) => ({
-          id: product.id,
+          description: product.description,
           quantity: product.quantity,
+          title: product.title,
+          id: product.id,
           price: parseFloat(product.price),
         }));
 
       const response = await axios.post("http://localhost:3001/payment", {
         publicKey: "TEST-1c120130-f27d-4676-930c-ae6d7014d092",
         products: products,
+        user:userData
       });
 
-      console.log("Pago correcto", response);
-      console.log(response.data);
+      // console.log("Pago correcto", response);
+      // console.log(response.data);
       window.location.href = response.data.init_point;
-      console.log(response.data.init_point);
+      // console.log(response.data.init_point);
     } catch (error) {
       console.error("Pago no realizado", error);
     }
