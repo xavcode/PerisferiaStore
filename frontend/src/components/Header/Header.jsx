@@ -60,7 +60,7 @@ const Header = () => {
 					</li>
 					<div className="flex justify-end gap-2 px-1 ">
 						<li>
-							<Cart />
+							{user ? <Cart /> : null}
 						</li>
 						<div className="flex justify-end gap-2 px-1 w-[250px] relative">
 							<li>
