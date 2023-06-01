@@ -41,23 +41,25 @@ const UsersTable = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.put(
-            `http://localhost:3001/admin/user/decline/${userId}`
-          );
-          console.log("Usuario borrado con éxito");
-
-          // Enviar el correo electrónico solo al usuario eliminado
-          const deletedUser = users.find((user) => user.id === userId);
-          await axios.post("http://localhost:3001/send-email", {
-            to: deletedUser.mail,
-            subject: "Usuario eliminado",
-            message: `Tu Usuario fue eliminado de nuestro sitio Web. Si quieres reactivarlo, comunícate a este Correo Electrónico: "perisferiastore@gmail.com". Muchas gracias`,
-          });
-          console.log("Correo electrónico enviado");
-
+          // Encontrar el usuario que se eliminará
+          const userToDelete = users.find((user) => user.id === userId);
+  
           // Actualizar la lista de usuarios en el estado local
           const updatedUsers = users.filter((user) => user.id !== userId);
           setUsers(updatedUsers);
+  
+          // Enviar la solicitud para eliminar el usuario
+          await axios.put(`http://localhost:3001/admin/user/decline/${userId}`);
+          console.log("Usuario borrado con éxito");
+  
+          // Enviar el correo electrónico solo al usuario eliminado
+          await axios.post("http://localhost:3001/send-email", {
+            to: userToDelete.mail,
+            subject: "Usuario eliminado",
+            message:
+              "Tu Usuario fue eliminado de nuestro sitio Web. Si quieres reactivarlo, comunícate a este Correo Electrónico: perisferiastore@gmail.com. Muchas gracias",
+          });
+          console.log("Correo electrónico enviado");
         } catch (error) {
           console.error("Error al borrar el usuario:", error);
           Swal.fire("Error", "No se pudo borrar el usuario", "error");
@@ -65,7 +67,7 @@ const UsersTable = () => {
       }
     });
   };
-
+  
   const handleUnban = async (userId) => {
     Swal.fire({
       title: "¿Seguro que quieres reactivar el usuario?",
@@ -78,10 +80,10 @@ const UsersTable = () => {
       if (result.isConfirmed) {
         try {
           await axios.put(
-            `http://localhost:3001/admin/user/decline/${userId}`
+            `http://localhost:3001/admin/user/active/${userId}`
           );
           console.log("Usuario reactivado con éxito");
-
+  
           // Enviar el correo electrónico solo al usuario reactivado
           const unbannedUser = users.find((user) => user.id === userId);
           await axios.post("http://localhost:3001/send-email", {
@@ -90,7 +92,7 @@ const UsersTable = () => {
             message: `Tu Usuario fue reactivado en nuestro sitio Web. Si tienes alguna pregunta, no dudes en contactarnos. Muchas gracias`,
           });
           console.log("Correo electrónico enviado");
-
+  
           // Actualizar la lista de usuarios en el estado local
           const updatedUsers = users.map((user) =>
             user.id === userId ? { ...user, is_active: true } : user
