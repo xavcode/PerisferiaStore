@@ -6,9 +6,11 @@ const { initialEdit } = require('../controllers/Product/editProduct');
 const { initialEdit_user } = require('../controllers/Users/editUser');
 const { decline_users } = require('../controllers/Users/DeclineUser');
 const { active_users } = require('../controllers/Users/activeUser');
+const { userAdmin } = require('../controllers/Users/userAdmin');
 const upload = multer({ dest: 'uploads/' })
 
 router_put.put('/product', initialEdit); // editar product
+router_put.put('/userAdmin/:userId', userAdmin);
 // router_put.put('/product/:productId', initialEdit); // editar product
 router_put.put('/admin/user/:userId', initialEdit_user); // editar usuario
 router_put.put('/admin/user/decline/:userId', decline_users);
