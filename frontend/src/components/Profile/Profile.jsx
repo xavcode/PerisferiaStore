@@ -32,9 +32,10 @@ const Profile = () => {
             address: address || prevFormData.address,
             username: username || prevFormData.username
           }));
+          
 
           setDataLoaded(true);
-          console.log('Datos cargados en el estado formData:', formData);
+          // console.log('Datos cargados en el estado formData:', formData);
         } catch (error) {
           console.error('Error al obtener los datos del usuario:', error);
         }
@@ -83,7 +84,7 @@ const Profile = () => {
                   <span className="font-semibold">Teléfono:</span> {formData.phone || '1234567890'}
                 </div>
                 <div className="mb-2">
-                <span className="font-semibold">Direccion de envio:</span> {formData.address || 'Calle por defecto'}
+                <span className="font-semibold">Direccion de envio:</span> {formData.address || 'Sin Calle'}
                 </div>
               </div>
             </div>
