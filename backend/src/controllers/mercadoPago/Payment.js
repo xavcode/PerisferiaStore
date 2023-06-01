@@ -64,8 +64,9 @@ const create_Order = async (req, res) => {
       access_token: process.env.PROD_ACCESS_TOKEN,
     });
     
-    const { products } = req.body; // Obtén los productos seleccionados enviados desde Cart.jsx
+    const { products, user } = req.body; // Obtén los productos seleccionados enviados desde Cart.jsx
     console.log(products)
+    console.log(user)
     
     const items = products.map((product) => {
       // Utiliza los productos seleccionados en lugar de obtenerlos de la base de datos
@@ -77,8 +78,7 @@ const create_Order = async (req, res) => {
         currency_id: 'ARS',
         quantity: product.quantity,
         picture_url: product.img,
-      };
-      
+      };      
     });
     
     const preference = {

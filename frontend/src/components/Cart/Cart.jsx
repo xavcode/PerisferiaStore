@@ -80,9 +80,10 @@ function CartItem(
   );
 }
 
-export default function Cart() {
+export default function Cart( {userData}) {
   const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } = useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
+  console.log(userData)
 
   const handleCartToggle = () => {
     setCartOpen(!isCartOpen);
@@ -131,9 +132,8 @@ export default function Cart() {
       const response = await axios.post("http://localhost:3001/payment", {
         publicKey: "TEST-1c120130-f27d-4676-930c-ae6d7014d092",
         products: products,
+        user:userData
       });
-
-      console.log(typeof(products))
 
       // console.log("Pago correcto", response);
       // console.log(response.data);

@@ -9,19 +9,17 @@ import axios from "axios"
 import { useAuth0 } from "@auth0/auth0-react";
 
 
-
 const Header = () => {
   const {user} = useAuth0()
   const { isAuthenticated } = useAuth0()
-  const [userId, setUserId] = useState(null);
+  const [userData, setUserData] = useState(null);
 
   useEffect(() => {
     const fetchId = async () => {
       if (user && user.email) {
         try {
           const response = await axios.get(`http://localhost:3001/admin/user/${user.email}`);
-          setUserId(response.data.id)
-          console.log(response.data.id)
+          setUserData(response.data)
         } catch (error) {
           console.error('Error al obtener el usuario:', error);
         }
@@ -65,7 +63,9 @@ const Header = () => {
           </li>
           <div className="flex justify-end gap-2 px-1 ">
             <li>
-              <Cart />
+              <Cart 
+                userData={userData}
+              />
             </li>
             <div className="flex justify-end gap-2 px-1 w-[250px] relative">
               <li>
