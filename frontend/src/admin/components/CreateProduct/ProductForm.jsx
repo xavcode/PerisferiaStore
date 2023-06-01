@@ -271,7 +271,7 @@ export default CreateProductForm;
 //     formData.append('category', category);
 
 //     try {
-//       await axios.post('http://localhost:3001/', formData);
+//       await axios.post('https://perisferiastore-production.up.railway.app/', formData);
 //       // El formulario se envió exitosamente
 //       // Realiza cualquier acción adicional que necesites aquí
 //     } catch (error) {

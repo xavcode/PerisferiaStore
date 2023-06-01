@@ -12,7 +12,7 @@ const EditUser = () => {
   useEffect(() => {
     const peticion = async () => {
       try {
-        const userEdit = await axios.get(`http://localhost:3001/admin/users/${userId}`) // /admin/user/:userMail
+        const userEdit = await axios.get(`https://perisferiastore-production.up.railway.app/admin/users/${userId}`) // /admin/user/:userMail
         const user = userEdit.data
         setFormData(user);
         setInitialFormData(user)
@@ -62,7 +62,7 @@ const EditUser = () => {
       }
     }
     try {
-      const response = await axios.put(`http://localhost:3001/admin/user/${userId}`, camposEditados);
+      const response = await axios.put(`https://perisferiastore-production.up.railway.app/admin/user/${userId}`, camposEditados);
       console.log(response.data);
       Swal.fire('Cambios guardados', 'Los cambios se guardaron correctamente.', 'success');
       navigation('/store')

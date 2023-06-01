@@ -54,7 +54,7 @@ const CreateUserForm = () => {
       formDataToSend.append(key, value);
     });
     try {
-      const response = await axios.post('http://localhost:3001/user', formDataToSend);
+      const response = await axios.post('https://perisferiastore-production.up.railway.app/user', formDataToSend);
       Swal.fire(
         "¡Usuario creado!",
         "El usuario ha sido creado exitosamente.",
@@ -82,7 +82,7 @@ const CreateUserForm = () => {
     });
     if (result.isConfirmed) {
       try {
-        await axios.post("http://localhost:3001/user", formData);
+        await axios.post("https://perisferiastore-production.up.railway.app/user", formData);
         Swal.fire(
           "¡Usuario creado!",
           "El usuario ha sido creado exitosamente.",
@@ -285,7 +285,7 @@ export default CreateUserForm;
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
 //     try {
-//       await axios.post('http://localhost:3001/user', formData) // http://localhost:3001/user
+//       await axios.post('https://perisferiastore-production.up.railway.app/user', formData) // https://perisferiastore-production.up.railway.app/user
 //       console.log(formData)
 //     } catch (error) {
 //       throw new Error(error)
@@ -473,7 +473,7 @@ export default CreateUserForm;
     });
     if (result.isConfirmed) {
       try {
-        await axios.post("http://localhost:3001/user", formData);
+        await axios.post("https://perisferiastore-production.up.railway.app/user", formData);
         Swal.fire(
           "¡Usuario creado!",
           "El usuario ha sido creado exitosamente.",

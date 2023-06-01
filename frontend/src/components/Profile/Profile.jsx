@@ -21,7 +21,7 @@ const Profile = () => {
     if (user) {
       const datosDelUsuario = async () => {
         try {
-          const userData = await axios.get(`http://localhost:3001/admin/user/${user.email}`);
+          const userData = await axios.get(`https://perisferiastore-production.up.railway.app/admin/user/${user.email}`);
           const { name, last_name, mail, phone, address, username} = userData.data;
           setFormData(prevFormData => ({
             ...prevFormData,
