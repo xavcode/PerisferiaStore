@@ -121,10 +121,10 @@ export default function Cart() {
       const products = cart
         .filter((product) => product.quantity > 0) // Filtrar productos con cantidad mayor a cero
         .map((product) => ({
-          id: product.id,
+          description: product.description,
           quantity: product.quantity,
           title: product.title,
-          description: product.description,
+          id: product.id,
           price: parseFloat(product.price),
         }));
 
@@ -133,10 +133,12 @@ export default function Cart() {
         products: products,
       });
 
-      console.log("Pago correcto", response);
-      console.log(response.data);
+      console.log(typeof(products))
+
+      // console.log("Pago correcto", response);
+      // console.log(response.data);
       window.location.href = response.data.init_point;
-      console.log(response.data.init_point);
+      // console.log(response.data.init_point);
     } catch (error) {
       console.error("Pago no realizado", error);
     }

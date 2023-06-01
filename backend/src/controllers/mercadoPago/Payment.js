@@ -83,7 +83,7 @@ const create_Order = async (req, res) => {
     
     const preference = {
       items: items,
-      back_urls: {
+      redirect_urls: {
         success: 'https://perisferia-store.vercel.app/store',
         failure: 'https://perisferia-store.vercel.app/store',
         pending: 'https://perisferia-store.vercel.app/pending',
