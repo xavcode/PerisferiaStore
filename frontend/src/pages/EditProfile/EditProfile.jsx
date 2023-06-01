@@ -28,8 +28,8 @@ const EditProfile = () => {
 		last_name: '',
 		username: '',
 		address: '',
-		password: '',
-		mail: '',
+		// password: '',
+		// mail: '',
 		phone: '',
 	});
 
@@ -61,7 +61,7 @@ const EditProfile = () => {
 	};
 	return (
 		<div className="fixed justify-center flex flex-col items-center bg-gray-900 text-white py-3 px-16 mt-20 mb-5 w-full mx-4 rounded-lg">
-			<Link to="/admin/users" className="text-gray-500 hover:text-gray-900 mb-2">
+			<Link to="/profile" className="text-gray-500 hover:text-gray-900 mb-2">
 				<svg className="w-6 h-6  mr-2" stroke="currentColor" >
 					<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
 				</svg></Link>
@@ -119,7 +119,7 @@ const EditProfile = () => {
 						className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
 					/>
 				</div>
-				<div>
+				{/* <div>
 					<label htmlFor="password" className="text-lg font-semibold">
 						Contraseña:
 					</label>
@@ -131,8 +131,8 @@ const EditProfile = () => {
 						onChange={handleChange}
 						className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
 					/>
-				</div>
-				<div>
+				</div> */}
+				{/* <div>
 					<label htmlFor="mail" className="text-lg font-semibold">
 						Email:
 					</label>
@@ -144,7 +144,7 @@ const EditProfile = () => {
 						onChange={handleChange}
 						className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
 					/>
-				</div>
+				</div> */}
 				<div>
 					<label htmlFor="img" className="text-lg font-semibold">
 						Imagen:
@@ -170,7 +170,7 @@ const EditProfile = () => {
 						className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
 					/>
 				</div>
-				<div>
+				{/* <div>
 					<label htmlFor="isAdmin" className="text-lg font-semibold">
 						Admin:
 					</label>
@@ -182,7 +182,7 @@ const EditProfile = () => {
 						onChange={handleChange}
 						className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
 					/>
-				</div>
+				</div> */}
 				<div className="col-span-2 flex justify-end">
 					<button className="bg-white hover:bg-primary text-gray-700 font-bold py-2 px-4 rounded">
 						Guardar
