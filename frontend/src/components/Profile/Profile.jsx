@@ -22,14 +22,15 @@ const Profile = () => {
       const datosDelUsuario = async () => {
         try {
           const userData = await axios.get(`http://localhost:3001/admin/user/${user.email}`);
-          const { name, last_name, mail, phone, address } = userData.data;
+          const { name, last_name, mail, phone, address, username} = userData.data;
           setFormData(prevFormData => ({
             ...prevFormData,
             name: name || prevFormData.name,
             last_name: last_name || prevFormData.last_name,
             mail: mail || prevFormData.mail,
             phone: phone || prevFormData.phone,
-            address: address || prevFormData.address
+            address: address || prevFormData.address,
+            username: username || prevFormData.username
           }));
 
           setDataLoaded(true);
@@ -68,6 +69,12 @@ const Profile = () => {
               <div className="text-gray-700">
                 <div className="mb-2">
                   <span className="font-semibold">Nombre:</span> {formData.name || user.name}
+                </div>
+                <div className="mb-2">
+                  <span className="font-semibold">Apellido:</span> {formData.last_name || user.given_family}
+                </div>
+                <div className="mb-2">
+                  <span className="font-semibold">Usuario:</span> {formData.username || user.username}
                 </div>
                 <div className="mb-2">
                   <span className="font-semibold">Correo electrónico:</span> {formData.mail || user.email}
