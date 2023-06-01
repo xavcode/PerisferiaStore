@@ -13,20 +13,19 @@ const Reviews = ({ id }) => {
     const fetchData = async () => {
       const response = await axios.get(`http://localhost:3001/store/${id}`);
       setReviews(response.data.Reviews);
-      console.log(response.data.Reviews)
     };
     fetchData();
   }, []);
 
   return (
     <div className="min-w-[650px] my-4 ">
-      <h2 className="text-2xl font-bold mb-2">Reseñas de Clientes</h2>
+      <h2 className="text-2xl font-bold mb-2 text-center">Reseñas de Clientes</h2>
       {reviews < 1 ? <p>No hay reseñas disponibles.</p>
         : (
-          <ul className="space-y-4">
+          <ul className="space-y-4 ">
             {reviews?.map((review, index) => (
               <li key={index} className="bg-gray-100 p-2 rounded shadow-md">
-                <div className="text-gray-800 textarea mb-2">
+                <div className="text-gray-800 textarea mb-2 bg-white">
                   <p className='mx-16'>
                     {review.comment}
                   </p>
