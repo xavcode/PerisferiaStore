@@ -77,7 +77,7 @@ const reviewsStore = () => {
     <div className='flex flex-col w-full container text-black'>
       <div className='flex flex-col w-full container'>
         <div className="w-full mx-auto text-center my-4 p-4 bg-white shadow-md text-black container rounded-xl">
-          <h2 className="text-2xl font-bold mb-2">Dejarrr un comentario</h2>
+          <h2 className="text-2xl font-bold mb-2">Dejar un comentario</h2>
           <form onSubmit={handleSubmit}>
             <textarea
               className="w-full textarea rounded border bg-white text-black border-gray-300 focus:outline-none focus:border-indigo-500"
