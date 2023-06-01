@@ -8,7 +8,7 @@ const DemoRev = () => {
     useEffect(() => {
         const callApi = async () => {
             try {
-                const reviews = await axios.get('http://localhost:3001/store/1')
+                const reviews = await axios.get('https://perisferiastore-production.up.railway.app/store/1')
                 const allReview = await reviews.data.Reviews.map(rev => {
                     return {
                         Usuario: rev.userId,

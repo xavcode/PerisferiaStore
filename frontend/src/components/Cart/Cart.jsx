@@ -130,12 +130,12 @@ export default function Cart( {userData}) {
           price: parseFloat(product.price),
         }));
 
-      const response = await axios.post("http://localhost:3001/payment", {
+      const response = await axios.post("https://perisferiastore-production.up.railway.app/payment", {
         publicKey: "TEST-1c120130-f27d-4676-930c-ae6d7014d092",
         products: products,
         user:userData
       });
-      await axios.post("http://localhost:3001/send-email", {
+      await axios.post("https://perisferiastore-production.up.railway.app/send-email", {
         to: userMail,
         subject: "Compra realizada",
         message: `Un gran poder conlleva una gran responsabilidad. Gracias por tu compra`,

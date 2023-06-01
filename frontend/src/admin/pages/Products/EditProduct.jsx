@@ -27,7 +27,7 @@ const EditProduct = () => {
   useEffect(() => {
     const fetchProduct = async () => {
       try {
-        const response = await axios.get(`http://localhost:3001/store/${id}`) //http://localhost:3001/store${id}
+        const response = await axios.get(`https://perisferiastore-production.up.railway.app/store/${id}`) //https://perisferiastore-production.up.railway.app/store${id}
         const product = response.data;
         if (product) {
           setFormData(product)
@@ -67,7 +67,7 @@ const EditProduct = () => {
       if (result.isConfirmed) {
         try {
           const responseProductUpdated = await axios.put(
-            `http://localhost:3001/product`,
+            `https://perisferiastore-production.up.railway.app/product`,
             formData
           );
           console.log("respuesta correcta", responseProductUpdated);

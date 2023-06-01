@@ -10,15 +10,22 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 
 const Header = () => {
-  const {user} = useAuth0()
+  const { user } = useAuth0()
   const { isAuthenticated } = useAuth0()
   const [userData, setUserData] = useState(null);
+  let isAdmin = ''
+  userData ?
+    isAdmin = userData.is_admin
+    : null
+  
+
+
 
   useEffect(() => {
     const fetchId = async () => {
       if (user && user.email) {
         try {
-          const response = await axios.get(`http://localhost:3001/admin/user/${user.email}`);
+          const response = await axios.get(`https://perisferiastore-production.up.railway.app/admin/user/${user.email}`);
           setUserData(response.data)
         } catch (error) {
           console.error('Error al obtener el usuario:', error);
@@ -29,7 +36,7 @@ const Header = () => {
     if (user && user.email) {
       fetchId();
     }
-  }, [user]);  return (
+  }, [user]); return (
     <div className="dark h-[150px] flex justify-around px-3 fixed top-0 left-0 md:h-[60px] w-full items-center font-bold bg-header dark:dark rounded-b-lg z-50">
       <Link to="/">
         <img
@@ -52,8 +59,8 @@ const Header = () => {
           <Link to="/contact"> Contacto</Link>
         </li>
         <li>
-          { isAuthenticated? <Link to="/admin">Dashboard</Link> : null}
-          
+          {isAdmin ? <Link to="/admin">Dashboard</Link> : null}
+
         </li>
       </ul>
       <div className="flex w-[500px] items-center justify-center">
@@ -63,9 +70,9 @@ const Header = () => {
           </li>
           <div className="flex justify-end gap-2 px-1 ">
             <li>
-              {user? <Cart 
+              {user ? <Cart
                 userData={userData}
-              />: null}
+              /> : null}
             </li>
             <div className="flex justify-end gap-2 px-1 w-[250px] relative">
               <li>
