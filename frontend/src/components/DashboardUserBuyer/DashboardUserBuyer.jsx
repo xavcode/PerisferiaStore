@@ -29,7 +29,7 @@ export function DashboardUserBuyer() {
     e.preventDefault();
     console.log('Datos del formulario:', formData);
     try {
-      const response = await axios.post('https://perisferiastore-production.up.railway.app/store/user', formData)
+      const response = await axios.post('http://localhost:3001/store/user', formData)
     } catch (error) {
       console.log(error)
       throw new Error (error)
