@@ -9,7 +9,6 @@ const ReviewForm = ({ id }) => {
   const [comment, setComment] = useState("");
   const [userId, setUserId] = useState("");
 
-
   useEffect(() => {
     const fetchId = async () => {
       if (user && user.email) {
@@ -53,14 +52,18 @@ const ReviewForm = ({ id }) => {
         rating: rating,
       };
       try {
-        await axios.post(`http://localhost:3001/product/${id}`, sendReview);
         Swal.fire({
           title: "Gracias!",
           text: "Se ha registrado tu comentario",
           icon: "info",
           confirmButtonText: "Ok",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            axios.post(`http://localhost:3001/product/${id}`, sendReview);
+            setComment("");
+            location.reload();
+          }
         });
-        setComment("");
       } catch (error) {
         console.error("Error al enviar la reseña:", error);
       }
@@ -81,11 +84,11 @@ const ReviewForm = ({ id }) => {
             value={rating}
             onChange={handleRatingChange}
           >
-            <option value="5">5 estrellas</option>
-            <option value="4">4 estrellas</option>
-            <option value="3">3 estrellas</option>
-            <option value="2">2 estrellas</option>
-            <option value="1">1 estrella</option>
+            <option value="5">⭐⭐⭐⭐⭐</option>
+            <option value="4">⭐⭐⭐⭐</option>
+            <option value="3">⭐⭐⭐</option>
+            <option value="2">⭐⭐</option>
+            <option value="1">⭐</option>
           </select>
         </div>
         <div className="flex flex-col">
@@ -109,7 +112,7 @@ const ReviewForm = ({ id }) => {
           </button>
         </div>
       </form>
-    </div>
+     </div>
   );
 };
 

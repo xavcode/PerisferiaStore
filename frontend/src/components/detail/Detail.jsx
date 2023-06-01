@@ -25,6 +25,7 @@ const Detail = () => {
   }, []);
 
   const isProductInCart = cart.some((item) => item.id === product.id);
+
   return (
     <div className="flex mt-32 items-start justify-center gap-12  ">
       <div className='flex flex-col'>
@@ -124,6 +125,7 @@ const Detail = () => {
         <Reviews
           id={id} />
       </div>
+
     </div>
   );
 };
