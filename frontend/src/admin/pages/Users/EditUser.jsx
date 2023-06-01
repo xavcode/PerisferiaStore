@@ -65,7 +65,7 @@ const EditUser = () => {
       const response = await axios.put(`http://localhost:3001/admin/user/${userId}`, camposEditados);
       console.log(response.data);
       Swal.fire('Cambios guardados', 'Los cambios se guardaron correctamente.', 'success');
-      navigation('/admin/users')
+      navigation('/store')
     } catch (error) {
       console.error(error);
     }
