@@ -21,7 +21,15 @@ const create_record_review = async (req, res) => {
         const { id } = req.params;
         const { userId, comment, rating } = req.body;
         const createRecord = await add_review(id, userId, comment, rating);
-        return res.status(200).send(createRecord);
+        const produc = await Products.findByPk(id, {
+            include: {
+                model: Review,
+                attributes: [
+                    'userId', 'comment', 'rating',
+                    'image','createdAt','updatedAt' ]
+            }
+        });
+        return res.status(200).json(produc);
     } catch (error) {
         throw new Error('Error al crear el comentario', error);
     }

@@ -123,6 +123,8 @@ export default function Cart() {
         .map((product) => ({
           id: product.id,
           quantity: product.quantity,
+          title: product.title,
+          description: product.description,
           price: parseFloat(product.price),
         }));
 

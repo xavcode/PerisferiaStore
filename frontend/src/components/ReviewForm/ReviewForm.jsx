@@ -58,6 +58,7 @@ const ReviewForm = ({ id }) => {
           icon: 'info',
           confirmButtonText: 'Ok',
         });
+        setActualizandoPage(true)
         setComment('')
 
       } catch (error) {

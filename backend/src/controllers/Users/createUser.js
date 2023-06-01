@@ -24,7 +24,8 @@ const create_record_user = async (req, res) => {
                 .from('Usuarios')
                 .upload(`${req.file.originalname}`, fileData);
                 // Verifica si hubo un error al guardar el archivo
-                if (error) {
+            if (error) {
+                    delete req.file
                     throw new Error(`Error al guardar el archivo en Supabase: ${error.message}`);
               }
                   await fs.promises.unlink(req.file.path.toString()); //eliminamos el archivo del sistema de archivos
