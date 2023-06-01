@@ -25,7 +25,6 @@ import EditProfile from "./pages/EditProfile/EditProfile"
 import ReviewForm from "./components/ReviewForm/ReviewForm";
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from "axios";
-import ExportToPDF from "./admin/components/Invoice/Invoice";
 
 function App() {
   const { user } = useAuth0();
@@ -63,7 +62,6 @@ function App() {
         <Route exact path='/reviews' element={<Reviews />} />
         <Route exact path='/profile' element={<Profile />} />
         <Route exact path='/review' element={<ReviewForm />} />
-        <Route exact path='/invoice' element={<ExportToPDF/>} />
         <Route exact path='/profile/edit' element={<EditProfile />} />
 
 
