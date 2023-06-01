@@ -84,7 +84,6 @@ export default function Cart( {userData}) {
   const { cart, clearCart, addToCart, decreaseQuantity, removeFromCart } = useContext(CartContext);
   const [isCartOpen, setCartOpen] = useState(false);
   const userMail = userData?.mail;
-  console.log(userMail)
 
   const handleCartToggle = () => {
     setCartOpen(!isCartOpen);
