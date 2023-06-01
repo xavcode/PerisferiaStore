@@ -15,6 +15,21 @@ const getUserByMail = async (req, res) => {
   }
 };
 
+const getMail = async (user) =>{
+  try{
+    const user = await Users.findOne({
+      where: {
+        mail: user
+      }
+    });
+    return user;
+  } catch (error) {
+    throw new Error ('se fue todo al carajo', error);
+  }
+}
+
 module.exports = {
-  getUserByMail
+  getUserByMail,
+  getMail
 };
+

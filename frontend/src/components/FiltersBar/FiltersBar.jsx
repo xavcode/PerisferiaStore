@@ -58,7 +58,7 @@ const Filters = () => {
                 id="valueMinPrice"
                 className="bg-inputs text-center"
                 type="number"
-                max={100000}
+                max={1000000}
                 onChange={handleInputText}
                 value={minPrice}
               />
@@ -70,7 +70,7 @@ const Filters = () => {
                 type="range"
                 id="minPrice"
                 min={0}
-                max={100000}
+                max={10000000}
                 onChange={handleChangePrice}
                 value={minPrice}
               />
@@ -87,7 +87,7 @@ const Filters = () => {
                 id="valueMaxPrice"
                 className=" bg-inputs accent-red-600 text-center"
                 type="number"
-                max={100000}
+                max={10000000}
                 onChange={handleInputText}
                 value={maxPrice}
               />
@@ -99,7 +99,7 @@ const Filters = () => {
                 type="range"
                 id="maxPrice"
                 min={0}
-                max={100000}
+                max={10000000}
                 onChange={handleChangePrice}
                 value={maxPrice}
               />
