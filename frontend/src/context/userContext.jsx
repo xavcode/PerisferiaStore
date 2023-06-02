@@ -29,7 +29,7 @@ export const UserProvider = ({ children }) => {
   // useEffect(() => {
 
   //   const fetchData = async () => {
-  //     const response = await axios('http://localhost:3001/users/')
+  //     const response = await axios('https://perisferiastore-production.up.railway.app/users/')
   //     setUserData(response.data)
   //   }    
 

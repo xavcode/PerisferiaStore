@@ -15,7 +15,7 @@ const UsersTable = () => {
     const fetchUsers = async () => {
       try {
         setIsLoading(true);
-        const response = await axios.get("http://localhost:3001/users");
+        const response = await axios.get("https://perisferiastore-production.up.railway.app/users");
         setUsers(response.data);
       } catch (error) {
         console.error("Error al obtener los usuarios:", error);
@@ -41,13 +41,13 @@ const UsersTable = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axios.put(`http://localhost:3001/admin/user/decline/${userId}`);
+          await axios.put(`https://perisferiastore-production.up.railway.app/admin/user/decline/${userId}`);
           console.log("Usuario borrado con éxito");
           Swal.fire("Éxito", "El usuario se eliminó correctamente", "success");
   
           // Enviar el correo electrónico solo al usuario eliminado
           const deletedUser = users.find((user) => user.id === userId);
-          await axios.post("http://localhost:3001/send-email", {
+          await axios.post("https://perisferiastore-production.up.railway.app/send-email", {
             to: deletedUser.mail,
             subject: "Usuario eliminado",
             message: `Tu Usuario fue eliminado de nuestro sitio Web. Si quieres reactivarlo, comunícate a este Correo Electrónico: "perisferiastore@gmail.com". Muchas gracias`,
@@ -61,11 +61,11 @@ const UsersTable = () => {
           setUsers(updatedUsers);
   
           // Enviar la solicitud para eliminar el usuario
-          await axios.put(`http://localhost:3001/admin/user/decline/${userId}`);
+          await axios.put(`https://perisferiastore-production.up.railway.app/admin/user/decline/${userId}`);
           console.log("Usuario borrado con éxito");
   
           // Enviar el correo electrónico solo al usuario eliminado
-          await axios.post("http://localhost:3001/send-email", {
+          await axios.post("https://perisferiastore-production.up.railway.app/send-email", {
             to: userToDelete.mail,
             subject: "Usuario eliminado",
             message:
@@ -92,13 +92,13 @@ const UsersTable = () => {
       if (result.isConfirmed) {
         try {
           await axios.put(
-            `http://localhost:3001/admin/user/active/${userId}`
+            `https://perisferiastore-production.up.railway.app/admin/user/active/${userId}`
           );
           console.log("Usuario reactivado con éxito");
   
           // Enviar el correo electrónico solo al usuario reactivado
           const unbannedUser = users.find((user) => user.id === userId);
-          await axios.post("http://localhost:3001/send-email", {
+          await axios.post("https://perisferiastore-production.up.railway.app/send-email", {
             to: unbannedUser.mail,
             subject: "Usuario reactivado",
             message: `Tu Usuario fue reactivado en nuestro sitio Web. Si tienes alguna pregunta, no dudes en contactarnos. Muchas gracias`,

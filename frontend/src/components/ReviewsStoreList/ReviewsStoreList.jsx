@@ -12,7 +12,7 @@ const ReviewsStoreList = () => {
 
   useEffect(() => {
     const fetchReviews = async () => {
-      const res = await axios.get(`http://localhost:3001/reviews/`)
+      const res = await axios.get(`https://perisferiastore-production.up.railway.app/reviews/`)
       setListReviews(res.data)
     }
     fetchReviews()

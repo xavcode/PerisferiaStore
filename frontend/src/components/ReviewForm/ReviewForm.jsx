@@ -14,7 +14,7 @@ const ReviewForm = ({ id }) => {
       if (user && user.email) {
         try {
           const response = await axios.get(
-            `http://localhost:3001/admin/user/${user.email}`
+            `https://perisferiastore-production.up.railway.app/admin/user/${user.email}`
           );
           setUserId(response.data.id);
         } catch (error) {
@@ -49,7 +49,7 @@ const ReviewForm = ({ id }) => {
 //         rating: rating,
 //       };
 //       try {
-//         await axios.post(`http://localhost:3001/product/${id}`, sendReview);
+//         await axios.post(`https://perisferiastore-production.up.railway.app/product/${id}`, sendReview);
 
 //       } catch (error) {
 //         console.error('Error al enviar la reseña:', error);
@@ -82,7 +82,7 @@ const ReviewForm = ({ id }) => {
           confirmButtonText: "Ok",
         }).then((result) => {
           if (result.isConfirmed) {
-            axios.post(`http://localhost:3001/product/${id}`, sendReview);
+            axios.post(`https://perisferiastore-production.up.railway.app/product/${id}`, sendReview);
             setComment("");
             location.reload();
           }
