@@ -182,7 +182,7 @@ const About = () => {
 						<p className="text-gray-600 mb-2">ferfuego46lun@gmail.com</p>
 						<p className="text-gray-600 mb-2">3804114694</p>
 						<p className="text-gray-600 mb-4">GitHub: FeerLuna</p>
-						<p className="text-gray-600">Rol: Back-end</p>
+						<p className="text-gray-600">Rol: Front-end</p>
 					</div>
 				</div>
 			</div>

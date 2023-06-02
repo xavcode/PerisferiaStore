@@ -87,6 +87,7 @@ const ReviewForm = ({ id }) => {
             location.reload();
           }
         });
+
       } catch (error) {
         console.error('Error al enviar la reseña:', error);
         Swal.fire({
