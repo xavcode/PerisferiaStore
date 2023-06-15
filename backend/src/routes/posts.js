@@ -11,6 +11,7 @@ const fs = require('fs')
 const router_Post = Router();
 const multer = require('multer');
 const { create_store_review } = require('../controllers/StoreReview/createReview');
+const { postFav } = require('../controllers/FavoritoProduct');
 
 
 const upload = multer({ dest: 'uploads/' });// Directorio donde se guardarán los archivos subidos
@@ -26,6 +27,7 @@ router_Post.post('/order', creation_relation);
 
 router_Post.post('/send-email', sendEmail);
 
+router_Post.post("/fav", postFav); //nueva
 
 // router_Post.post('/login', authController);
 

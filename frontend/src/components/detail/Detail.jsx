@@ -3,6 +3,8 @@ import { Link, useParams } from "react-router-dom";
 import { startCase } from "lodash";
 import { useState, useEffect } from "react";
 import { AddToCartIcon, RemoveFromCartIcon } from "../Icons.jsx";
+import { useAuth0 } from "@auth0/auth0-react";
+import Swal from 'sweetalert2';
 
 
 import axios from "axios";
@@ -15,6 +17,7 @@ const Detail = () => {
   const [ actualizandoPage, setActualizandoPage ] = useState(false);
   const [product, setProduct] = useState({});
   const { id } = useParams();
+  const { user, loginWithPopup } = useAuth0();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,6 +28,31 @@ const Detail = () => {
   }, [actualizandoPage]);
 
   const isProductInCart = cart.some((item) => item.id === product.id);
+
+  const handleCartClick = () => {
+    if (!user) {
+      Swal.fire({
+        icon: 'warning',
+        title: 'Iniciar sesión',
+        text: 'Debes iniciar sesión para agregar productos al carrito.',
+        confirmButtonText: 'Iniciar sesión',
+        showCancelButton: true,
+        cancelButtonText: 'Cancelar',
+      }).then((result) => {
+        if (result.isConfirmed) {
+          loginWithPopup(); // Iniciar sesión con Auth0
+        } else { 
+          Swal.fire({
+            icon: 'info',
+            title: 'Acceso denegado',
+            text: 'No podrás realizar ninguna compra hasta que inicies sesión.',
+          }); 
+        }
+      });
+    } else {
+      isProductInCart ? removeFromCart(props) : addToCart(props);
+    }
+  };
 
   return (
     <div className="flex mt-32 items-start justify-center gap-12  ">
@@ -105,9 +133,10 @@ const Detail = () => {
               <button
                 className={`${isProductInCart ? "bg-red-900" : "bg-blue-900"} text-white font-bold py-2 px-4 rounded flex justify-center
                 `}
-                onClick={() => {
-                  isProductInCart ? removeFromCart(product) : addToCart(product);
-                }}
+                onClick={handleCartClick}
+                // onClick={() => {
+                //   isProductInCart ? removeFromCart(product) : addToCart(product);
+                // }}
               >
                 {isProductInCart ? <RemoveFromCartIcon /> : <AddToCartIcon />}
               </button>

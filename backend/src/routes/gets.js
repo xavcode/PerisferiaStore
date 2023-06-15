@@ -13,6 +13,7 @@ const { get_user_favorites } = require('../controllers/Users/getUserFav');
 const { getUserById_favorites } = require('../controllers/Users/userFvById');
 const { get_store_review } = require('../controllers/StoreReview/getAllReview');
 const { getUserByMail } = require('../controllers/Users/getUserByMail');
+const { getFav } = require('../controllers/FavoritoProduct');
 
 
 const router_get = Router();
@@ -35,5 +36,6 @@ router_get.get('/success', create_Order);
 router_get.get('/failure', create_Order);
 router_get.get('/pending', create_Order);
 
+router_get.get("/fav", getFav);//nueva
 
 module.exports = router_get

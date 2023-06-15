@@ -3,6 +3,7 @@ import emailjs from "@emailjs/browser";
 import { useState } from "react";
 import logoLight from '../../assets/images/logo-light.jpeg'
 import ReviewsStore from "../../components/ReviewsStore/ReviewsStore";
+import Swal from "sweetalert2";
 
 const Contact = () => {
   const form = useRef();

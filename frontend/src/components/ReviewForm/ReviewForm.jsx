@@ -104,7 +104,7 @@ const ReviewForm = ({ id }) => {
     <div className="container text-black bg-white rounded-lg p-3 mt-4">
       <h2 className="text-2xl font-bold text-center">Deja tu reseña</h2>
       <label htmlFor="user">Usuario: </label>
-      <span id="user">{user && `${user.name}`}</span>
+      <span id="user">{user && `${user.name ? user.name : user.title}`}</span>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="rating">Puntuación:</label>
