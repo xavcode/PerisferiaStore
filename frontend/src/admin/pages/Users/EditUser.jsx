@@ -79,10 +79,10 @@ const EditUser = () => {
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Sí',
-      cancelButtonText: 'No',
+      cancelButtonText: 'No', 
     }).then((result) => {
       if (result.isConfirmed) {
-        navigation('/admin/users');
+        navigation('/');
       }
     });
   };
@@ -147,6 +147,7 @@ const EditUser = () => {
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
         </div>
+
         {/* <div>
           <label htmlFor="password" className="text-lg font-semibold">
             Contraseña:
@@ -159,8 +160,8 @@ const EditUser = () => {
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
-        </div> */}
-        {/* <div>
+        </div>
+        <div>
           <label htmlFor="mail" className="text-lg font-semibold">
             Email:
           </label>
@@ -173,6 +174,7 @@ const EditUser = () => {
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           />
         </div> */}
+
         <div>
           <label htmlFor="img" className="text-lg font-semibold">
             Imagen:

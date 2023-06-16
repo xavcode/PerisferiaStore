@@ -64,10 +64,6 @@ const Home = () => {
   }
   }, [user]);
 
-
-
-
-
   const previousImage = () => {
     setCurrentImage(
       (prevImage) => (prevImage - 1 + images.length) % images.length
