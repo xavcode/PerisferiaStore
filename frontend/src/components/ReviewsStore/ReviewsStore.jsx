@@ -3,12 +3,14 @@ import ReviewsStoreList from '../ReviewsStoreList/ReviewsStoreList';
 import Swal from 'sweetalert2';
 import axios from 'axios'
 import { useAuth0 } from '@auth0/auth0-react';
+import { useRef } from 'react';
 
 const reviewsStore = () => {
   const { user } = useAuth0()
   const [userId, setUserId] = useState('')
   const [comment, setComment] = useState('');
-
+  const [isInputClicked, setIsInputClicked] = useState(false);
+  const inputRef = useRef(null);
 
   useEffect(() => {
     const fetchId = async () => {
@@ -26,6 +28,10 @@ const reviewsStore = () => {
       fetchId();
     }
   }, [user]);
+
+  const handleInputClick = () => {
+    setIsInputClicked(true);
+  };
 
 
   const handleSubmit = async (e) => {
@@ -61,31 +67,48 @@ const reviewsStore = () => {
     setComment('');
   };
 
-  return (
-    <div className=' mt-10 flex flex-col w-full container text-black'>
-      <div className='flex flex-col w-full container'>
-        <div className="w-full mx-auto text-center my-4 p-4 bg-white shadow-md text-black container rounded-xl">
-          <h2 className="text-2xl font-bold mb-2">Deja tu comentario</h2>
-          <form onSubmit={handleSubmit}>
-            <textarea
-              className="w-full textarea rounded border bg-white text-black border-gray-300 focus:outline-none focus:border-indigo-500"
-              rows="2"
-              placeholder="Escribe tu comentario..."
-              value={comment}
-              onChange={(e) => setComment(e.target.value)}
-              required
-            ></textarea>
-            <button
-              type="submit"
-              className="px-4 py-2 text-white rounded bg-blue-900 hover:bg-blue-600"
-            >
-              Enviar comentario
-            </button>
-          </form>
-        </div>
+  const handleClickOutside = (e) => {
+    if (inputRef.current && !inputRef.current.contains(e.target)) {
+      setIsInputClicked(false);
+    }
+  };
 
-        <ReviewsStoreList />
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  return (
+    <div className="mt-10 flex flex-col items-center bg-gray-900">
+      <div
+        className={`w-full mx-auto text-center my-4 p-4 bg-gray-800 shadow-xl text-white rounded-xl transform ${
+          isInputClicked ? "scale-105" : ""
+        } transition-transform duration-300`}
+      >
+        <h2 className="text-3xl font-bold mb-4">Deja tu comentario</h2>
+        <form onSubmit={handleSubmit} className="flex flex-col items-center">
+          <textarea
+            className="w-full textarea rounded border bg-gray-900 text-white border-gray-300 focus:outline-none focus:border-indigo-500 mb-4 p-2"
+            rows="4"
+            placeholder="Escribe tu comentario..."
+            value={comment}
+            onChange={(e) => setComment(e.target.value)}
+            onClick={handleInputClick}
+            required
+            ref={inputRef}
+          ></textarea>
+          <button
+            type="submit"
+            className="bg-white hover:bg-primary text-gray-700 font-bold py-2 px-4 rounded transform transition-all duration-300 hover:scale-105"
+          >
+            Enviar comentario
+          </button>
+        </form>
       </div>
+
+      <ReviewsStoreList />
     </div>
   );
 };

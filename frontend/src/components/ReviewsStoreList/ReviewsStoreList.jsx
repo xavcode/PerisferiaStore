@@ -2,13 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2';
 import axios from 'axios'
 
-
-
 const ReviewsStoreList = () => {
 
   const [listReviews, setListReviews] = useState([])
-
-
 
   useEffect(() => {
     const fetchReviews = async () => {
@@ -17,7 +13,6 @@ const ReviewsStoreList = () => {
     }
     fetchReviews()
   }, [])
-
 
   return (
     <div className="w-full mx-auto my-4 p-4 bg-white shadow-md rounded text-black">
