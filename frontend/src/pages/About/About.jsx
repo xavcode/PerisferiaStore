@@ -50,7 +50,7 @@ const About = () => {
 
 			<div className="bg-black-100 py-20 px-6">
 				<div className="text-center mb-10">
-					<h1 className="text-5xl font-bold">INTEGRANTES DE DESARROLLADORES</h1>
+					<h1 className="text-5xl font-bold">NUESTRO EQUIPO</h1>
 				</div>
 			</div>
 

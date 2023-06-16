@@ -45,13 +45,32 @@ const ListaFavorito = () => {
     }
   };
 
-  const toggleSelectAll = () => {
-    const newSelectAll = !selectAll;
-    setSelectAll(newSelectAll);
-    setFavorites((prevFavorites) =>
-      prevFavorites.map((favorite) => ({ ...favorite, selected: newSelectAll }))
-    );
-  };
+  // const toggleSelectAll = () => {
+  //   const newSelectAll = !selectAll;
+  //   setSelectAll(newSelectAll);
+  //   setFavorites((prevFavorites) =>
+  //     prevFavorites.map((favorite) => ({ ...favorite, selected: newSelectAll }))
+  //   );
+  // };
+
+const toggleSelectAll = () => {
+  if (favorites.length === 0) {
+    Swal.fire({
+      icon: 'warning',
+      title: 'Lista vacía',
+      text: 'No hay elementos en la lista de productos.',
+      confirmButtonText: 'Aceptar',
+    });
+    return;
+  }
+
+  const newSelectAll = !selectAll;
+  setSelectAll(newSelectAll);
+  setFavorites((prevFavorites) =>
+    prevFavorites.map((favorite) => ({ ...favorite, selected: newSelectAll }))
+  );
+};
+
 
   const handleCheckboxChange = (event, id) => {
     const isChecked = event.target.checked;

@@ -4,14 +4,14 @@ import Swal from 'sweetalert2';
 import axios from 'axios'
 
 const ReviewForm = ({ id }) => {
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const [rating, setRating] = useState("5");
   const [comment, setComment] = useState("");
   const [userId, setUserId] = useState("");
 
   useEffect(() => {
     const fetchId = async () => {
-      if (user && user.email) {
+      if (isAuthenticated && user && user.email) {
         try {
           const response = await axios.get(
             `https://perisferiastore-production.up.railway.app/admin/user/${user.email}`
@@ -23,10 +23,10 @@ const ReviewForm = ({ id }) => {
       }
     };
 
-    if (user && user.email) {
+    if (isAuthenticated && user && user.email) {
       fetchId();
     }
-  }, [user]);
+  }, [isAuthenticated, user]);
 
   const handleRatingChange = (event) => {
     setRating(parseInt(event.target.value));
@@ -36,69 +36,40 @@ const ReviewForm = ({ id }) => {
     setComment(event.target.value);
   };
 
-//   const handleSubmit = async (event) => {
-//     event.preventDefault();
-//     if (!user) {
-//       alert('Inicia sesión para agregar una reseña 😉');
-//     } else {
-//       const date = new Date();
-//       const formattedDate = date.toISOString().split('T')[0];
-//       const sendReview = {
-//         userId: userId,
-//         comment: comment,
-//         rating: rating,
-//       };
-//       try {
-//         await axios.post(`https://perisferiastore-production.up.railway.app/product/${id}`, sendReview);
-
-//       } catch (error) {
-//         console.error('Error al enviar la reseña:', error);
-//       }
-//     }
-//   };
-
-//Si el usuario no ha iniciado sesión, se muestra una alerta de advertencia. Si la reseña se envía correctamente, se muestra una alerta de éxito. Si hay un error al enviar la reseña, se muestra una alerta de error.
-
   const handleSubmit = async (event) => {
     event.preventDefault();
-    if (!user) {
+    if (!isAuthenticated) {
       Swal.fire({
-        title: "Inicia sesión",
-        text: "Inicia sesión para agregar una reseña 😉",
-        icon: "warning",
-        confirmButtonText: "Ok",
+        icon: 'info',
+        title: 'Iniciar sesión',
+        text: 'Inicia sesión para agregar una reseña 😉',
       });
     } else {
+      const date = new Date();
+      const formattedDate = date.toISOString().split('T')[0];
       const sendReview = {
         userId: userId,
         comment: comment,
         rating: rating,
       };
       try {
+        await axios.post(`https://perisferiastore-production.up.railway.app/product/${id}`, sendReview);
         Swal.fire({
-          title: "Gracias!",
-          text: "Se ha registrado tu comentario",
-          icon: "info",
-          confirmButtonText: "Ok",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            axios.post(`https://perisferiastore-production.up.railway.app/product/${id}`, sendReview);
-            setComment("");
-            location.reload();
-          }
+          icon: 'success',
+          title: 'Mensaje enviado',
+          text: 'Tu reseña ha sido enviada correctamente.',
+        }).then(() => {
+          window.location.reload();
         });
-
       } catch (error) {
         console.error('Error al enviar la reseña:', error);
-        Swal.fire({
-          title: 'Error',
-          text: 'Hubo un error al enviar la reseña.',
-          icon: 'error',
-          confirmButtonText: 'Ok',
-        });
       }
     }
   };
+
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <div className="container text-black bg-white rounded-lg p-3 mt-4">
@@ -142,7 +113,7 @@ const ReviewForm = ({ id }) => {
           </button>
         </div>
       </form>
-     </div>
+    </div>
   );
 };
 

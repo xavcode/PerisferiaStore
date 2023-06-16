@@ -12,7 +12,7 @@ const Card = (props) => {
   const { addToCart, cart, removeFromCart } = useCart();
   const { user, loginWithPopup } = useAuth0();
   const { isAuthenticated } = useAuth0();
-  
+
   const checkProductInCart = (prop) => {
     if (cart && Array.isArray(cart)) {
       return cart.some((item) => item.id === prop.id);
@@ -44,22 +44,22 @@ const Card = (props) => {
       isProductInCart ? removeFromCart(props) : addToCart(props);
     }
   };
-  
+
   const [isFav, setIsFav] = useState(null);
   // const [favorites, setFavorites] = useState([]);
   const addToFavorites = async (props) => {
     try {
-     const response = await axios.post("http://localhost:3001/fav", props);
-    //  setFavorites([...favorites, props]);
-    //  console.log("Lista de favoritos actualizadaa:", favorites);
-     setIsFav(true);
-     Swal.fire(
-        "Agregado a favoritos",
-        "El producto se ha agregado a favoritos",
-        "success"
-      );
+      const response = await axios.post("http://localhost:3001/fav", props);
+      //  setFavorites([...favorites, props]);
+      //  console.log("Lista de favoritos actualizadaa:", favorites);
+      setIsFav(true);
+      //  Swal.fire(
+      //     "Agregado a favoritos",
+      //     "El producto se ha agregado a favoritos",
+      //     "success"
+      //   );
     } catch (error) {
-      Swal.fire("Error", "No se pudo agregar el producto a favoritos", error);
+      // Swal.fire("Error", "No se pudo agregar el producto a favoritos", error);
     }
   };
 
@@ -75,13 +75,13 @@ const Card = (props) => {
       // console.log("Lista de favoritos actualizada:", favorites);
       console.log("Elimine producto", props.id);
       setIsFav(false);
-      Swal.fire(
-        "Eliminado de favoritos",
-        "El producto se ha eliminado de favoritos",
-        "success"
-      );
+      // Swal.fire(
+      //   "Eliminado de favoritos",
+      //   "El producto se ha eliminado de favoritos",
+      //   "success"
+      // );
     } catch (error) {
-      Swal.fire("Error", "No se pudo eliminar el producto de favoritos", error);
+      // Swal.fire("Error", "No se pudo eliminar el producto de favoritos", error);
     }
   };
 
@@ -120,7 +120,7 @@ const Card = (props) => {
         </div>
         <div className="grid justify-center">
           <span className="text-center font-bold text-xl text-text_rating">
-            Rating: {props.rating}
+            Rating: {props.rating}⭐
           </span>
           <span className="text-2xl text-center font-bold text-text ">{`$${props.price} `}</span>
           <button
@@ -133,12 +133,21 @@ const Card = (props) => {
           </button>
           {isAuthenticated ? (
             isFav ? (
-              <button onClick={() => removeFromFavorites(props)}>❤️</button>
+              <button
+                onClick={() => removeFromFavorites(props)}
+                className="text-red-500 hover:text-red-600"
+              >
+                ❤️
+              </button>
             ) : (
-              <button onClick={() => addToFavorites(props)}>🤍</button>
+              <button
+                onClick={() => addToFavorites(props)}
+                className="text-gray-500 hover:text-gray-600"
+              >
+                🤍
+              </button>
             )
           ) : null}
-
         </div>
       </div>
     </div>

@@ -12,7 +12,7 @@ import { useCart } from "../../hooks/useCart.jsx";
 import Reviews from '../Reviews/Reviews.jsx';
 import ReviewForm from '../ReviewForm/ReviewForm.jsx';
 
-const Detail = () => {
+const Detail = (props) => {
   const { addToCart, removeFromCart, cart } = useCart();
   const [ actualizandoPage, setActualizandoPage ] = useState(false);
   const [product, setProduct] = useState({});
@@ -28,7 +28,7 @@ const Detail = () => {
   }, [actualizandoPage]);
 
   const isProductInCart = cart.some((item) => item.id === product.id);
-
+  
   const handleCartClick = () => {
     if (!user) {
       Swal.fire({
@@ -41,19 +41,23 @@ const Detail = () => {
       }).then((result) => {
         if (result.isConfirmed) {
           loginWithPopup(); // Iniciar sesión con Auth0
-        } else { 
+        } else {
           Swal.fire({
             icon: 'info',
             title: 'Acceso denegado',
             text: 'No podrás realizar ninguna compra hasta que inicies sesión.',
-          }); 
+          });
         }
       });
     } else {
-      isProductInCart ? removeFromCart(props) : addToCart(props);
+      if (isProductInCart) {
+        removeFromCart(product);
+      } else {
+        addToCart(product);
+      }
     }
   };
-
+  
   return (
     <div className="flex mt-32 items-start justify-center gap-12  ">
       <div className='flex flex-col'>
@@ -65,7 +69,7 @@ const Detail = () => {
                 strokeLinejoin="round"
                 strokeWidth="2"
                 d="M10 19l-7-7m0 0l7-7m-7 7h18"
-              />
+                />
             </svg>
           </Link>
 
@@ -77,14 +81,14 @@ const Detail = () => {
                   className=" max-h-[350px] max-w-[250px] min-h-[200px] min-w-[200px] align-center justify-center my-2"
                   src={product.img}
                   alt={product.name}
-                />
+                  />
                 <h5 className="max-w-[200px] text-2xl font-semibold tracking-tight text-text text-center mb-2">
                   {startCase(product.name)}
                 </h5>
               </div>
               <div className="w-full flex items-center justify-center gap-2 p-1">
                 <span className="text-center text-xl font-bold text-text_rating ">
-                  Rating: {product.rating}
+                  Rating: {product.rating}⭐
                 </span>
                 <span className="text-xl text-left font-bold text-text ">
                   Precio: {`$${product.price} `}
@@ -108,23 +112,23 @@ const Detail = () => {
                   className="ml-4 bg-gray-200 "
                   name="colorPicker"
                   id="colorPicker"
-                >
+                  >
                   <option
                     className="bg-gray-200 hover:bg-transparent"
                     value="red"
-                  >
+                    >
                     Rojo
                   </option>
                   <option
                     className="bg-gray-200 hover:bg-transparent"
                     value="yellow"
-                  >
+                    >
                     Amarillo
                   </option>
                   <option
                     className="bg-gray-200 hover:bg-transparent"
                     value="blue"
-                  >
+                    >
                     Azul
                   </option>
                 </select>
@@ -134,10 +138,7 @@ const Detail = () => {
                 className={`${isProductInCart ? "bg-red-900" : "bg-blue-900"} text-white font-bold py-2 px-4 rounded flex justify-center
                 `}
                 onClick={handleCartClick}
-                // onClick={() => {
-                //   isProductInCart ? removeFromCart(product) : addToCart(product);
-                // }}
-              >
+                >
                 {isProductInCart ? <RemoveFromCartIcon /> : <AddToCartIcon />}
               </button>
             </div>
@@ -162,3 +163,6 @@ const Detail = () => {
 
 
 export default Detail
+
+
+

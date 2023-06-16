@@ -82,7 +82,7 @@ function CartItem(
               </div>
             </div>
             <div className="flex-1 flex items-center justify-around text-gray-700">
-            Precio: {props.price}  
+            Precio: ${props.price}  
             </div>
           </div>
         </div>
@@ -219,7 +219,7 @@ export default function Cart( {userData}) {
               {cart.length > 0 && (
                 <div className="py-2 flex justify-between px-4">
                   <div className="text-sm font-medium text-gray-700">
-                    Total: {totalPrice}
+                    Total: ${totalPrice}
                   </div>
                   <button
                     className="inline-flex items-center px-3 py-1.5 border border-transparent text-xs font-medium rounded text-white bg-red-900 hover:bg-red-600 focus:outline-none"
