@@ -188,11 +188,13 @@ const EditProduct = () => {
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           >
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
+            <option selected disabled>
+              Seleccionar uno</option>
+             <option value="1">1⭐</option>
+           <option value="2">2⭐⭐</option>
+            <option value="3">3⭐⭐⭐</option>
+            <option value="4">4⭐⭐⭐⭐</option>
+            <option value="5">5⭐⭐⭐⭐⭐</option>
           </select>
         </div>
         <div>
@@ -206,7 +208,9 @@ const EditProduct = () => {
             onChange={handleChange}
             className="w-full bg-gray-700 rounded-lg py-2 px-3 mt-1 text-white"
           >
-            <option value="">Seleccionar categoría</option>
+            <option selected disabled>
+                Seleccionar uno
+              </option>
             {categories.map((category) => (
               <option key={category.id} value={category.id}>
                 {startCase(category)}

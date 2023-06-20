@@ -7,18 +7,18 @@ module.exports = (sequelize) => {
             allowNull:false,
             unique: true,
             primaryKey: true,
-            defaultValue: UUIDV4
+            defaultValue: UUIDV4 
         },
         name: {
             type: DataTypes.STRING,
             allowNull: false,
         },
         price: {
-            type: DataTypes.DECIMAL(10), 
+            type: DataTypes.DECIMAL(10),  
             allowNull: false,
         }, 
         img: {
-            type: DataTypes.STRING,
+            type: DataTypes.STRING, 
             allowNull: false
         },
         status: {
@@ -40,10 +40,9 @@ module.exports = (sequelize) => {
         //     type: DataTypes.STRING,
         //     allowNull: false,
         // },
-    }, {
+    },
+     {
         timestamps: false
     }
     )
 }
-
-//Si creo una funcionalidad de agregar a favorite un producto  y borrar de favorite, tiene que tener alguna relacion en la base de datos haceme un resumen

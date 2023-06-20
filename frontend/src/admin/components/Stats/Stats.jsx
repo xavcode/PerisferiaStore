@@ -31,21 +31,21 @@ const Stats = () => {
   return (
     <div className="grid grid-cols-3 gap-5 w-auto justify-center text-center text-black">
       
-      <div className="bg-[#E9EEF5] rounded-lg shadow-md p-8 w-full ">
+      <div className="bg-[#F9F8F1] rounded-lg shadow-md p-8 w-full">
         <h3 className="text-2xl font-bold mb-4 text-black">Usuarios</h3>
         <p className="text-4xl font-bold text-black">{userCount}</p>
       </div>
-      <div className="bg-[#E9EEF5] rounded-lg shadow-md p-8 w-full ">
+      <div className="bg-[#F9F8F1] rounded-lg shadow-md p-8 w-full ">
         <h3 className="text-2xl font-bold mb-4 text-black">Productos</h3>
         <p className="text-4xl font-bold text-black">{productCount}</p>
       </div>
-      <div className="bg-[#E9EEF5] rounded-lg shadow-md p-8 w-full ">
+      <div className="bg-[#F9F8F1] rounded-lg shadow-md p-8 w-full ">
         <h3 className="text-2xl font-bold mb-4 text-black">Órdenes</h3>
         <p className="text-4xl font-bold text-black">{orderCount}</p>
       </div>
 
       
-      <div className="bg-white shadow-lg rounded-lg p-4 w-full ">
+      <div className="bg-white shadow-lg rounded-lg p-4 w-full">
         <h3 className="text-xl font-semibold">Productos más vendidos</h3>
         <div className="mt-4">
           <div className="flex items-center space-x-4">

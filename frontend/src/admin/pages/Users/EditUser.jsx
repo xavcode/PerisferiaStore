@@ -65,7 +65,7 @@ const EditUser = () => {
       const response = await axios.put(`https://perisferiastore-production.up.railway.app/admin/user/${userId}`, camposEditados);
       console.log(response.data);
       Swal.fire('Cambios guardados', 'Los cambios se guardaron correctamente.', 'success');
-      navigation('/store')
+      navigation('/admin/users')
     } catch (error) {
       console.error(error);
     }
@@ -82,7 +82,7 @@ const EditUser = () => {
       cancelButtonText: 'No', 
     }).then((result) => {
       if (result.isConfirmed) {
-        navigation('/');
+        navigation('/admin/users');
       }
     });
   };

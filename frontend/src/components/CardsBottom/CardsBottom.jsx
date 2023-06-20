@@ -8,30 +8,29 @@ import { AiOutlineFundProjectionScreen } from "react-icons/ai";
 
 const CardsBottom = () => {
   return (
-
-    <div className="flex justify-center w-auto gap-12 mt-16 ">
+    <div className="flex justify-center w-auto gap-12 mt-16">
       <CardBottom
         icon={<AiFillStar />}
-        text={<p>Encuentra productos perfectos para ti.</p>}
+        text="Encuentra productos perfectos para ti."
       />
       <CardBottom
         icon={<AiFillCustomerService />}
-        text={<p>Transforma tus deseos en realidad.</p>}
+        text="Transforma tus deseos en realidad."
       />
       <CardBottom
         icon={<AiFillDollarCircle />}
-        text={<p>Descuentos exclusivos hasta del 50%.</p>}
+        text="Descuentos exclusivos hasta del 50%."
       />
       <CardBottom
         icon={<AiOutlineFundProjectionScreen />}
-        text={<p>Todo lo que buscas en un solo sitio.</p>}
+        text="Todo lo que buscas en un solo sitio."
       />
       <CardBottom
         icon={<AiFillLock />}
-        text={<p>Tu compra Segura.</p>}
+        text="Tu compra segura."
       />
     </div>
-  ) 
-}
+  );
+};
 
-export default CardsBottom
+export default CardsBottom;

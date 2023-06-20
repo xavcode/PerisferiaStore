@@ -127,7 +127,9 @@ const toggleSelectAll = () => {
   }
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="flex justify-center items-center h-screen"
+    style={{ backgroundColor: "#161F2D" }}
+    >
       <div className="bg-white rounded-md shadow-md">
         <div className="max-h-screen overflow-y-scroll">
           <div className="w-full h-96">

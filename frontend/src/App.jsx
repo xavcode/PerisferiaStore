@@ -66,7 +66,7 @@ function App() {
         <Route exact path="/review" element={<ReviewForm />} />
         <Route exact path="/profile/edit" element={<EditProfile />} />
 
-        <Route element={<ProtectedRoutes user={user} />}>
+        {/* <Route element={<ProtectedRoutes user={user} />}> */}
           <Route path="/admin/" element={<Main />} />
           <Route path="/admin/products" element={<Products />} />
           <Route path="/admin/products/create" element={<ProductForm />} />
@@ -74,7 +74,7 @@ function App() {
           <Route path="/admin/users" element={<Users />} />
           <Route path="/admin/users/create" element={<CreateUserForm />} />
           <Route path="/admin/users/edit/:id" element={<EditUser />} />
-        </Route>
+        {/* </Route> */}
         <Route path="*" element={<Error />} />
       </Routes>
     </BrowserRouter>

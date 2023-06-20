@@ -11,7 +11,7 @@ const { getUserById } = require('../controllers/Users/getUserById');
 const { get_user_carrito_by_id } = require('../controllers/Users/getUserCarrito');
 const { get_user_favorites } = require('../controllers/Users/getUserFav');
 const { getUserById_favorites } = require('../controllers/Users/userFvById');
-const { get_store_review } = require('../controllers/StoreReview/getAllReview');
+const { get_store_review, delete_store_review } = require('../controllers/StoreReview/getAllReview');
 const { getUserByMail } = require('../controllers/Users/getUserByMail');
 const { getFav } = require('../controllers/FavoritoProduct');
 
@@ -23,6 +23,9 @@ router_get.get('/store', getAllProducts);
 router_get.get('/store/name', get_Products_By_Name);
 router_get.get('/store/:id', addProductById);
 router_get.get('/reviews', get_store_review);
+router_get.delete('/reviews/:id', delete_store_review);
+
+
 router_get.get('/users', get_user);
 router_get.get('/users/favoritos', get_user_favorites);
 router_get.get('/users/favoritos/:userId', getUserById_favorites);

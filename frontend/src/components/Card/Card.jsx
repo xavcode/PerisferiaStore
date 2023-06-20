@@ -5,8 +5,9 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 import { useCart } from "../../hooks/useCart";
 import { useState } from "react";
-import { useEffect } from "react";
+import { useEffect } from "react"; 
 import axios from "axios";
+import { useSpring, animated } from 'react-spring';
 
 const Card = (props) => {
   const { addToCart, cart, removeFromCart } = useCart();
@@ -46,42 +47,22 @@ const Card = (props) => {
   };
 
   const [isFav, setIsFav] = useState(null);
-  // const [favorites, setFavorites] = useState([]);
+
   const addToFavorites = async (props) => {
     try {
       const response = await axios.post("http://localhost:3001/fav", props);
-      //  setFavorites([...favorites, props]);
-      //  console.log("Lista de favoritos actualizadaa:", favorites);
       setIsFav(true);
-      //  Swal.fire(
-      //     "Agregado a favoritos",
-      //     "El producto se ha agregado a favoritos",
-      //     "success"
-      //   );
     } catch (error) {
-      // Swal.fire("Error", "No se pudo agregar el producto a favoritos", error);
+      console.error("Error al agregar el producto a favoritos:", error);
     }
   };
 
   const removeFromFavorites = async (props) => {
     try {
-      const response = await axios.delete(
-        `http://localhost:3001/fav/${props.id}`
-      );
-      // const updatedFavorites = favorites.filter(
-      //   (favorite) => favorite.id !== props.id
-      // );
-      // setFavorites(updatedFavorites);
-      // console.log("Lista de favoritos actualizada:", favorites);
-      console.log("Elimine producto", props.id);
+      const response = await axios.delete(`http://localhost:3001/fav/${props.id}`);
       setIsFav(false);
-      // Swal.fire(
-      //   "Eliminado de favoritos",
-      //   "El producto se ha eliminado de favoritos",
-      //   "success"
-      // );
     } catch (error) {
-      // Swal.fire("Error", "No se pudo eliminar el producto de favoritos", error);
+      console.error("Error al eliminar el producto de favoritos:", error);
     }
   };
 
@@ -90,67 +71,75 @@ const Card = (props) => {
       .get("http://localhost:3001/fav")
       .then((response) => {
         const favorites = response.data;
-        const isFavorite = favorites.some(
-          (favorite) => favorite.id === props.id
-        );
+        const isFavorite = favorites.some((favorite) => favorite.id === props.id);
         setIsFav(isFavorite);
       })
       .catch((error) => {
-        console.log("Error al obtener los favoritos:", error);
+        console.error("Error al obtener los favoritos:", error);
       });
   }, [props.id]);
 
-  return (
-    <div className="grid min-w-[260px] min-h-[340px] max-w-[310px] transition duration-200 ease-in-out hover:scale-[1.03] z-1 hover:shadow-boxshadow rounded-lg hover:shadow-md ">
-      <div className="flex flex-col rounded-lg bg-bg_card pt-4 justify-between p-5">
-        <div>
-          <Link
-            className="flex flex-col justify-center items-center"
-            to={`/store/${props.id}`}
-          >
-            <img
-              className=" max-h-[150px] max-w-[150px] min-h-[100px] min-w-[100px] align-center justify-center my-2"
-              src={props.image}
-              alt={props.title ? props.title : props.name}
-            />
-            <h5 className="max-w-[150px] text-xl font-semibold tracking-tight text-text text-center ">
-              {props.title}
-            </h5>
-          </Link>
-        </div>
-        <div className="grid justify-center">
-          <span className="text-center font-bold text-xl text-text_rating">
-            Rating: {props.rating}⭐
-          </span>
-          <span className="text-2xl text-center font-bold text-text ">{`$${props.price} `}</span>
-          <button
-            className={`bg-${
-              isProductInCart ? "red-900" : "blue-900"
-            } text-white flex justify-center rounded-md`}
-            onClick={handleCartClick}
-          >
-            {isProductInCart ? <RemoveFromCartIcon /> : <AddToCartIcon />}
-          </button>
-          {isAuthenticated ? (
-            isFav ? (
-              <button
-                onClick={() => removeFromFavorites(props)}
-                className="text-red-500 hover:text-red-600"
-              >
-                ❤️
-              </button>
-            ) : (
-              <button
-                onClick={() => addToFavorites(props)}
-                className="text-gray-500 hover:text-gray-600"
-              >
-                🤍
-              </button>
-            )
-          ) : null}
-        </div>
+  const imageAnimation = useSpring({
+    from: { transform: 'scale(1)' },
+    to: { transform: 'scale(1.1)' },
+    config: { tension: 200, friction: 20 },
+  });
+
+return (
+  <div className="grid min-w-[260px] min-h-[340px] max-w-[310px] transition duration-200 ease-in-out hover:scale-[1.03] z-1 hover:shadow-boxshadow rounded-lg hover:shadow-md" style={{ backgroundColor: "#171F2E" }}>
+  <div className="flex flex-col rounded-lg bg-bg_card pt-4 justify-between p-5" style={{ backgroundColor: "#F9F8F1" }}>
+    <div>
+      <Link
+        className="flex flex-col justify-center items-center"
+        to={`/store/${props.id}`}
+      >
+        <animated.img
+          className="max-h-[150px] max-w-[150px] min-h-[100px] min-w-[100px] align-center justify-center my-2"
+          src={props.image}
+          alt={props.title ? props.title : props.name}
+          style={imageAnimation}
+        />
+        <h5 className="max-w-[150px] text-xl font-semibold tracking-tight text-text text-center">
+          {props.title}
+        </h5>
+      </Link>
+    </div>
+      <div className="grid justify-center">
+        <span className="text-center font-bold text-xl text-text_rating">
+          Rating: {props.rating}⭐
+        </span>
+        <span className="text-2xl text-center font-bold text-text">{`$${props.price} `}</span>
+        <button
+          className={`bg-${
+            isProductInCart ? "red-900" : "blue-900"
+          } text-white flex justify-center rounded-md transition duration-300 hover:bg-${
+            isProductInCart ? "red-700" : "blue-700"
+          }`}
+          onClick={handleCartClick}
+        >
+          {isProductInCart ? <RemoveFromCartIcon /> : <AddToCartIcon />}
+        </button>
+        {isAuthenticated ? (
+          isFav ? (
+            <button
+              onClick={() => removeFromFavorites(props)}
+              className="text-red-500 hover:text-red-600 transition duration-300"
+            >
+              ❤️
+            </button>
+          ) : (
+            <button
+              onClick={() => addToFavorites(props)}
+              className="text-gray-500 hover:text-gray-600 transition duration-300"
+            >
+              🤍
+            </button>
+          )
+        ) : null}
       </div>
     </div>
-  );
+  </div>
+);
 };
+
 export default Card;

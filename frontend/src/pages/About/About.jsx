@@ -25,7 +25,8 @@ const About = () => {
   };
   
   return (
-    <div className="bg-black-100 py-20 px-6">
+    <div className="bg-[#111827] py-20 px-6"
+    style={{ backgroundColor: "#161F2D" }}>
       <div className="text-center mb-10">
         <h1 className="text-5xl font-bold">
           ¡Bienvenidos a <span className="text-yellow-300">Perisferia!</span>
@@ -58,27 +59,27 @@ const About = () => {
           ayudarte en lo que necesites. Tu satisfacción es nuestra mayor
           recompensa. <br /> <br />
           Gracias por ser parte de{" "}
-          <span className="text-yellow-300">Perisferia</span> . ¡Explora nuestra
+          <span className="text-yellow-300">Perisferia</span>. ¡Explora nuestra
           amplia selección de productos, accesorios y mucho más, y disfruta de
           una experiencia de compra en línea sin complicaciones!
         </p>
       </main>
-
-      <div className="bg-black-100 py-20 px-6">
+  
+      <div className="bg-[#111827] py-20 px-6" style={{ backgroundColor: "#161F2D" }}>
         <div className="text-center mb-10">
           <h1 className="text-5xl font-bold">NUESTRO EQUIPO</h1>
         </div>
       </div>
-
+  
       <div className="flex justify-center items-start">
         <div>
           <h1 className="text-6xl animate-pulse">BACK-END</h1>
         </div>
       </div>
-
+  
       <br />
       <br />
-
+  
       <div className="flex justify-center">
         {/* Carta de Alan */}
         <div className="w-64 bg-white rounded-lg shadow-lg mx-4 transform transition duration-500 hover:scale-105">
@@ -132,19 +133,19 @@ const About = () => {
           </div>
         </div>{" "}
       </div>
-
+  
       <br />
       <br />
-
+  
       <div>
         <h1 className="flex justify-center text-6xl animate-bounce">
           FRONT-END
         </h1>
       </div>
-
+  
       <br />
       <br />
-
+  
       <div className="flex justify-center">
         {/* Carta de Leonel */}
         <div className="w-64 bg-white rounded-lg shadow-lg mx-4 transform transition duration-500 hover:scale-105">
@@ -165,7 +166,7 @@ const About = () => {
             <p className="text-gray-600">Rol: Front-end</p>
           </div>
         </div>
-
+  
         {/* Carta de Javi */}
         <div className="w-64 bg-white rounded-lg shadow-lg mx-4 transform transition duration-500 hover:scale-105">
           <div className="w-full h-64 rounded-t-lg overflow-hidden">
@@ -183,7 +184,7 @@ const About = () => {
             <p className="text-gray-600">Rol: Front-end</p>
           </div>
         </div>
-
+  
         {/* Carta de Fer */}
         <div className="w-64 bg-white rounded-lg shadow-lg mx-2 transform transition duration-500 hover:scale-105 text-black">
           <div className="w-full h-64 rounded-t-lg overflow-hidden">

@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useState, useEffect , useRef } from "react";
 import axios from "axios";
 import avatar from "../../../assets/images/profile-default-image.png";
 import Swal from "sweetalert2";
@@ -119,15 +119,15 @@ const UsersTable = () => {
   };
 
   return (
-    <div className=" bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end overflow-y-auto">
-      <div className=" flex gap-40 justify-center items-center mb-5">
+    <div className="container bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end">
+      <div className="flex gap-40 justify-center items-center mb-5">
         <h2 className="text-[2rem] mb-2">Lista de Usuarios</h2>
         <Link to="/admin/users/create">
           <button className="btn btn-outline btn-success">Crear usuario</button>
         </Link>
       </div>
-      <div className=" h-[500px]  m-auto justify-center">
-        <table className="  text-[1.3rem] mr-10 text-center">
+      <div className="h-[500px] m-auto justify-center overflow-y-auto scrollbar-hide">
+        <table className="text-[1.3rem] mr-10 text-center">
           <thead>
             <tr className="border-b-2">
               <th></th>
@@ -143,14 +143,14 @@ const UsersTable = () => {
           <tbody>
             {users.map((user, idx) => {
               return (
-                <tr className="max-h-[150px]" key={idx}>
+                <tr className="max-h-[150px] transition-all duration-300 hover:bg-gray-700" key={idx}>
                   <th>{idx + 1}</th>
                   <td className="w-[150px] h-[150px] flex justify-center items-center ">
                     <img
-                      className="rounded-full w-20 h-20"
+                      className="rounded-full w-20 h-20 transform hover:scale-110"
                       src={user.img}
                       alt=""
-                    />
+                      />
                   </td>
                   <td>{user.name}</td>
                   <td>{user.last_name}</td>
@@ -159,9 +159,9 @@ const UsersTable = () => {
                   <td className="w-[15%]">
                     <Link to={`/admin/users/edit/${user.id}`}>
                       <button
-                        className="btn btn-outline btn-warning"
+                        className="btn btn-outline btn-warning transform hover:scale-110"
                         onClick={() => handleEdit(user.id)}
-                      >
+                        >
                         Editar
                       </button>
                     </Link>
@@ -169,18 +169,18 @@ const UsersTable = () => {
                   <td>
                     {user.is_active ? (
                       <button
-                        className="btn btn-outline btn-error"
+                        className="btn btn-outline btn-error transform hover:scale-110"
                         onClick={() => handleDelete(user.id)}
                         disabled={isLoading}
                       >
-                        Borrar
+                        DESACTIVAR
                       </button>
                     ) : (
                       <button
-                        className="btn btn-outline btn-success"
-                        onClick={() => handleUnban(user.id)}
+                      className="btn btn-outline btn-success transform hover:scale-110"
+                      onClick={() => handleUnban(user.id)}
                         disabled={isLoading}
-                      >
+                        >
                         Reactivar
                       </button>
                     )}
@@ -196,3 +196,85 @@ const UsersTable = () => {
 };
 
 export default UsersTable;
+
+
+
+
+
+  // SOLO QUEDA ARREGLAR EL SCROLL, DEJARLO BIEN UBICADO      
+ 
+  // return (
+  //   <div className="container bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end overflow-y-auto">
+  //     <div className="flex gap-40 justify-center items-center mb-5">
+  //       <h2 className="text-[2rem] mb-2">Lista de Usuarios</h2>
+  //       <Link to="/admin/users/create">
+  //         <button className="btn btn-outline btn-success">Crear usuario</button>
+  //       </Link>
+  //     </div>
+  //     <div className="h-[500px] m-auto justify-center">
+  //       <table className="text-[1.3rem] mr-10 text-center">
+  //         <thead>
+  //           <tr className="border-b-2">
+  //             <th></th>
+  //             <th>Imagen</th>
+  //             <th>Nombre</th>
+  //             <th>Apellido</th>
+  //             <th>Usuario</th>
+  //             <th>Correo</th>
+  //             <th>Acción</th>
+  //             <th>Acción</th>
+  //           </tr>
+  //         </thead>
+  //         <tbody>
+  //           {users.map((user, idx) => {
+  //             return (
+  //               <tr className="max-h-[150px] transition-transform duration-500 transform hover:scale-105" key={idx}>
+  //                 <th>{idx + 1}</th>
+  //                 <td className="w-[150px] h-[150px] flex justify-center items-center ">
+  //                   <img
+  //                     className="rounded-full w-20 h-20 hover:rotate-12"
+  //                     src={user.img}
+  //                     alt=""
+  //                   />
+  //                 </td>
+  //                 <td>{user.name}</td>
+  //                 <td>{user.last_name}</td>
+  //                 <td>{user.username}</td>
+  //                 <td>{user.mail}</td>
+  //                 <td className="w-[15%]">
+  //                   <Link to={`/admin/users/edit/${user.id}`}>
+  //                     <button
+  //                       className="btn btn-outline btn-warning"
+  //                       onClick={() => handleEdit(user.id)}
+  //                     >
+  //                       Editar
+  //                     </button>
+  //                   </Link>
+  //                 </td>
+  //                 <td>
+  //                   {user.is_active ? (
+  //                     <button
+  //                       className="btn btn-outline btn-error"
+  //                       onClick={() => handleDelete(user.id)}
+  //                       disabled={isLoading}
+  //                     >
+  //                       DESACTIVAR
+  //                     </button>
+  //                   ) : (
+  //                     <button
+  //                       className="btn btn-outline btn-success"
+  //                       onClick={() => handleUnban(user.id)}
+  //                       disabled={isLoading}
+  //                     >
+  //                       Reactivar
+  //                     </button>
+  //                   )}
+  //                 </td>
+  //               </tr>
+  //             );
+  //           })}
+  //         </tbody>
+  //       </table>
+  //     </div>
+  //   </div>
+  // );

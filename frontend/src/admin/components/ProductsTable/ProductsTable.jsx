@@ -44,18 +44,17 @@ const ProductsTable = () => {
   };
   
   return (
-    <div className=" bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end overflow-y-auto">
-      <div className='  flex gap-40 justify-center items-center mb-5'>
-        <h2 className="text-[2rem]  mb-2">Lista de Productos</h2>
-        <Link to='/admin/products/create' >
-          <button className='btn btn-outline btn-success ml-20 '>Añadir producto
-          </button>
+    <div className="bg-transparent w-full flex flex-col fixed top-20 left-20 bg-gray-900 text-white rounded-lg justify-end">
+      <div className="flex gap-40 justify-center items-center mb-5">
+        <h2 className="text-[2rem] mb-2">Lista de Productos</h2>
+        <Link to="/admin/products/create">
+          <button className="btn btn-outline btn-success ml-20">Añadir producto</button>
         </Link>
       </div>
-      <div className=' h-[500px] flex justify-center  '>
-        <table className=" table-compact text-[1.3rem]  mr-10 text-center overflow-auto">
+      <div className="h-[500px] flex justify-center overflow-y-auto scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-gray-900">
+        <table className="table-auto text-[1.3rem] mr-10 text-center">
           <thead>
-            <tr>
+            <tr className="border-b-2">
               <th></th>
               <th>Imagen</th>
               <th>Producto</th>
@@ -69,27 +68,49 @@ const ProductsTable = () => {
           <tbody>
             {products.map((product, idx) => {
               if (product.id === deletedProductId) {
-                return null; 
+                return null;
               }
               return (
-                <tr className='border-b-2' key={idx}>
-                  <th >{idx + 1}</th>
-                  <td className=' w-[150px] flex justify-center '><img className=' rounded-full w-20 h-20' src={product.img} alt="" /></td>
+                <tr
+                  className="border-b-2 hover:bg-gray-700 transition-colors duration-300"
+                  key={idx}
+                >
+                  <th>{idx + 1}</th>
+                  <td className="w-[150px] flex justify-center">
+                    <img
+                      className="rounded-full w-20 h-20 transform hover:scale-110"
+                      src={product.img}
+                      alt=""
+                    />
+                  </td>
                   <td>{startCase(product.name)}</td>
                   <td>{startCase(product.category)}</td>
-                  <td>{product.price}</td>
-                  <td>{product.rating}</td>
-                  <td className='w-[15%]' >
+                  <td>${product.price}</td>
+                  <td>{product.rating}⭐</td>
+                  <td className="w-[15%]">
                     <Link to={`/admin/products/edit/${product.id}`}>
-                      <button className='btn btn-outline btn-warning' onClick={() => handleEdit(product.id)}>Editar</button></Link></td>
-                  <td> <button className='btn btn-outline btn-error' onClick={() => handleDelete(product.id)}>Borrar</button></td>
+                      <button
+                        className="btn btn-outline btn-warning transform hover:scale-110"
+                        onClick={() => handleEdit(product.id)}
+                      >
+                        Editar
+                      </button>
+                    </Link>
+                  </td>
+                  <td>
+                    <button
+                      className="btn btn-outline btn-error transform hover:scale-110"
+                      onClick={() => handleDelete(product.id)}
+                    >
+                      Borrar
+                    </button>
+                  </td>
                 </tr>
-              )
+              );
             })}
           </tbody>
         </table>
       </div>
-
     </div>
   );
 };

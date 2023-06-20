@@ -1,6 +1,6 @@
 import React, { useState, useRef } from 'react';
 import axios from 'axios';
-import { useNavigate, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import Swal from "sweetalert2";
 
 const CreateUserForm = () => {
@@ -114,6 +114,18 @@ const CreateUserForm = () => {
   return (
     <div className="min-h-screen flex items-center justify-center">
       <div className="max-w-2xl w-4/5 px-6">
+        
+        <Link to="/admin/users" className="text-gray-100 hover:text-gray-600 mb-2">
+            <svg className="w-6 h-6  mr-2" stroke="currentColor">
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                />
+            </svg>
+          </Link>
+
         <h2 className="text-2xl font-bold mb-4">Crear Usuario</h2>
         <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-4">
           <div>

@@ -72,7 +72,7 @@ const ReviewForm = ({ id }) => {
   }
 
   return (
-    <div className="container text-black bg-white rounded-lg p-3 mt-4">
+    <div className="container text-black bg-white rounded-lg p-3 mt-4" style={{ backgroundColor: "#F9F8F1" }}>
       <h2 className="text-2xl font-bold text-center">Deja tu reseña</h2>
       <label htmlFor="user">Usuario: </label>
       <span id="user">{user && `${user.name ? user.name : user.title}`}</span>
@@ -81,6 +81,7 @@ const ReviewForm = ({ id }) => {
           <label htmlFor="rating">Puntuación:</label>
           <select
             className="text-black bg-white select ml-2"
+            style={{ backgroundColor: "#F9F8F1" }}
             id="rating"
             value={rating}
             onChange={handleRatingChange}
@@ -95,6 +96,7 @@ const ReviewForm = ({ id }) => {
         <div className="flex flex-col">
           <textarea
             className="textarea text-black bg-white mt-2"
+            style={{ backgroundColor: "#F9F8F1" }}
             id="comment"
             value={comment}
             required={true}

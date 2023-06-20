@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const { createProduct, add_NewProduct } = require('../controllers/Product/createProd');
 const { create_record_user } = require('../controllers/Users/createUser');
 const { addNewFavorite } = require('../controllers/Favorites/addFavorites');
 const { creation_relation } = require('../controllers/Orders/addOrders');
@@ -12,6 +11,7 @@ const router_Post = Router();
 const multer = require('multer');
 const { create_store_review } = require('../controllers/StoreReview/createReview');
 const { postFav } = require('../controllers/FavoritoProduct');
+const { createProduct, add_NewProduct } = require('../controllers/Product/createProd');
 
 
 const upload = multer({ dest: 'uploads/' });// Directorio donde se guardarán los archivos subidos
@@ -24,15 +24,17 @@ router_Post.post('/product/:id', create_record_review);
 router_Post.post('/store', addProductCarrito);
 router_Post.post('/store/:userId', create_store_review);
 router_Post.post('/order', creation_relation);
-
+ 
 router_Post.post('/send-email', sendEmail);
+ 
 
 router_Post.post("/fav", postFav); //nueva
+router_Post.post("/productCreate", createProduct); //nueva
 
-// router_Post.post('/login', authController);
+// router_Post.post('/login', authController); 
 
 //******************************************************************/
-//ruta de la pasarela de pagos.
+//ruta de la pasarela de pagos. 
 //router_Post.post('/payment', create_Order);
 router_Post.post('/payment', create_Order);
 router_Post.post('/webhook', receive_Webhook);

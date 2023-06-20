@@ -102,6 +102,12 @@ export default function Cart( {userData}) {
   };
 
   const handleClearCart = () => {
+    if (cart.length === 0) {
+      // Mostrar alerta de carrito vacío
+      Swal.fire("Carrito vacío", "El carrito ya está vacío.", "info");
+      return;
+    }
+  
     Swal.fire({
       title: "¿Estás seguro?",
       text: "Esta acción eliminará todos los productos del carrito",
@@ -118,6 +124,7 @@ export default function Cart( {userData}) {
       }
     });
   };
+  
 
   const totalPrice = cart.reduce(
     (total, product) => total + product.price * product.quantity,

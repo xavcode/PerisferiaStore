@@ -50,7 +50,8 @@ const Contact = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center ">
+    <div className="min-h-screen flex items-center justify-center" 
+    style={{ backgroundColor: "#161F2D" }}>
       <div className="max-w-4xl w-full px-6 mt-16" >
         <div className="text-center">
           <img src={logoLight} className="h-36 fixed top-20 right-8 rounded-full" />
@@ -118,7 +119,7 @@ const Contact = () => {
             <div className=" flex items-center justify-center border-2  rounded-3xl py-4  mx-20 border-gray-300  ">
               <button
                 type="submit"
-                className=" py-4 flex items-center justify-center w-80 bg-header hover:bg-header/80 focus:bg-header text-white text-xl font-medium rounded "
+                className=" py-4 flex items-center justify-center w-80 bg-header hover:bg-header/80 focus:bg-header text-white text-xl font-medium rounded"
                 disabled={!isFormValid || isSent}
                 onClick={sendEmail}
               >
